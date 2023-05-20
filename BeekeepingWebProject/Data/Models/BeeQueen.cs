@@ -1,7 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace BeekeepingWebProject.Data.Models
+﻿namespace BeekeepingWebProject.Data.Models
 {
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class BeeQueen
     {
