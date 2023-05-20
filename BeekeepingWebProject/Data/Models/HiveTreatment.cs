@@ -2,6 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
     using static DataConstants;
+
     public class HiveTreatment
     {
         public HiveTreatment()
