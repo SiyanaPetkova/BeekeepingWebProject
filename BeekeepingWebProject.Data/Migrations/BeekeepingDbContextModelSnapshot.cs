@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeekeepingWebProject.Data.Migrations
 {
     [DbContext(typeof(BeekeepingDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    partial class BeekeepingDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -56,7 +56,6 @@ namespace BeekeepingWebProject.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("AdditionalComмent")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ApiaryId")
@@ -108,6 +107,27 @@ namespace BeekeepingWebProject.Data.Migrations
                     b.HasIndex("BeeHiveId");
 
                     b.ToTable("BeeQueens");
+                });
+
+            modelBuilder.Entity("BeekeepingWebProject.Data.Models.Gallery", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("PictureName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PicturePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Galleries");
                 });
 
             modelBuilder.Entity("BeekeepingWebProject.Data.Models.HiveTreatment", b =>

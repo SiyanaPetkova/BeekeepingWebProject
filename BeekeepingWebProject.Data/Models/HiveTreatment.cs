@@ -1,6 +1,7 @@
 ﻿namespace BeekeepingWebProject.Data.Models
 {
     using System.ComponentModel.DataAnnotations;
+
     using static DataConstants;
 
     public class HiveTreatment
@@ -9,12 +10,14 @@
         {
             BeeHives = new HashSet<BeeHive>();
         }
+
+        [Key, Required]
         public int Id { get; set; }
 
-        [MaxLength(MedicationNameMaxLenght)]
+        [Required, MaxLength(MedicationNameMaxLenght)]
         public string MedicationName { get; set; } = null!;
 
-        [MaxLength(ActiveIngredientMaxLenght)]
+        [Required, MaxLength(ActiveIngredientMaxLenght)]
         public string ActiveIngredient { get; set; } = null!;
 
         public DateTime TreatmentDate { get; set; }

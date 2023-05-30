@@ -1,6 +1,7 @@
 ﻿namespace BeekeepingWebProject.Data.Models
 {
     using System.ComponentModel.DataAnnotations;
+
     using static DataConstants;
 
     public class Apiary
@@ -9,9 +10,11 @@
         {
             BeeHives = new HashSet<BeeHive>();   
         }
+
+        [Key, Required]
         public int Id { get; set; }
 
-        [MaxLength(ApiaryNameMaxLenght)]
+        [Required, MaxLength(ApiaryNameMaxLenght)]
         public string Name { get; set; } = null!;
 
         [MaxLength(LocationMaxLenght)]

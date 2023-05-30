@@ -1,8 +1,9 @@
 ﻿namespace BeekeepingWebProject.Data
 {
-    using BeekeepingWebProject.Data.Models;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+
+    using BeekeepingWebProject.Data.Models;
 
     public class BeekeepingDbContext : IdentityDbContext
     {
@@ -19,6 +20,7 @@
         public DbSet<BeeHive> BeeHives { get; init; } = null!;
         public DbSet<BeeQueen> BeeQueens { get; init; } = null!;
         public DbSet<HiveTreatment> HiveTreatments { get; init; } = null!;
+        public DbSet<Gallery> Galleries { get; init; } = null!;
 
     }
 }
