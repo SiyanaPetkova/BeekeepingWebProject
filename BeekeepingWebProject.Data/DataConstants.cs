@@ -9,5 +9,9 @@
         public const int MedicationNameMaxLenght = 50;
 
         public const int ActiveIngredientMaxLenght = 70;
+
+        public const int PicturePathMaxLenght = 70;
+
+        public const int PictureNameMaxLenght = 70;
     }
 }
