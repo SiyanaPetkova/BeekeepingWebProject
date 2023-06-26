@@ -1,27 +1,22 @@
-﻿namespace BeekeepingWebProject.Data.Models
+﻿namespace Beekeeping.Data.Models
 {
     using System.ComponentModel.DataAnnotations;
 
-    using static DataConstants;
+    using static Beekeeping.Data.Common.DataConstants.ApiaryValidations;
 
     public class Apiary
     {
-        public Apiary()
-        {
-            BeeHives = new HashSet<BeeHive>();   
-        }
-
-        [Key, Required]
         public int Id { get; set; }
 
-        [Required, MaxLength(ApiaryNameMaxLenght)]
+        [Required]
+        [StringLength(ApiaryNameMaxLenght)]
         public string Name { get; set; } = null!;
 
-        [MaxLength(LocationMaxLenght)]
+        [StringLength(LocationMaxLenght)]
         public string? Location { get; set; }
 
         public int NumberOfHives { get; set; }
 
-        public ICollection<BeeHive> BeeHives { get; set; }
+        public ICollection<BeeColony> BeeHives { get; set; } = new HashSet<BeeColony>();
     }
 }

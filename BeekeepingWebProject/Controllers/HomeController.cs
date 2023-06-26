@@ -1,9 +1,9 @@
-﻿using BeekeepingWebProject.Models;
-using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-
-namespace BeekeepingWebProject.Controllers
+﻿namespace Beekeeping.Web.Controllers
 {
+    using System.Diagnostics;
+    using Microsoft.AspNetCore.Mvc;
+    using Beekeeping.Models.Errors;
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

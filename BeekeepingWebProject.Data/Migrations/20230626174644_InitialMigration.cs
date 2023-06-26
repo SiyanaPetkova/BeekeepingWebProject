@@ -3,32 +3,17 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace BeekeepingWebProject.Data.Migrations
+namespace Beekeeping.Data.Migrations
 {
     public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Apiaries",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
-                    Location = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
-                    NumberOfHives = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Apiaries", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -42,7 +27,7 @@ namespace BeekeepingWebProject.Data.Migrations
                 name: "AspNetUsers",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -64,6 +49,34 @@ namespace BeekeepingWebProject.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Costs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TypeOfCost = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    CostValue = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Costs", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HiveFeeding",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FeedingType = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
+                    PriceOfFeeding = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HiveFeeding", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "HiveTreatments",
                 columns: table => new
                 {
@@ -71,6 +84,8 @@ namespace BeekeepingWebProject.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MedicationName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     ActiveIngredient = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
+                    ResultAndCommentAboutTheTreatment = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PriceOfTheTreatment = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
                     TreatmentDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -79,12 +94,40 @@ namespace BeekeepingWebProject.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Incomes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TypeOfIncome = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    IncomeValue = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Incomes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Pictures",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PictureName = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
+                    PicturePath = table.Column<string>(type: "nvarchar(2500)", maxLength: 2500, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Pictures", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -100,12 +143,33 @@ namespace BeekeepingWebProject.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Apiaries",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    Location = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    NumberOfHives = table.Column<int>(type: "int", nullable: false),
+                    ApplicationUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Apiaries", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Apiaries_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetUserClaims",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -127,7 +191,7 @@ namespace BeekeepingWebProject.Data.Migrations
                     LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -144,8 +208,8 @@ namespace BeekeepingWebProject.Data.Migrations
                 name: "AspNetUserRoles",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -168,7 +232,7 @@ namespace BeekeepingWebProject.Data.Migrations
                 name: "AspNetUserTokens",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -185,29 +249,44 @@ namespace BeekeepingWebProject.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BeeHives",
+                name: "BeeColonies",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PlateNumber = table.Column<int>(type: "int", nullable: false),
+                    PlateNumber = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     NumberOfFrames = table.Column<int>(type: "int", nullable: false),
-                    NumberOfBroodFrames = table.Column<int>(type: "int", nullable: false),
+                    NumberOfBroodFrames = table.Column<int>(type: "int", nullable: true),
                     AdditionalComмent = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TypeOfBroodBox = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Strenght = table.Column<int>(type: "int", nullable: false),
+                    Temperament = table.Column<int>(type: "int", nullable: false),
+                    Super = table.Column<bool>(type: "bit", nullable: false),
+                    NumberOfSupers = table.Column<int>(type: "int", nullable: true),
+                    SecondBroodBox = table.Column<bool>(type: "bit", nullable: false),
+                    NumberOfAdditionalBoxes = table.Column<int>(type: "int", nullable: true),
+                    MatedBeeQueen = table.Column<bool>(type: "bit", nullable: false),
                     ApiaryId = table.Column<int>(type: "int", nullable: false),
-                    TreatmentId = table.Column<int>(type: "int", nullable: false)
+                    TreatmentId = table.Column<int>(type: "int", nullable: false),
+                    FeedingId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BeeHives", x => x.Id);
+                    table.PrimaryKey("PK_BeeColonies", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_BeeHives_Apiaries_ApiaryId",
+                        name: "FK_BeeColonies_Apiaries_ApiaryId",
                         column: x => x.ApiaryId,
                         principalTable: "Apiaries",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_BeeHives_HiveTreatments_TreatmentId",
+                        name: "FK_BeeColonies_HiveFeeding_FeedingId",
+                        column: x => x.FeedingId,
+                        principalTable: "HiveFeeding",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_BeeColonies_HiveTreatments_TreatmentId",
                         column: x => x.TreatmentId,
                         principalTable: "HiveTreatments",
                         principalColumn: "Id",
@@ -220,7 +299,7 @@ namespace BeekeepingWebProject.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Breeder = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Breeder = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     BeeQueenType = table.Column<int>(type: "int", nullable: true),
                     BeeQueenYearOfBirth = table.Column<int>(type: "int", nullable: false),
                     BeeHiveId = table.Column<int>(type: "int", nullable: false)
@@ -229,12 +308,17 @@ namespace BeekeepingWebProject.Data.Migrations
                 {
                     table.PrimaryKey("PK_BeeQueens", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_BeeQueens_BeeHives_BeeHiveId",
+                        name: "FK_BeeQueens_BeeColonies_BeeHiveId",
                         column: x => x.BeeHiveId,
-                        principalTable: "BeeHives",
+                        principalTable: "BeeColonies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Apiaries_ApplicationUserId",
+                table: "Apiaries",
+                column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -276,13 +360,18 @@ namespace BeekeepingWebProject.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BeeHives_ApiaryId",
-                table: "BeeHives",
+                name: "IX_BeeColonies_ApiaryId",
+                table: "BeeColonies",
                 column: "ApiaryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BeeHives_TreatmentId",
-                table: "BeeHives",
+                name: "IX_BeeColonies_FeedingId",
+                table: "BeeColonies",
+                column: "FeedingId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BeeColonies_TreatmentId",
+                table: "BeeColonies",
                 column: "TreatmentId");
 
             migrationBuilder.CreateIndex(
@@ -312,19 +401,31 @@ namespace BeekeepingWebProject.Data.Migrations
                 name: "BeeQueens");
 
             migrationBuilder.DropTable(
+                name: "Costs");
+
+            migrationBuilder.DropTable(
+                name: "Incomes");
+
+            migrationBuilder.DropTable(
+                name: "Pictures");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "BeeHives");
+                name: "BeeColonies");
 
             migrationBuilder.DropTable(
                 name: "Apiaries");
 
             migrationBuilder.DropTable(
+                name: "HiveFeeding");
+
+            migrationBuilder.DropTable(
                 name: "HiveTreatments");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
         }
     }
 }

@@ -1,4 +1,4 @@
-namespace BeekeepingWebProject.Models
+namespace Beekeeping.Models.Errors
 {
     public class ErrorViewModel
     {

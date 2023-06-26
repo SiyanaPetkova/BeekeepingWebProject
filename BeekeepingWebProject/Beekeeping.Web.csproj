@@ -16,7 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BeekeepingWebProject.Infrastructure\BeekeepingWebProject.Infrastructure.csproj" />
+    <ProjectReference Include="..\Beekeeping.Models\Beekeeping.Models.csproj" />
+    <ProjectReference Include="..\BeekeepingWebProject.Infrastructure\Beekeeping.Services.csproj" />
   </ItemGroup>
 
 </Project>

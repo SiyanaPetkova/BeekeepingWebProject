@@ -1,9 +1,10 @@
-namespace BeekeepingWebProject
+namespace Beekeeping.Web
 {
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
 
-    using BeekeepingWebProject.Data;
+    using Beekeeping.Data;
+    using Beekeeping.Data.Models;
 
     public class StartUp
     {
@@ -19,7 +20,8 @@ namespace BeekeepingWebProject
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
+                             options.SignIn.RequireConfirmedAccount = true)
                             .AddEntityFrameworkStores<BeekeepingDbContext>();
 
             builder.Services.AddControllersWithViews();
@@ -33,7 +35,7 @@ namespace BeekeepingWebProject
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+
                 app.UseHsts();
             }
 
