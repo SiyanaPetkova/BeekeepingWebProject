@@ -1,5 +1,6 @@
 ﻿namespace Beekeeping.Web.Controllers
 {
+    using Beekeeping.Models.Pictures;
     using Beekeeping.Services.Interfaces;
     using Microsoft.AspNetCore.Mvc;
 
@@ -19,9 +20,25 @@
             return View(model);
         }
 
-        public async Task<IActionResult> Add()
+        [HttpGet]
+        public IActionResult Add()
         {
-            return View();
+            var model = new PictureViewModel();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(PictureViewModel model)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            await _galleryService.AddPictureAsync(model);
+
+            return RedirectToAction("All");
         }
     }
 }

@@ -4,10 +4,10 @@
 
     public interface IGalleryService
     {
-        void AddPictures(PictureViewModel picture);
+        Task AddPictureAsync(PictureViewModel picture);
 
         Task RemovePicturesAsync(int id);
 
-        Task<ICollection<PictureViewModel>> ShowPicturesAsync();
+        Task<IEnumerable<PictureViewModel>> ShowPicturesAsync();
     }
 }

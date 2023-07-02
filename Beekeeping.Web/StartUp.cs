@@ -6,6 +6,7 @@ namespace Beekeeping.Web
     using Beekeeping.Data;
     using Beekeeping.Data.Models;
     using Beekeeping.Services.Interfaces;
+    using Beekeeping.Services.Services;
 
     public class StartUp
     {
@@ -22,10 +23,10 @@ namespace Beekeeping.Web
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
-                             options.SignIn.RequireConfirmedAccount = true)
+                             options.SignIn.RequireConfirmedAccount = false)
                             .AddEntityFrameworkStores<BeekeepingDbContext>();
 
-            builder.Services.AddScoped<IGalleryService, IGalleryService>();
+            builder.Services.AddScoped<IGalleryService, GalleryService>();
 
             builder.Services.AddControllersWithViews();
 

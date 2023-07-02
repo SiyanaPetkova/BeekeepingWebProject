@@ -19,7 +19,7 @@
 
         }
 
-        public async void AddPictures(PictureViewModel model)
+        public async Task AddPictureAsync(PictureViewModel model)
         {
             var picture = new Picture()
             {
@@ -44,7 +44,7 @@
             }
         }
 
-        public async Task<ICollection<PictureViewModel>> ShowPicturesAsync()
+        public async Task<IEnumerable<PictureViewModel>> ShowPicturesAsync()
         {
             var pictures = await dbcontext.Pictures.Select(g => new PictureViewModel
             {
@@ -52,7 +52,7 @@
                 PictureName = g.PictureName
             })
            .AsNoTracking()
-           .ToArrayAsync();
+           .ToListAsync();
 
             return pictures;
         }

@@ -6,7 +6,7 @@
 
     using Beekeeping.Data.Models;
 
-    public class BeekeepingDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>,Guid>
+    public class BeekeepingDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
     {
         public BeekeepingDbContext(DbContextOptions options)
        : base(options)
