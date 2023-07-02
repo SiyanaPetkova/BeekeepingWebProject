@@ -3,6 +3,7 @@
     using Beekeeping.Models.Pictures;
     using Beekeeping.Services.Interfaces;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Rendering;
 
     public class GalleryController : Controller
     {
@@ -15,7 +16,7 @@
 
         public async Task<IActionResult> All()
         {
-           var model = await _galleryService.ShowPicturesAsync();
+            var model = await _galleryService.ShowPicturesAsync();
 
             return View(model);
         }
@@ -31,7 +32,7 @@
         [HttpPost]
         public async Task<IActionResult> Add(PictureViewModel model)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(model);
             }
@@ -39,6 +40,17 @@
             await _galleryService.AddPictureAsync(model);
 
             return RedirectToAction("All");
+        }
+
+        public PartialViewResult DropdownMenu()
+        {
+            var options = new List<SelectListItem>
+        {
+            new SelectListItem { Value = "Gallery", Text = "Option 1" },
+            new SelectListItem { Value = "Add picture", Text = "Option 2" }
+        };
+
+            return PartialView("_DropdownMenu", options);
         }
     }
 }

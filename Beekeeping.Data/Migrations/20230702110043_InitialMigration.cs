@@ -151,6 +151,7 @@ namespace Beekeeping.Data.Migrations
                     Name = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
                     Location = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     NumberOfHives = table.Column<int>(type: "int", nullable: false),
+                    OwnerId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ApplicationUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
@@ -255,17 +256,14 @@ namespace Beekeeping.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PlateNumber = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    NumberOfFrames = table.Column<int>(type: "int", nullable: false),
-                    NumberOfBroodFrames = table.Column<int>(type: "int", nullable: true),
                     AdditionalComмent = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TypeOfBroodBox = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Strenght = table.Column<int>(type: "int", nullable: false),
-                    Temperament = table.Column<int>(type: "int", nullable: false),
                     Super = table.Column<bool>(type: "bit", nullable: false),
                     NumberOfSupers = table.Column<int>(type: "int", nullable: true),
                     SecondBroodBox = table.Column<bool>(type: "bit", nullable: false),
                     NumberOfAdditionalBoxes = table.Column<int>(type: "int", nullable: true),
                     MatedBeeQueen = table.Column<bool>(type: "bit", nullable: false),
+                    OwnerOfTheApiary = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ApiaryId = table.Column<int>(type: "int", nullable: false),
                     TreatmentId = table.Column<int>(type: "int", nullable: false),
                     FeedingId = table.Column<int>(type: "int", nullable: false)
@@ -302,14 +300,40 @@ namespace Beekeeping.Data.Migrations
                     Breeder = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     BeeQueenType = table.Column<int>(type: "int", nullable: true),
                     BeeQueenYearOfBirth = table.Column<int>(type: "int", nullable: false),
-                    BeeHiveId = table.Column<int>(type: "int", nullable: false)
+                    BeeColonyId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_BeeQueens", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_BeeQueens_BeeColonies_BeeHiveId",
-                        column: x => x.BeeHiveId,
+                        name: "FK_BeeQueens_BeeColonies_BeeColonyId",
+                        column: x => x.BeeColonyId,
+                        principalTable: "BeeColonies",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Inspections",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DayOfInspection = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(2500)", maxLength: 2500, nullable: true),
+                    NumberOfFrames = table.Column<int>(type: "int", nullable: false),
+                    NumberOfBroodFrames = table.Column<int>(type: "int", nullable: true),
+                    Strenght = table.Column<int>(type: "int", nullable: false),
+                    Temperament = table.Column<int>(type: "int", nullable: false),
+                    BeeQueenYearOfBirth = table.Column<int>(type: "int", nullable: false),
+                    BeeColonyId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Inspections", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Inspections_BeeColonies_BeeColonyId",
+                        column: x => x.BeeColonyId,
                         principalTable: "BeeColonies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -375,9 +399,14 @@ namespace Beekeeping.Data.Migrations
                 column: "TreatmentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BeeQueens_BeeHiveId",
+                name: "IX_BeeQueens_BeeColonyId",
                 table: "BeeQueens",
-                column: "BeeHiveId");
+                column: "BeeColonyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Inspections_BeeColonyId",
+                table: "Inspections",
+                column: "BeeColonyId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -405,6 +434,9 @@ namespace Beekeeping.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Incomes");
+
+            migrationBuilder.DropTable(
+                name: "Inspections");
 
             migrationBuilder.DropTable(
                 name: "Pictures");

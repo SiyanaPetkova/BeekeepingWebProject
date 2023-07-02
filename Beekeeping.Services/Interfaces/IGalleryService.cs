@@ -9,5 +9,6 @@
         Task RemovePicturesAsync(int id);
 
         Task<IEnumerable<PictureViewModel>> ShowPicturesAsync();
-    }
+
+      }
 }

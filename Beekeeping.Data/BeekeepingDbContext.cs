@@ -18,10 +18,10 @@
         public DbSet<BeeQueen> BeeQueens { get; init; } = null!;
         public DbSet<HiveTreatment> HiveTreatments { get; init; } = null!;
         public DbSet<HiveFeeding> HiveFeeding { get; init; } = null!;
-        public DbSet<Picture> Pictures { get; init; } = null!;
-        public DbSet<Income> Incomes { get; init; } = null!;
+        public DbSet<Inspection> Inspections { get; init; } = null!;
         public DbSet<Cost> Costs { get; init; } = null!;
-
+        public DbSet<Income> Incomes { get; init; } = null!;
+        public DbSet<Picture> Pictures { get; init; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -32,7 +32,7 @@
             builder.Entity<HiveFeeding>()
                    .Property(hf => hf.PriceOfFeeding)
                    .HasPrecision(18, 2);
-             
+
             builder.Entity<Cost>()
                    .Property(c => c.CostValue)
                    .HasPrecision(18, 2);

@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using static Beekeeping.Data.Common.DataConstants.ApiaryValidations;
+    using static Beekeeping.Common.Validations.DataConstants.ApiaryValidations;
 
     public class Apiary
     {
@@ -16,6 +16,9 @@
         public string? Location { get; set; }
 
         public int NumberOfHives { get; set; }
+
+        [Required]
+        public string OwnerId { get; set; } = null!;
 
         public ICollection<BeeColony> BeeHives { get; set; } = new HashSet<BeeColony>();
     }

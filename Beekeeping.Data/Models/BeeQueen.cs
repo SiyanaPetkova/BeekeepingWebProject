@@ -3,7 +3,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    using static Beekeeping.Data.Common.DataConstants.BeeQueenValidations;
+    using static Beekeeping.Common.Validations.DataConstants.BeeQueenValidations;
 
     public class BeeQueen
     {
@@ -17,8 +17,8 @@
 
         public int BeeQueenYearOfBirth { get; set; }
 
-        [ForeignKey(nameof(BeeHive))]
-        public int BeeHiveId { get; set; }
-        public BeeColony? BeeHive { get; set; }
+        [ForeignKey(nameof(BeeColony))]
+        public int BeeColonyId { get; set; }
+        public BeeColony? BeeColony { get; set; }
     }
 }

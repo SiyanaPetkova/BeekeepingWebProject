@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using static Beekeeping.Data.Common.DataConstants.CostValidations;
+    using static Beekeeping.Common.Validations.DataConstants.CostValidations;
 
     public class Cost
     {

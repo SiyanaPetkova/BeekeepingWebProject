@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using static Beekeeping.Data.Common.DataConstants.GalleryValidations;
+    using static Beekeeping.Common.Validations.DataConstants.GalleryValidations;
 
     public class Picture
     {

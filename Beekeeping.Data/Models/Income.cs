@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using static Beekeeping.Data.Common.DataConstants.IncomeValidations;
+    using static Beekeeping.Common.Validations.DataConstants.IncomeValidations;
 
     public class Income
     {

@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using static Beekeeping.Data.Common.DataConstants.HiveTreatmentValidations;
+    using static Beekeeping.Common.Validations.DataConstants.HiveTreatmentValidations;
 
     public class HiveTreatment
     {

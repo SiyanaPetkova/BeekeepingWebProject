@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Beekeeping.Data.Migrations
 {
     [DbContext(typeof(BeekeepingDbContext))]
-    [Migration("20230626174644_InitialMigration")]
+    [Migration("20230702110043_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,6 +46,10 @@ namespace Beekeeping.Data.Migrations
 
                     b.Property<int>("NumberOfHives")
                         .HasColumnType("int");
+
+                    b.Property<string>("OwnerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -143,14 +147,12 @@ namespace Beekeeping.Data.Migrations
                     b.Property<int?>("NumberOfAdditionalBoxes")
                         .HasColumnType("int");
 
-                    b.Property<int?>("NumberOfBroodFrames")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NumberOfFrames")
-                        .HasColumnType("int");
-
                     b.Property<int?>("NumberOfSupers")
                         .HasColumnType("int");
+
+                    b.Property<string>("OwnerOfTheApiary")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PlateNumber")
                         .HasMaxLength(100)
@@ -159,14 +161,8 @@ namespace Beekeeping.Data.Migrations
                     b.Property<bool>("SecondBroodBox")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Strenght")
-                        .HasColumnType("int");
-
                     b.Property<bool>("Super")
                         .HasColumnType("bit");
-
-                    b.Property<int>("Temperament")
-                        .HasColumnType("int");
 
                     b.Property<int>("TreatmentId")
                         .HasColumnType("int");
@@ -193,7 +189,7 @@ namespace Beekeeping.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("BeeHiveId")
+                    b.Property<int>("BeeColonyId")
                         .HasColumnType("int");
 
                     b.Property<int?>("BeeQueenType")
@@ -208,7 +204,7 @@ namespace Beekeeping.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BeeHiveId");
+                    b.HasIndex("BeeColonyId");
 
                     b.ToTable("BeeQueens");
                 });
@@ -310,6 +306,46 @@ namespace Beekeeping.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Incomes");
+                });
+
+            modelBuilder.Entity("Beekeeping.Data.Models.Inspection", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("BeeColonyId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BeeQueenYearOfBirth")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DayOfInspection")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(2500)
+                        .HasColumnType("nvarchar(2500)");
+
+                    b.Property<int?>("NumberOfBroodFrames")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumberOfFrames")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Strenght")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Temperament")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BeeColonyId");
+
+                    b.ToTable("Inspections");
                 });
 
             modelBuilder.Entity("Beekeeping.Data.Models.Picture", b =>
@@ -506,13 +542,24 @@ namespace Beekeeping.Data.Migrations
 
             modelBuilder.Entity("Beekeeping.Data.Models.BeeQueen", b =>
                 {
-                    b.HasOne("Beekeeping.Data.Models.BeeColony", "BeeHive")
+                    b.HasOne("Beekeeping.Data.Models.BeeColony", "BeeColony")
                         .WithMany("BeeQueens")
-                        .HasForeignKey("BeeHiveId")
+                        .HasForeignKey("BeeColonyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("BeeHive");
+                    b.Navigation("BeeColony");
+                });
+
+            modelBuilder.Entity("Beekeeping.Data.Models.Inspection", b =>
+                {
+                    b.HasOne("Beekeeping.Data.Models.BeeColony", "BeeColony")
+                        .WithMany("Inspections")
+                        .HasForeignKey("BeeColonyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BeeColony");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -579,6 +626,8 @@ namespace Beekeeping.Data.Migrations
             modelBuilder.Entity("Beekeeping.Data.Models.BeeColony", b =>
                 {
                     b.Navigation("BeeQueens");
+
+                    b.Navigation("Inspections");
                 });
 
             modelBuilder.Entity("Beekeeping.Data.Models.HiveFeeding", b =>

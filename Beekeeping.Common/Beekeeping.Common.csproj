@@ -6,8 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Beekeeping.Common\Beekeeping.Common.csproj" />
-  </ItemGroup>
-
 </Project>
