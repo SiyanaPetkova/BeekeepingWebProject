@@ -42,15 +42,5 @@
             return RedirectToAction("All");
         }
 
-        public PartialViewResult DropdownMenu()
-        {
-            var options = new List<SelectListItem>
-        {
-            new SelectListItem { Value = "Gallery", Text = "Option 1" },
-            new SelectListItem { Value = "Add picture", Text = "Option 2" }
-        };
-
-            return PartialView("_DropdownMenu", options);
-        }
     }
 }

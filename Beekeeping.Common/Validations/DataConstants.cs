@@ -68,5 +68,13 @@
 
             public const int PictureNameMaxLenght = 70;
         }
+
+        public static class ApplicationUserValidations
+        {
+            public const int PasswordMinLength = 8;
+
+            public const int PasswordMaxLength = 50;
+         
+        }
     }
 }
