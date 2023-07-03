@@ -28,7 +28,5 @@
         [Display(Name = "Брой кошери")]
         public int? NumberOfHives { get; set; }
 
-        public string OwnerId { get; set; } = null!;
-
     }
 }
