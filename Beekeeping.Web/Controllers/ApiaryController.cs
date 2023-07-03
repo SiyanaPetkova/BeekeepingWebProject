@@ -2,9 +2,8 @@
 {
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-
-    using Beekeeping.Web.Extensions;
     using Beekeeping.Models.Apiary;
+    using Beekeeping.Web.Infrastructure.Extensions;
 
     [Authorize]
     public class ApiaryController : Controller

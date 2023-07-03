@@ -7,6 +7,8 @@ namespace Beekeeping.Web
     using Beekeeping.Data.Models;
     using Beekeeping.Services.Interfaces;
     using Beekeeping.Services.Services;
+    using Beekeeping.Web.Infrastructure.Extensions;
+    using Beekeeping.Web.Infrastructure.ModelBinders;
 
     public class StartUp
     {
@@ -18,28 +20,32 @@ namespace Beekeeping.Web
                                    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
             builder.Services.AddDbContext<BeekeepingDbContext>(options =>
-                             options.UseSqlServer(connectionString));
+                                   options.UseSqlServer(connectionString));
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
             {
                 options.SignIn.RequireConfirmedAccount =
-                    builder.Configuration.GetValue<bool>("Identity:SignIn:RequireConfirmedAccount");
+                                   builder.Configuration.GetValue<bool>("Identity:SignIn:RequireConfirmedAccount");
                 options.Password.RequireLowercase =
-                    builder.Configuration.GetValue<bool>("Identity:Password:RequireLowercase");
+                                   builder.Configuration.GetValue<bool>("Identity:Password:RequireLowercase");
                 options.Password.RequireUppercase =
-                    builder.Configuration.GetValue<bool>("Identity:Password:RequireUppercase");
+                                   builder.Configuration.GetValue<bool>("Identity:Password:RequireUppercase");
                 options.Password.RequireNonAlphanumeric =
-                    builder.Configuration.GetValue<bool>("Identity:Password:RequireNonAlphanumeric");
+                                   builder.Configuration.GetValue<bool>("Identity:Password:RequireNonAlphanumeric");
                 options.Password.RequiredLength =
-                    builder.Configuration.GetValue<int>("Identity:Password:RequiredLength");
+                                   builder.Configuration.GetValue<int>("Identity:Password:RequiredLength");
             })
-                .AddEntityFrameworkStores<BeekeepingDbContext>();
+                            .AddEntityFrameworkStores<BeekeepingDbContext>();
 
-            builder.Services.AddScoped<IGalleryService, GalleryService>();
+            builder.Services.AddApplicationServices(typeof(IApiaryService));
 
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews()
+                 .AddMvcOptions(options =>
+                 {
+                     options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
+                 });
 
             var app = builder.Build();
 

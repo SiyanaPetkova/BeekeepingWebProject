@@ -1,4 +1,4 @@
-﻿namespace Beekeeping.Web.Extensions;
+﻿namespace Beekeeping.Web.Infrastructure.Extensions;
 
 using System.Security.Claims;
 
