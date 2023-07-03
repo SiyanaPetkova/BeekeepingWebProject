@@ -1,0 +1,68 @@
+﻿@model BeeColonyFormModel
+
+@{
+    ViewBag.Title = "Добави нов пчелин";
+}
+
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <h2 class="heading-margin text-center">@ViewBag.Title</h2>
+
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="PlateNumber"></label>
+                <input asp-for="PlateNumber" class="form-control" placeholder="Регистрационна табела на кошера, ако има такава">
+                <span asp-validation-for="PlateNumber" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdditionalComment"></label>
+                <input asp-for="AdditionalComment" class="form-control" placeholder="Допълнителна информация за кошера">
+                <span asp-validation-for="AdditionalComment" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TypeOfBroodBox"></label>
+                <input asp-for="TypeOfBroodBox" class="form-control" placeholder="Дадан блат, многокорпусен и т.н.">
+                <span asp-validation-for="TypeOfBroodBox" class="small text-danger"></span>
+            </div>
+            <div class="checkbox">
+                <label asp-for="Super"><input type="checkbox" value="">Има ли магазини</label>
+                <span asp-validation-for="Super" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfSupers"></label>
+                <input asp-for="NumberOfSupers" class="form-control" placeholder="Кошерът има ли магазини">
+                <span asp-validation-for="NumberOfSupers" class="small text-danger"></span>
+            </div>
+            <div class="checkbox">
+                <label asp-for="SecondBroodBox"><input type="checkbox" value="">Втори плодник</label>
+                <span asp-validation-for="SecondBroodBox" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfAdditionalBoxes"></label>
+                <input asp-for="NumberOfAdditionalBoxes" class="form-control" placeholder="Кошерът има ли допълнителни корпуси">
+                <span asp-validation-for="NumberOfAdditionalBoxes" class="small text-danger"></span>
+            </div>
+            <div class="checkbox">
+                <label asp-for="MatedBeeQueen"><input type="checkbox" value="">Има ли оплодена майка</label>
+                <span asp-validation-for="MatedBeeQueen" class="small text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.ApiaryId" class="form-label-add-edit">Пчелин</label>
+                <select asp-for="@Model.ApiaryId" class="form-control" aria-required="true">
+                    @foreach (var apiary in Model.Apiaries)
+                    {
+                        <option value="@apiary.Id">@apiary.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="@Model.ApiaryId" class="text-danger"></span>
+            </div>
+
+            <input class="btn btn-primary mt-3" type="submit" value="Запази" />
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
