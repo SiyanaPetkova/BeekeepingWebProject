@@ -22,7 +22,8 @@
 
         public DateTime TreatmentDate { get; set; }
 
-        public ICollection<BeeColony> BeeHives { get; set; } = new HashSet<BeeColony>();
+        [Required]
+        public int NumberOfTreatedColonies { get; set; }
 
     }
 }

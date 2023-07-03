@@ -5,6 +5,8 @@
     using Microsoft.AspNetCore.Identity;
 
     using Beekeeping.Data.Models;
+    using Microsoft.Extensions.Logging;
+    using System.Reflection.Emit;
 
     public class BeekeepingDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
     {
@@ -38,7 +40,7 @@
                    .HasPrecision(18, 2);
 
             builder.Entity<Income>()
-                   .Property(i => i.IncomeValue)
+            .Property(i => i.IncomeValue)
                    .HasPrecision(18, 2);
 
             base.OnModelCreating(builder);

@@ -1,7 +1,5 @@
 ﻿namespace Beekeeping.Common.Validations
 {
-
-    //To be in separate project and they will be used again in ViewModels
     public static class DataConstants
     {
         public static class ApiaryValidations
@@ -20,14 +18,19 @@
 
         }
 
-        public static class BeeHiveValidations
+        public static class BeeColonyValidations
         {
+            public const int PlateNumberMinLenght = 10;
             public const int PlateNumberMaxLenght = 100;
         }
 
         public static class BeeQueenValidations
         {
+            public const int BreederMinLenght = 3;
             public const int BreederMaxLenght = 100;
+
+            public const int BeeQueenTypeMinLenght = 3;
+            public const int BeeQueenTypeMaxLenght = 100;
         }
 
         public static class HiveTreatmentValidations

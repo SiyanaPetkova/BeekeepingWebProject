@@ -13,8 +13,14 @@
         public string FeedingType { get; set; } = null!;
 
         [Required]
+        public DateTime DayOfFeeding { get; set; }
+
+        [Required] 
+        public int NumberOfBeeHives { get; set; }
+
+        [Required]
         public decimal PriceOfFeeding { get; set; }
 
-        public ICollection<BeeColony> BeeHives { get; set; } = new HashSet<BeeColony>();
+       
     }
 }

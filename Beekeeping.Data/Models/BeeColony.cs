@@ -4,7 +4,7 @@
     using System.ComponentModel.DataAnnotations.Schema;
 
 
-    using static Beekeeping.Common.Validations.DataConstants.BeeHiveValidations;
+    using static Beekeeping.Common.Validations.DataConstants.BeeColonyValidations;
 
     public class BeeColony
     {
@@ -35,15 +35,9 @@
         public int ApiaryId { get; set; }
         public Apiary Apiary { get; set; } = null!;
 
-        [ForeignKey(nameof(Treatment))]
-        public int TreatmentId { get; set; }
-        public HiveTreatment? Treatment { get; set; }
-
-        [ForeignKey(nameof(HiveFeeding))]
-        public int FeedingId { get; set; }
-        public HiveFeeding? HiveFeeding { get; set; }
-
-        public ICollection<BeeQueen> BeeQueens { get; set; } = new HashSet<BeeQueen>();
+        [ForeignKey(nameof(BeeQueen))]
+        public int BeeQueenId { get; set; }
+        public BeeQueen? BeeQueen { get; set; }
 
         public ICollection<Inspection> Inspections { get; set; } = new HashSet<Inspection>();
     }

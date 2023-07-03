@@ -4,6 +4,7 @@ using Beekeeping.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Beekeeping.Data.Migrations
 {
     [DbContext(typeof(BeekeepingDbContext))]
-    partial class BeekeepingDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230703155304_RemoveTreatmentAndFeedingFromColonies")]
+    partial class RemoveTreatmentAndFeedingFromColonies
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -140,9 +142,6 @@ namespace Beekeeping.Data.Migrations
                     b.Property<int>("ApiaryId")
                         .HasColumnType("int");
 
-                    b.Property<int>("BeeQueenId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("MatedBeeQueen")
                         .HasColumnType("bit");
 
@@ -173,9 +172,6 @@ namespace Beekeeping.Data.Migrations
 
                     b.HasIndex("ApiaryId");
 
-                    b.HasIndex("BeeQueenId")
-                        .IsUnique();
-
                     b.ToTable("BeeColonies");
                 });
 
@@ -187,9 +183,11 @@ namespace Beekeeping.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("BeeQueenType")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                    b.Property<int>("BeeColonyId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("BeeQueenType")
+                        .HasColumnType("int");
 
                     b.Property<int>("BeeQueenYearOfBirth")
                         .HasColumnType("int");
@@ -199,6 +197,8 @@ namespace Beekeeping.Data.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BeeColonyId");
 
                     b.ToTable("BeeQueens");
                 });
@@ -524,15 +524,18 @@ namespace Beekeeping.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Beekeeping.Data.Models.BeeQueen", "BeeQueen")
-                        .WithOne("BeeColony")
-                        .HasForeignKey("Beekeeping.Data.Models.BeeColony", "BeeQueenId")
+                    b.Navigation("Apiary");
+                });
+
+            modelBuilder.Entity("Beekeeping.Data.Models.BeeQueen", b =>
+                {
+                    b.HasOne("Beekeeping.Data.Models.BeeColony", "BeeColony")
+                        .WithMany("BeeQueens")
+                        .HasForeignKey("BeeColonyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Apiary");
-
-                    b.Navigation("BeeQueen");
+                    b.Navigation("BeeColony");
                 });
 
             modelBuilder.Entity("Beekeeping.Data.Models.Inspection", b =>
@@ -609,12 +612,9 @@ namespace Beekeeping.Data.Migrations
 
             modelBuilder.Entity("Beekeeping.Data.Models.BeeColony", b =>
                 {
-                    b.Navigation("Inspections");
-                });
+                    b.Navigation("BeeQueens");
 
-            modelBuilder.Entity("Beekeeping.Data.Models.BeeQueen", b =>
-                {
-                    b.Navigation("BeeColony");
+                    b.Navigation("Inspections");
                 });
 #pragma warning restore 612, 618
         }

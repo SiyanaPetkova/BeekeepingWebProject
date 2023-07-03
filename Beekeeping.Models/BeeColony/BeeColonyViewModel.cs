@@ -2,6 +2,8 @@
 {
     using System.ComponentModel.DataAnnotations.Schema;
     using System.ComponentModel.DataAnnotations;
+    using Beekeeping.Models.Apiary;
+    using Beekeeping.Models.BeeQueen;
 
     public class BeeColonyViewModel
     {
@@ -23,14 +25,14 @@
 
         public bool MatedBeeQueen { get; set; }
 
-        public string OwnerOfTheApiary { get; set; } = null!;
+        public string OwnerOfTheApiary { get; set; }
 
         public int ApiaryId { get; set; }
 
-        public int TreatmentId { get; set; }
+        public IEnumerable<AllApiariesForSelectModel> Apiaries { get; set; } = new HashSet<AllApiariesForSelectModel>();
 
-        public int FeedingId { get; set; }
+        public int BeeQueenId { get; set; }
 
-
+        public IEnumerable<BeeQueenSelectViewModel> Queens { get; set; } = new HashSet<BeeQueenSelectViewModel>();
     }
 }
