@@ -15,6 +15,10 @@
         [StringLength(LocationMaxLenght)]
         public string? Location { get; set; }
 
+        [StringLength(RegistrationMaxLenght)]
+        public string? RegistrationNumber { get; set; }
+
+
         public int NumberOfHives { get; set; }
 
         [Required]

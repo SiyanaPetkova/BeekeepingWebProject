@@ -12,6 +12,9 @@
             public const int LocationMinLenght = 4;
             public const int LocationMaxLenght = 200;
 
+            public const int RegistrationMinLenght = 8;
+            public const int RegistrationMaxLenght = 10;
+
             public const int OwnerIdMinLenght = 30;
             public const int OwnerIdMaxLenght = 34;
 

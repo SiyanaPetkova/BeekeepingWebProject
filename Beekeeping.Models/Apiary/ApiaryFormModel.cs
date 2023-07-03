@@ -6,19 +6,29 @@
 
     public class ApiaryFormModel
     {
-        public int Id { get; set; }
-
         [Required]
-        [StringLength(ApiaryNameMaxLenght, MinimumLength = ApiaryNameMinLenght, ErrorMessage = "Името трябва да съдържа между {1} и {2} символа")]
+        [StringLength(ApiaryNameMaxLenght,
+                      MinimumLength = ApiaryNameMinLenght,
+                      ErrorMessage = "Името трябва да съдържа между {2} и {1} символа")]
+        [Display(Name = "Наименование")]
         public string Name { get; set; } = null!;
 
-        [StringLength(LocationMaxLenght, MinimumLength = LocationMinLenght, ErrorMessage = "Местоположението трябва да съдържа между {1} и {2} символа")]
+        [StringLength(LocationMaxLenght,
+                      MinimumLength = LocationMinLenght,
+                      ErrorMessage = "Адресът трябва да съдържа между {2} и {1} символа")]
+        [Display(Name = "Адрес")]
         public string? Location { get; set; }
 
+        [StringLength(RegistrationMaxLenght,
+                      MinimumLength = RegistrationMinLenght,
+                      ErrorMessage = "Регистрационният номер трябва да съдържа между {2} и {1} символа")]
+        [Display(Name = "Регистрационен номер")]
+        public string? RegistrationNumber { get; set; }
+
+        [Display(Name = "Брой кошери")]
         public int? NumberOfHives { get; set; }
 
-        [Required]
-        [StringLength(OwnerIdMaxLenght, MinimumLength = OwnerIdMinLenght)]
         public string OwnerId { get; set; } = null!;
+
     }
 }
