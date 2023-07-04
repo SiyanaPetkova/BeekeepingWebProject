@@ -1,8 +1,5 @@
-﻿namespace Beekeeping.Models.BeeHive
+﻿namespace Beekeeping.Models.BeeColony
 {
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.ComponentModel.DataAnnotations;
-    using Beekeeping.Models.Apiary;
     using Beekeeping.Models.BeeQueen;
 
     public class BeeColonyViewModel
@@ -15,24 +12,22 @@
 
         public string? TypeOfBroodBox { get; set; }
 
-        public bool Super { get; set; }
+        public string Super { get; set; } = null!;
 
         public int? NumberOfSupers { get; set; }
 
-        public bool SecondBroodBox { get; set; }
+        public string SecondBroodBox { get; set; } = null!;
 
-        public int? NumberOfAdditionalBoxes { get; set; }
+        public int? NumberOfAdditionalBoxes { get; set; } 
 
-        public bool MatedBeeQueen { get; set; }
-
-        public string OwnerOfTheApiary { get; set; }
+        public string MatedBeeQueen { get; set; } = null!;
 
         public int ApiaryId { get; set; }
 
-        public IEnumerable<AllApiariesForSelectModel> Apiaries { get; set; } = new HashSet<AllApiariesForSelectModel>();
+        public string Apiary { get; set; } 
 
         public int BeeQueenId { get; set; }
 
-        public IEnumerable<BeeQueenSelectViewModel> Queens { get; set; } = new HashSet<BeeQueenSelectViewModel>();
+        public BeeQueenSelectViewModel BeeQueen { get; set; }
     }
 }

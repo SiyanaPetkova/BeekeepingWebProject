@@ -8,8 +8,8 @@
     {
         <div class="container">
             <h1>@apiary.Name</h1>
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Повече информация</button>
-            <div class="modal fade" id="myModal" role="dialog">
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal-@(apiary.Id)">Повече информация</button>
+            <div class="modal fade" id="myModal-@(apiary.Id)" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -24,6 +24,7 @@
                             <button type="button" class="btn btn-default" data-dismiss="modal">Затвори</button>
                             <a href="/Apiary/Edit/@apiary.Id" class="btn btn-warning">Редакция</a>
                             <a href="/Apiary/Delete/@apiary.Id" class="btn btn-danger">Изтриване</a>
+                            <a asp-controller="BeeColony" asp-action="All" asp-route-id="@apiary.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Виж информация за кошерите</a>
                         </div>
                     </div>
                 </div>

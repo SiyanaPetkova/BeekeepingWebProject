@@ -1,5 +1,28 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<BeeColonyViewModel>
+
 @{
+    ViewBag.Title = "Кошери";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="text-center row">
+    @foreach (var b in Model)
+    {
+        <div class="card col-4" style="width: 20rem; ">
+            <div class="card-body">
+                <h5 class="card-title mt-1">@b.PlateNumber</h5>
+                <p class="mb-0"><span class="fw-bold">Тип кошер: </span>@b.TypeOfBroodBox</p>
+                <p class="mb-0"><span class="fw-bold">Дипълнителна информация: </span>@b.AdditionalComмent</p>
+                <p class="mb-0"><span class="fw-bold">Оплодена майка: </span>@b.MatedBeeQueen</p>
+            </div>
+            <a asp-controller="BeeColony" asp-action="Details" asp-route-id="@b.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Детайли</a>
+            @*<a asp-controller="Inspection" asp-action="All" asp-route-id="@b.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Прегледи</a>*@
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 }

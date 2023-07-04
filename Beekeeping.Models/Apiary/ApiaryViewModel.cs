@@ -1,6 +1,6 @@
 ﻿namespace Beekeeping.Models.Apiary
 {
-    using Beekeeping.Models.BeeHive;
+    using Beekeeping.Models.BeeColony;
 
     using System.Collections.Generic;
 

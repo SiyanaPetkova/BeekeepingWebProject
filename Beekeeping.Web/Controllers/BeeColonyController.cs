@@ -21,6 +21,41 @@
             this.apiaryService = apiaryService;
         }
 
+        public async Task<IActionResult> All(int id)
+        {
+            var userId = this.User.Id();
+
+            var isUserOwner = await apiaryService.IsTheUserOwner(userId);
+
+            if (!isUserOwner)
+            {
+                TempData["ErrorMessage"] = "Все още нямате добавен пчелин.";
+
+                return RedirectToAction("Add");
+            }
+
+            try
+            {
+                var model = await beeColonyService.AllColoniesAsync(userId, id);
+
+                if (model == null)
+                {
+                    TempData["InformationMessage"] = "Все още нямате добавен пчелин. Можете да го направите тук.";
+
+                    return RedirectToAction("Add");
+                }
+
+                return View(model);
+            }
+
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Възникна грешка при добавянето на Вашия пчелин. Моля, свържете се с нас или опитайте по-късно!";
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
         [HttpGet]
         public async Task<IActionResult> Add()
         {
@@ -89,6 +124,24 @@
             return RedirectToAction("All", "Apiary");
         }
 
+        public async Task<IActionResult> Details(int id)
+        {
+            string userId = User.Id();
+
+            try
+            {
+                var model = await beeColonyService.GetDetailsForTheBeeColonyAsync(userId, id);
+
+                return View(model);
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Възникна неочаквана грешка. Моля, свъжете се с нас или опитайте по-късно";
+            }
+
+            return RedirectToAction("All", "Apiary");
+           
+        }
         private static List<AllApiariesForSelectModel> AddApiaries(IEnumerable<ApiaryViewModel>? apiaries)
         {
             var apiariesForSelect = new List<AllApiariesForSelectModel>();
