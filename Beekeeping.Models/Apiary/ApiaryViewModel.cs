@@ -17,6 +17,5 @@
         public int NumberOfHives { get; set; }
         public string OwnerId { get; set; }
 
-        public ICollection<BeeColonyViewModel> BeeHives { get; set; } = new HashSet<BeeColonyViewModel>();
     }
 }

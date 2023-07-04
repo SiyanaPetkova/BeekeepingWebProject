@@ -25,8 +25,5 @@
         [Display(Name = "Регистрационен номер")]
         public string? RegistrationNumber { get; set; }
 
-        [Display(Name = "Брой кошери")]
-        public int? NumberOfHives { get; set; }
-
     }
 }

@@ -1,34 +1,24 @@
 ﻿@model IEnumerable<ApiaryViewModel>
 
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <title>Bootstrap Example</title>
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
     @foreach (var apiary in Model)
     {
-
         <div class="container">
             <h1>@apiary.Name</h1>
             <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Повече информация</button>
-
             <div class="modal fade" id="myModal" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">@apiary.Name</h4>
+                            <h4 class="modal-title-center">@apiary.Name</h4>
                         </div>
                         <div class="modal-body">
                             <p>Адрес: @apiary.Location</p>
                             <p>Регистрационен номер: @apiary.RegistrationNumber</p>
-                            <p>Брой кошери: @apiary.BeeHives.Count</p>
+                            <p>Брой кошери: @apiary.NumberOfHives</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Затвори</button>
@@ -36,12 +26,9 @@
                             <a href="/Apiary/Delete/@apiary.Id" class="btn btn-danger">Изтриване</a>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     }
-
 </body>
-</html>
 

@@ -19,12 +19,9 @@
 
         public async Task AddNewApiaryAsync(ApiaryFormModel model, string ownerId)
         {
-            var numberOfHives = model.NumberOfHives == null ? 0 : model.NumberOfHives.Value;
-
             var apiary = new Apiary()
             {
                 Name = model.Name,
-                NumberOfHives = numberOfHives,
                 RegistrationNumber = model.RegistrationNumber,
                 Location = model.Location,
                 OwnerId = ownerId
@@ -43,19 +40,20 @@
                 return null;
             }
 
-           return await context.Apiaries
-                                           .Where(o => o.OwnerId == ownerId)
-                                           .Select(o => new ApiaryViewModel()
-                                           {
-                                               Id = o.Id,
-                                               Name = o.Name,
-                                               Location = o.Location,
-                                               RegistrationNumber = o.RegistrationNumber,
-                                               NumberOfHives = o.NumberOfHives,
-                                               OwnerId = o.OwnerId
-                                           })
-                                           .ToArrayAsync();
-             
+            return await context.Apiaries
+                                            .Where(o => o.OwnerId == ownerId)
+                                            .Include(o => o.BeeHives)
+                                            .Select(o => new ApiaryViewModel()
+                                            {
+                                                Id = o.Id,
+                                                Name = o.Name,
+                                                Location = o.Location,
+                                                RegistrationNumber = o.RegistrationNumber,
+                                                NumberOfHives = o.BeeHives.Where(b => b.ApiaryId == o.Id).Count(),
+                                                OwnerId = o.OwnerId
+                                            })
+                                            .ToArrayAsync();
+
         }
 
         public async Task DeleteApiaryAsync(string ownerId, int id)
@@ -88,7 +86,7 @@
                 throw new InvalidOperationException();
             }
 
-            apiary.Name = model.Name; 
+            apiary.Name = model.Name;
             apiary.Location = model.Location;
             apiary.RegistrationNumber = model.RegistrationNumber;
 
@@ -110,7 +108,7 @@
                 Id = apiaryId,
                 Name = apiary.Name,
                 Location = apiary.Location,
-                RegistrationNumber = apiary.RegistrationNumber                
+                RegistrationNumber = apiary.RegistrationNumber
             };
         }
 
@@ -126,6 +124,6 @@
             return true;
         }
 
-        
+
     }
 }

@@ -4,7 +4,6 @@
     ViewBag.Title = "Добави нов пчелин";
 }
 
-
 <div class="row">
     <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
         <h2 class="heading-margin text-center">@ViewBag.Title</h2>
@@ -47,6 +46,21 @@
                 <label asp-for="MatedBeeQueen"><input type="checkbox" value="">Има ли оплодена майка</label>
                 <span asp-validation-for="MatedBeeQueen" class="small text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="BeeQueen.Breeder"></label>
+                <input asp-for="BeeQueen.Breeder" class="form-control">
+                <span asp-validation-for="BeeQueen.Breeder" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BeeQueen.BeeQueenType"></label>
+                <input asp-for="BeeQueen.BeeQueenType" class="form-control">
+                <span asp-validation-for="BeeQueen.BeeQueenType" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BeeQueen.BeeQueenYearOfBirth"></label>
+                <input asp-for="BeeQueen.BeeQueenYearOfBirth" class="form-control"></input>
+                <span asp-validation-for="BeeQueen.BeeQueenYearOfBirth" class="small text-danger"></span>
+            </div>
             <div class="mb-3">
                 <label asp-for="@Model.ApiaryId" class="form-label-add-edit">Пчелин</label>
                 <select asp-for="@Model.ApiaryId" class="form-control" aria-required="true">
@@ -57,6 +71,7 @@
                 </select>
                 <span asp-validation-for="@Model.ApiaryId" class="text-danger"></span>
             </div>
+                      
 
             <input class="btn btn-primary mt-3" type="submit" value="Запази" />
         </form>
