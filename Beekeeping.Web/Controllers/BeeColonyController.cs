@@ -77,6 +77,9 @@
 
             model.Apiaries = apiariesForSelect;
             model.BeeQueen = beeQueen;
+            //model.MatedBeeQueen = false;
+            //model.SecondBroodBox = false;
+            //model.Super = false;
 
             return View(model);
         }

@@ -45,6 +45,8 @@ namespace Beekeeping.Web
                  .AddMvcOptions(options =>
                  {
                      options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
+                     options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(
+           _                        => "Полето {1} е задължително.");
                  });
 
             var app = builder.Build();

@@ -1,7 +1,7 @@
 ﻿@model BeeColonyFormModel
 
 @{
-    ViewBag.Title = "Добави нов пчелин";
+    ViewBag.Title = "Добави нов кошер";
 }
 
 <div class="row">
@@ -25,7 +25,8 @@
                 <span asp-validation-for="TypeOfBroodBox" class="small text-danger"></span>
             </div>
             <div class="checkbox">
-                <label asp-for="Super"><input type="checkbox" value="">Има ли магазини</label>
+                <label for="Super">Има ли магазини</label>
+                <input type="checkbox" id="Super" name="Super" asp-for="@Model.Super" />
                 <span asp-validation-for="Super" class="small text-danger"></span>
             </div>
             <div class="form-group">
@@ -34,7 +35,8 @@
                 <span asp-validation-for="NumberOfSupers" class="small text-danger"></span>
             </div>
             <div class="checkbox">
-                <label asp-for="SecondBroodBox"><input type="checkbox" value="">Втори плодник</label>
+                <label for="SecondBroodBox">Втори плодник</label>
+                <input type="checkbox" id="IsChecked" name="SecondBroodBox" asp-for="@Model.SecondBroodBox" />
                 <span asp-validation-for="SecondBroodBox" class="small text-danger"></span>
             </div>
             <div class="form-group">
@@ -43,7 +45,8 @@
                 <span asp-validation-for="NumberOfAdditionalBoxes" class="small text-danger"></span>
             </div>
             <div class="checkbox">
-                <label asp-for="MatedBeeQueen"><input type="checkbox" value="">Има ли оплодена майка</label>
+                <label for="MatedBeeQueen"> Има ли оплодена майка</label>
+                <input type="checkbox" id="MatedBeeQueen" name="MatedBeeQueen" asp-for="@Model.MatedBeeQueen" />
                 <span asp-validation-for="MatedBeeQueen" class="small text-danger"></span>
             </div>
             <div class="form-group">
@@ -71,7 +74,7 @@
                 </select>
                 <span asp-validation-for="@Model.ApiaryId" class="text-danger"></span>
             </div>
-                      
+
 
             <input class="btn btn-primary mt-3" type="submit" value="Запази" />
         </form>
