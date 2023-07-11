@@ -2,7 +2,9 @@
 {
     using Beekeeping.Data;
     using Beekeeping.Data.Models;
+    using Beekeeping.Models.Apiary;
     using Beekeeping.Models.BeeColony;
+    using Beekeeping.Models.BeeQueen;
     using Beekeeping.Services.Interfaces;
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
@@ -19,13 +21,6 @@
 
         public async Task AddNewBeeColonyAsync(BeeColonyFormModel model, string ownerId)
         {
-            var apiaryForUser = await context.Apiaries.FirstOrDefaultAsync(a => a.OwnerId == ownerId);
-
-            if (apiaryForUser == null)
-            {
-                throw new InvalidOperationException();
-            }
-
             var beeQueen = new BeeQueen()
             {
                 Breeder = model.BeeQueen.Breeder,
@@ -44,7 +39,7 @@
                 NumberOfAdditionalBoxes = model.NumberOfAdditionalBoxes,
                 MatedBeeQueen = model.MatedBeeQueen,
                 OwnerOfTheApiary = ownerId,
-                ApiaryId = apiaryForUser.Id,
+                ApiaryId = model.ApiaryId,
                 BeeQueen = beeQueen
             };
 
@@ -80,6 +75,71 @@
                .ToArrayAsync();
 
             return allColoniesAsync;
+        }
+
+        public async Task EditBeeColonyAsync(BeeColonyFormModel model, string ownerId, int colonyId)
+        {
+            var beeColony = await context.BeeColonies
+                               .FirstOrDefaultAsync(a => a.Id == colonyId && a.OwnerOfTheApiary == ownerId);
+
+            if (beeColony == null)
+            {
+                throw new InvalidOperationException();
+            }
+
+            var beeQueen = await context.BeeQueens.FindAsync(beeColony.BeeQueenId);
+
+            beeQueen.Breeder = model.BeeQueen.Breeder;
+            beeQueen.BeeQueenYearOfBirth = model.BeeQueen.BeeQueenYearOfBirth;
+            beeQueen.BeeQueenType = model.BeeQueen.BeeQueenType;
+
+            beeColony.BeeQueen = beeQueen;
+            beeColony.PlateNumber = model.PlateNumber;
+            beeColony.AdditionalComмent = model.AdditionalComment;
+            beeColony.Super = model.Super;
+            beeColony.NumberOfSupers = model.NumberOfSupers;
+            beeColony.SecondBroodBox = model.SecondBroodBox;
+            beeColony.NumberOfAdditionalBoxes = model.NumberOfAdditionalBoxes;
+            beeColony.MatedBeeQueen = model.MatedBeeQueen;
+            beeColony.ApiaryId = model.ApiaryId;
+
+            await context.SaveChangesAsync();
+        }
+
+        public async Task<BeeColonyFormModel> GetBeeColonyForEditAsync(string ownerId, int colonyId)
+        {
+            var beeColony = await context.BeeColonies
+                                .FirstOrDefaultAsync(a => a.Id == colonyId && a.OwnerOfTheApiary == ownerId);
+
+            if (beeColony == null)
+            {
+                throw new InvalidOperationException();
+            }
+
+            var beeQueen = await context.BeeQueens
+                                .Where(b => b.Id == beeColony.BeeQueenId)
+                                .Select(b => new BeeQueenFormModel()
+                                 {
+                                     Breeder = b.Breeder,
+                                     BeeQueenType = b.BeeQueenType,
+                                     BeeQueenYearOfBirth = b.BeeQueenYearOfBirth
+                                 })
+                                .FirstOrDefaultAsync();
+
+            return new BeeColonyFormModel
+            {
+                Id = colonyId,
+                PlateNumber = beeColony.PlateNumber,
+                AdditionalComment = beeColony.AdditionalComмent,
+                TypeOfBroodBox = beeColony.TypeOfBroodBox,
+                Super = beeColony.Super,
+                NumberOfSupers = beeColony.NumberOfSupers,
+                SecondBroodBox = beeColony.SecondBroodBox,
+                NumberOfAdditionalBoxes = beeColony.NumberOfAdditionalBoxes,
+                MatedBeeQueen = beeColony.MatedBeeQueen,
+                BeeQueenId = beeColony.BeeQueenId,
+                BeeQueen = beeQueen
+            };
         }
 
         public async Task<BeeColonyViewModel> GetDetailsForTheBeeColonyAsync(string ownerId, int colonyId)

@@ -17,7 +17,6 @@
         public BeeColonyController(IBeeColonyService beeColonyService, IApiaryService apiaryService)
         {
             this.beeColonyService = beeColonyService;
-
             this.apiaryService = apiaryService;
         }
 
@@ -77,9 +76,6 @@
 
             model.Apiaries = apiariesForSelect;
             model.BeeQueen = beeQueen;
-            //model.MatedBeeQueen = false;
-            //model.SecondBroodBox = false;
-            //model.Super = false;
 
             return View(model);
         }
@@ -89,9 +85,10 @@
         {
             string userId = User.Id();
 
-            var apiaries = await apiaryService.AllApiaryAsync(userId);
+            bool doesApiaryExist =
+               await this.apiaryService.DoesApiaryExists(userId, model.ApiaryId);
 
-            if (apiaries == null)
+            if (!doesApiaryExist)
             {
                 TempData["ErrorMessage"] = "Трябва първо да добавите пчелин, за да можете да попълните данни за кошерите в него.";
 
@@ -100,6 +97,8 @@
 
             if (!ModelState.IsValid)
             {
+                var apiaries = await apiaryService.AllApiaryAsync(userId);
+
                 List<AllApiariesForSelectModel> apiariesForSelect = AddApiaries(apiaries);
 
                 var beeQueen = new BeeQueenFormModel();
@@ -115,6 +114,92 @@
                 await beeColonyService.AddNewBeeColonyAsync(model, userId);
 
                 TempData["SuccessMessage"] = "Успечно добавихте нов кошер към своя пчелин";
+
+                return RedirectToAction("All", "Apiary");
+            }
+            catch (Exception)
+            {
+
+                TempData["ErrorMessage"] = "Съжаляваме, но нещо се обърка. Моля, свържете се с нас или опитайте по-късно!";
+            }
+
+            return RedirectToAction("All", "Apiary");
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            string userId = User.Id();
+
+            bool isUserOwner = await beeColonyService.IsTheUserOwner(userId);
+
+            if (!isUserOwner)
+            {
+                TempData["ErrorMessage"] = "Нямате достъп до тези данни!";
+
+                return RedirectToAction("Home", "Index");
+            }
+
+            var apiaries = await apiaryService.AllApiaryAsync(userId);
+
+            if (apiaries == null)
+            {
+                TempData["ErrorMessage"] = "Трябва първо да добавите пчелин, за да можете да редактирате данните.";
+
+                return RedirectToAction("Add", "Apiary");
+            }
+
+            try
+            {
+                var model = await beeColonyService.GetBeeColonyForEditAsync(userId, id);
+
+                List<AllApiariesForSelectModel> apiariesForSelect = AddApiaries(apiaries);
+
+                model.Apiaries = apiariesForSelect;
+
+                return View(model);
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Съжаляваме, но нещо се обърка. Моля, свържете се с нас или опитайте по-късно!";
+
+                return RedirectToAction("All", "BeeColony");
+            }
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(BeeColonyFormModel model, int id)
+        {
+            string userId = User.Id();
+
+            bool doesApiaryExist =
+               await this.apiaryService.DoesApiaryExists(userId, model.ApiaryId);
+
+            if (!doesApiaryExist)
+            {
+                TempData["ErrorMessage"] = "Трябва първо да добавите пчелин, за да можете да попълните данни за кошерите в него.";
+
+                return RedirectToAction("Add", "Apiary");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                var apiaries = await apiaryService.AllApiaryAsync(userId);
+
+                List<AllApiariesForSelectModel> apiariesForSelect = AddApiaries(apiaries);
+
+                model.Apiaries = apiariesForSelect;
+              
+                return View(model);
+            }
+
+            try
+            {
+                await beeColonyService.EditBeeColonyAsync(model, userId, id);
+
+                TempData["SuccessMessage"] = "Успешно редактирахте своя кошер";
 
                 return RedirectToAction("All", "Apiary");
             }
@@ -143,7 +228,7 @@
             }
 
             return RedirectToAction("All", "Apiary");
-           
+
         }
         private static List<AllApiariesForSelectModel> AddApiaries(IEnumerable<ApiaryViewModel>? apiaries)
         {

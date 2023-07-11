@@ -23,6 +23,7 @@
             <p class="mb-0"><span class="fw-bold">Година на майката: </span>@Model.BeeQueen.BeeQueenYearOfBirth</p>
         </div>
         <a asp-controller="BeeColony" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Редакция</a>
+        <a asp-controller="BeeColony" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Изтриване</a>
     </div>
 </div>
 

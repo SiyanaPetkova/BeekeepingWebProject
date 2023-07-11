@@ -3,6 +3,7 @@
     using Beekeeping.Data;
     using Beekeeping.Data.Models;
     using Beekeeping.Models.Apiary;
+    using Beekeeping.Models.BeeColony;
     using Beekeeping.Services.Interfaces;
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
@@ -40,20 +41,21 @@
                 return null;
             }
 
-            return await context.Apiaries
-                                            .Where(o => o.OwnerId == ownerId)
-                                            .Include(o => o.BeeHives)
-                                            .Select(o => new ApiaryViewModel()
-                                            {
-                                                Id = o.Id,
-                                                Name = o.Name,
-                                                Location = o.Location,
-                                                RegistrationNumber = o.RegistrationNumber,
-                                                NumberOfHives = o.BeeHives.Where(b => b.ApiaryId == o.Id).Count(),
-                                                OwnerId = o.OwnerId
-                                            })
-                                            .ToArrayAsync();
+            var apiaries = await context.Apiaries
+                                .Where(o => o.OwnerId == ownerId)
+                                .Include(o => o.BeeHives)
+                                .Select(o => new ApiaryViewModel()
+                                {
+                                    Id = o.Id,
+                                    Name = o.Name,
+                                    Location = o.Location,
+                                    RegistrationNumber = o.RegistrationNumber,
+                                    NumberOfHives = o.BeeHives.Count(),
+                                    OwnerId = o.OwnerId
+                                })
+                                .ToArrayAsync();
 
+            return apiaries;
         }
 
         public async Task DeleteApiaryAsync(string ownerId, int id)
