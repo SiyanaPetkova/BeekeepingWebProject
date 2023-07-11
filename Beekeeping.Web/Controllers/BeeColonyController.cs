@@ -126,7 +126,6 @@
             return RedirectToAction("All", "Apiary");
         }
 
-
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -230,6 +229,45 @@
             return RedirectToAction("All", "Apiary");
 
         }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var userId = this.User.Id();
+
+            var isUserOwner = await beeColonyService.IsTheUserOwner(userId);
+
+            if (!isUserOwner)
+            {
+                TempData["ErrorMessage"] = "Нямате достъп до тази страница! За повече информация можете да се свържете с нас.";
+
+                return RedirectToAction("Index", "Home");
+            }
+
+
+            bool apiaryExists = await beeColonyService.DoesBeeColonyExist(userId, id);
+
+            if (!apiaryExists)
+            {
+                TempData["ErrorMessage"] = "Не съществуващ koшер!";
+
+                return this.RedirectToAction("All", "Apiary");
+            }
+
+            try
+            {
+                await beeColonyService.DeleteBeeColonyAsync(userId, id);
+
+                this.TempData["SuccessMessage"] = "Пчелинът беше изтрит успешно!";
+
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Възникна грешка при изтриването на Вашия пчелин. Моля, свържете се с нас или опитайте по-късно!";
+            }
+
+            return RedirectToAction("All", "Apiary");
+        }
+
         private static List<AllApiariesForSelectModel> AddApiaries(IEnumerable<ApiaryViewModel>? apiaries)
         {
             var apiariesForSelect = new List<AllApiariesForSelectModel>();

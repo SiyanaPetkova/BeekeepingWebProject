@@ -17,5 +17,8 @@
 
         Task<bool> IsTheUserOwner(string ownerId);
 
+        Task<bool> DoesBeeColonyExist(string userId, int id);
+        Task DeleteBeeColonyAsync(string userId, int id);
+
     }
 }

@@ -77,6 +77,24 @@
             return allColoniesAsync;
         }
 
+        public async Task DeleteBeeColonyAsync(string userId, int id)
+        {
+            var beeColony = await context.BeeColonies.FirstOrDefaultAsync(b => b.Id == id && b.OwnerOfTheApiary == userId);
+
+            if (beeColony == null)
+            {
+                throw new InvalidOperationException();
+            }
+
+            context.BeeColonies.Remove(beeColony);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task<bool> DoesBeeColonyExist(string userId, int id)
+        {
+            return await context.BeeColonies.AnyAsync(b => b.OwnerOfTheApiary == userId && b.Id == id);
+        }
+
         public async Task EditBeeColonyAsync(BeeColonyFormModel model, string ownerId, int colonyId)
         {
             var beeColony = await context.BeeColonies
