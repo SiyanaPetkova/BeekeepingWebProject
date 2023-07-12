@@ -1,26 +1,39 @@
-﻿@model List<PictureViewModel>
-
+﻿<!DOCTYPE html>
 <html>
+
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
 </head>
+
 <body>
-    <div class="container">
-        <h1>Галерия</h1>
-        <div class="row">
-            @foreach (var picture in Model)
-            {
-                <div class="col-md-4">
-                    <div class="card mb-4">
-                        <img src="@picture.PicturePath" class="card-img-top" alt="Image">
-                        <div class="card-body">
-                            <h5 class="card-title">@picture.PictureName</h5>
-                        </div>
-                    </div>
-                </div>
-            }
+    <div class="photo-gallery">
+        <div class="container">
+            <div class="intro">
+                <h2 class="text-center">Галерия</h2>
+                <p class="text-center">Можем да научим много от пчелите. Те са невероярни, те ни вдъхновяват и тяхната значимост за съществуването на човечеството е неизмерима. Всяка пчела живее не за себе си, а за дугите - за общата кауза, за общото благо, за семейството! Да...колко много можем да научим от тях!</p>
+            </div>
+            <div class="row photos">
+                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/110.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/110.jpg"></a></div>
+                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/111.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/111.jpg"></a></div>
+                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/112.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/112.jpg"></a></div>
+                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/113.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/113.jpg"></a></div>
+                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/114.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/114.jpg"></a></div>
+                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/115.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/115.jpg"></a></div>
+                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/116.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/116.jpg"></a></div>
+                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/117.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/117.jpg"></a></div>
+                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/118.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/118.jpg"></a></div>
+                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/119.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/119.jpg"></a></div>
+            </div>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
 </body>
-</html>
 
+</html>
