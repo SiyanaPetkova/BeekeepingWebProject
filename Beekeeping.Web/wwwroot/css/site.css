@@ -16,3 +16,7 @@ html {
 body {
   margin-bottom: 60px;
 }
+.card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+}
