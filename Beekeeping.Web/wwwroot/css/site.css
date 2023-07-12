@@ -20,3 +20,12 @@ body {
     display: flex;
     flex: 1 1 auto;
 }
+
+h1 {
+    color: gold;
+}
+
+h2 {
+    color: gold;
+}
+
