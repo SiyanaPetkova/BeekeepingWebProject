@@ -33,11 +33,7 @@
         [Display(Name = "Темперамент на семейството от 1 до 10(от спокойни към агресивни)")]
         [Range(1, 10, ErrorMessage = "Темпераментът на семейството трябва да бъде цяло число между {1} и {2}")]
         public int Temperament { get; set; }
-
-        [Display(Name = "Година на майката")]
-        [Range(2010, 2030, ErrorMessage = "Годината на майката трябва да бъде цяло число между {1} и {2}")]
-        public int BeeQueenYearOfBirth { get; set; }
-
+              
         public int BeeColonyId { get; set; }
     }
 }

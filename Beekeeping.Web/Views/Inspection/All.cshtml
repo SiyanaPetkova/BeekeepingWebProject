@@ -1,5 +1,48 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<InspectionViewModel>
+
 @{
+    int count = 0;
 }
+
+@{
+    ViewBag.Title = "Прегледи";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+
+<div class="text-center row">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Дата</th>
+                <th scope="col">Рамки</th>
+                <th scope="col">Рамки с пило</th>
+                <th scope="col">Сила на семейството</th>
+                <th scope="col">Повече информация</th>
+            </tr>
+        </thead>
+        @foreach (var i in Model)
+        {
+            {
+                count = count+1;
+            }
+
+            <tbody>
+                <tr>
+                    <th scope="row">@count</th>
+                    <td>@i.DayOfInspection</td>
+                    <td>@i.NumberOfFrames</td>
+                    <td>@i.NumberOfBroodFrames</td>
+                    <td>@i.Strenght</td>
+                    <td> <a asp-controller="Inspection" asp-action="Details" asp-route-id="@i.Id" class="btn btn-warning mb-2 w-100 p-1">Допълнителна информация</a></td>
+                </tr>
+            </tbody>
+        }
+    </table>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

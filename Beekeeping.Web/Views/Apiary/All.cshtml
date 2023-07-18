@@ -30,7 +30,7 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-light" data-dismiss="modal">Затвори</button>
                                         <a href="/Apiary/Edit/@apiary.Id" class="btn btn-light">Редакция</a>
-                                        <a href="/Apiary/Delete/@apiary.Id" class="btn btn-light" onclick="return confirm('Сигурни ли сте,че искате да изтриете този пчелин? Данните Ви ще бъдат загубени!')">Изтриване</a>
+                                        <a asp-controller="Apiary" asp-action="Delete" asp-route-id="@apiary.Id" class="btn btn-danger" onclick="return confirm('Сигурни ли сте,че искате да изтриете този преглед? Данните Ви ще бъдат загубени!')">Изтриване</a>
                                         <a asp-controller="BeeColony" asp-action="All" asp-route-id="@apiary.Id" class="btn btn-link mb-2 w-100 p-1 fw-bold">Виж информация за кошерите</a>
                                         <a asp-controller="BeeColony" asp-action="Add" asp-route-id="@apiary.Id" class="btn btn-link mb-2 w-100 p-1 fw-bold">Добави нов кошер</a>
                                     </div>

@@ -1,7 +1,7 @@
 ﻿@model InspectionFormModel
 
 @{
-    ViewBag.Title = "Добави нов преглед за кошера";
+    ViewBag.Title = "Редакция";
 }
 
 <div class="row">
@@ -27,15 +27,23 @@
                 <label asp-for="NumberOfBroodFrames"></label>
                 <input asp-for="NumberOfBroodFrames" class="form-control">
                 <span asp-validation-for="NumberOfBroodFrames" class="small text-danger"></span>
-            </div>  <div class="form-group">
+            </div>
+            <div class="form-group">
                 <label asp-for="Strenght"></label>
                 <input asp-for="Strenght" class="form-control">
                 <span asp-validation-for="Strenght" class="small text-danger"></span>
-            </div>  <div class="form-group">
+            </div>
+            <div class="form-group">
                 <label asp-for="Temperament"></label>
                 <input asp-for="Temperament" class="form-control">
                 <span asp-validation-for="Temperament" class="small text-danger"></span>
-                <input class="btn btn-primary mt-3" type="submit" value="Запази" />
+            </div>
+            <div class="d-none">
+                <label asp-for="BeeColonyId"></label>
+                <input asp-for="BeeColonyId" class="form-control">
+                <span asp-validation-for="BeeColonyId" class="small text-danger"></span>                
+            </div>
+            <input class="btn btn-primary mt-3" type="submit" value="Запази" />
         </form>
     </div>
 </div>

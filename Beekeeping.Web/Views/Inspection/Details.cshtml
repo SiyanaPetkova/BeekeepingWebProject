@@ -1,0 +1,30 @@
+﻿@model InspectionViewModel
+
+@{
+    ViewBag.Title = "Детайли за прегледа";
+}
+
+<div class="container-fluid" justify-content-center>
+    <div class="row">
+        <div class="col-8 mt-3">
+            <div class="card">
+                <div class="card-horizontal">
+                    <div class="img-square-wrapper">
+                        <img class="" src="/images/Inspection.jpg" alt="Card image cap">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title text-center">@ViewBag.Title</h3>
+                        <p class="mb-0"><span class="fw-bold">Дата на прегледа: </span>@Model.DayOfInspection</p>
+                        <p class="mb-0"><span class="fw-bold">Рамки, които покрива семейството: </span>@Model.NumberOfFrames</p>
+                        <p class="mb-0"><span class="fw-bold">Рамки с пило: </span>@Model.NumberOfBroodFrames</p>
+                        <p class="mb-0"><span class="fw-bold">Сила на семейството: </span>@Model.Strenght</p>
+                        <p class="mb-0"><span class="fw-bold">Темперамент на семейството: </span>@Model.Temperament</p>
+                        <p class="mb-0"><span class="fw-bold">Допълнителна информация: </span>@Model.Description</p>
+                        <a asp-controller="Inspection" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success mb-2 w-100 p-2 fw-bold">Редакция</a>
+                        <a asp-controller="Inspection" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger" onclick="return confirm('Сигурни ли сте,че искате да изтриете този преглед? Данните Ви ще бъдат загубени!')">Изтриване</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
