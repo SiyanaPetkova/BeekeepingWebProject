@@ -1,0 +1,47 @@
+﻿@model IEnumerable<HiveTreatmentViewModel>
+
+@{
+    int count = 0;
+}
+
+@{
+    ViewBag.Title = "Третиране на кошерите";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+
+<div class="text-center row">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Дата</th>
+                <th scope="col">Препарат</th>
+                <th scope="col">Активна съставка</th>
+                <th scope="col">Цена</th>
+                <th scope="col">Брой третирани кошери</th>
+                <th scope="col">Повече информация</th>
+            </tr>
+        </thead>
+        @foreach (var i in Model)
+        {
+            {
+                count = count + 1;
+            }
+
+            <tbody>
+                <tr>
+                    <th scope="row">@count</th>
+                    <td>@i.TreatmentDate</td>
+                    <td>@i.MedicationName</td>
+                    <td>@i.ActiveIngredient</td>
+                    <td>@i.PriceOfTheTreatment</td>
+                    <td>@i.NumberOfTreatedColonies</td>
+                    <td> <a asp-controller="Treatment" asp-action="Edit" asp-route-id="@i.Id" class="btn btn-warning mb-2 w-100 p-1">Редактиране</a></td>
+                    <td> <a asp-controller="Treatment" asp-action="Delete" asp-route-id="@i.Id" class="btn btn-warning mb-2 w-100 p-1">Изтриване</a></td>
+                </tr>
+            </tbody>
+        }
+    </table>
+</div>
+

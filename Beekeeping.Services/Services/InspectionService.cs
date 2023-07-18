@@ -10,11 +10,11 @@
 
     public class InspectionService : IInspectionService
     {
-        private readonly BeekeepingDbContext dbcontext;
+        private readonly BeekeepingDbContext context;
 
         public InspectionService(BeekeepingDbContext dbcontext)
         {
-            this.dbcontext = dbcontext;
+            this.context = dbcontext;
 
         }
 
@@ -31,13 +31,13 @@
                 BeeColonyId = model.BeeColonyId
             };
 
-            await dbcontext.Inspections.AddAsync(inspection);
-            await dbcontext.SaveChangesAsync();
+            await context.Inspections.AddAsync(inspection);
+            await context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<InspectionViewModel>?> AllInspectionsPerColonyAsync(string ownerId, int beeColonyId)
         {
-            var allInspectionsAsync = await dbcontext.Inspections.Where(i => i.BeeColonyId == beeColonyId)
+            var allInspectionsAsync = await context.Inspections.Where(i => i.BeeColonyId == beeColonyId)
                              .Select(i => new InspectionViewModel
                              {
                                  Id = i.Id,
@@ -55,7 +55,7 @@
 
         public async Task EditInspectionAsync(InspectionFormModel model, string ownerId, int id)
         {
-            var inspection = await dbcontext.Inspections
+            var inspection = await context.Inspections
                                 .FirstOrDefaultAsync(i => i.Id == id && i.BeeColony!.OwnerOfTheApiary == ownerId);
 
             if (inspection == null)
@@ -70,12 +70,12 @@
             inspection.Strenght = model.Strenght;
             inspection.Description = model.Description;
 
-            await dbcontext.SaveChangesAsync();
+            await context.SaveChangesAsync();
         }
 
         public async Task<InspectionFormModel> GetInspectionForEditAsync(string ownerId, int id)
         {
-            var inspection = await dbcontext.Inspections
+            var inspection = await context.Inspections
                                 .FirstOrDefaultAsync(i => i.Id == id && i.BeeColony!.OwnerOfTheApiary == ownerId);
 
             if (inspection == null)
@@ -98,7 +98,7 @@
 
         public async Task<InspectionViewModel?> GetDetailsForTheInspectionAsync(string ownerId, int id)
         {
-            var inspection = await dbcontext.Inspections.Where(i => i.Id == id && i.BeeColony!.OwnerOfTheApiary == ownerId)
+            var inspection = await context.Inspections.Where(i => i.Id == id && i.BeeColony!.OwnerOfTheApiary == ownerId)
                 .Select(i => new InspectionViewModel
                 {
                     Id = i.Id,
@@ -116,7 +116,7 @@
 
         public async Task<bool> DoesInspectionExist(string userId, int id)
         {
-            var inspection = await dbcontext.Inspections
+            var inspection = await context.Inspections
                                  .FirstOrDefaultAsync(i => i.Id == id && i.BeeColony!.OwnerOfTheApiary == userId);
 
             if (inspection == null)
@@ -131,7 +131,7 @@
 
         public async Task DeleteInspectionAsync(string userId, int id)
         {
-            var inspection = await dbcontext.Inspections
+            var inspection = await context.Inspections
                               .FirstOrDefaultAsync(i => i.Id == id && i.BeeColony!.OwnerOfTheApiary == userId);
 
             if (inspection == null)
@@ -139,8 +139,8 @@
                 throw new InvalidOperationException();
             }
 
-            dbcontext.Inspections.Remove(inspection);
-            await dbcontext.SaveChangesAsync();
+            context.Inspections.Remove(inspection);
+            await context.SaveChangesAsync();
         }
     }
 }

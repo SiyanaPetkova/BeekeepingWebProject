@@ -1,0 +1,44 @@
+﻿@model IEnumerable<HiveFeedingViewModel>
+
+@{
+    int count = 0;
+}
+
+@{
+    ViewBag.Title = "Хранене на кошерите";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+
+<div class="text-center row">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Дата</th>
+                <th scope="col">Тип на хранене</th>
+                <th scope="col">Цена</th>
+                <th scope="col">Брой кошери</th>
+            </tr>
+        </thead>
+        @foreach (var i in Model)
+        {
+            {
+                count = count + 1;
+            }
+
+            <tbody>
+                <tr>
+                    <th scope="row">@count</th>
+                    <td>@i.DayOfFeeding</td>
+                    <td>@i.FeedingType</td>
+                    <td>@i.PriceOfFeeding</td>
+                    <td>@i.NumberOfBeeHives</td>
+                    <td> <a asp-controller="Feeding" asp-action="Edit" asp-route-id="@i.Id" class="btn mb-2 w-100 p-1">Редакция</a></td>
+                    <td> <a asp-controller="Feeding" asp-action="Delete" asp-route-id="@i.Id" class="btn b-2 w-100 p-1">Изриване</a></td>
+                </tr>
+            </tbody>
+        }
+    </table>
+</div>
+

@@ -1,19 +1,13 @@
-﻿namespace Beekeeping.Data.Models
+﻿namespace Beekeeping.Models.Event
 {
-    using System.ComponentModel.DataAnnotations;
+    using System;
 
-    using static Beekeeping.Common.Validations.DataConstants.HiveTreatmentValidations;
-
-    public class HiveTreatment
+    public class HiveTreatmentViewModel
     {
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(MedicationNameMaxLenght)]
         public string MedicationName { get; set; } = null!;
 
-        [Required]
-        [StringLength(ActiveIngredientMaxLenght)]
         public string ActiveIngredient { get; set; } = null!;
 
         public string? ResultAndCommentAboutTheTreatment { get; set; }
@@ -22,11 +16,8 @@
 
         public DateTime TreatmentDate { get; set; }
 
-        [Required]
         public int NumberOfTreatedColonies { get; set; }
 
-        [Required]
         public string CreatorId { get; set; } = null!;
-
     }
 }

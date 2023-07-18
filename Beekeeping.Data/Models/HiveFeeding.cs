@@ -21,6 +21,8 @@
         [Required]
         public decimal PriceOfFeeding { get; set; }
 
-       
+        [Required]
+        public string CreatorId { get; set; } = null!;
+
     }
 }

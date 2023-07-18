@@ -1,0 +1,50 @@
+﻿<head>
+    <style>
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+        }
+
+            .container img {
+                width: 100%;
+                height: auto;
+            }
+
+            .container .btn {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                -ms-transform: translate(-50%, -50%);
+                background-color: #555;
+                color: white;
+                font-size: 16px;
+                padding: 12px 24px;
+                border: none;
+                cursor: pointer;
+                border-radius: 5px;
+                text-align: center;
+            }
+
+                .container .btn:hover {
+                    background-color: black;
+                }
+    </style>
+</head>
+<body>
+    <h2 class="text-center">Събития</h2>
+    <p>Тук можете да добавите информация за проведени мероприятия по хранене или третиране на вашите кошери</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <img src="/images/Feeding.jpg" alt="Snow" style="width:100%">
+                <a asp-controller="Event" asp-action="Treatment" class="btn">Хранене</a>
+            </div>
+            <div class="col-sm">
+                <img src="/images/Treatment.jpg" alt="Snow" style="width:100%">
+                <a asp-controller="Event" asp-action="Feeding" class="btn">Третираме</a>
+            </div>
+        </div>
+    </div>
+</body>
