@@ -1,6 +1,7 @@
 ﻿namespace Beekeeping.Services.Services
 {
     using Beekeeping.Data;
+    using Beekeeping.Data.Models;
     using Beekeeping.Models.HiveTreatment;
     using Beekeeping.Services.Interfaces;
     using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,23 @@
             this.context = dbcontext;
 
         }
+
+        public async Task AddTreatmentAsync(HiveTreatmentFormModel model, string userId)
+        {
+            var treatment = new HiveTreatment()
+            {
+                TreatmentDate = model.TreatmentDate,
+                MedicationName = model.MedicationName,
+                ActiveIngredient = model.ActiveIngredient,
+                PriceOfTheTreatment = model.PriceOfTheTreatment,
+                NumberOfTreatedColonies = model.NumberOfTreatedColonies,
+                CreatorId = userId
+            };
+
+            await context.HiveTreatments.AddAsync(treatment);
+            await context.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<HiveTreatmentViewModel>?> AllTreatmentsAsync(string userId)
         {
             bool doesUserHasTreatmentsAdded = await context.HiveTreatments.AnyAsync(a => a.CreatorId == userId);
@@ -24,16 +42,16 @@
             }
 
             return await context.HiveTreatments
-                                .Where(t => t.CreatorId == userId)                                
+                                .Where(t => t.CreatorId == userId)
                                 .Select(t => new HiveTreatmentViewModel()
                                 {
                                     Id = t.Id,
-                                   TreatmentDate = t.TreatmentDate,
-                                   MedicationName = t.MedicationName,
-                                   ActiveIngredient = t.ActiveIngredient,
-                                   PriceOfTheTreatment = t.PriceOfTheTreatment,
-                                   ResultAndCommentAboutTheTreatment = t.ResultAndCommentAboutTheTreatment,
-                                   CreatorId = userId
+                                    TreatmentDate = t.TreatmentDate,
+                                    MedicationName = t.MedicationName,
+                                    ActiveIngredient = t.ActiveIngredient,
+                                    PriceOfTheTreatment = t.PriceOfTheTreatment,
+                                    ResultAndCommentAboutTheTreatment = t.ResultAndCommentAboutTheTreatment,
+                                    CreatorId = userId
                                 })
                                 .ToArrayAsync();
         }

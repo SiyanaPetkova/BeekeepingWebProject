@@ -2,7 +2,6 @@
 {
     using Beekeeping.Data;
     using Beekeeping.Data.Models;
-    using Beekeeping.Models.Apiary;
     using Beekeeping.Models.HiveFeeding;
     using Beekeeping.Services.Interfaces;
     using Microsoft.EntityFrameworkCore;
@@ -27,6 +26,7 @@
 
            return await context.HiveFeeding
                                 .Where(f => f.CreatorId == userId)
+                                .OrderByDescending(f => f.DayOfFeeding)
                                 .Select(f => new HiveFeedingViewModel()
                                 {
                                     Id = f.Id,

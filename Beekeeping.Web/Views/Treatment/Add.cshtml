@@ -1,38 +1,43 @@
 ﻿@model HiveTreatmentFormModel
 
-<head>
-    <title>Bootstrap 5 Layout Form grid</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-          crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous">
-    </script>
-</head>
-
 <body>
     <div class="container text-center">
-        <h1 class="text-success">
-            GeeksforGeeks
-        </h1>
 
-        <h2>Bootstrap 5 Layout Form Grid</h2>
-
-        <div class="row">
-            <div class="col">
-                <input type="text" class="form-control"
-                       placeholder="First Name">
+        <h2>Добави хранене</h2>
+        <form method="post">
+            <div class="row">
+                <div class="col-3">
+                    <label asp-for="TreatmentDate"></label>
+                    <input asp-for="TreatmentDate" class="form-control">
+                    <span asp-validation-for="TreatmentDate" class="small text-danger"></span>
+                </div>
+                <div class="col-3">
+                    <label asp-for="MedicationName"></label>
+                    <input asp-for="MedicationName" class="form-control">
+                    <span asp-validation-for="MedicationName" class="small text-danger"></span>
+                </div>
+                <div class="col-3">
+                    <label asp-for="ActiveIngredient"></label>
+                    <input asp-for="ActiveIngredient" class="form-control">
+                    <span asp-validation-for="ActiveIngredient" class="small text-danger"></span>
+                </div>
+                <div class="col-3">
+                    <label asp-for="PriceOfTheTreatment"></label>
+                    <input asp-for="PriceOfTheTreatment" class="form-control">
+                    <span asp-validation-for="PriceOfTheTreatment" class="small text-danger"></span>
+                </div>
+                <div class="col-3">
+                    <label asp-for="NumberOfTreatedColonies"></label>
+                    <input asp-for="NumberOfTreatedColonies" class="form-control">
+                    <span asp-validation-for="NumberOfTreatedColonies" class="small text-danger"></span>
+                </div>
             </div>
-            <div class="col">
-                <input type="text" class="form-control"
-                       placeholder="Last Name">
-            </div>
-            <div class="col">
-                <input type="email" class="form-control"
-                       placeholder="Email Id">
-            </div>
-        </div>
+            <input class="btn btn-primary mt-3" type="submit" value="Запази" />
+        </form>
     </div>
 </body>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
