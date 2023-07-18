@@ -1,7 +1,9 @@
 ﻿namespace Beekeeping.Services.Services
 {
     using Beekeeping.Data;
-    using Beekeeping.Models.Event;
+    using Beekeeping.Data.Models;
+    using Beekeeping.Models.Apiary;
+    using Beekeeping.Models.HiveFeeding;
     using Beekeeping.Services.Interfaces;
     using Microsoft.EntityFrameworkCore;
 
@@ -36,6 +38,21 @@
                                 })
                                 .ToArrayAsync();
 
+        }
+
+        public async Task AddFeedingAsync(HiveFeedingFormModel model, string userId)
+        {
+            var feeding = new HiveFeeding()
+            {
+            DayOfFeeding = model.DayOfFeeding,
+            FeedingType = model.FeedingType,
+            NumberOfBeeHives = model.NumberOfBeeHives,
+            PriceOfFeeding =model.PriceOfFeeding,
+            CreatorId = userId
+            };
+
+            await context.HiveFeeding.AddAsync(feeding);
+            await context.SaveChangesAsync();
         }
     }
 }

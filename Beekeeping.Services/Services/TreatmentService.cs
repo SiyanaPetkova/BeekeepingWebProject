@@ -1,7 +1,7 @@
 ﻿namespace Beekeeping.Services.Services
 {
     using Beekeeping.Data;
-    using Beekeeping.Models.Event;
+    using Beekeeping.Models.HiveTreatment;
     using Beekeeping.Services.Interfaces;
     using Microsoft.EntityFrameworkCore;
 

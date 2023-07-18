@@ -3,9 +3,10 @@
     using Microsoft.AspNetCore.Mvc;
 
     public class GalleryController : Controller
-    {                public  IActionResult All()
+    {
+        public IActionResult All()
         {
-           
+
             return View();
         }
 

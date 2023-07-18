@@ -35,8 +35,10 @@
 
         public static class HiveTreatmentValidations
         {
+            public const int MedicationNameMinLenght = 3;
             public const int MedicationNameMaxLenght = 50;
 
+            public const int ActiveIngredientMinLenght = 3;
             public const int ActiveIngredientMaxLenght = 70;
         }
 

@@ -1,4 +1,4 @@
-﻿namespace Beekeeping.Models.Event
+﻿namespace Beekeeping.Models.HiveTreatment
 {
     using System;
 

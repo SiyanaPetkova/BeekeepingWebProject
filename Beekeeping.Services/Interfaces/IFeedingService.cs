@@ -1,9 +1,11 @@
 ﻿namespace Beekeeping.Services.Interfaces
 {
-    using Beekeeping.Models.Event;
+    using Beekeeping.Models.HiveFeeding;
 
     public interface IFeedingService
     {
-        Task<IEnumerable<HiveFeedingViewModel>?> AllFeedingsAsync(string ownerId);
+        Task<IEnumerable<HiveFeedingViewModel>?> AllFeedingsAsync(string userId);
+
+        Task AddFeedingAsync(HiveFeedingFormModel model, string userId);
     }
 }
