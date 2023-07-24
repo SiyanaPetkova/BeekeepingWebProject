@@ -10,6 +10,10 @@
 
 <h2 class="text-center">@ViewBag.Title</h2>
 
+<div class="left mb-2">
+    <a asp-controller="Feeding" asp-action="Add" class="btn btn-warning mb-2 w-100 p-1">Добави новo хранене</a>
+</div>
+
 <div class="text-center row">
     <table class="table table-striped">
         <thead>
@@ -19,6 +23,8 @@
                 <th scope="col">Тип на хранене</th>
                 <th scope="col">Цена</th>
                 <th scope="col">Брой кошери</th>
+                <th scope="col">Редакция</th>
+                <th scope="col">Изтриване</th>
             </tr>
         </thead>
         @foreach (var i in Model)

@@ -22,7 +22,14 @@
                 <label asp-for="RegistrationNumber"></label>
                 <input asp-for="RegistrationNumber" class="form-control">
                 <span asp-validation-for="RegistrationNumber" class="small text-danger"></span>
-            </div>                     
+            </div>
+            @* <div id="map" style="height: 400px;"></div>
+            <form method="post">
+                <input type="hidden" id="latitude" name="latitude" />
+                <input type="hidden" id="longitude" name="longitude" />
+                <input type="submit" value="Save Location" />
+            </form>*@
+
             <input class="btn btn-primary mt-3" type="submit" value="Запази" />
         </form>
     </div>
@@ -30,4 +37,20 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+@*    <script>
+        var map;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 0, lng: 0 },
+                zoom: 2
+            });
+
+            map.addListener('click', function (event) {
+                document.getElementById('latitude').value = event.latLng.lat();
+                document.getElementById('longitude').value = event.latLng.lng();
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap" async defer></script>*@
 }

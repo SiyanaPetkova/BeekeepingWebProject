@@ -14,11 +14,11 @@
 
         [StringLength(PlateNumberMaxLenght,
             MinimumLength = PlateNumberMinLenght,
-            ErrorMessage = "Номерът на кошера трябва да съдържа между {2} и {1} символа")]
+            ErrorMessage = "Номерът на кошера трябва да съдържа между {1} и {2} символа")]
         [Display(Name = "Регистрационен номер на кошера")]
         public string? PlateNumber { get; set; }
 
-        [Display(Name = "Допълбителна информация за кошера")]
+        [Display(Name = "Допълнителна информация за кошера")]
         public string? AdditionalComment { get; set; }
 
         [Display(Name = "Система на кошера")]

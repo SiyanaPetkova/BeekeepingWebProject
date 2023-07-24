@@ -40,13 +40,24 @@
 
             public const int ActiveIngredientMinLenght = 3;
             public const int ActiveIngredientMaxLenght = 70;
+
+            public const int TreatmentPriceMinValue = 0;
+            public const int TreatmentPriceMaxValue = 10000;
+
+            public const int NumberOfTreatedColoniesMinValue = 1;
+            public const int NumberOfTreatedColoniesMaxValue = 10000;
         }
 
         public static class FeedingValidations
         {
-            public const int FeedintTypeMinLenght = 2;
+            public const int FeedingTypeMinLenght = 2;
+            public const int FeedingTypeMaxLenght = 70;
 
-            public const int FeedintTypeMaxLenght = 70;
+            public const int FeedingPriceMinValue = 0;
+            public const int FeedingPriceMaxValue = 100000;
+
+            public const int NumberOfFedColoniesMinValue = 1;
+            public const int NumberOfFedColoniesMaxValue = 10000;
         }
 
         public static class InspectionValidations
@@ -82,7 +93,7 @@
             public const int PasswordMinLength = 8;
 
             public const int PasswordMaxLength = 50;
-         
+
         }
     }
 }

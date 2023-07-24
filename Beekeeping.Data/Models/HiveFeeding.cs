@@ -9,7 +9,7 @@
         public int Id { get; set; }
 
         [Required]
-        [StringLength(FeedintTypeMaxLenght)]
+        [StringLength(FeedingTypeMaxLenght)]
         public string FeedingType { get; set; } = null!;
 
         [Required]
