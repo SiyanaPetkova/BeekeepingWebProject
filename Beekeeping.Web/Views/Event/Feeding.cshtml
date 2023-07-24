@@ -39,7 +39,12 @@
                     <td>@i.FeedingType</td>
                     <td>@i.PriceOfFeeding</td>
                     <td>@i.NumberOfBeeHives</td>
-                    <td> <a asp-controller="Feeding" asp-action="Delete" asp-route-id="@i.Id" class="btn btn-warning" onclick="return confirm('Сигурни ли сте,че искате да изтриете инфомацията за това хранене? Данните Ви ще бъдат загубени!')">Изтриване</a></td>
+                    <td>
+                        <a asp-controller="Feeding" asp-action="Delete" asp-route-id="@i.Id" class="btn btn-warning"
+                           onclick="return confirm('Сигурни ли сте,че искате да изтриете инфомацията за това хранене? Данните Ви ще бъдат загубени!')">
+                            <span class="glyphicon">&#128465;</span>
+                        </a>
+                    </td>
                 </tr>
             </tbody>
         }

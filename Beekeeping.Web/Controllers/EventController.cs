@@ -45,7 +45,7 @@
                 TempData["ErrorMessage"] = "Възникна грешка при добавянето на Вашия пчелин. Моля, свържете се с нас или опитайте по-късно!";
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Feeding");
           
         }
 
@@ -72,7 +72,7 @@
                 TempData["ErrorMessage"] = "Възникна грешка при добавянето на Вашия пчелин. Моля, свържете се с нас или опитайте по-късно!";
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Treatment");
          }
     }
 }

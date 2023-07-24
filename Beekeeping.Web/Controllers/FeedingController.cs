@@ -57,7 +57,7 @@
             {
                 TempData["ErrorMessage"] = "Не съществува информация за това хранене!";
 
-                return this.RedirectToAction("Feeding", "Event");
+                return this.RedirectToAction("Index", "Home");
             }
 
             try
@@ -72,7 +72,7 @@
                 TempData["ErrorMessage"] = "Възникна неочаквана грешка! Моля, свържете се с нас или опитайте по-късно!";
             }
 
-            return RedirectToAction("Index", "Home");
+            return this.RedirectToAction("Feeding", "Event");
         }
     }
 }

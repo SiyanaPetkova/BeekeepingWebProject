@@ -28,6 +28,14 @@
                 CreatorId = userId
             };
 
+            var cost = new Cost()
+            {
+                DayOfTheCost = treatment.TreatmentDate,
+                CostValue = treatment.PriceOfTheTreatment,
+                TypeOfCost = treatment.MedicationName
+            };
+
+            await context.Costs.AddAsync(cost);
             await context.HiveTreatments.AddAsync(treatment);
             await context.SaveChangesAsync();
         }

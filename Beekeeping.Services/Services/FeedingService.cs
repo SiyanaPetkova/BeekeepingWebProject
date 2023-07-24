@@ -52,6 +52,14 @@
             CreatorId = userId
             };
 
+            var cost = new Cost()
+            {
+                DayOfTheCost = feeding.DayOfFeeding,
+                CostValue = feeding.PriceOfFeeding,
+                TypeOfCost = feeding.FeedingType
+            };
+
+            await context.Costs.AddAsync(cost);
             await context.HiveFeeding.AddAsync(feeding);
             await context.SaveChangesAsync();
         }
