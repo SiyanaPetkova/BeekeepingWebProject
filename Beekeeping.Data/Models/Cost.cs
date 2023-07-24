@@ -17,5 +17,8 @@
 
         [Required]
         public decimal CostValue { get; set; }
+
+        [Required]
+        public string CreatorId { get; set; } = null!;
     }
 }
