@@ -23,7 +23,6 @@
                 <th scope="col">Тип на хранене</th>
                 <th scope="col">Цена</th>
                 <th scope="col">Брой кошери</th>
-                <th scope="col">Редакция</th>
                 <th scope="col">Изтриване</th>
             </tr>
         </thead>
@@ -40,8 +39,7 @@
                     <td>@i.FeedingType</td>
                     <td>@i.PriceOfFeeding</td>
                     <td>@i.NumberOfBeeHives</td>
-                    <td> <a asp-controller="Feeding" asp-action="Edit" asp-route-id="@i.Id" class="btn mb-2 w-100 p-1">Редакция</a></td>
-                    <td> <a asp-controller="Feeding" asp-action="Delete" asp-route-id="@i.Id" class="btn b-2 w-100 p-1">Изриване</a></td>
+                    <td> <a asp-controller="Feeding" asp-action="Delete" asp-route-id="@i.Id" class="btn btn-warning" onclick="return confirm('Сигурни ли сте,че искате да изтриете инфомацията за това хранене? Данните Ви ще бъдат загубени!')">Изтриване</a></td>
                 </tr>
             </tbody>
         }

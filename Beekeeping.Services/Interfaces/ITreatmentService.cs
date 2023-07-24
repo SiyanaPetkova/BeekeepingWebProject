@@ -7,5 +7,9 @@
         Task<IEnumerable<HiveTreatmentViewModel>?> AllTreatmentsAsync(string ownerId);
 
         Task AddTreatmentAsync(HiveTreatmentFormModel model, string userId);
+
+        Task DeleteTreatmentAsync(string ownerId, int id);
+
+        Task<bool> DoesTreatmentExists(string ownerId, int id);
     }
 }

@@ -25,7 +25,6 @@
                 <th scope="col">Цена</th>
                 <th scope="col">Брой третирани кошери</th>
                 <th scope="col">Повече информация</th>
-                <th scope="col">Редакция</th>
                 <th scope="col">Изтриване</th>
             </tr>
         </thead>
@@ -44,8 +43,8 @@
                     <td>@i.PriceOfTheTreatment</td>
                     <td>@i.NumberOfTreatedColonies</td>
                     <td>@i.ResultAndCommentAboutTheTreatment</td>
-                    <td> <a asp-controller="Treatment" asp-action="Edit" asp-route-id="@i.Id" class="btn btn-warning mb-2 w-100 p-1">Редактиране</a></td>
-                    <td> <a asp-controller="Treatment" asp-action="Delete" asp-route-id="@i.Id" class="btn btn-warning mb-2 w-100 p-1">Изтриване</a></td>
+                    <td> <a asp-controller="Treatment" asp-action="Delete" asp-route-id="@i.Id" class="btn btn-warning" onclick="return confirm('Сигурни ли сте,че искате да изтриете това третиране? Данните Ви ще бъдат загубени!')">Изтриване</a></td>
+              
                 </tr>
             </tbody>
         }

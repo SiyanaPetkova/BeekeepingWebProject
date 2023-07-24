@@ -33,6 +33,7 @@
                                     FeedingType = f.FeedingType,
                                     NumberOfBeeHives = f.NumberOfBeeHives,
                                     PriceOfFeeding = f.PriceOfFeeding,
+                                    DayOfFeeding = f.DayOfFeeding,
                                     CreatorId = userId
 
                                 })
@@ -53,6 +54,26 @@
 
             await context.HiveFeeding.AddAsync(feeding);
             await context.SaveChangesAsync();
+        }
+
+        public async Task DeleteFeedingAsync(string ownerId, int id)
+        {
+            var feeding = await context.HiveFeeding
+                           .FirstOrDefaultAsync(f => f.Id == id && f.CreatorId == ownerId);
+
+            if (feeding == null)
+            {
+                throw new InvalidOperationException();
+            }
+
+            context.HiveFeeding.Remove(feeding);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task<bool> DoesFeedingExists(string ownerId, int id)
+        {
+            return await context.HiveFeeding
+               .AnyAsync(f => f.Id == id && f.CreatorId == ownerId);
         }
     }
 }

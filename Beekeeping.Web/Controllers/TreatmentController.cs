@@ -48,5 +48,32 @@
 
             return RedirectToAction("Treatment", "Event");
         }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var userId = this.User.Id();
+
+            bool treatmentExists = await treatmentService.DoesTreatmentExists(userId, id);
+            if (!treatmentExists)
+            {
+                TempData["ErrorMessage"] = "Не съществува информация за това третиране!";
+
+                return this.RedirectToAction("Treatment", "Event");
+            }
+
+            try
+            {
+                await treatmentService.DeleteTreatmentAsync(userId, id);
+
+                this.TempData["SuccessMessage"] = "Данните за третирането бяха изтрити успешно!";
+
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Възникна неочаквана грешка! Моля, свържете се с нас или опитайте по-късно!";
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

@@ -55,5 +55,26 @@
                                 })
                                 .ToArrayAsync();
         }
+
+        public async Task DeleteTreatmentAsync(string ownerId, int id)
+        {
+            var treatment = await context.HiveTreatments
+                              .FirstOrDefaultAsync(t => t.Id == id && t.CreatorId == ownerId);
+
+            if (treatment == null)
+            {
+                throw new InvalidOperationException();
+            }
+
+            context.HiveTreatments.Remove(treatment);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task<bool> DoesTreatmentExists(string ownerId, int id)
+        {
+
+            return await context.HiveTreatments
+               .AnyAsync(t => t.Id == id && t.CreatorId == ownerId);
+        }
     }
 }

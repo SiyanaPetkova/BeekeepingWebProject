@@ -2,6 +2,7 @@
 {
     using Beekeeping.Models.HiveFeeding;
     using Beekeeping.Services.Interfaces;
+    using Beekeeping.Services.Services;
     using Beekeeping.Web.Infrastructure.Extensions;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -45,6 +46,33 @@
             this.TempData["SuccessMessage"] = "Информация за храненето беше добавена успешно";
 
             return RedirectToAction("Feeding", "Event");
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var userId = this.User.Id();
+
+            bool feedingExists = await feedingService.DoesFeedingExists(userId, id);
+            if (!feedingExists)
+            {
+                TempData["ErrorMessage"] = "Не съществува информация за това хранене!";
+
+                return this.RedirectToAction("Feeding", "Event");
+            }
+
+            try
+            {
+                await feedingService.DeleteFeedingAsync(userId, id);
+
+                this.TempData["SuccessMessage"] = "Данните за храненето бяха изтрити успешно!";
+
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Възникна неочаквана грешка! Моля, свържете се с нас или опитайте по-късно!";
+            }
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }
