@@ -49,7 +49,7 @@
 
             catch (Exception)
             {
-                TempData["ErrorMessage"] = "Възникна грешка при добавянето на Вашия пчелин. Моля, свържете се с нас или опитайте по-късно!";
+                TempData["ErrorMessage"] = "Възникна неочаквана грешка. Моля, свържете се с нас или опитайте по-късно!";
             }
 
             return RedirectToAction("Index", "Home");

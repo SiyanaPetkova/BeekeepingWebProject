@@ -20,8 +20,9 @@
 
         public static class BeeColonyValidations
         {
-            public const int PlateNumberMinLenght = 10;
+            public const int PlateNumberMinLenght = 1;
             public const int PlateNumberMaxLenght = 100;
+
         }
 
         public static class BeeQueenValidations

@@ -74,6 +74,11 @@
                 })
                .ToArrayAsync();
 
+            if (allColoniesAsync == null)
+            {
+
+            }
+
             return allColoniesAsync;
         }
 

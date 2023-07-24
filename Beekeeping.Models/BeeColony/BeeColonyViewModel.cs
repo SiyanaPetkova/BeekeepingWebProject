@@ -1,12 +1,14 @@
 ﻿namespace Beekeeping.Models.BeeColony
 {
     using Beekeeping.Models.BeeQueen;
+    using System.ComponentModel.DataAnnotations;
 
     public class BeeColonyViewModel
     {
         public int Id { get; set; }
 
-        public string? PlateNumber { get; set; }
+        [Required]
+        public string PlateNumber { get; set; } = null!;
 
         public string? AdditionalComмent { get; set; }
 

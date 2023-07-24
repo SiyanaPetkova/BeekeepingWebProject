@@ -12,9 +12,10 @@
     {
         public int Id { get; set; }
 
+        [Required]
         [StringLength(PlateNumberMaxLenght,
-            MinimumLength = PlateNumberMinLenght,
-            ErrorMessage = "Номерът на кошера трябва да съдържа между {1} и {2} символа")]
+                      MinimumLength = PlateNumberMinLenght,
+                      ErrorMessage = "Номерът на кошера трябва да съдържа между {1} и {2} символа")]
         [Display(Name = "Регистрационен номер на кошера")]
         public string? PlateNumber { get; set; }
 

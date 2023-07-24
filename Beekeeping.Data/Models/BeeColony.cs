@@ -3,15 +3,15 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-
     using static Beekeeping.Common.Validations.DataConstants.BeeColonyValidations;
 
     public class BeeColony
     {
         public int Id { get; set; }
 
+        [Required] 
         [StringLength(PlateNumberMaxLenght)]
-        public string? PlateNumber { get; set; }
+        public string PlateNumber { get; set; } = null!;
 
         public string? AdditionalComмent { get; set; }
 

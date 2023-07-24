@@ -2,8 +2,10 @@
 {
     using Beekeeping.Services.Interfaces;
     using Beekeeping.Web.Infrastructure.Extensions;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
+    [Authorize]
     public class EventController : Controller
     {
         private readonly ITreatmentService treatmentService;

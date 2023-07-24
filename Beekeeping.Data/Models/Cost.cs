@@ -13,6 +13,9 @@
         public string TypeOfCost { get; set; } = null!;
 
         [Required]
+        public DateTime DayOfTheCost { get; set; }
+
+        [Required]
         public decimal CostValue { get; set; }
     }
 }

@@ -13,6 +13,9 @@
         public string TypeOfIncome { get; set; } = null!;
 
         [Required]
+        public DateTime DayOfTheIncome { get; set; }
+
+        [Required]
         public decimal IncomeValue { get; set; }
     }
 }

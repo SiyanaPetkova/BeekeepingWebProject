@@ -1,0 +1,53 @@
+﻿<head>
+    <style>
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+        }
+
+            .container img {
+                width: 100%;
+                height: auto;
+            }
+
+            .container .btn {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                -ms-transform: translate(-50%, -50%);
+                background-color: #555;
+                color: white;
+                font-size: 16px;
+                padding: 12px 24px;
+                border: none;
+                cursor: pointer;
+                border-radius: 5px;
+                text-align: center;
+            }
+                .container .btn:hover {
+                    background-color: transparent;
+                }
+    </style>
+</head>
+<body>
+    <h2 class="text-center">Баланс</h2>
+    <p>
+        За правилното управление на всяко предприятие е необходимо да имате точна информация за получените приходи и направените разходи.
+        Тук можете да добавите тези данни, както и да видите своя краен баланс.
+        Имайте предвид, че въведената информация за третирания и подхранвания се добавя автоматично към таблицата.
+    </p>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <img src="/images/Feeding.jpg" alt="Snow" style="width:100%">
+                <a asp-controller="Event" asp-action="Feeding" class="btn">Хранене</a>
+            </div>
+            <div class="col-sm">
+                <img src="/images/Treatment.jpg" alt="Snow" style="width:100%">
+                <a asp-controller="Event" asp-action="Treatment" class="btn">Третиране</a>
+            </div>
+        </div>
+    </div>
+</body>
