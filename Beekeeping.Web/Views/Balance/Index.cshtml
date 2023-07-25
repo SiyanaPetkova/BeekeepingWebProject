@@ -17,7 +17,6 @@
             padding: 5px;
         }
 
-        /* Clearfix (clear floats) */
         .row::after {
             content: "";
             clear: both;
@@ -51,7 +50,8 @@
 
     <div class="row">
         <div class="column">
-            <h2>Приходи</h2>
+            <h2 class="text-center">Приходи</h2>
+            <a asp-controller="Balance" asp-action="AddIncome" class="btn btn-light mb-2 w-100 p-1 fw-bold">Добави нов приход</a>
             <table>
                 <tr>
                     <th>Дата</th>
@@ -64,12 +64,19 @@
                         <td>@i.DayOfTheIncome</td>
                         <td>@i.TypeOfIncome</td>
                         <td>@i.IncomeValue</td>
+                        <td>
+                            <a asp-controller="Balance" asp-action="DeleteIncome" asp-route-id="@i.Id" class="btn btn-warning"
+                               onclick="return confirm('Сигурни ли сте,че искате да изтриете инфомацията за получения приход? Данните Ви ще бъдат загубени!')">
+                                <span class="glyphicon">&#128465;</span>
+                            </a>
+                        </td>
                     </tr>
                 }
             </table>
         </div>
         <div class="column">
-            <h2>Разходи</h2>
+            <h2 class="text-center">Разходи</h2>
+            <a asp-controller="Balance" asp-action="AddCost" class="btn btn-light mb-2 w-100 p-1 fw-bold">Добави нов разход</a>
             <table>
                 <tr>
                     <th>Дата</th>
@@ -82,12 +89,17 @@
                         <td>@c.DayOfTheCost</td>
                         <td>@c.TypeOfCost</td>
                         <td>@c.CostValue</td>
+                        <td>
+                            <a asp-controller="Balance" asp-action="DeleteCost" asp-route-id="@c.Id" class="btn btn-warning"
+                               onclick="return confirm('Сигурни ли сте,че искате да изтриете инфомацията за направения разход? Данните Ви ще бъдат загубени!')">
+                                <span class="glyphicon">&#128465;</span>
+                            </a>
+                        </td>
                     </tr>
                 }
             </table>
         </div>
     </div>
-
 </body>
 
 

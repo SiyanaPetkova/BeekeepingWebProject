@@ -71,21 +71,24 @@
         public static class IncomeValidations
         {
             public const int IncomeTypeMinLenght = 2;
-
             public const int IncomeTypeMaxLenght = 100;
+
+            public const int IncomeValueMinValue = 0;
+            public const int IncomeValueMaxValue = 1000000000;
         }
 
         public static class CostValidations
         {
             public const int CostTypeMinLenght = 2;
-
             public const int CostTypeMaxLenght = 100;
+
+            public const int CostValueMinValue = 0;
+            public const int CostValueMaxValue = 1000000000;
         }
 
         public static class GalleryValidations
         {
             public const int PicturePathMaxLenght = 2500;
-
             public const int PictureNameMaxLenght = 70;
         }
 

@@ -1,6 +1,7 @@
 ﻿namespace Beekeeping.Services.Services
 {
     using Beekeeping.Data;
+    using Beekeeping.Data.Models;
     using Beekeeping.Models.Income;
     using Beekeeping.Services.Interfaces;
     using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,20 @@
         public IncomeService(BeekeepingDbContext context)
         {
             this.context = context;
+        }
+
+        public async Task AddIncomeAsync(IncomeFormModel model, string userId)
+        {
+            var income = new Income()
+            {
+                DayOfTheIncome = model.DayOfTheIncome,
+                TypeOfIncome = model.TypeOfIncome,
+                IncomeValue = model.IncomeValue,
+                CreatorId = userId
+            };
+
+            await context.Incomes.AddAsync(income);
+            await context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<IncomeViewModel>?> AllIncomesAsync(string userId)

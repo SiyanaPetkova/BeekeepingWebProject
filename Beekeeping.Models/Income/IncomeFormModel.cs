@@ -10,10 +10,10 @@
         public int Id { get; set; }
 
         [Required]
-        [StringLength(IncomeTypeMaxLenght, 
-                      MinimumLength = IncomeTypeMinLenght, 
-                      ErrorMessage = "Полето трябва да съдържа между {1} и {2] символа")]
         [Display(Name = "Вид приход")]
+        [StringLength(IncomeTypeMaxLenght,
+                      MinimumLength = IncomeTypeMinLenght,
+                      ErrorMessage = "Полето трябва да съдържа между {1} и {2} символа")]
         public string TypeOfIncome { get; set; } = null!;
 
         [Required]
@@ -22,8 +22,10 @@
 
         [Required]
         [Display(Name = "Стойност на прихода")]
+        [Range(IncomeValueMinValue,
+               IncomeValueMaxValue,
+               ErrorMessage = "Стойността трябва да бъде число между {1} и {2}")]
         public decimal IncomeValue { get; set; }
 
-        public string CreatorId { get; set; } = null!;
     }
 }

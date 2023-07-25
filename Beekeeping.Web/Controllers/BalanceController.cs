@@ -49,5 +49,69 @@
 
             return View(model);
         }
+
+
+        [HttpGet]
+        public IActionResult AddIncome()
+        {
+            var model = new IncomeFormModel();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddIncome(IncomeFormModel model)
+        {
+            var userId = this.User.Id();
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            try
+            {
+                await incomeService.AddIncomeAsync(model, userId);
+            }
+            catch
+            {
+                TempData["ErrorMessage"] = "Възникна грешка при добавянето на прихода. Моля, свържете се с администратор или опитайте по-късно!";
+            }
+
+            this.TempData["SuccessMessage"] = "Информация за прихода беше добавена успешно";
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult AddCost()
+        {
+            var model = new CostFormModel();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddCost(CostFormModel model)
+        {
+            var userId = this.User.Id();
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            try
+            {
+                await costService.AddCostAsync(model, userId);
+            }
+            catch
+            {
+                TempData["ErrorMessage"] = "Възникна грешка при добавянето на разхода. Моля, свържете се с администратор или опитайте по-късно!";
+            }
+
+            this.TempData["SuccessMessage"] = "Информация за разхода беше добавена успешно";
+
+            return RedirectToAction("Index");
+        }
+
     }
 }

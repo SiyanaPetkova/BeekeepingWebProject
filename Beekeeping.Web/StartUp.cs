@@ -1,14 +1,11 @@
 namespace Beekeeping.Web
 {
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.EntityFrameworkCore;
-
     using Beekeeping.Data;
     using Beekeeping.Data.Models;
     using Beekeeping.Services.Interfaces;
-    using Beekeeping.Services.Services;
     using Beekeeping.Web.Infrastructure.Extensions;
     using Beekeeping.Web.Infrastructure.ModelBinders;
+    using Microsoft.EntityFrameworkCore;
 
     public class StartUp
     {
@@ -41,12 +38,14 @@ namespace Beekeeping.Web
 
             builder.Services.AddApplicationServices(typeof(IApiaryService));
 
+
+
             builder.Services.AddControllersWithViews()
                  .AddMvcOptions(options =>
                  {
                      options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
                      options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(
-           _                        => "Полето {1} е задължително.");
+_                                                        => "Полето {1} е задължително.");
                  });
 
             var app = builder.Build();

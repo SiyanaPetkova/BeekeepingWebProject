@@ -1,0 +1,34 @@
+﻿@model CostFormModel
+
+<body>
+    <div class="container text-center">
+
+        <h2>Добави нов разход</h2>
+
+        <form method="post">
+            <div class="row">
+                <div class="col-3">
+                    <label asp-for="DayOfTheCost"></label>
+                    <input asp-for="DayOfTheCost" class="form-control">
+                    <span asp-validation-for="DayOfTheCost" class="small text-danger"></span>
+                </div>
+                <div class="col-3">
+                    <label asp-for="TypeOfCost"></label>
+                    <input asp-for="TypeOfCost" class="form-control">
+                    <span asp-validation-for="TypeOfCost" class="small text-danger"></span>
+                </div>
+                <div class="col-3">
+                    <label asp-for="CostValue"></label>
+                    <input asp-for="CostValue" class="form-control">
+                    <span asp-validation-for="CostValue" class="small text-danger"></span>
+                </div>
+            </div>
+            <input class="btn btn-primary mt-3" type="submit" value="Запази" />
+        </form>
+    </div>
+</body>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+                        }
+

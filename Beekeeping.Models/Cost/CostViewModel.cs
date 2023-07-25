@@ -11,7 +11,6 @@
         public string TypeOfCost { get; set; } = null!;
 
         [Display(Name = "Дата на разхода")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DayOfTheCost { get; set; }
 
         [Display(Name = "Стойност на разхода")]
