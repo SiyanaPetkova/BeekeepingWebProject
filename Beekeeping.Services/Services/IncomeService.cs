@@ -46,5 +46,25 @@
                                  })
                                  .ToArrayAsync();
         }
+
+        public async Task DeleteIncomeAsync(string userId, int id)
+        {
+            var income = await context.Incomes
+                           .FirstOrDefaultAsync(f => f.Id == id && f.CreatorId == userId);
+
+            if (income == null)
+            {
+                throw new InvalidOperationException();
+            }
+
+            context.Incomes.Remove(income);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task<bool> DoesIncomeExists(string userId, int id)
+        {
+            return await context.Incomes
+              .AnyAsync(f => f.Id == id && f.CreatorId == userId);
+        }
     }
 }

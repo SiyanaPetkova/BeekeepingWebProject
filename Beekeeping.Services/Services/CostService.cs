@@ -50,5 +50,25 @@
                                 })
                                 .ToArrayAsync();
         }
+
+        public async Task DeleteCostAsync(string userId, int id)
+        {
+            var cost = await context.Costs
+                           .FirstOrDefaultAsync(f => f.Id == id && f.CreatorId == userId);
+
+            if (cost == null)
+            {
+                throw new InvalidOperationException();
+            }
+
+            context.Costs.Remove(cost);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task<bool> DoesCostExists(string userId, int id)
+        {
+            return await context.Costs
+              .AnyAsync(f => f.Id == id && f.CreatorId == userId);
+        }
     }
 }

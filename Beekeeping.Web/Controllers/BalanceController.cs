@@ -3,6 +3,7 @@
     using Beekeeping.Models.Cost;
     using Beekeeping.Models.Income;
     using Beekeeping.Services.Interfaces;
+    using Beekeeping.Services.Services;
     using Beekeeping.Web.Infrastructure.Extensions;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -111,6 +112,60 @@
             this.TempData["SuccessMessage"] = "Информация за разхода беше добавена успешно";
 
             return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> DeleteIncome(int id)
+        {
+            var userId = this.User.Id();
+
+            bool incomeExists = await incomeService.DoesIncomeExists(userId, id);
+            if (!incomeExists)
+            {
+                TempData["ErrorMessage"] = "Не съществува информация за този приход!";
+
+                return this.RedirectToAction("Index");
+            }
+
+            try
+            {
+                await incomeService.DeleteIncomeAsync(userId, id);
+
+                this.TempData["SuccessMessage"] = "Данните за прихода бяха изтрити успешно!";
+
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Възникна неочаквана грешка! Моля, свържете се с нас или опитайте по-късно!";
+            }
+
+            return this.RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> DeleteCost(int id)
+        {
+            var userId = this.User.Id();
+
+            bool costExists = await costService.DoesCostExists(userId, id);
+            if (!costExists)
+            {
+                TempData["ErrorMessage"] = "Не съществува информация за този разход!";
+
+                return this.RedirectToAction("Index", "Home");
+            }
+
+            try
+            {
+                await costService.DeleteCostAsync(userId, id);
+
+                this.TempData["SuccessMessage"] = "Данните за този разход бяха изтрити успешно!";
+
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Възникна неочаквана грешка! Моля, свържете се с нас или опитайте по-късно!";
+            }
+
+            return this.RedirectToAction("Index");
         }
 
     }
