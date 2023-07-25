@@ -1,54 +1,93 @@
-﻿
+﻿@model dynamic
+
 <head>
     <style>
-        .container {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
+        * {
+            box-sizing: border-box;
         }
 
-            .container img {
-                width: 100%;
-                height: auto;
-            }
+        .row {
+            margin-left: -5px;
+            margin-right: -5px;
+        }
 
-            .container .btn {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                -ms-transform: translate(-50%, -50%);
-                background-color: #555;
-                color: white;
-                font-size: 16px;
-                padding: 12px 24px;
-                border: none;
-                cursor: pointer;
-                border-radius: 5px;
-                text-align: center;
-            }
-                .container .btn:hover {
-                    background-color: transparent;
-                }
+        .column {
+            float: left;
+            width: 50%;
+            padding: 5px;
+        }
+
+        /* Clearfix (clear floats) */
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 16px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 <body>
-    <h2 class="text-center">Баланс</h2>
+    <h1 class="text-center">Баланс</h1>
     <p>
         За правилното управление на всяко предприятие е необходимо да имате точна информация за получените приходи и направените разходи.
         Тук можете да добавите тези данни, както и да видите своя краен баланс.
         Имайте предвид, че въведената информация за третирания и подхранвания се добавя автоматично към таблицата.
     </p>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm">
-                <img src="/images/Feeding.jpg" alt="Snow" style="width:100%">
-                <a asp-controller="Event" asp-action="Feeding" class="btn">Хранене</a>
-            </div>
-            <div class="col-sm">
-                <img src="/images/Treatment.jpg" alt="Snow" style="width:100%">
-                <a asp-controller="Event" asp-action="Treatment" class="btn">Третиране</a>
-            </div>
+
+    <div class="row">
+        <div class="column">
+            <h2>Приходи</h2>
+            <table>
+                <tr>
+                    <th>Дата</th>
+                    <th>Приход</th>
+                    <th>Стойност</th>
+                </tr>
+                @foreach (var i in Model.Income)
+                {
+                    <tr>
+                        <td>@i.DayOfTheIncome</td>
+                        <td>@i.TypeOfIncome</td>
+                        <td>@i.IncomeValue</td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="column">
+            <h2>Разходи</h2>
+            <table>
+                <tr>
+                    <th>Дата</th>
+                    <th>Разход</th>
+                    <th>Стойност</th>
+                </tr>
+                @foreach (var c in Model.Cost)
+                {
+                    <tr>
+                        <td>@c.DayOfTheCost</td>
+                        <td>@c.TypeOfCost</td>
+                        <td>@c.CostValue</td>
+                    </tr>
+                }
+            </table>
         </div>
     </div>
+
 </body>
+
+

@@ -32,7 +32,8 @@
             {
                 DayOfTheCost = treatment.TreatmentDate,
                 CostValue = treatment.PriceOfTheTreatment,
-                TypeOfCost = treatment.MedicationName
+                TypeOfCost = treatment.MedicationName,
+                CreatorId = userId
             };
 
             await context.Costs.AddAsync(cost);

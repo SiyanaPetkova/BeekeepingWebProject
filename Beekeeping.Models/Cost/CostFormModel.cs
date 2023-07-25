@@ -23,5 +23,7 @@
         [Required]
         [Display(Name = "Стойност на разхода")]
         public decimal CostValue { get; set; }
+
+        public string CreatorId { get; set; } = null!;
     }
 }

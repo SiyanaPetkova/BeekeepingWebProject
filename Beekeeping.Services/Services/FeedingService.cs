@@ -56,7 +56,8 @@
             {
                 DayOfTheCost = feeding.DayOfFeeding,
                 CostValue = feeding.PriceOfFeeding,
-                TypeOfCost = feeding.FeedingType
+                TypeOfCost = feeding.FeedingType,
+                CreatorId = userId
             };
 
             await context.Costs.AddAsync(cost);

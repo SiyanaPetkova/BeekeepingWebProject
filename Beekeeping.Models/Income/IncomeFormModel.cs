@@ -23,5 +23,7 @@
         [Required]
         [Display(Name = "Стойност на прихода")]
         public decimal IncomeValue { get; set; }
+
+        public string CreatorId { get; set; } = null!;
     }
 }
