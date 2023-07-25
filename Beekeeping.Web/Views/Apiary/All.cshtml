@@ -7,9 +7,12 @@
 <div class="container-fluid" justify-content-center>
     <div class="row">
         <div class="col-8 mt-3">
-            <div class="img-square-wrapper">
+            <div class="img-responsive">
                 <img class="" src="/images/ApiaryAll.jpg" alt="Card image cap">
             </div>
+             <div class ="col-8 mt-3">
+                <a asp-controller="Apiary" asp-action="Add" class="btn btn-light mb-2 w-100 p-3 fw-bold">Добави нов пчелин</a>
+           </div>
             <body>
                 @foreach (var apiary in Model)
                 {
@@ -31,19 +34,15 @@
                                         <button type="button" class="btn btn-light" data-dismiss="modal">Затвори</button>
                                         <a href="/Apiary/Edit/@apiary.Id" class="btn btn-light">Редакция</a>
                                         <a asp-controller="Apiary" asp-action="Delete" asp-route-id="@apiary.Id" class="btn btn-warning" onclick="return confirm('Сигурни ли сте,че искате да изтриете този пчелин? Данните Ви ще бъдат загубени!')">Изтриване</a>
-                                        <a asp-controller="BeeColony" asp-action="All" asp-route-id="@apiary.Id" class="btn btn-link mb-2 w-100 p-1 fw-bold">Виж информация за кошерите</a>
-                                        <a asp-controller="BeeColony" asp-action="Add" asp-route-id="@apiary.Id" class="btn btn-link mb-2 w-100 p-1 fw-bold">Добави нов кошер</a>
+                                        <a asp-controller="BeeColony" asp-action="All" asp-route-id="@apiary.Id" class="btn btn-warning mb-2 w-100 p-1 fw-bold">Виж информация за кошерите</a>
+                                        <a asp-controller="BeeColony" asp-action="Add" asp-route-id="@apiary.Id" class="btn btn-warning mb-2 w-100 p-1 fw-bold">Добави нов кошер</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 }
-            </body>
-            <div class ="col-5 mt-3">
-                <a asp-controller="Apiary" asp-action="Add" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Добави нов пчелин</a>
-           </div>
-            
+            </body>                      
         </div>
     </div>
 </div>

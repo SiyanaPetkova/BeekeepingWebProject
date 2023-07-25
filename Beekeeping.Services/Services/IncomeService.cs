@@ -3,7 +3,7 @@
     using Beekeeping.Data;
     using Beekeeping.Data.Models;
     using Beekeeping.Models.Income;
-    using Beekeeping.Services.Interfaces;
+    using Beekeeping.Services.Interfaces;  
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
     using System.Threading.Tasks;

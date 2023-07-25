@@ -25,9 +25,9 @@
                         <p class="mb-0"><span class="fw-bold">Майкопроизводител: </span>@Model.BeeQueen.Breeder</p>
                         <p class="mb-0"><span class="fw-bold">Порода на майката: </span>@Model.BeeQueen.BeeQueenType</p>
                         <p class="mb-0"><span class="fw-bold">Година на майката: </span>@Model.BeeQueen.BeeQueenYearOfBirth</p>
-                        <a asp-controller="Inspection" asp-action="All" asp-route-id="@Model.Id" class="btn btn-info mb-2 w-100 p-2 fw-bold">Виж всички прегледи</a>
+                        <a asp-controller="Inspection" asp-action="All" asp-route-id="@Model.Id" class="btn btn-warning mb-2 w-100 p-2 fw-bold">Виж всички прегледи</a>
                         <a asp-controller="Inspection" asp-action="Add" asp-route-id="@Model.Id" class="btn btn-warning mb-2 w-100 p-2 fw-bold">Добави преглед</a>
-                        <a asp-controller="BeeColony" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success mb-2 w-100 p-2 fw-bold">Редакция</a>
+                        <a asp-controller="BeeColony" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning mb-2 w-100 p-2 fw-bold">Редакция</a>
                         <a asp-controller="BeeColony" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger" onclick="return confirm('Сигурни ли сте,че искате да изтриете този кошер? Данните Ви ще бъдат загубени!')">Изтриване</a>
                     </div>
                 </div>

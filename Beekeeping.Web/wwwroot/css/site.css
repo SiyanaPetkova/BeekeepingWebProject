@@ -1,3 +1,10 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    background: url(/images/back.jpg);
+    background-size: cover;
+}
+
 html {
     font-size: 14px;
 }
@@ -71,3 +78,36 @@ h2 {
 .photo-gallery .item {
     padding-bottom: 30px;
 }
+
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: yellow;
+    color: black;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+    input[type=submit]:hover {
+        background-color: orange;
+    }
+
+div {
+    border-radius: 5px;
+    background-color: lightgoldenrodyellow;
+    padding: 5px;
+}
+
+
