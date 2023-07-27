@@ -9,6 +9,7 @@
     {
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "Полето e задължително.")]
         [Display(Name = "Дата на прегледа")]
         public DateTime DayOfInspection { get; set; }
 

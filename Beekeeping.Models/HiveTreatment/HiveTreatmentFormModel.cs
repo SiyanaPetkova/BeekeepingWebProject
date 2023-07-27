@@ -8,14 +8,14 @@
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Полето e задължително.")]
         [StringLength(MedicationNameMaxLenght, 
                       MinimumLength = MedicationNameMinLenght,
                       ErrorMessage = "Името на препарата трябва да съдържа между {1} и {2} символа")]
         [Display(Name = "Име на препарата")]
         public string MedicationName { get; set; } = null!;
 
-        [Required]
+        [Required(ErrorMessage = "Полето e задължително.")]
         [StringLength(ActiveIngredientMaxLenght,
                       MinimumLength = ActiveIngredientMinLenght,          
                       ErrorMessage = "Активната съставкана препарата трябва да съдържа между {1} и {2} символа")]
@@ -34,7 +34,7 @@
         [Display(Name = "Дата на третирането")]
         public DateTime TreatmentDate { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Полето e задължително.")]
         [Display(Name = "Брой третирани семейства")]
         [Range(NumberOfTreatedColoniesMinValue, 
                NumberOfTreatedColoniesMaxValue, 

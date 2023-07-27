@@ -12,7 +12,7 @@
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Полето e задължително.")]
         [StringLength(PlateNumberMaxLenght,
                       MinimumLength = PlateNumberMinLenght,
                       ErrorMessage = "Номерът на кошера трябва да съдържа между {1} и {2} символа")]

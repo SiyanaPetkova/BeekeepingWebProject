@@ -10,8 +10,4 @@
     <ProjectReference Include="..\Beekeeping.Common\Beekeeping.Common.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Event\" />
-  </ItemGroup>
-
 </Project>

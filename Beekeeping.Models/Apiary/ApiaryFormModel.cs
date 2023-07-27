@@ -6,22 +6,22 @@
 
     public class ApiaryFormModel
     {
-        [Required]
+        [Required(ErrorMessage = "Полето e задължително.")]
         [StringLength(ApiaryNameMaxLenght,
-                      MinimumLength = ApiaryNameMinLenght,
-                      ErrorMessage = "Името трябва да съдържа между {2} и {1} символа")]
+               MinimumLength = ApiaryNameMinLenght,
+               ErrorMessage = "Името трябва да съдържа между {2} и {1} символа.")]
         [Display(Name = "Наименование")]
         public string Name { get; set; } = null!;
 
         [StringLength(LocationMaxLenght,
                       MinimumLength = LocationMinLenght,
-                      ErrorMessage = "Адресът трябва да съдържа между {2} и {1} символа")]
+                      ErrorMessage = "Адресът трябва да съдържа между {2} и {1} символа.")]
         [Display(Name = "Адрес")]
         public string? Location { get; set; }
 
         [StringLength(RegistrationMaxLenght,
                       MinimumLength = RegistrationMinLenght,
-                      ErrorMessage = "Регистрационният номер трябва да съдържа между {2} и {1} символа")]
+                      ErrorMessage = "Регистрационният номер трябва да съдържа между {2} и {1} символа.")]
         [Display(Name = "Регистрационен номер")]
         public string? RegistrationNumber { get; set; }
 
