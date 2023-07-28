@@ -3,28 +3,29 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    using static Beekeeping.Common.Validations.DataConstants.CostValidations;
+    using static Common.Validations.DataConstants.CostValidations;
+    using static Common.NotificationMessages.ErrorMessages;
 
     public class CostFormModel
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Полето e задължително.")]
         [Display(Name = "Вид разход")]
+        [Required(ErrorMessage = RequiredFieldErrorMessage)]
         [StringLength(CostTypeMaxLenght,
                       MinimumLength = CostTypeMinLenght,
-                      ErrorMessage = "Полето трябва да съдържа между {1} и {2} символа")]
+                      ErrorMessage = FieldMinAndMaxStringLenghtErrorMessage)]
         public string TypeOfCost { get; set; } = null!;
 
-        [Required(ErrorMessage = "Полето e задължително.")]
         [Display(Name = "Дата на разхода")]
+        [Required(ErrorMessage = RequiredFieldErrorMessage)]
         public DateTime DayOfTheCost { get; set; }
 
-        [Required(ErrorMessage = "Полето e задължително.")]
         [Display(Name = "Стойност на разхода")]
+        [Required(ErrorMessage = RequiredFieldErrorMessage)]
         [Range(CostValueMinValue, 
                CostValueMaxValue,
-               ErrorMessage = "Стойността трябва да бъде число между {1} и {2}")]
+               ErrorMessage = FieldMinAndMaxRangeValueErrorMessage)]
         public decimal CostValue { get; set; }
 
     }

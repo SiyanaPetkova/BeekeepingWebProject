@@ -1,12 +1,13 @@
 ﻿namespace Beekeeping.Web.Controllers
 {
-    using Beekeeping.Models.HiveFeeding;
-    using Beekeeping.Models.HiveTreatment;
-    using Beekeeping.Services.Interfaces;
-    using Beekeeping.Services.Services;
-    using Beekeeping.Web.Infrastructure.Extensions;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+
+    using Models.HiveTreatment;
+    using Services.Interfaces;
+    using Web.Infrastructure.Extensions;
+
+    using static Common.NotificationMessages.ErrorMessages;
 
     [Authorize]
     public class TreatmentController : Controller
@@ -41,7 +42,7 @@
             }
             catch
             {
-                TempData["ErrorMessage"] = "Възникна грешка при добавянето на ново третиране. Моля, свържете се с администратор или опитайте по-късно!";
+                TempData["ErrorMessage"] = CommonErrorMessage;
             }
 
             this.TempData["SuccessMessage"] = "Информация за третирането беше добавена успешно";
@@ -70,7 +71,7 @@
             }
             catch (Exception)
             {
-                TempData["ErrorMessage"] = "Възникна неочаквана грешка! Моля, свържете се с нас или опитайте по-късно!";
+                TempData["ErrorMessage"] = CommonErrorMessage;
             }
 
             return RedirectToAction("Treatment", "Event");

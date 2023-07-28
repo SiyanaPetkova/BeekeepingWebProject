@@ -2,27 +2,28 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using static Beekeeping.Common.Validations.DataConstants.ApiaryValidations;
+    using static Common.Validations.DataConstants.ApiaryValidations;
+    using static Common.NotificationMessages.ErrorMessages;
 
     public class ApiaryFormModel
     {
-        [Required(ErrorMessage = "Полето e задължително.")]
+        [Display(Name = "Наименование")]
+        [Required(ErrorMessage = RequiredFieldErrorMessage)]
         [StringLength(ApiaryNameMaxLenght,
                MinimumLength = ApiaryNameMinLenght,
-               ErrorMessage = "Името трябва да съдържа между {2} и {1} символа.")]
-        [Display(Name = "Наименование")]
+               ErrorMessage = FieldMinAndMaxStringLenghtErrorMessage)]
         public string Name { get; set; } = null!;
 
+        [Display(Name = "Адрес")]
         [StringLength(LocationMaxLenght,
                       MinimumLength = LocationMinLenght,
-                      ErrorMessage = "Адресът трябва да съдържа между {2} и {1} символа.")]
-        [Display(Name = "Адрес")]
+                      ErrorMessage = FieldMinAndMaxStringLenghtErrorMessage)]
         public string? Location { get; set; }
 
+        [Display(Name = "Регистрационен номер")]
         [StringLength(RegistrationMaxLenght,
                       MinimumLength = RegistrationMinLenght,
-                      ErrorMessage = "Регистрационният номер трябва да съдържа между {2} и {1} символа.")]
-        [Display(Name = "Регистрационен номер")]
+                      ErrorMessage = FieldMinAndMaxStringLenghtErrorMessage)]
         public string? RegistrationNumber { get; set; }
 
     }

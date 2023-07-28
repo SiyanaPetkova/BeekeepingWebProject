@@ -1,12 +1,15 @@
 ﻿namespace Beekeeping.Web.Controllers
 {
-    using Beekeeping.Models.Apiary;
-    using Beekeeping.Models.BeeColony;
-    using Beekeeping.Models.BeeQueen;
-    using Beekeeping.Services.Interfaces;
-    using Beekeeping.Web.Infrastructure.Extensions;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+
+    using Models.Apiary;
+    using Models.BeeColony;
+    using Models.BeeQueen;
+    using Services.Interfaces;
+    using Web.Infrastructure.Extensions;
+
+    using static Common.NotificationMessages.ErrorMessages;
 
     [Authorize]
     public class BeeColonyController : Controller
@@ -22,7 +25,7 @@
 
         public async Task<IActionResult> All(int id)
         {
-            var userId = this.User.Id();
+            var userId = User.Id();
 
             var isUserOwner = await apiaryService.IsTheUserOwner(userId);
 
@@ -49,7 +52,7 @@
 
             catch (Exception)
             {
-                TempData["ErrorMessage"] = "Възникна неочаквана грешка. Моля, свържете се с нас или опитайте по-късно!";
+                TempData["ErrorMessage"] = CommonErrorMessage;
             }
 
             return RedirectToAction("Index", "Home");
@@ -85,8 +88,7 @@
         {
             string userId = User.Id();
 
-            bool doesApiaryExist =
-               await this.apiaryService.DoesApiaryExists(userId, model.ApiaryId);
+            bool doesApiaryExist = await apiaryService.DoesApiaryExists(userId, model.ApiaryId);
 
             if (!doesApiaryExist)
             {
@@ -120,7 +122,7 @@
             catch (Exception)
             {
 
-                TempData["ErrorMessage"] = "Съжаляваме, но нещо се обърка. Моля, свържете се с нас или опитайте по-късно!";
+                TempData["ErrorMessage"] = CommonErrorMessage;
             }
 
             return RedirectToAction("All", "Apiary");
@@ -161,11 +163,10 @@
             }
             catch (Exception)
             {
-                TempData["ErrorMessage"] = "Съжаляваме, но нещо се обърка. Моля, свържете се с нас или опитайте по-късно!";
+                TempData["ErrorMessage"] = CommonErrorMessage;
 
                 return RedirectToAction("All", "BeeColony");
             }
-
         }
 
         [HttpPost]
@@ -173,8 +174,7 @@
         {
             string userId = User.Id();
 
-            bool doesApiaryExist =
-               await this.apiaryService.DoesApiaryExists(userId, model.ApiaryId);
+            bool doesApiaryExist = await apiaryService.DoesApiaryExists(userId, model.ApiaryId);
 
             if (!doesApiaryExist)
             {
@@ -205,7 +205,7 @@
             catch (Exception)
             {
 
-                TempData["ErrorMessage"] = "Съжаляваме, но нещо се обърка. Моля, свържете се с нас или опитайте по-късно!";
+                TempData["ErrorMessage"] = CommonErrorMessage;
             }
 
             return RedirectToAction("All", "Apiary");
@@ -223,7 +223,7 @@
             }
             catch (Exception)
             {
-                TempData["ErrorMessage"] = "Възникна неочаквана грешка. Моля, свъжете се с нас или опитайте по-късно";
+                TempData["ErrorMessage"] = CommonErrorMessage;
             }
 
             return RedirectToAction("All", "Apiary");
@@ -232,13 +232,13 @@
 
         public async Task<IActionResult> Delete(int id)
         {
-            var userId = this.User.Id();
+            var userId = User.Id();
 
             var isUserOwner = await beeColonyService.IsTheUserOwner(userId);
 
             if (!isUserOwner)
             {
-                TempData["ErrorMessage"] = "Нямате достъп до тази страница! За повече информация можете да се свържете с нас.";
+                TempData["ErrorMessage"] = NotAuthorizedErrorMessage;
 
                 return RedirectToAction("Index", "Home");
             }
@@ -250,19 +250,18 @@
             {
                 TempData["ErrorMessage"] = "Не съществуващ koшер!";
 
-                return this.RedirectToAction("All", "Apiary");
+                return RedirectToAction("All", "Apiary");
             }
 
             try
             {
                 await beeColonyService.DeleteBeeColonyAsync(userId, id);
 
-                this.TempData["SuccessMessage"] = "Пчелинът беше изтрит успешно!";
-
+                TempData["SuccessMessage"] = "Пчелинът беше изтрит успешно!";
             }
             catch (Exception)
             {
-                TempData["ErrorMessage"] = "Възникна грешка при изтриването на Вашия пчелин. Моля, свържете се с нас или опитайте по-късно!";
+                TempData["ErrorMessage"] = CommonErrorMessage;
             }
 
             return RedirectToAction("All", "Apiary");

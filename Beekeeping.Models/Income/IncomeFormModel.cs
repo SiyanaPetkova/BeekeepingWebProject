@@ -3,28 +3,29 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    using static Beekeeping.Common.Validations.DataConstants.IncomeValidations;
+    using static Common.Validations.DataConstants.IncomeValidations;
+    using static Common.NotificationMessages.ErrorMessages;
 
     public class IncomeFormModel
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Полето e задължително.")]
         [Display(Name = "Вид приход")]
+        [Required(ErrorMessage = RequiredFieldErrorMessage)]
         [StringLength(IncomeTypeMaxLenght,
                       MinimumLength = IncomeTypeMinLenght,
-                      ErrorMessage = "Полето трябва да съдържа между {1} и {2} символа")]
+                      ErrorMessage = FieldMinAndMaxStringLenghtErrorMessage)]
         public string TypeOfIncome { get; set; } = null!;
 
-        [Required(ErrorMessage = "Полето e задължително.")]
         [Display(Name = "Дата на прихода")]
+        [Required(ErrorMessage = RequiredFieldErrorMessage)]
         public DateTime DayOfTheIncome { get; set; }
 
-        [Required(ErrorMessage = "Полето e задължително.")]
         [Display(Name = "Стойност на прихода")]
+        [Required(ErrorMessage = RequiredFieldErrorMessage)]
         [Range(IncomeValueMinValue,
                IncomeValueMaxValue,
-               ErrorMessage = "Стойността трябва да бъде число между {1} и {2}")]
+               ErrorMessage = FieldMinAndMaxRangeValueErrorMessage)]
         public decimal IncomeValue { get; set; }
 
     }

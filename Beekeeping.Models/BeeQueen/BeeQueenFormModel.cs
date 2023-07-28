@@ -2,23 +2,27 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using static Beekeeping.Common.Validations.DataConstants.BeeQueenValidations;
+    using static Common.Validations.DataConstants.BeeQueenValidations;
+    using static Common.NotificationMessages.ErrorMessages;
 
     public class BeeQueenFormModel
     {
+        [Display(Name = "Майкопроизводител")]
         [StringLength(BreederMaxLenght,
                       MinimumLength = BreederMinLenght,
-                      ErrorMessage = "Името на майкопроизводителя трябва да бъде между {2} и {1} символа.")]
-        [Display(Name = "Майкопроизводител")]
+                      ErrorMessage = FieldMinAndMaxStringLenghtErrorMessage)]
         public string? Breeder { get; set; }
 
+        [Display(Name = "Порода на майката")]
         [StringLength(BreederMaxLenght,
                      MinimumLength = BreederMinLenght,
-                     ErrorMessage = "Породата на майката трябва да бъде между {2} и {1} символа.")]
-        [Display(Name = "Порода на майката")]
+                     ErrorMessage = FieldMinAndMaxStringLenghtErrorMessage)]
         public string? BeeQueenType { get; set; }
 
         [Display(Name = "Година на излюпване")]
+        [Range(BeeQueenYearMinValue, 
+               BeeQueenYearMaxValue, 
+               ErrorMessage = FieldMinAndMaxRangeValueErrorMessage)]
         public int BeeQueenYearOfBirth { get; set; }
 
         public int BeeColonyId { get; set; }

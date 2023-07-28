@@ -1,13 +1,15 @@
 ﻿namespace Beekeeping.Web.Controllers
 {
-    using Beekeeping.Models.Cost;
-    using Beekeeping.Models.Income;
-    using Beekeeping.Services.Interfaces;
-    using Beekeeping.Services.Services;
-    using Beekeeping.Web.Infrastructure.Extensions;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using System.Dynamic;
+
+    using Models.Cost;
+    using Models.Income;
+    using Services.Interfaces;
+    using Web.Infrastructure.Extensions;
+
+    using static Common.NotificationMessages.ErrorMessages;
 
     [Authorize]
     public class BalanceController : Controller
@@ -75,7 +77,7 @@
             }
             catch
             {
-                TempData["ErrorMessage"] = "Възникна грешка при добавянето на прихода. Моля, свържете се с администратор или опитайте по-късно!";
+                TempData["ErrorMessage"] = CommonErrorMessage;
             }
 
             this.TempData["SuccessMessage"] = "Информация за прихода беше добавена успешно";
@@ -106,7 +108,7 @@
             }
             catch
             {
-                TempData["ErrorMessage"] = "Възникна грешка при добавянето на разхода. Моля, свържете се с администратор или опитайте по-късно!";
+                TempData["ErrorMessage"] = CommonErrorMessage;
             }
 
             this.TempData["SuccessMessage"] = "Информация за разхода беше добавена успешно";
@@ -135,7 +137,7 @@
             }
             catch (Exception)
             {
-                TempData["ErrorMessage"] = "Възникна неочаквана грешка! Моля, свържете се с нас или опитайте по-късно!";
+                TempData["ErrorMessage"] = CommonErrorMessage;
             }
 
             return this.RedirectToAction("Index");
@@ -162,7 +164,7 @@
             }
             catch (Exception)
             {
-                TempData["ErrorMessage"] = "Възникна неочаквана грешка! Моля, свържете се с нас или опитайте по-късно!";
+                TempData["ErrorMessage"] = CommonErrorMessage;
             }
 
             return this.RedirectToAction("Index");

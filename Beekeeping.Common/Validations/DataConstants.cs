@@ -23,6 +23,12 @@
             public const int PlateNumberMinLenght = 1;
             public const int PlateNumberMaxLenght = 100;
 
+            public const int NumberOfSupersMinValue = 0;
+            public const int NumberOfSupersMaxValue = 10;
+
+            public const int NumberOfBoxesMinValue = 0;
+            public const int NumberOfBoxesMaxValue = 10;
+
         }
 
         public static class BeeQueenValidations
@@ -32,6 +38,10 @@
 
             public const int BeeQueenTypeMinLenght = 3;
             public const int BeeQueenTypeMaxLenght = 100;
+
+            public const int BeeQueenYearMinValue = 2018;
+            public const int BeeQueenYearMaxValue = 2050;
+
         }
 
         public static class HiveTreatmentValidations
@@ -63,9 +73,20 @@
 
         public static class InspectionValidations
         {
-            public const int InspectionMinLenght = 2;
+            public const int InspectionDescriptionMinLenght = 2;
+            public const int InspectionDescriptionMaxLenght = 2500;
 
-            public const int InspectionMaxLenght = 2500;
+            public const int NumberOfFramesMinLenght = 1;
+            public const int NumberOfFramesMaxLenght = 40;
+
+            public const int NumberOfBroodFramesMinLenght = 0;
+            public const int NumberOfBroodFramesMaxLenght = 20;
+
+            public const int StrenghtMinLenght = 1;
+            public const int StrenghtMaxLenght = 10;
+
+            public const int TemperamentMinLenght = 1;
+            public const int TemperamentMaxLenght = 10;
         }
 
         public static class IncomeValidations
@@ -84,12 +105,6 @@
 
             public const int CostValueMinValue = 0;
             public const int CostValueMaxValue = 1000000000;
-        }
-
-        public static class GalleryValidations
-        {
-            public const int PicturePathMaxLenght = 2500;
-            public const int PictureNameMaxLenght = 70;
         }
 
         public static class ApplicationUserValidations

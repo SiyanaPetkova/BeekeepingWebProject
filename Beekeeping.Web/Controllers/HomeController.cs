@@ -2,7 +2,8 @@
 {
     using System.Diagnostics;
     using Microsoft.AspNetCore.Mvc;
-    using Beekeeping.Models.Errors;
+
+    using Models.Errors;
 
     public class HomeController : Controller
     {

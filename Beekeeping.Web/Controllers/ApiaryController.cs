@@ -2,10 +2,12 @@
 {
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using Beekeeping.Models.Apiary;
-    using Beekeeping.Web.Infrastructure.Extensions;
-    using Beekeeping.Services.Interfaces;
-    using System.Xml.Schema;
+
+    using Models.Apiary;
+    using Services.Interfaces;
+    using Web.Infrastructure.Extensions;
+
+    using static Common.NotificationMessages.ErrorMessages;
 
     [Authorize]
     public class ApiaryController : Controller
@@ -40,7 +42,7 @@
             }
             catch
             {
-                TempData["ErrorMessage"] = "Възникна грешка при добавянето на Вашия пчелин. Моля, свържете се с администратор или опитайте по-късно!";
+                TempData["ErrorMessage"] = CommonErrorMessage;
             }
 
             this.TempData["SuccessMessage"] = "Пчелинът беше добавен успешно";
@@ -77,7 +79,7 @@
 
             catch (Exception)
             {
-                TempData["ErrorMessage"] = "Възникна грешка при добавянето на Вашия пчелин. Моля, свържете се с нас или опитайте по-късно!";
+                TempData["ErrorMessage"] = CommonErrorMessage;
             }
 
             return RedirectToAction("Index", "Home");
@@ -93,7 +95,7 @@
 
             if (!isUserOwner)
             {
-                TempData["ErrorMessage"] = "Нямате достъп до тази страница! За повече информация можете да се свържете с нас.";
+                TempData["ErrorMessage"] = NotAuthorizedErrorMessage;
 
                 return RedirectToAction("Index", "Home");
             }
@@ -115,7 +117,7 @@
             }
             catch (Exception)
             {
-                TempData["ErrorMessage"] = "Възникна неочаквана грешка. Моля, свържете се с нас или опитайте по-късно!";
+                TempData["ErrorMessage"] = CommonErrorMessage;
             }
 
             return RedirectToAction("Index", "Home");
@@ -135,7 +137,7 @@
 
             if (!isUserOwner)
             {
-                TempData["ErrorMessage"] = "Нямате достъп до тази страница! За повече информация можете да се свържете с нас.";
+                TempData["ErrorMessage"] = NotAuthorizedErrorMessage;
 
                 return RedirectToAction("Index", "Home");
             }
@@ -156,7 +158,7 @@
             }
             catch (Exception)
             {
-                TempData["ErrorMessage"] = "Възникна грешка при редакцията на Вашия пчелин. Моля, свържете се с нас или опитайте по-късно!";
+                TempData["ErrorMessage"] = CommonErrorMessage;
                 return this.View(model);
             }
 
@@ -172,7 +174,7 @@
 
             if (!isUserOwner)
             {
-                TempData["ErrorMessage"] = "Нямате достъп до тази страница! За повече информация можете да се свържете с нас.";
+                TempData["ErrorMessage"] = NotAuthorizedErrorMessage;
 
                 return RedirectToAction("Index", "Home");
             }
@@ -195,7 +197,7 @@
             }
             catch (Exception)
             {
-                TempData["ErrorMessage"] = "Възникна грешка при изтриването на Вашия пчелин. Моля, свържете се с нас или опитайте по-късно!";
+                TempData["ErrorMessage"] = CommonErrorMessage;
             }
 
             return RedirectToAction("All");

@@ -12,7 +12,7 @@
 
         public DateTime DayOfInspection { get; set; }
 
-        [StringLength(InspectionMaxLenght)]
+        [StringLength(InspectionDescriptionMaxLenght)]
         public string? Description { get; set; }
 
         public int NumberOfFrames { get; set; }

@@ -1,11 +1,13 @@
 ﻿namespace Beekeeping.Web.Controllers
 {
-    using Beekeeping.Models.Apiary;
-    using Beekeeping.Models.Inspection;
-    using Beekeeping.Services.Interfaces;
-    using Beekeeping.Web.Infrastructure.Extensions;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+
+    using Models.Inspection;
+    using Services.Interfaces;
+    using Web.Infrastructure.Extensions;
+
+    using static Common.NotificationMessages.ErrorMessages;
 
     [Authorize]
     public class InspectionController : Controller
@@ -23,7 +25,7 @@
 
         public async Task<IActionResult> All(int id)
         {
-            var userId = this.User.Id();
+            var userId = User.Id();
 
             var isUserOwner = await apiaryService.IsTheUserOwner(userId);
 
@@ -60,7 +62,7 @@
 
             catch (Exception)
             {
-                TempData["ErrorMessage"] = "Възникна неочаквана грешка. Моля, свържете се с нас или опитайте по-късно!";
+                TempData["ErrorMessage"] = CommonErrorMessage;
             }
 
             return RedirectToAction("Index", "Home");
@@ -119,7 +121,7 @@
             catch (Exception)
             {
 
-                TempData["ErrorMessage"] = "Съжаляваме, но нещо се обърка. Моля, свържете се с нас или опитайте по-късно!";
+                TempData["ErrorMessage"] = CommonErrorMessage;
             }
 
             return RedirectToAction("All", "Apiary");
@@ -137,11 +139,10 @@
             }
             catch (Exception)
             {
-                TempData["ErrorMessage"] = "Възникна неочаквана грешка. Моля, свъжете се с нас или опитайте по-късно";
+                TempData["ErrorMessage"] = CommonErrorMessage;
             }
 
             return RedirectToAction("All", "Apiary");
-
         }
 
         [HttpGet]
@@ -166,11 +167,10 @@
             }
             catch (Exception)
             {
-                TempData["ErrorMessage"] = "Съжаляваме, но нещо се обърка. Моля, свържете се с нас или опитайте по-късно!";
+                TempData["ErrorMessage"] = CommonErrorMessage;
 
                 return RedirectToAction("All", "Apiary");
             }
-
         }
 
         [HttpPost]
@@ -185,7 +185,6 @@
                 TempData["ErrorMessage"] = "Несъществуващ преглед";
 
                 return RedirectToAction("All", "Inspection", new { id = model.BeeColonyId });
-
             }
 
             if (!ModelState.IsValid)
@@ -203,12 +202,12 @@
             }
             catch (Exception)
             {
-
-                TempData["ErrorMessage"] = "Съжаляваме, но нещо се обърка. Моля, свържете се с нас или опитайте по-късно!";
+                TempData["ErrorMessage"] = CommonErrorMessage;
             }
 
             return RedirectToAction("All", "Apiary");
         }
+
         public async Task<IActionResult> Delete(int id)
         {
             string userId = User.Id();
@@ -235,7 +234,7 @@
             }
             catch (Exception)
             {
-                TempData["ErrorMessage"] = "Възникна грешка при изтриването на прегледа. Моля, свържете се с нас или опитайте по-късно!";
+                TempData["ErrorMessage"] = CommonErrorMessage;
 
                 return RedirectToAction("All", "Apiary");
             }           

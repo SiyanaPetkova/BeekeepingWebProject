@@ -2,43 +2,44 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using static Beekeeping.Common.Validations.DataConstants.HiveTreatmentValidations;
+    using static Common.Validations.DataConstants.HiveTreatmentValidations;
+    using static Common.NotificationMessages.ErrorMessages;
 
     public class HiveTreatmentFormModel
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Полето e задължително.")]
-        [StringLength(MedicationNameMaxLenght, 
-                      MinimumLength = MedicationNameMinLenght,
-                      ErrorMessage = "Името на препарата трябва да съдържа между {1} и {2} символа")]
         [Display(Name = "Име на препарата")]
+        [Required(ErrorMessage = RequiredFieldErrorMessage)]
+        [StringLength(MedicationNameMaxLenght,
+                      MinimumLength = MedicationNameMinLenght,
+                      ErrorMessage = FieldMinAndMaxStringLenghtErrorMessage)]
         public string MedicationName { get; set; } = null!;
 
-        [Required(ErrorMessage = "Полето e задължително.")]
-        [StringLength(ActiveIngredientMaxLenght,
-                      MinimumLength = ActiveIngredientMinLenght,          
-                      ErrorMessage = "Активната съставкана препарата трябва да съдържа между {1} и {2} символа")]
         [Display(Name = "Активна съставка")]
+        [Required(ErrorMessage = RequiredFieldErrorMessage)]
+        [StringLength(ActiveIngredientMaxLenght,
+                      MinimumLength = ActiveIngredientMinLenght,
+                      ErrorMessage = FieldMinAndMaxStringLenghtErrorMessage)]
         public string ActiveIngredient { get; set; } = null!;
 
         [Display(Name = "Резултати и коментари")]
         public string? ResultAndCommentAboutTheTreatment { get; set; }
 
         [Display(Name = "Обща стойност на третирането")]
-        [Range(TreatmentPriceMinValue, 
-               TreatmentPriceMaxValue, 
-               ErrorMessage = "Стойността на третирането трябва да бъде между {1} и {2}")]
+        [Range(TreatmentPriceMinValue,
+               TreatmentPriceMaxValue,
+               ErrorMessage = FieldMinAndMaxRangeValueErrorMessage)]
         public decimal PriceOfTheTreatment { get; set; }
 
         [Display(Name = "Дата на третирането")]
         public DateTime TreatmentDate { get; set; }
 
-        [Required(ErrorMessage = "Полето e задължително.")]
         [Display(Name = "Брой третирани семейства")]
-        [Range(NumberOfTreatedColoniesMinValue, 
-               NumberOfTreatedColoniesMaxValue, 
-               ErrorMessage = "Броят на третираните кошери трябва да бъде между {1} и {2}")]
+        [Required(ErrorMessage = RequiredFieldErrorMessage)]
+        [Range(NumberOfTreatedColoniesMinValue,
+               NumberOfTreatedColoniesMaxValue,
+               ErrorMessage = FieldMinAndMaxRangeValueErrorMessage)]
         public int NumberOfTreatedColonies { get; set; }
 
     }

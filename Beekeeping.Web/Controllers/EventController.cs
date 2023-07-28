@@ -1,9 +1,12 @@
 ﻿namespace Beekeeping.Web.Controllers
 {
-    using Beekeeping.Services.Interfaces;
-    using Beekeeping.Web.Infrastructure.Extensions;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+
+    using Services.Interfaces;
+    using Web.Infrastructure.Extensions;
+
+    using static Common.NotificationMessages.ErrorMessages;
 
     [Authorize]
     public class EventController : Controller
@@ -42,7 +45,7 @@
 
             catch (Exception)
             {
-                TempData["ErrorMessage"] = "Възникна грешка при добавянето на Вашия пчелин. Моля, свържете се с нас или опитайте по-късно!";
+                TempData["ErrorMessage"] = CommonErrorMessage;
             }
 
             return RedirectToAction("Feeding");
@@ -69,7 +72,7 @@
 
             catch (Exception)
             {
-                TempData["ErrorMessage"] = "Възникна грешка при добавянето на Вашия пчелин. Моля, свържете се с нас или опитайте по-късно!";
+                TempData["ErrorMessage"] = CommonErrorMessage;
             }
 
             return RedirectToAction("Treatment");
