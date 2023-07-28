@@ -19,5 +19,7 @@
 
         Task DeleteInspectionAsync(string userId, int id);
 
+        Task<int> GetCurrentInspectionBeeColonyId(string userId, int id);
+
     }
 }

@@ -142,5 +142,13 @@
             context.Inspections.Remove(inspection);
             await context.SaveChangesAsync();
         }
+
+        public async Task<int> GetCurrentInspectionBeeColonyId(string userId, int id)
+        {
+            var inspection = await context.Inspections
+                             .FirstOrDefaultAsync(i => i.Id == id && i.BeeColony!.OwnerOfTheApiary == userId);
+
+            return inspection!.BeeColonyId;
+        }
     }
 }

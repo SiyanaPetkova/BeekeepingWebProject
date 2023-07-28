@@ -209,11 +209,11 @@
 
             return RedirectToAction("All", "Apiary");
         }
-        public async Task<IActionResult> Delete(int id1, int id2)
+        public async Task<IActionResult> Delete(int id)
         {
             string userId = User.Id();
 
-            var inspection = await inspectionService.DoesInspectionExist(userId, id1);
+            var inspection = await inspectionService.DoesInspectionExist(userId, id);
 
             if (!inspection)
             {
@@ -224,16 +224,18 @@
 
             try
             {
-                await inspectionService.DeleteInspectionAsync(userId, id1);
+                var beeColonyId = await inspectionService.GetCurrentInspectionBeeColonyId(userId, id);
+
+                await inspectionService.DeleteInspectionAsync(userId, id);
 
                 this.TempData["SuccessMessage"] = "Прегледът беше изтрит успешно!";
 
-                return RedirectToAction("All", "Inspection", new {id = id2});
+                return RedirectToAction("All", "Inspection", new {id = beeColonyId});
 
             }
             catch (Exception)
             {
-                TempData["ErrorMessage"] = "Възникна грешка при изтриването на Вашия пчелин. Моля, свържете се с нас или опитайте по-късно!";
+                TempData["ErrorMessage"] = "Възникна грешка при изтриването на прегледа. Моля, свържете се с нас или опитайте по-късно!";
 
                 return RedirectToAction("All", "Apiary");
             }           

@@ -27,11 +27,11 @@
 
         public class InputModel
         {
-            [Required(ErrorMessage = "Полето e задължително.")]
+            [Required(ErrorMessage = "Полето {0} e задължително.")]
             [EmailAddress]
             public string Email { get; set; } = null!;
 
-            [Required(ErrorMessage = "Полето e задължително.")]
+            [Required(ErrorMessage = "Полето {0} e задължително.")]
             [DataType(DataType.Password)]
             [Display(Name = "Парола")]
             public string Password { get; set; } = null!;

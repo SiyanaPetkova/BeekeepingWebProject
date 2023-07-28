@@ -33,16 +33,17 @@
 
         public class InputModel
         {
-            [Required(ErrorMessage = "Полето e задължително.")]
+            [Required(ErrorMessage = "Полето {0} e задължително.")]
             [EmailAddress]
             public string Email { get; set; }
 
-            [Required(ErrorMessage = "Полето e задължително.")]
+            [Required(ErrorMessage = "Полето {0} e задължително.")]
             [StringLength(PasswordMaxLength, MinimumLength = PasswordMinLength, ErrorMessage = "Паролата трябва да бъде между {2} и {1} символа")]
             [DataType(DataType.Password)]
             [Display(Name = "Парола")]
             public string Password { get; set; } = null!;
 
+            [Required(ErrorMessage = "Полето {0} e задължително.")]
             [DataType(DataType.Password)]
             [Display(Name = "Повторете паролата")]
             [Compare("Password", ErrorMessage = "Двете пароли трябва да съвпадат!")]
