@@ -13,11 +13,13 @@
     {
         private readonly ITreatmentService treatmentService;
         private readonly IFeedingService feedingService;
+        private readonly INoteToDoService noteService;
 
-        public EventController(ITreatmentService treatmentService, IFeedingService feedingService)
+        public EventController(ITreatmentService treatmentService, IFeedingService feedingService, INoteToDoService noteService)
         {
             this.treatmentService = treatmentService;
             this.feedingService = feedingService;
+            this.noteService = noteService;
         }
 
         public IActionResult Index()
@@ -77,5 +79,32 @@
 
             return RedirectToAction("Treatment");
          }
+
+        public async Task<IActionResult> Notes()
+        {
+            var userId = this.User.Id();
+
+            try
+            {
+                var model = await noteService.AllNotesAsync(userId);
+
+                if (model == null)
+                {
+                    TempData["InformationMessage"] = "Все още нямате добавени бележки. Можете да го направите тук.";
+
+                    return RedirectToAction("Add", "NoteToDo");
+                }
+
+                return View(model);
+            }
+
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = CommonErrorMessage;
+            }
+
+            return RedirectToAction("Notes");
+
+        }
     }
 }

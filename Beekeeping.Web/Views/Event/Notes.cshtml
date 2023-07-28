@@ -1,0 +1,57 @@
+﻿@model IEnumerable<NoteToDoViewModel>
+
+@{
+    int count = 0;
+}
+
+@{
+    ViewBag.Title = "Задачи";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+
+<div class="left mb-2">
+    <a asp-controller="NoteToDo" asp-action="Add" class="btn btn-warning mb-2 w-100 p-1">Добави нова бележка</a>
+</div>
+
+<div class="text-center row">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Дата</th>
+                <th scope="col">Задача</th>
+                <th scope="col">Завършена</th>
+                <th scope="col">Редакция</th>
+                <th scope="col">Изтриване</th>
+            </tr>
+        </thead>
+        @foreach (var i in Model)
+        {
+            {
+                count = count + 1;
+            }
+
+            <tbody>
+                <tr>
+                    <th scope="row">@count</th>
+                    <td>@i.DateToBeDone</td>
+                    <td>@i.Description</td>
+                    <td>@i.Finished</td>
+                    <td>
+                        <a asp-controller="NoteToDo" asp-action="Edit" asp-route-id="@i.Id" class="btn btn-warning">                          
+                            <span class="glyphicon">&#128465;</span>
+                        </a>
+                    </td>
+                    <td>
+                        <a asp-controller="NoteToDo" asp-action="Delete" asp-route-id="@i.Id" class="btn btn-warning"
+                           onclick="return confirm('Сигурни ли сте,че искате да изтриете инфомацията за тази бележка? Данните Ви ще бъдат загубени!')">
+                            <span class="glyphicon">&#128465;</span>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        }
+    </table>
+</div>
+

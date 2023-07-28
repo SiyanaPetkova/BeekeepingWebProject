@@ -1,10 +1,11 @@
 ﻿namespace Beekeeping.Services.Services
 {
-    using Beekeeping.Data;
-    using Beekeeping.Data.Models;
-    using Beekeeping.Models.HiveTreatment;
-    using Beekeeping.Services.Interfaces;
     using Microsoft.EntityFrameworkCore;
+
+    using Data;
+    using Data.Models;
+    using Models.HiveTreatment;
+    using Interfaces;
 
     public class TreatmentService : ITreatmentService
     {

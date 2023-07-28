@@ -5,8 +5,11 @@
     public interface ICostService
     {
         Task AddCostAsync(CostFormModel model, string userId);
+
         Task<IEnumerable<CostViewModel>?> AllCostAsync(string ownerId);
+
         Task DeleteCostAsync(string userId, int id);
+
         Task<bool> DoesCostExists(string userId, int id);
     }
 }

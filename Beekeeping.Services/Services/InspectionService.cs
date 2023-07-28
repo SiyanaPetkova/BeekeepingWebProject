@@ -1,12 +1,13 @@
 ﻿namespace Beekeeping.Services.Services
 {
-    using Beekeeping.Data;
-    using Beekeeping.Data.Models;
-    using Beekeeping.Models.Inspection;
-    using Beekeeping.Services.Interfaces;
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+
+    using Data;
+    using Data.Models;
+    using Models.Inspection;
+    using Interfaces;
 
     public class InspectionService : IInspectionService
     {

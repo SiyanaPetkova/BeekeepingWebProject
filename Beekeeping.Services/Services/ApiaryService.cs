@@ -1,13 +1,13 @@
 ﻿namespace Beekeeping.Services.Services
 {
-    using Beekeeping.Data;
-    using Beekeeping.Data.Models;
-    using Beekeeping.Models.Apiary;
-    using Beekeeping.Models.BeeColony;
-    using Beekeeping.Services.Interfaces;
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+
+    using Data;
+    using Data.Models;
+    using Models.Apiary;
+    using Interfaces;
 
     public class ApiaryService : IApiaryService
     {

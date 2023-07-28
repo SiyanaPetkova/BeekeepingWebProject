@@ -1,8 +1,9 @@
 ﻿namespace Beekeeping.Services.Interfaces
 {
-    using Beekeeping.Models.Apiary;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+
+    using Models.Apiary;
 
     public interface IApiaryService
     {

@@ -7,7 +7,6 @@
     {
         public int Id { get; set; }
 
-        [Required]
         public string PlateNumber { get; set; } = null!;
 
         public string? AdditionalComмent { get; set; }
@@ -20,13 +19,13 @@
 
         public string SecondBroodBox { get; set; } = null!;
 
-        public int? NumberOfAdditionalBoxes { get; set; } 
+        public int? NumberOfAdditionalBoxes { get; set; }
 
         public string MatedBeeQueen { get; set; } = null!;
 
         public int ApiaryId { get; set; }
 
-        public string Apiary { get; set; } 
+        public string Apiary { get; set; }
 
         public int BeeQueenId { get; set; }
 

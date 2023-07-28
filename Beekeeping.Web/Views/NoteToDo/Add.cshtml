@@ -1,0 +1,34 @@
+﻿@model NoteToDoFormModel
+
+<body>
+    <div class="container text-center">
+
+        <h2>Добави задача</h2>
+
+        <form method="post">
+            <div class="row">
+                <div class="col-3">
+                    <label asp-for="DateToBeDone"></label>
+                    <input asp-for="DateToBeDone" class="form-control">
+                    <span asp-validation-for="DateToBeDone" class="small text-danger"></span>
+                </div>
+                <div class="col-3">
+                    <label asp-for="Description"></label>
+                    <input asp-for="Description" class="form-control">
+                    <span asp-validation-for="Description" class="small text-danger"></span>
+                </div>
+                <div class="checkbox">
+                    <label asp-for="Finished"></label>
+                    <input type="checkbox" id="Finished" name="Finished" asp-for="Finished" />
+                    <span asp-validation-for="Finished" class="small text-danger"></span>
+                </div>
+            </div>
+            <input class="btn btn-primary mt-3" type="submit" value="Запази" />
+        </form>
+    </div>
+</body>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

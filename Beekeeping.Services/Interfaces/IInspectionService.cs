@@ -1,7 +1,8 @@
 ﻿namespace Beekeeping.Services.Interfaces
 {
-    using Beekeeping.Models.Inspection;
     using System.Threading.Tasks;
+
+    using Models.Inspection;
 
     public interface IInspectionService
     {

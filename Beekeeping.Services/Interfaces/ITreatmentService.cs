@@ -1,6 +1,6 @@
 ﻿namespace Beekeeping.Services.Interfaces
 {
-    using Beekeeping.Models.HiveTreatment;
+    using Models.HiveTreatment;
 
     public interface ITreatmentService
     {

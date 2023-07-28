@@ -15,6 +15,7 @@
         public string? RegistrationNumber { get; set; }
 
         public int NumberOfHives { get; set; }
+
         public string OwnerId { get; set; }
 
     }

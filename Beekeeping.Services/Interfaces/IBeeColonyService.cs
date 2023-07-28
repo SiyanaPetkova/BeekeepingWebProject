@@ -1,7 +1,8 @@
 ﻿namespace Beekeeping.Services.Interfaces
 {
-    using Beekeeping.Models.BeeColony;
     using System.Threading.Tasks;
+
+    using Models.BeeColony;
 
     public interface IBeeColonyService
     {
@@ -20,6 +21,5 @@
         Task<bool> DoesBeeColonyExist(string userId, int id);
 
         Task DeleteBeeColonyAsync(string userId, int id);
-
     }
 }

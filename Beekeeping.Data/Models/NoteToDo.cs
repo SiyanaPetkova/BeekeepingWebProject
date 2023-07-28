@@ -13,6 +13,9 @@
         public string Description { get; set; } = null!;
 
         [Required]
+        public bool Finished { get; set; } 
+
+        [Required]
         public string CreatorId { get; set; } = null!;
     }
 }

@@ -107,6 +107,12 @@
             public const int CostValueMaxValue = 1000000000;
         }
 
+        public static class NoteToDoValidations
+        {
+            public const int NoteDescriptionMinLenght = 2;
+            public const int NoteDescriptionMaxLenght = 100;
+        }
+
         public static class ApplicationUserValidations
         {
             public const int PasswordMinLength = 8;

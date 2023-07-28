@@ -1,13 +1,13 @@
 ﻿namespace Beekeeping.Services.Services
 {
-    using Beekeeping.Data;
-    using Beekeeping.Data.Models;
-    using Beekeeping.Models.Cost;
-    using Beekeeping.Models.Income;
-    using Beekeeping.Services.Interfaces;
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+
+    using Data;
+    using Data.Models;
+    using Models.Cost;
+    using Interfaces;
 
     public class CostService : ICostService
     {
