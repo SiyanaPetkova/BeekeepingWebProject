@@ -19,6 +19,7 @@
 
         [Display(Name = "Дата на разхода")]
         [Required(ErrorMessage = RequiredFieldErrorMessage)]
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime DayOfTheCost { get; set; }
 
         [Display(Name = "Стойност на разхода")]

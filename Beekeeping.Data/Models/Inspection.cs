@@ -22,9 +22,7 @@
         public int Strenght { get; set; }
 
         public int Temperament { get; set; }
-
-        public int BeeQueenYearOfBirth { get; set; }
-
+             
         [ForeignKey(nameof(BeeColony))]
         public int BeeColonyId { get; set; }
         public BeeColony? BeeColony { get; set; }

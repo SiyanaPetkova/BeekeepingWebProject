@@ -23,6 +23,7 @@
         public DbSet<Inspection> Inspections { get; init; } = null!;
         public DbSet<Cost> Costs { get; init; } = null!;
         public DbSet<Income> Incomes { get; init; } = null!;
+        public DbSet<NoteToDo> NoteToDos { get; init; } = null!;
        
         protected override void OnModelCreating(ModelBuilder builder)
         {
