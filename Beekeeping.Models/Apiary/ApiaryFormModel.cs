@@ -26,8 +26,10 @@
                       ErrorMessage = FieldMinAndMaxStringLenghtErrorMessage)]
         public string? RegistrationNumber { get; set; }
 
+        [Display(Name = "φ")]
         public double? Latitude { get; set; }
 
+        [Display(Name = "λ")]
         public double? Longitude { get; set; }
 
     }

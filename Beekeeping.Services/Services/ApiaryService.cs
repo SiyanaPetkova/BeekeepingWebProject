@@ -25,6 +25,8 @@
                 Name = model.Name,
                 RegistrationNumber = model.RegistrationNumber,
                 Location = model.Location,
+                Latitude = model.Latitude,
+                Longitude = model.Longitude,
                 OwnerId = ownerId
             };
 
@@ -91,6 +93,8 @@
             apiary.Name = model.Name;
             apiary.Location = model.Location;
             apiary.RegistrationNumber = model.RegistrationNumber;
+            apiary.Latitude = model.Latitude;
+            apiary.Longitude = model.Longitude;
 
             await context.SaveChangesAsync();
         }
@@ -110,7 +114,10 @@
                 Id = apiaryId,
                 Name = apiary.Name,
                 Location = apiary.Location,
-                RegistrationNumber = apiary.RegistrationNumber
+                RegistrationNumber = apiary.RegistrationNumber,
+                Latitude = apiary.Latitude,
+                Longitude = apiary.Longitude
+                
             };
         }
 

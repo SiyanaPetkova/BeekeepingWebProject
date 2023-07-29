@@ -20,7 +20,6 @@
 
         public double? Longitude { get; set; }
 
-
         public string OwnerId { get; set; }
 
     }

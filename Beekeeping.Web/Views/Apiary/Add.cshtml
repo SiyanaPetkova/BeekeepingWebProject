@@ -23,23 +23,20 @@
                 <input asp-for="RegistrationNumber" class="form-control">
                 <span asp-validation-for="RegistrationNumber" class="small text-danger"></span>
             </div>
-            <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                    src="https://www.openstreetmap.org/export/embed.html?bbox=21.7364501953125%2C41.3025710943056%2C28.800659179687504%2C44.06390660801779&amp;
-                         layer=mapnik&amp;marker=42.69858589169842%2C25.2685546875" style="border: 1px solid black"></iframe><br />
-            <small>
-                <a href="https://www.openstreetmap.org/?mlat=42.699&amp;mlon=25.269#map=8/42.699/25.269">Преглед на по-голяма карта</a>
-                <div class="wrap">
-
-                    <form action="" class="form">
-                        <input type="text" id="latitude" placeholder="latitude">
-                        <input type="text" id="longitude" placeholder="longitude">
-                        <input type="submit" value="Save Location" />
-                    </form>
-
-                    <div id="map"></div>
-
+            <div id="map" style="width: 100%; height: 100vh"></div>
+            <div class="row">
+                <div class="col-3">
+                    <label asp-for="Latitude"></label>
+                    <input asp-for="Latitude" class="form-control" id="latitude">
+                    <span asp-validation-for="Latitude" class="small text-danger"></span>
                 </div>
-            </small>
+                <div class="col-3">
+                    <label asp-for="Longitude"></label>
+                    <input asp-for="Longitude" class="form-control" id="longitude">
+                    <span asp-validation-for="Longitude" class="small text-danger"></span>
+                </div>
+            </div>
+
             <input class="btn btn-primary mt-3" type="submit" value="Запази" />
         </form>
     </div>
@@ -49,7 +46,7 @@
     <partial name="_ValidationScriptsPartial" />
     <script>
         let mapOptions = {
-            center: [51.958, 9.141],
+            center: [42.69589761051528, 25.307006835937504],
             zoom: 10
         }
 
@@ -70,7 +67,6 @@
 
             document.getElementById('latitude').value = event.latlng.lat;
             document.getElementById('longitude').value = event.latlng.lng;
-
         })
     </script>
-}
+    }
