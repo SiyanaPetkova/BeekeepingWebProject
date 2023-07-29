@@ -11,6 +11,7 @@
         public string TypeOfIncome { get; set; } = null!;
 
         [Display(Name = "Дата на прихода")]
+        [DataType(DataType.Date)]
         public DateTime DayOfTheIncome { get; set; }
 
         [Display(Name = "Стойност на прихода")]

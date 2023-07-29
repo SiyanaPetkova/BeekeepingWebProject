@@ -18,8 +18,8 @@
         public string TypeOfCost { get; set; } = null!;
 
         [Display(Name = "Дата на разхода")]
+        [DataType(DataType.Date)]
         [Required(ErrorMessage = RequiredFieldErrorMessage)]
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime DayOfTheCost { get; set; }
 
         [Display(Name = "Стойност на разхода")]

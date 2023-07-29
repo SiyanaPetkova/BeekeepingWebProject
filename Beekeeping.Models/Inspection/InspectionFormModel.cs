@@ -11,6 +11,7 @@
         public int Id { get; set; }
 
         [Display(Name = "Дата на прегледа")]
+        [DataType(DataType.Date)]
         [Required(ErrorMessage = RequiredFieldErrorMessage)]
         public DateTime DayOfInspection { get; set; }
 

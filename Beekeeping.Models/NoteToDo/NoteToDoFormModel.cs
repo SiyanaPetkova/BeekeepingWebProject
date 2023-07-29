@@ -10,6 +10,7 @@
         public int Id { get; set; }
 
         [Display(Name = "Дата")]
+        [DataType(DataType.Date)]
         [Required]
         public DateTime DateToBeDone { get; set; }
           

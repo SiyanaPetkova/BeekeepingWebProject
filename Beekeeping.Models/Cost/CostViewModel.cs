@@ -11,6 +11,7 @@
         public string TypeOfCost { get; set; } = null!;
 
         [Display(Name = "Дата на разхода")]
+        [DataType(DataType.Date)]
         public DateTime DayOfTheCost { get; set; }
 
         [Display(Name = "Стойност на разхода")]

@@ -84,6 +84,8 @@
 
             var model = new InspectionFormModel();
 
+            model.DayOfInspection = DateTime.Now;
+
             model.BeeColonyId = id;
 
             return View(model);

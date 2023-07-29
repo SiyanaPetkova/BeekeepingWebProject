@@ -11,6 +11,7 @@
         public string FeedingType { get; set; } = null!;
 
         [Display(Name = "Дата на храненето")]
+        [DataType(DataType.Date)]
         public DateTime DayOfFeeding { get; set; }
 
         [Display(Name = "Общо семейства")]

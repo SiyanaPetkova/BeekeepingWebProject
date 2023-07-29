@@ -33,6 +33,7 @@
         public decimal PriceOfTheTreatment { get; set; }
 
         [Display(Name = "Дата на третирането")]
+        [DataType(DataType.Date)]
         public DateTime TreatmentDate { get; set; }
 
         [Display(Name = "Брой третирани семейства")]

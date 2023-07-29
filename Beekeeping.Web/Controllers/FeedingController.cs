@@ -24,6 +24,8 @@
         {
             var model = new HiveFeedingFormModel();
 
+            model.DayOfFeeding = DateTime.Now;
+
             return View(model);
         }
 

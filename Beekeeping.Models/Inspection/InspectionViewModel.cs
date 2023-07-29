@@ -8,6 +8,7 @@
         public int Id { get; set; }
 
         [Display(Name = "Дата на прегледа")]
+        [DataType(DataType.Date)]
         public DateTime DayOfInspection { get; set; }
 
         [Display(Name = "Допълнителна информация")]

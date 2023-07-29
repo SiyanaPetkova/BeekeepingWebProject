@@ -59,6 +59,8 @@
         {
             var model = new IncomeFormModel();
 
+            model.DayOfTheIncome = DateTime.Now;
+
             return View(model);
         }
 
@@ -89,6 +91,8 @@
         public IActionResult AddCost()
         {
             var model = new CostFormModel();
+
+            model.DayOfTheCost = DateTime.Now;
 
             return View(model);
         }

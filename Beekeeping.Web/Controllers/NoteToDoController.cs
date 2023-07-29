@@ -24,6 +24,8 @@
         {
             var model = new NoteToDoFormModel();
 
+            model.DateToBeDone = DateTime.Now;
+
             return View(model);
         }
 

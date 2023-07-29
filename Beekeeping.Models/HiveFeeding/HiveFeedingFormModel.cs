@@ -17,6 +17,7 @@
         public string FeedingType { get; set; } = null!;
 
         [Display(Name = "Дата на храненето")]
+        [DataType(DataType.Date)]
         [Required(ErrorMessage = RequiredFieldErrorMessage)]
         public DateTime DayOfFeeding { get; set; }
 

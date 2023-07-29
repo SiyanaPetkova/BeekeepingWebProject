@@ -7,6 +7,7 @@
         public int Id { get; set; }
 
         [Display(Name = "Дата")]
+        [DataType(DataType.Date)]
         public DateTime DateToBeDone { get; set; }
 
         [Display(Name = "Описание на задачата")]

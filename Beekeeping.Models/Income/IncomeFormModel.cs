@@ -18,6 +18,7 @@
         public string TypeOfIncome { get; set; } = null!;
 
         [Display(Name = "Дата на прихода")]
+        [DataType(DataType.Date)]
         [Required(ErrorMessage = RequiredFieldErrorMessage)]
         public DateTime DayOfTheIncome { get; set; }
 

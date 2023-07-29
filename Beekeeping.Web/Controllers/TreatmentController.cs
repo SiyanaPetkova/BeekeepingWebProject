@@ -24,6 +24,8 @@
         {
             var model = new HiveTreatmentFormModel();
 
+            model.TreatmentDate = DateTime.Now;
+
             return View(model);
         }
 
