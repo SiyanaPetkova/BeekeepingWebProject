@@ -1,13 +1,11 @@
 ﻿namespace Beekeeping.Web.Controllers
 {
-    using Beekeeping.Models.HiveFeeding;
-    using Beekeeping.Models.Inspection;
-    using Beekeeping.Models.NoteToDo;
-    using Beekeeping.Services.Interfaces;
-    using Beekeeping.Services.Services;
-    using Beekeeping.Web.Infrastructure.Extensions;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+
+    using Models.NoteToDo;
+    using Services.Interfaces;
+    using Web.Infrastructure.Extensions;
 
     using static Common.NotificationMessages.ErrorMessages;
 
@@ -114,7 +112,6 @@
 
             return RedirectToAction("Home", "Index");
         }
-
 
         public async Task<IActionResult> Delete(int id)
         {

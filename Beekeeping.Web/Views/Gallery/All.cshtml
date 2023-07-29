@@ -19,32 +19,11 @@
                 <p class="text-center"> Да...колко много можем да научим от тях!</p>
             </div>
             <div class="row photos">
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/110.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/110.jpg"></a></div>
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/111.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/111.jpg"></a></div>
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/112.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/112.jpg"></a></div>
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/113.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/113.jpg"></a></div>
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/114.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/114.jpg"></a></div>
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/115.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/115.jpg"></a></div>
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/116.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/116.jpg"></a></div>
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/117.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/117.jpg"></a></div>
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/118.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/118.jpg"></a></div>
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/119.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/119.jpg"></a></div>
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/120.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/120.jpg"></a></div>
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/121.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/121.jpg"></a></div>
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/122.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/122.jpg"></a></div>
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/123.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/123.jpg"></a></div>
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/124.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/124.jpg"></a></div>
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/125.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/125.jpg"></a></div>
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/126.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/126.jpg"></a></div>
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/127.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/127.jpg"></a></div>
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/128.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/128.jpg"></a></div>
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/129.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/129.jpg"></a></div>
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/130.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/130.jpg"></a></div>
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/131.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/131.jpg"></a></div>
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/132.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/132.jpg"></a></div>
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/133.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/133.jpg"></a></div>
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/134.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/134.jpg"></a></div>
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="/images/135.jpg" data-lightbox="photos"><img class="img-fluid" src="/images/135.jpg"></a></div>
+                @for (int i = 0; i < 21; i++)
+                {
+                    string imgSrc = "/images/" + i.ToString() + ".jpg";
+                    <div class="col-sm-6 col-md-4 col-lg-3 item"><a href=@imgSrc data-lightbox="photos"><img class="img-fluid" src=@imgSrc></a></div>
+                }
             </div>
         </div>
     </div>
