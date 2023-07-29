@@ -1,7 +1,4 @@
-﻿<!DOCTYPE html>
-<html>
-
-<head>
+﻿<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Галерия</title>
@@ -19,7 +16,7 @@
                 <p class="text-center"> Да...колко много можем да научим от тях!</p>
             </div>
             <div class="row photos">
-                @for (int i = 0; i < 21; i++)
+                @for (int i = 0; i < 20; i++)
                 {
                     string imgSrc = "/images/" + i.ToString() + ".jpg";
                     <div class="col-sm-6 col-md-4 col-lg-3 item"><a href=@imgSrc data-lightbox="photos"><img class="img-fluid" src=@imgSrc></a></div>
@@ -31,5 +28,3 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
 </body>
-
-</html>

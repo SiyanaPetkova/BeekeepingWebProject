@@ -1,11 +1,13 @@
 namespace Beekeeping.Web
 {
-    using Beekeeping.Data;
-    using Beekeeping.Data.Models;
-    using Beekeeping.Services.Interfaces;
-    using Beekeeping.Web.Infrastructure.Extensions;
-    using Beekeeping.Web.Infrastructure.ModelBinders;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
+
+    using Data;
+    using Data.Models;
+    using Services.Interfaces;
+    using Web.Infrastructure.Extensions;
+    using Web.Infrastructure.ModelBinders;
 
     public class StartUp
     {
@@ -34,6 +36,7 @@ namespace Beekeeping.Web
                 options.Password.RequiredLength =
                                    builder.Configuration.GetValue<int>("Identity:Password:RequiredLength");
             })
+                            .AddRoles<IdentityRole<Guid>>()
                             .AddEntityFrameworkStores<BeekeepingDbContext>();
 
             builder.Services.AddApplicationServices(typeof(IApiaryService));
@@ -45,7 +48,7 @@ namespace Beekeeping.Web
                  {
                      options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
                      options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(
-_                                                        => "Полето {1} е задължително.");
+_                                                 => "Полето {1} е задължително.");
                  });
 
             var app = builder.Build();
