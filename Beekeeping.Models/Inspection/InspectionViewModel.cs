@@ -1,6 +1,5 @@
 ﻿namespace Beekeeping.Models.Inspection
 {
-    using System;
     using System.ComponentModel.DataAnnotations;
 
     public class InspectionViewModel

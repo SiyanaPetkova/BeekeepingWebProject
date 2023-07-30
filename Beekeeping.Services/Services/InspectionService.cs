@@ -39,16 +39,18 @@
         public async Task<IEnumerable<InspectionViewModel>?> AllInspectionsPerColonyAsync(string ownerId, int beeColonyId)
         {
             var allInspectionsAsync = await context.Inspections.Where(i => i.BeeColonyId == beeColonyId)
+                             .OrderByDescending(i => i.DayOfInspection)
                              .Select(i => new InspectionViewModel
                              {
                                  Id = i.Id,
+                                 Description = i.Description,
                                  DayOfInspection = i.DayOfInspection.ToLongDateString(),
                                  NumberOfFrames = i.NumberOfFrames,
                                  NumberOfBroodFrames = i.NumberOfBroodFrames,
                                  Strenght = i.Strenght,
+                                 Temperament = i.Temperament,
                                  BeeColonyId = i.BeeColonyId
                              })
-                             .OrderByDescending(i => i.DayOfInspection)
                              .ToArrayAsync();
 
             return allInspectionsAsync;
