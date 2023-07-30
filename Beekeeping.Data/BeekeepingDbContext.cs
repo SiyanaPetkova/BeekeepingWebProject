@@ -1,12 +1,12 @@
 ﻿namespace Beekeeping.Data
 {
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
-    using Microsoft.AspNetCore.Identity;
+    using System.Reflection;
 
     using Beekeeping.Data.Models;
-    using Microsoft.Extensions.Logging;
-    using System.Reflection.Emit;
+
 
     public class BeekeepingDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
     {
@@ -27,6 +27,11 @@
        
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            Assembly configAssembly = Assembly.GetAssembly(typeof(BeekeepingDbContext))
+                                    ?? Assembly.GetExecutingAssembly();
+
+            builder.ApplyConfigurationsFromAssembly(configAssembly);
+
             builder.Entity<HiveTreatment>()
                    .Property(ht => ht.PriceOfTheTreatment)
                    .HasPrecision(18, 2);
@@ -42,7 +47,7 @@
             builder.Entity<Income>()
             .Property(i => i.IncomeValue)
                    .HasPrecision(18, 2);
-
+          
             base.OnModelCreating(builder);
         }
     }
