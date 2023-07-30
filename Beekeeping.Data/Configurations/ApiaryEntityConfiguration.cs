@@ -12,7 +12,7 @@
             builder.HasData(GenerateApiaries());
         }
 
-        private Apiary[] GenerateApiaries()
+        private static Apiary[] GenerateApiaries()
         {
 
             ICollection<Apiary> apiaries = new HashSet<Apiary>();
@@ -21,6 +21,7 @@
 
             apiary = new Apiary()
             {
+                Id = 9150,
                 Name = "Климентово",
                 Location = "Село Климентово, Варна",
                 OwnerId = "44C36B39-AD0A-4260-B448-45BB03158888",
@@ -33,6 +34,7 @@
 
             apiary = new Apiary()
             {
+                Id = 9156,
                 Name = "Зорница",
                 Location = "Село Зорница, Варна",
                 OwnerId = "44C36B39-AD0A-4260-B448-45BB03158888",
