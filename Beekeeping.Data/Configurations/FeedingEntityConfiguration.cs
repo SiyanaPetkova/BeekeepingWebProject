@@ -22,7 +22,7 @@
         {
             ICollection<HiveFeeding> feedings = new HashSet<HiveFeeding>();
 
-            for (int i = 1; i <= 10; i++)
+            for (int i = 1; i <= 4; i++)
             {
                 string dayOfFeeding = $"{i}.01.2023";
           

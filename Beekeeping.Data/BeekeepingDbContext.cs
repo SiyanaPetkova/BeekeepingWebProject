@@ -31,16 +31,7 @@
                                     ?? Assembly.GetExecutingAssembly();
 
             builder.ApplyConfigurationsFromAssembly(configAssembly);
-
-         
-            builder.Entity<Cost>()
-                   .Property(c => c.CostValue)
-                   .HasPrecision(18, 2);
-
-            builder.Entity<Income>()
-            .Property(i => i.IncomeValue)
-                   .HasPrecision(18, 2);
-          
+           
             base.OnModelCreating(builder);
         }
     }
