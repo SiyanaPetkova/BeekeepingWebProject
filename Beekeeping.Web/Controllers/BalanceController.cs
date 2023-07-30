@@ -50,6 +50,12 @@
                 model.Cost = new List<CostViewModel>();
             }
 
+            var totalIncome = await incomeService.GetTotalIncomeAsync(userId);
+            model.TotalIncome = totalIncome;
+
+            var totalCost = await costService.GetTotalCostAsync(userId);
+            model.TotalCost = totalCost;
+
             return View(model);
         }
 
@@ -173,6 +179,5 @@
 
             return this.RedirectToAction("Index");
         }
-
     }
 }

@@ -67,5 +67,12 @@
             return await context.Incomes
               .AnyAsync(f => f.Id == id && f.CreatorId == userId);
         }
+
+        public async Task<decimal> GetTotalIncomeAsync(string userId)
+        {
+            var totalIncome = await context.Incomes.Where(i => i.CreatorId == userId).SumAsync(i => i.IncomeValue);
+
+            return totalIncome;
+        }
     }
 }

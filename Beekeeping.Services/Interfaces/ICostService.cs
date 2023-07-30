@@ -11,5 +11,7 @@
         Task DeleteCostAsync(string userId, int id);
 
         Task<bool> DoesCostExists(string userId, int id);
+
+        Task<decimal> GetTotalCostAsync(string userId);
     }
 }

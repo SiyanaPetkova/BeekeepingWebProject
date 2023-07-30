@@ -1,6 +1,5 @@
 ﻿namespace Beekeeping.Models.Income
 {
-    using System;
     using System.ComponentModel.DataAnnotations;
 
     public class IncomeViewModel
@@ -17,5 +16,6 @@
         public decimal IncomeValue { get; set; }
 
         public string CreatorId { get; set; } = null!;
+
     }
 }

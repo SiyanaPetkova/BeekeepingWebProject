@@ -11,5 +11,7 @@
         Task DeleteIncomeAsync(string userId, int id);
 
         Task<bool> DoesIncomeExists(string userId, int id);
+
+        Task<decimal> GetTotalIncomeAsync(string userId);
     }
 }

@@ -72,5 +72,12 @@
             return await context.Costs
               .AnyAsync(f => f.Id == id && f.CreatorId == userId);
         }
+
+        public async Task<decimal> GetTotalCostAsync(string userId)
+        {
+            var totalCost = await context.Costs.Where(i => i.CreatorId == userId).SumAsync(i => i.CostValue);
+
+            return totalCost;
+        }
     }
 }

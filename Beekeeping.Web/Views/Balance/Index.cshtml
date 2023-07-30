@@ -53,6 +53,7 @@
     <div class="row">
         <div class="column">
             <h2 class="text-center">Приходи</h2>
+           <h3>Общо приходи: @Model.TotalIncome лв.</h3>
             <a asp-controller="Balance" asp-action="AddIncome" class="btn btn-light mb-2 w-100 p-1 fw-bold">Добави нов приход</a>
             <table>
                 <tr>
@@ -66,7 +67,7 @@
                     <tr>
                         <td>@i.DayOfTheIncome</td>
                         <td>@i.TypeOfIncome</td>
-                        <td>@i.IncomeValue</td>
+                        <td>@i.IncomeValue лв.</td>
                         <td>
                             <a asp-controller="Balance" asp-action="DeleteIncome" asp-route-id="@i.Id" class="btn btn-warning"
                                onclick="return confirm('Сигурни ли сте,че искате да изтриете инфомацията за получения приход? Данните Ви ще бъдат загубени!')">
@@ -79,6 +80,7 @@
         </div>
         <div class="column">
             <h2 class="text-center">Разходи</h2>
+            <h4>Общо разходи: @Model.TotalCost лв.</h4>
             <a asp-controller="Balance" asp-action="AddCost" class="btn btn-light mb-2 w-100 p-1 fw-bold">Добави нов разход</a>
             <table>
                 <tr>
@@ -92,7 +94,7 @@
                     <tr>
                         <td>@c.DayOfTheCost</td>
                         <td>@c.TypeOfCost</td>
-                        <td>@c.CostValue</td>
+                        <td>@c.CostValue лв.</td>
                         <td>
                             <a asp-controller="Balance" asp-action="DeleteCost" asp-route-id="@c.Id" class="btn btn-warning"
                                onclick="return confirm('Сигурни ли сте,че искате да изтриете инфомацията за направения разход? Данните Ви ще бъдат загубени!')">
