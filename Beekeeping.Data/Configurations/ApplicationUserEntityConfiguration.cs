@@ -14,7 +14,7 @@
             builder.HasData(GenerateDemoUser());
         }
 
-        private ApplicationUser GenerateDemoUser()
+        private static ApplicationUser GenerateDemoUser()
         {
             string id = "44c36b39-ad0a-4260-b448-45bb03158888";
 
