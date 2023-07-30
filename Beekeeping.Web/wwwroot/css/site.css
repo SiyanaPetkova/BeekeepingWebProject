@@ -152,3 +152,35 @@ input[type=submit] {
     width: 100%;
     height: 500px;
     border-radius: 10px;
+}
+
+.container {
+    position: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+    .container img {
+        width: 100%;
+        height: auto;
+    }
+
+    .container .btn-group {
+        position: center;
+        top: 90%;
+        left: 80%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        background-color: lightgoldenrodyellow;
+        color: black;
+        font-size: 16px;
+        padding: 12px 24px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    .container .btn:hover {
+        background-color: transparent;
+    }
