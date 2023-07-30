@@ -8,6 +8,7 @@
     using Data.Models;
     using Models.Cost;
     using Interfaces;
+    using System.Globalization;
 
     public class CostService : ICostService
     {
@@ -36,13 +37,14 @@
 
         public async Task<IEnumerable<CostViewModel>?> AllCostAsync(string userId)
         {
+         
             return await context.Costs
                                 .Where(c => c.CreatorId == userId)
                                 .OrderByDescending(f => f.DayOfTheCost)
                                 .Select(c => new CostViewModel()
                                 {
                                     Id = c.Id,
-                                    DayOfTheCost = c.DayOfTheCost,
+                                    DayOfTheCost = c.DayOfTheCost.ToLongDateString(),
                                     CostValue = c.CostValue,
                                     TypeOfCost = c.TypeOfCost,
                                     CreatorId = userId

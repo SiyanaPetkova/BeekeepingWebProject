@@ -47,7 +47,7 @@
                                  .Select(n => new NoteToDoViewModel()
                                  {
                                      Id = n.Id,
-                                     DateToBeDone = n.DateToBeDone,
+                                     DateToBeDone = n.DateToBeDone.ToLongDateString(),
                                      Description = n.Description,
                                      Finished = n.Finished == true ? "Да" : "Не",
                                      CreatorId = userId

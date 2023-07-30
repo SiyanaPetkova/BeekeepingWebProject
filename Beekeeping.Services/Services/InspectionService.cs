@@ -42,7 +42,7 @@
                              .Select(i => new InspectionViewModel
                              {
                                  Id = i.Id,
-                                 DayOfInspection = i.DayOfInspection,
+                                 DayOfInspection = i.DayOfInspection.ToLongDateString(),
                                  NumberOfFrames = i.NumberOfFrames,
                                  NumberOfBroodFrames = i.NumberOfBroodFrames,
                                  Strenght = i.Strenght,
@@ -103,7 +103,7 @@
                 .Select(i => new InspectionViewModel
                 {
                     Id = i.Id,
-                    DayOfInspection = i.DayOfInspection,
+                    DayOfInspection = i.DayOfInspection.ToLongDateString(),
                     NumberOfFrames = i.NumberOfFrames,
                     NumberOfBroodFrames = i.NumberOfBroodFrames,
                     Strenght = i.Strenght,

@@ -40,7 +40,7 @@
                                  .Select(i => new IncomeViewModel()
                                  {
                                      Id = i.Id,
-                                     DayOfTheIncome = i.DayOfTheIncome,
+                                     DayOfTheIncome = i.DayOfTheIncome.ToLongDateString(),
                                      TypeOfIncome = i.TypeOfIncome,
                                      IncomeValue = i.IncomeValue,
                                      CreatorId = userId

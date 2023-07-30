@@ -7,8 +7,7 @@
         public int Id { get; set; }
 
         [Display(Name = "Дата")]
-        [DataType(DataType.Date)]
-        public DateTime DateToBeDone { get; set; }
+        public string DateToBeDone { get; set; } = null!;
 
         [Display(Name = "Описание на задачата")]
         public string Description { get; set; } = null!;

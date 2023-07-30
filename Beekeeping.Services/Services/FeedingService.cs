@@ -34,7 +34,7 @@
                                     FeedingType = f.FeedingType,
                                     NumberOfBeeHives = f.NumberOfBeeHives,
                                     PriceOfFeeding = f.PriceOfFeeding,
-                                    DayOfFeeding = f.DayOfFeeding,
+                                    DayOfFeeding = f.DayOfFeeding.ToLongDateString(),
                                     CreatorId = userId
 
                                 })

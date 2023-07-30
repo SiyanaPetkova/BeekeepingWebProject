@@ -56,7 +56,7 @@
                                 .Select(t => new HiveTreatmentViewModel()
                                 {
                                     Id = t.Id,
-                                    TreatmentDate = t.TreatmentDate,
+                                    TreatmentDate = t.TreatmentDate.ToLongDateString(),
                                     MedicationName = t.MedicationName,
                                     ActiveIngredient = t.ActiveIngredient,
                                     PriceOfTheTreatment = t.PriceOfTheTreatment,
