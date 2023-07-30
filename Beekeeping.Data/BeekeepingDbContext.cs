@@ -32,14 +32,7 @@
 
             builder.ApplyConfigurationsFromAssembly(configAssembly);
 
-            builder.Entity<HiveTreatment>()
-                   .Property(ht => ht.PriceOfTheTreatment)
-                   .HasPrecision(18, 2);
-
-            builder.Entity<HiveFeeding>()
-                   .Property(hf => hf.PriceOfFeeding)
-                   .HasPrecision(18, 2);
-
+         
             builder.Entity<Cost>()
                    .Property(c => c.CostValue)
                    .HasPrecision(18, 2);
