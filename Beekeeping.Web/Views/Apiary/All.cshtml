@@ -1,16 +1,12 @@
 ﻿@model IEnumerable<ApiaryViewModel>
 
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-
 <div class="container-fluid" justify-content-center>
     <div class="row">
         <div class="col-8 mt-3">
             <div class="img-responsive">
                 <img class="" src="/images/ApiaryAll.jpg" alt="Card image cap">
             </div>
-            <div class="col-8 mt-3">
+            <div class="col-4 mt-3">
                 <a asp-controller="Apiary" asp-action="Add" class="btn btn-light mb-2 w-100 p-3 fw-bold">Добави нов пчелин</a>
             </div>
             <body>
@@ -42,7 +38,11 @@
                         </div>
                     </div>
                 }
+                <div class="col-3 mt-3">
+                    <a asp-controller="Apiary" asp-action="ApiaryWeather" asp-route-id="" class="btn btn-warning mb-2 w-100 p-1 fw-bold">Виж времето на пчелините</a>
+                </div>
             </body>
+
         </div>
     </div>
 </div>

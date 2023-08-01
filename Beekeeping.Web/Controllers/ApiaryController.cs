@@ -1,6 +1,5 @@
 ﻿namespace Beekeeping.Web.Controllers
 {
-    using Beekeeping.Services.Services;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
@@ -9,16 +8,19 @@
     using Web.Infrastructure.Extensions;
 
     using static Common.NotificationMessages.ErrorMessages;
+    using static Common.ConstantValues;
 
 
     [Authorize]
     public class ApiaryController : Controller
     {
         private readonly IApiaryService apiaryService;
+        private readonly IApiaryWeatherService weatherService;
 
-        public ApiaryController(IApiaryService apiaryService, IApiaryWeatherService apiaryWeatherService)
+        public ApiaryController(IApiaryService apiaryService, IApiaryWeatherService weatherService)
         {
             this.apiaryService = apiaryService;
+            this.weatherService = weatherService;
 
         }
 
@@ -206,6 +208,32 @@
 
             return RedirectToAction("All");
         }
+
+        public async Task<IActionResult> ApiaryWeather()
+        {
+            var userId = this.User.Id();
+
+            var apiaries = await weatherService.GetApiariesCoordinatesAsync(userId);
+
+            var weatherResults = new List<ApiaryWeatherModel>();
+
+            foreach (var apiary in apiaries)
+            {
+                double latitude = apiary.Latitude;
+                double longitude = apiary.Longitude;
+
+                string apiCall = $"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={OpenWeatherApiKey}";
+
+                ApiaryWeatherModel results = weatherService.GetWeatherDataAsync(apiCall).Result;
+
+                results.Title = apiary.ApiaryName;
+
+                weatherResults.Add(results);
+            }
+
+            return View(weatherResults);
+        }
+
 
     }
 }
