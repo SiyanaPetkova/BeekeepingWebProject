@@ -1,5 +1,6 @@
 ﻿namespace Beekeeping.Web.Controllers
 {
+    using Beekeeping.Services.Services;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
@@ -9,14 +10,16 @@
 
     using static Common.NotificationMessages.ErrorMessages;
 
+
     [Authorize]
     public class ApiaryController : Controller
     {
         private readonly IApiaryService apiaryService;
 
-        public ApiaryController(IApiaryService apiaryService)
+        public ApiaryController(IApiaryService apiaryService, IApiaryWeatherService apiaryWeatherService)
         {
             this.apiaryService = apiaryService;
+
         }
 
         [HttpGet]
@@ -166,6 +169,7 @@
 
             return this.RedirectToAction("All");
         }
+
         public async Task<IActionResult> Delete(int id)
         {
             var userId = this.User.Id();
@@ -202,5 +206,6 @@
 
             return RedirectToAction("All");
         }
+
     }
 }

@@ -117,20 +117,13 @@
                 RegistrationNumber = apiary.RegistrationNumber,
                 Latitude = apiary.Latitude,
                 Longitude = apiary.Longitude
-                
+
             };
         }
 
         public async Task<bool> IsTheUserOwner(string ownerId)
         {
-            var apiary = await context.Apiaries.FirstOrDefaultAsync(a => a.OwnerId == ownerId);
-
-            if (apiary == null)
-            {
-                return false;
-            }
-
-            return true;
+            return await context.Apiaries.AnyAsync(a => a.OwnerId == ownerId);
         }
 
     }

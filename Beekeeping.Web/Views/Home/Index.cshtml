@@ -11,9 +11,10 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-9">
-            <video class="w-100" autoplay loop muted>
+            <video width="800" height="600" class="w-100" autoplay loop muted>
                 <source src="/images/IndexVideo3.mp4" type="video/mp4" />
             </video>
+
         </div>
         <div class="col-md-3">
             @if (User.Identity.IsAuthenticated)
@@ -24,7 +25,7 @@
                     <a asp-controller="Apiary" asp-action="All" asp-route-id="" class="btn btn-warning mb-3 w-200 p-6 fw-bold">Пчелини</a>
                     <a asp-controller="Balance" asp-action="Index" asp-route-id="" class="btn btn-warning mb-3 w-200 p-6 fw-bold">Баланс</a>
                     <a asp-controller="Event" asp-action="Index" asp-route-id="" class="btn btn-warning mb-3 w-200 p-6 fw-bold">Cъбития</a>
-                </div>
+                </div>            
             }
             else
             {

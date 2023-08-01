@@ -10,13 +10,13 @@
             <div class="img-responsive">
                 <img class="" src="/images/ApiaryAll.jpg" alt="Card image cap">
             </div>
-             <div class ="col-8 mt-3">
+            <div class="col-8 mt-3">
                 <a asp-controller="Apiary" asp-action="Add" class="btn btn-light mb-2 w-100 p-3 fw-bold">Добави нов пчелин</a>
-           </div>
+            </div>
             <body>
                 @foreach (var apiary in Model)
                 {
-                    <div class="container">
+                    <div class="container-fluid">
                         <h1>@apiary.Name</h1>
                         <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#myModal-@(apiary.Id)">Повече информация</button>
                         <div class="modal fade" id="myModal-@(apiary.Id)" role="dialog">
@@ -42,7 +42,7 @@
                         </div>
                     </div>
                 }
-            </body>                      
+            </body>
         </div>
     </div>
 </div>

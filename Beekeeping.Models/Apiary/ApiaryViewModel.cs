@@ -16,9 +16,9 @@
 
         public int NumberOfHives { get; set; }
 
-        public double? Latitude { get; set; }
+        public double Latitude { get; set; }
 
-        public double? Longitude { get; set; }
+        public double Longitude { get; set; }
 
         public string OwnerId { get; set; }
 

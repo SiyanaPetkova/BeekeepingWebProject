@@ -184,3 +184,47 @@ input[type=submit] {
     .container .btn:hover {
         background-color: transparent;
     }
+
+.hexButton polygon {
+    fill-opacity: 0;
+    stroke: rgba(49, 191, 192,1);
+    stroke-width: 2;
+    position: relative;
+}
+
+.hexButton {
+    transform: scaleX(1) scaleY(1);
+    position: relative;
+    transition: all 0.35s ease-out;
+}
+
+    .hexButton:hover polygon {
+        /* fill-opacity:0.5; */
+    }
+
+
+    .hexButton span {
+        position: absolute;
+        left: 0px;
+        width: 100%;
+        line-height: 60px;
+        font-size: 20px;
+        color: rgba(49, 191, 192,1);
+        text-transform: uppercase;
+        letter-spacing: 0.5rem;
+        font-family: sans-serif;
+        transition: all 0.35s ease-out;
+        text-shadow: 0 0 1px 0px white;
+    }
+
+    .hexButton:hover {
+        transform: scaleX(1.2) scaleY(1.2);
+        color: #000;
+    }
+
+        .hexButton:hover span {
+            transform: scaleX(0.9) scaleY(0.9);
+            color: white;
+        }
+
+

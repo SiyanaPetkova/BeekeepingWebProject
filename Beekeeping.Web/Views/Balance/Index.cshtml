@@ -53,7 +53,7 @@
     <div class="row">
         <div class="column">
             <h2 class="text-center">Приходи</h2>
-           <h3>Общо приходи: @Model.TotalIncome лв.</h3>
+            <h4 class="border border-warning">Общо приходи: @Model.TotalIncome лв.</h4>
             <a asp-controller="Balance" asp-action="AddIncome" class="btn btn-light mb-2 w-100 p-1 fw-bold">Добави нов приход</a>
             <table>
                 <tr>
@@ -80,7 +80,7 @@
         </div>
         <div class="column">
             <h2 class="text-center">Разходи</h2>
-            <h4>Общо разходи: @Model.TotalCost лв.</h4>
+            <h4 class ="border border-warning">Общо разходи: @Model.TotalCost лв.</h4>
             <a asp-controller="Balance" asp-action="AddCost" class="btn btn-light mb-2 w-100 p-1 fw-bold">Добави нов разход</a>
             <table>
                 <tr>
