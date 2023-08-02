@@ -3,7 +3,9 @@
 <head style="background">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>@ViewData["Title"] - За пчелите и хората</title>
+
     <link rel="shortcut icon" type="image/x-icon" href="~/favicon.png" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -16,6 +18,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js" integrity="sha512-lbwH47l/tPXJYG9AcFNoJaTMhGvYWhVM9YI43CT+uteTRRaiLCui8snIgyAN8XWgNjNhCqlAUdzZptso6OCoFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
    
 </head>
+
 <body style="background-image: src(/images/back.jpg)">
     <header>
         <partial name="_NotificationPartial" />
@@ -46,6 +49,13 @@
                                 <li><a class="dropdown-item" href="#">Статистики</a></li>
                             </ul>
                         </li>
+
+                        @if (User.IsInRole(AdministratorRoleName))
+                        {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Home" asp-action="Index">Администраторски панел</a>
+                        </li>
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

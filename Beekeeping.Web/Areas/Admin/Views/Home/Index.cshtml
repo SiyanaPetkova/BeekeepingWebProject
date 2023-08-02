@@ -1,0 +1,35 @@
+﻿@model UsersInformationModel
+
+@{
+    ViewBag.Title = "Администраторски панел";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="text-center row">
+    <div class="card col-4" style="width: 20rem; height: 10rem;  ">
+        <div class="card-body">
+            <h5 class="card-title mt-1">Общо регистрирани потребители</h5>
+            <p class="mb-2"><span class="fw-bold">@Model.TotalUsers</span></p>
+        </div>
+    </div>
+    <div class="card col-4" style="width: 20rem; height: 10rem;  ">
+        <div class="card-body">
+            <h5 class="card-title mt-1">Общо потребители, регистрирали пчелини</h5>
+            <p class="mb-2"><span class="fw-bold">@Model.TotalUsersWithApiaries</span></p>
+        </div>
+    </div>
+    <div class="card col-4" style="width: 20rem; height: 10rem;  ">
+        <div class="card-body">
+            <h5 class="card-title mt-1">Общо регистрирани пчелини</h5>
+            <p class="mb-2"><span class="fw-bold">@Model.TotalApiaries</span></p>
+        </div>
+    </div>
+    <div class="card col-4" style="width: 20rem; height: 10rem; ">
+        <div class="card-body">
+            <h5 class="card-title mt-1">Общо регистрирани кошери</h5>
+            <p class="mb-2"><span class="fw-bold">@Model.TotalBeeColonies</span></p>
+        </div>
+    </div>
+</div>

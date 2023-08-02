@@ -1,12 +1,13 @@
 ﻿namespace Beekeeping.Web.Areas.Admin.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    public class AdminController : Controller
+    using static Web.Areas.Admin.AdminConstants;
+
+    [Area(AreaName)]
+    [Authorize(Roles = AdministratorRoleName)]
+    public abstract class AdminController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
     }
 }
