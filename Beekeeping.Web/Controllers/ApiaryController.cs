@@ -222,7 +222,7 @@
                 double latitude = apiary.Latitude;
                 double longitude = apiary.Longitude;
 
-                string apiCall = $"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={OpenWeatherApiKey}";
+                string apiCall = $"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={OpenWeatherApiKey}&units=metric";
 
                 ApiaryWeatherModel results = weatherService.GetWeatherDataAsync(apiCall).Result;
 

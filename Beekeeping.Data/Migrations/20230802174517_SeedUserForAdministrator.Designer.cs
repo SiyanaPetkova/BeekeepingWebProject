@@ -4,6 +4,7 @@ using Beekeeping.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Beekeeping.Data.Migrations
 {
     [DbContext(typeof(BeekeepingDbContext))]
-    partial class BeekeepingDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230802174517_SeedUserForAdministrator")]
+    partial class SeedUserForAdministrator
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -160,14 +162,14 @@ namespace Beekeeping.Data.Migrations
                         {
                             Id = new Guid("d23c4f40-0178-4622-b307-b482a79aa316"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "738638f8-c421-4f83-85ff-f6a326467a4e",
+                            ConcurrencyStamp = "77cc69d2-6987-43e7-a3d4-94efd0a34d2a",
                             Email = "testAdmin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "TESTADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAENVuxGrGkNxVoiHXgs7jXfln/Y25ITSSMdbmW/u4QLJGSj+wq1o9AMsOaTz3p24r7A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGBBPUCNgj9s2+rONpqX8QENnkMcPogdCr1pE1EdWOeRMRyLnw6Hl/qHedr2gfkI5g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "BDB7C99BDCCCAC4180319C669772258B",
+                            SecurityStamp = "12F0B38F71BEA342B8A18608A5217CF6",
                             TwoFactorEnabled = false,
                             UserName = "testAdmin@gmail.com"
                         },
@@ -175,14 +177,14 @@ namespace Beekeeping.Data.Migrations
                         {
                             Id = new Guid("44c36b39-ad0a-4260-b448-45bb03158888"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9d14ea38-1d12-4cda-b3a8-6d491d0b75c0",
+                            ConcurrencyStamp = "95274b41-99f2-48dd-85af-a3800c1dbe3c",
                             Email = "demouser@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "DEMOUSER@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKqHANRi88jNrV5WemfgI5mPZvOyiZp+xCynDpJb4ea031775jq8cXPrjnKnaqB3aA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBPobu9f5OdgzHI2ex+l3yRKVDJ8k4zNzQ4XFSRmlrpVOk7mZC+RlbQzafAMxYge9Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "66E8D8339EBDE045A3E73275684530A6",
+                            SecurityStamp = "FCB9E6CC2B6DA749BE2C0B538112615A",
                             TwoFactorEnabled = false,
                             UserName = "demouser@gmail.com"
                         });

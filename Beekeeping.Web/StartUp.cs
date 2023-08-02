@@ -9,6 +9,8 @@ namespace Beekeeping.Web
     using Web.Infrastructure.Extensions;
     using Web.Infrastructure.ModelBinders;
 
+    using static Web.Areas.Admin.AdminConstants;
+
     public class StartUp
     {
         public static void Main(string[] args)
@@ -36,19 +38,15 @@ namespace Beekeeping.Web
                 options.Password.RequiredLength =
                                    builder.Configuration.GetValue<int>("Identity:Password:RequiredLength");
             })
-                            .AddRoles<IdentityRole<Guid>>()
+                             .AddRoles<IdentityRole<Guid>>()
                             .AddEntityFrameworkStores<BeekeepingDbContext>();
 
             builder.Services.AddApplicationServices(typeof(IApiaryService));
-
-
 
             builder.Services.AddControllersWithViews()
                  .AddMvcOptions(options =>
                  {
                      options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
-                     options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(
-_                                                 => "Полето {1} е задължително.");
                  });
 
             var app = builder.Build();
@@ -72,10 +70,23 @@ _                                                 => "Полето {1} е задължително.
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.MapControllerRoute(
+            if (app.Environment.IsDevelopment())
+            {
+                app.SeedAdministrator(AdminEmail);
+            }
+
+            app.UseEndpoints(config =>
+            {
+                config.MapControllerRoute(
+                    name: "areas",
+                    pattern: "/{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+                app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-            app.MapRazorPages();
+
+                app.MapRazorPages();
+            });
 
             app.Run();
         }

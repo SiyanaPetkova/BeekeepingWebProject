@@ -1,8 +1,11 @@
 ﻿namespace Beekeeping.Web.Infrastructure.Extensions
 {
     using System.Reflection;
-
+    using Beekeeping.Data.Models;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
+
+    using static Web.Areas.Admin.AdminConstants;
 
     public static class WebApplicationBuilderExtensions
     {
@@ -34,5 +37,36 @@
                 services.AddScoped(interfaceType, implementationType);
             }
         }
+
+        public static IApplicationBuilder SeedAdministrator(this IApplicationBuilder app, string email)
+        {
+            using IServiceScope scopedServices = app.ApplicationServices.CreateScope();
+
+            IServiceProvider serviceProvider = scopedServices.ServiceProvider;
+
+            var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
+
+            Task.Run(async () =>
+            {
+                if (await roleManager.RoleExistsAsync(AdministratorRoleName))
+                {
+                    return;
+                }
+
+                var role = new IdentityRole<Guid>(AdministratorRoleName);
+
+                await roleManager.CreateAsync(role);
+
+                var adminUser = await userManager.FindByEmailAsync(email);
+
+                await userManager.AddToRoleAsync(adminUser, AdministratorRoleName);
+            })
+            .GetAwaiter()
+            .GetResult();
+
+            return app;
+        }
+
     }
 }

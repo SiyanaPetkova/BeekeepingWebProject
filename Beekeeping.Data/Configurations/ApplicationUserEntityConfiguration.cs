@@ -1,11 +1,11 @@
 ﻿namespace Beekeeping.Data.Configurations
 {
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
+    using System;
 
     using Data.Models;
-    using System;
-    using Microsoft.AspNetCore.Identity;
 
     public class ApplicationUserEntityConfiguration : IEntityTypeConfiguration<ApplicationUser>
     {
@@ -16,13 +16,14 @@
 
         private static ApplicationUser GenerateDemoUser()
         {
-            string id = "44c36b39-ad0a-4260-b448-45bb03158888";
 
             Func<string> GenerateSecurityStamp = delegate ()
-            {
-                var guid = Guid.NewGuid();
-                return String.Concat(Array.ConvertAll(guid.ToByteArray(), b => b.ToString("X2")));
-            };
+                        {
+                            var guid = Guid.NewGuid();
+                            return String.Concat(Array.ConvertAll(guid.ToByteArray(), b => b.ToString("X2")));
+                        };
+
+            string id = "44c36b39-ad0a-4260-b448-45bb03158888";
 
             var user = new ApplicationUser()
             {
@@ -39,8 +40,8 @@
 
             user.PasswordHash = hasher.HashPassword(user, password);
 
+
             return user;
         }
-
     }
 }
