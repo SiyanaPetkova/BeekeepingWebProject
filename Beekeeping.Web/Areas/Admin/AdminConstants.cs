@@ -1,5 +1,7 @@
 ﻿namespace Beekeeping.Web.Areas.Admin
 {
+    using Beekeeping.Models.Apiary;
+
     public static class AdminConstants
     {
         public const string AreaName = "Admin";

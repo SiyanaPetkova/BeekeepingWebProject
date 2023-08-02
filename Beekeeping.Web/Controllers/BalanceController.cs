@@ -59,7 +59,6 @@
             return View(model);
         }
 
-
         [HttpGet]
         public IActionResult AddIncome()
         {
@@ -179,5 +178,7 @@
 
             return this.RedirectToAction("Index");
         }
+
+
     }
 }

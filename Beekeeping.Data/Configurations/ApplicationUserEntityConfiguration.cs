@@ -31,6 +31,7 @@
                 Email = "demouser@gmail.com",
                 UserName = "demouser@gmail.com",
                 NormalizedUserName = "DEMOUSER@GMAIL.COM",
+                NormalizedEmail = "DEMOUSER@GMAIL.COM",
                 SecurityStamp = GenerateSecurityStamp()
             };
 
