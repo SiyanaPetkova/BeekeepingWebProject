@@ -1,0 +1,68 @@
+﻿@model IEnumerable<UserAdminModel>
+
+@{
+    int count = 0;
+}
+
+@{
+    ViewBag.Title = "Администратори";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+
+<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#addAdminModal">Добави администратор</button>
+
+<div class="text-center row">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Email</th>
+            </tr>
+        </thead>
+        @foreach (var i in Model)
+        {
+            {
+                count = count + 1;
+            }
+
+            <tbody>
+                <tr>
+                    <th scope="row">@count</th>
+                    <td>@i.Email</td>
+                    <td>
+                        <a asp-controller="Home" asp-action="Delete" asp-route-id="@i.Id" class="btn btn-warning"
+                           onclick="return confirm('Сигурни ли сте,че искате да премахнете администраторските права на този потребител?')">
+                            <span class="glyphicon">&#128465;</span>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        }
+    </table>
+</div>
+
+<div class="modal fade" id="addAdminModal" tabindex="-1" role="dialog" aria-labelledby="addAdminModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addAdminModalLabel">Добави администратор</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="AddAdmin" method="post">
+                    <div class="form-group">
+                        <label for="Email">Email:</label>
+                        <input type="email" class="form-control" id="Email" name="Email" required />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-warning">Добави</button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Затвори</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

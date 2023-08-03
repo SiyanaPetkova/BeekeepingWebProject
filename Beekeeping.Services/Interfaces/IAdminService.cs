@@ -5,5 +5,6 @@
     public interface IAdminService
     {
         UsersInformationModel GetInformationAboutTheUsersAsync();
+
     }
 }

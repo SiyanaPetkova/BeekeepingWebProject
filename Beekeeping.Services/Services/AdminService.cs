@@ -7,7 +7,7 @@
     public class AdminService : IAdminService
     {
         private readonly BeekeepingDbContext context;
-  
+
         public AdminService(BeekeepingDbContext context)
         {
             this.context = context;
@@ -22,7 +22,7 @@
             var totalApiaries = context.Apiaries.Count();
 
             var totalBeeColonies = context.BeeColonies.Count();
-                        
+
             return new UsersInformationModel()
             {
                 TotalUsers = totalUsers,
