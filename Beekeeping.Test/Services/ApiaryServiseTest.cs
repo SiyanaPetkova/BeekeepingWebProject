@@ -15,16 +15,11 @@
         private BeekeepingDbContext context;
         private IApiaryService apiaryService;
 
-        private string testUserId;
-        private string notExistingUser;
-
         private int apiaryIdForTests;
 
         [SetUp]
         public async Task SetUp()
         {
-            testUserId = UserdId;
-            notExistingUser = NotExistingUserdId;
             apiaryIdForTests = 9150;
 
             List<Apiary> apiaries = new()
@@ -101,19 +96,19 @@
         public async Task AllApiaryAsyncByGivenUserShouldReturnAllAppiaries()
         {
             var expected = await context.Apiaries
-            .Where(a => a.OwnerId == UserdId)
-            .Select(a => new ApiaryViewModel
-            {
-                Id = a.Id,
-                Name = a.Name,
-                Location = a.Location,
-                RegistrationNumber = a.RegistrationNumber,
-                NumberOfHives = a.BeeHives.Count(),
-                OwnerId = a.OwnerId,
-                Latitude = a.Latitude,
-                Longitude = a.Longitude
-            })
-            .ToArrayAsync();
+                          .Where(a => a.OwnerId == UserdId)
+                          .Select(a => new ApiaryViewModel
+                          {
+                              Id = a.Id,
+                              Name = a.Name,
+                              Location = a.Location,
+                              RegistrationNumber = a.RegistrationNumber,
+                              NumberOfHives = a.BeeHives.Count(),
+                              OwnerId = a.OwnerId,
+                              Latitude = a.Latitude,
+                              Longitude = a.Longitude
+                          })
+                          .ToArrayAsync();
 
             var actual = await apiaryService.AllApiaryAsync(UserdId);
 

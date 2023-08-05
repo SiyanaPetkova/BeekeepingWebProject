@@ -72,7 +72,7 @@
                 return RedirectToAction("Add", "Apiary");
             }
 
-            List<AllApiariesForSelectModel> apiariesForSelect = AddApiaries(apiaries);
+            var apiariesForSelect = apiaryService.AllApiariesForSelectAsync(apiaries);
 
             var model = new BeeColonyFormModel();
             var beeQueen = new BeeQueenFormModel();
@@ -101,7 +101,7 @@
             {
                 var apiaries = await apiaryService.AllApiaryAsync(userId);
 
-                List<AllApiariesForSelectModel> apiariesForSelect = AddApiaries(apiaries);
+                var apiariesForSelect = apiaryService.AllApiariesForSelectAsync(apiaries);
 
                 var beeQueen = new BeeQueenFormModel();
 
@@ -155,7 +155,7 @@
             {
                 var model = await beeColonyService.GetBeeColonyForEditAsync(userId, id);
 
-                List<AllApiariesForSelectModel> apiariesForSelect = AddApiaries(apiaries);
+                var apiariesForSelect = apiaryService.AllApiariesForSelectAsync(apiaries);
 
                 model.Apiaries = apiariesForSelect;
 
@@ -187,7 +187,7 @@
             {
                 var apiaries = await apiaryService.AllApiaryAsync(userId);
 
-                List<AllApiariesForSelectModel> apiariesForSelect = AddApiaries(apiaries);
+                var apiariesForSelect = apiaryService.AllApiariesForSelectAsync(apiaries);
 
                 model.Apiaries = apiariesForSelect;
               
@@ -267,27 +267,7 @@
             return RedirectToAction("All", "Apiary");
         }
 
-        private static List<AllApiariesForSelectModel> AddApiaries(IEnumerable<ApiaryViewModel>? apiaries)
-        {
-            var apiariesForSelect = new List<AllApiariesForSelectModel>();
-
-            if (apiaries != null)
-            {
-                foreach (var apiary in apiaries)
-                {
-                    var apiaryForSelect = new AllApiariesForSelectModel()
-                    {
-                        Id = apiary.Id,
-                        Name = apiary.Name
-                    };
-                    apiariesForSelect.Add(apiaryForSelect);
-                }
-
-                return apiariesForSelect;
-            }
-
-            return null;
-        }
+        
 
     }
 }

@@ -20,5 +20,7 @@
         Task<bool> DoesApiaryExists(string ownerId, int id);
 
         Task DeleteApiaryAsync(string ownerId, int apiaryId);
+
+        List<AllApiariesForSelectModel> AllApiariesForSelectAsync(IEnumerable<ApiaryViewModel>? apiaries);
     }
 }

@@ -19,6 +19,41 @@
             this.context = context;
         }
 
+        public async Task<IEnumerable<BeeColonyViewModel>?> AllColoniesAsync(string ownerId, int apiaryId)
+        {
+            var allColoniesAsync = await context.BeeColonies
+                .Where(b => b.OwnerOfTheApiary == ownerId && b.ApiaryId == apiaryId)
+                .Include(b => b.BeeQueen)
+                .Include(b => b.Apiary)
+                .Select(b => new BeeColonyViewModel
+                {
+                    Id = b.Id,
+                    PlateNumber = b.PlateNumber,
+                    AdditionalComмent = b.AdditionalComмent,
+                    TypeOfBroodBox = b.TypeOfBroodBox,
+                    Super = b.Super == true ? "Има" : "Няма",
+                    NumberOfSupers = b.NumberOfSupers,
+                    SecondBroodBox = b.SecondBroodBox == true ? "Има" : "Няма",
+                    NumberOfAdditionalBoxes = b.NumberOfAdditionalBoxes,
+                    MatedBeeQueen = b.MatedBeeQueen == true ? "Има" : "Няма",
+                    Apiary = b.Apiary.Name,
+                    BeeQueen = new BeeQueenSelectViewModel()
+                    {
+                        BeeQueenYearOfBirth = b.BeeQueen.BeeQueenYearOfBirth,
+                        Breeder = b.BeeQueen.Breeder,
+                        BeeQueenType = b.BeeQueen.BeeQueenType
+                    }
+                })
+               .ToArrayAsync();
+
+            if (allColoniesAsync.Length == 0)
+            {
+                return null;
+            }
+
+            return allColoniesAsync;
+        }
+
         public async Task AddNewBeeColonyAsync(BeeColonyFormModel model, string ownerId)
         {
             var beeQueen = new BeeQueen()
@@ -46,40 +81,6 @@
             await context.BeeColonies.AddAsync(beeColony);
             await context.BeeQueens.AddAsync(beeQueen);
             await context.SaveChangesAsync();
-        }
-
-        public async Task<IEnumerable<BeeColonyViewModel>?> AllColoniesAsync(string ownerId, int apiaryId)
-        {
-            var allColoniesAsync = await context.BeeColonies.Where(b => b.OwnerOfTheApiary == ownerId && b.ApiaryId == apiaryId)
-                .Include(b => b.BeeQueen)
-                .Include(b => b.Apiary)
-                .Select(b => new BeeColonyViewModel
-                {
-                    Id = b.Id,
-                    PlateNumber = b.PlateNumber,
-                    AdditionalComмent = b.AdditionalComмent,
-                    TypeOfBroodBox = b.TypeOfBroodBox,
-                    Super = b.Super == true ? "Има" : "Няма",
-                    NumberOfSupers = b.NumberOfSupers,
-                    SecondBroodBox = b.SecondBroodBox == true ? "Има" : "Няма",
-                    NumberOfAdditionalBoxes = b.NumberOfAdditionalBoxes,
-                    MatedBeeQueen = b.MatedBeeQueen == true ? "Има" : "Няма",
-                    Apiary = b.Apiary.Name,
-                    BeeQueen = new Models.BeeQueen.BeeQueenSelectViewModel()
-                    {
-                        BeeQueenYearOfBirth = b.BeeQueen.BeeQueenYearOfBirth,
-                        Breeder = b.BeeQueen.Breeder,
-                        BeeQueenType = b.BeeQueen.BeeQueenType
-                    }
-                })
-               .ToArrayAsync();
-
-            if (allColoniesAsync == null)
-            {
-
-            }
-
-            return allColoniesAsync;
         }
 
         public async Task DeleteBeeColonyAsync(string userId, int id)
@@ -142,11 +143,11 @@
             var beeQueen = await context.BeeQueens
                                 .Where(b => b.Id == beeColony.BeeQueenId)
                                 .Select(b => new BeeQueenFormModel()
-                                 {
-                                     Breeder = b.Breeder,
-                                     BeeQueenType = b.BeeQueenType,
-                                     BeeQueenYearOfBirth = b.BeeQueenYearOfBirth
-                                 })
+                                {
+                                    Breeder = b.Breeder,
+                                    BeeQueenType = b.BeeQueenType,
+                                    BeeQueenYearOfBirth = b.BeeQueenYearOfBirth
+                                })
                                 .FirstOrDefaultAsync();
 
             return new BeeColonyFormModel

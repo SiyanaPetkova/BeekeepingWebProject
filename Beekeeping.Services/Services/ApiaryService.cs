@@ -127,5 +127,27 @@
             return await context.Apiaries.AnyAsync(a => a.OwnerId == ownerId);
         }
 
+        public List<AllApiariesForSelectModel> AllApiariesForSelectAsync(IEnumerable<ApiaryViewModel>? apiaries)
+        {
+            var apiariesForSelect = new List<AllApiariesForSelectModel>();
+
+            if (apiaries != null)
+            {
+                foreach (var apiary in apiaries)
+                {
+                    var apiaryForSelect = new AllApiariesForSelectModel()
+                    {
+                        Id = apiary.Id,
+                        Name = apiary.Name
+                    };
+                    apiariesForSelect.Add(apiaryForSelect);
+                }
+
+                return apiariesForSelect;
+            }
+
+            return null;
+        }
+
     }
 }

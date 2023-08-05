@@ -51,6 +51,7 @@
 
         [Display(Name = "Пчелин")]
         public int ApiaryId { get; set; }
+
         public IEnumerable<AllApiariesForSelectModel> Apiaries { get; set; } = new HashSet<AllApiariesForSelectModel>();
 
         public int BeeQueenId { get; set; }
