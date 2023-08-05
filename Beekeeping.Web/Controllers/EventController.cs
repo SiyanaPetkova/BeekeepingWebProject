@@ -90,7 +90,7 @@
 
                 if (model == null)
                 {
-                    TempData["InformationMessage"] = "Все още нямате добавени бележки. Можете да го направите тук.";
+                    TempData["InformationMessage"] = "Все още нямате добавена задача. Можете да го направите тук.";
 
                     return RedirectToAction("Add", "NoteToDo");
                 }

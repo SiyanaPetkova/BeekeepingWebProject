@@ -6,7 +6,7 @@
         <h2>Добави задача</h2>
 
         <form method="post">
-            <div class="row">
+            <div class="form-row">
                 <div class="col-3">
                     <label asp-for="DateToBeDone"></label>
                     <input asp-for="DateToBeDone" class="form-control">
@@ -17,6 +17,9 @@
                     <input asp-for="Description" class="form-control">
                     <span asp-validation-for="Description" class="small text-danger"></span>
                 </div>
+
+            </div>
+            <div class="form-group">
                 <div class="checkbox">
                     <label asp-for="Finished"></label>
                     <input type="checkbox" id="Finished" name="Finished" asp-for="Finished" />

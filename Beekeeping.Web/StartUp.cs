@@ -11,6 +11,7 @@ namespace Beekeeping.Web
 
     using static Web.Areas.Admin.AdminConstants;
 
+
     public class StartUp
     {
         public static void Main(string[] args)
@@ -27,6 +28,7 @@ namespace Beekeeping.Web
 
             builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
             {
+                options.User.RequireUniqueEmail = true;
                 options.SignIn.RequireConfirmedAccount =
                                    builder.Configuration.GetValue<bool>("Identity:SignIn:RequireConfirmedAccount");
                 options.Password.RequireLowercase =
@@ -37,6 +39,7 @@ namespace Beekeeping.Web
                                    builder.Configuration.GetValue<bool>("Identity:Password:RequireNonAlphanumeric");
                 options.Password.RequiredLength =
                                    builder.Configuration.GetValue<int>("Identity:Password:RequiredLength");
+                
             })
                              .AddRoles<IdentityRole<Guid>>()
                             .AddEntityFrameworkStores<BeekeepingDbContext>();
@@ -48,6 +51,7 @@ namespace Beekeeping.Web
                  {
                      options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
                  });
+
 
             var app = builder.Build();
 

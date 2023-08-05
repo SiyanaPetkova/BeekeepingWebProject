@@ -10,8 +10,8 @@
         [Display(Name = "Наименование")]
         [Required(ErrorMessage = RequiredFieldErrorMessage)]
         [StringLength(ApiaryNameMaxLenght,
-               MinimumLength = ApiaryNameMinLenght,
-               ErrorMessage = FieldMinAndMaxStringLenghtErrorMessage)]
+          MinimumLength = ApiaryNameMinLenght,
+          ErrorMessage = FieldMinAndMaxStringLenghtErrorMessage)]
         public string Name { get; set; } = null!;
 
         [Display(Name = "Адрес")]

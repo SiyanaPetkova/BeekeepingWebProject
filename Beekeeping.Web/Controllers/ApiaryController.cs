@@ -63,7 +63,7 @@
 
             if (!isUserOwner)
             {
-                TempData["ErrorMessage"] = "Все още нямате добавен пчелин.";
+                TempData["InfoMessage"] = "Все още нямате добавен пчелин.";
 
                 return RedirectToAction("Add");
             }

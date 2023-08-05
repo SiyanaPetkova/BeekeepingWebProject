@@ -47,7 +47,7 @@
                 TempData["ErrorMessage"] = CommonErrorMessage;
             }
 
-            TempData["SuccessMessage"] = "Бележката Ви беше добавена успешно";
+            TempData["SuccessMessage"] = "Задачата Ви беше добавена успешно";
 
             return RedirectToAction("Notes", "Event");
         }
@@ -61,7 +61,7 @@
 
             if (!doesNoteExist)
             {
-                TempData["ErrorMessage"] = "Несъществуващa бележка";
+                TempData["ErrorMessage"] = "Несъществуващa задача";
 
                 return RedirectToAction("Notes", "Event");
             }
@@ -89,7 +89,7 @@
 
             if (!doesNoteExist)
             {
-                TempData["ErrorMessage"] = "Несъществуващa бележка";
+                TempData["ErrorMessage"] = "Несъществуващa задача";
 
                 return RedirectToAction("Notes", "Event");
             }
@@ -103,7 +103,7 @@
             {
                 await noteService.EditNoteAsync(model, userId, id);
 
-                TempData["SuccessMessage"] = "Успешно редактирахте бележката си";
+                TempData["SuccessMessage"] = "Успешно редактирахте задачата си";
 
                 return RedirectToAction("Notes", "Event");
             }
@@ -123,7 +123,7 @@
 
             if (!noteExist)
             {
-                TempData["ErrorMessage"] = "Не съществуваща бележка!";
+                TempData["ErrorMessage"] = "Не съществуваща задача!";
 
                 return RedirectToAction("Index", "Home");
             }
@@ -132,7 +132,7 @@
             {
                 await noteService.DeleteNotesAsync(userId, id);
 
-                TempData["SuccessMessage"] = "Бележката беше изтрита успешно!";
+                TempData["SuccessMessage"] = "Задачата беше изтрита успешно!";
 
             }
             catch (Exception)

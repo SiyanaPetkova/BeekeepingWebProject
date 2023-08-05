@@ -28,7 +28,7 @@
         public class InputModel
         {
             [Required(ErrorMessage = "Полето {0} e задължително.")]
-            [EmailAddress]
+            [EmailAddress(ErrorMessage = "Невалиден email.")]
             public string Email { get; set; } = null!;
 
             [Required(ErrorMessage = "Полето {0} e задължително.")]
@@ -73,7 +73,7 @@
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Невалиден email или парола.");
 
                     return Page();
                 }

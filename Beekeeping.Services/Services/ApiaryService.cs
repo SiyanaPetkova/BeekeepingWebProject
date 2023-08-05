@@ -17,23 +17,6 @@
         {
             this.context = context;
         }
-
-        public async Task AddNewApiaryAsync(ApiaryFormModel model, string ownerId)
-        {
-            var apiary = new Apiary()
-            {
-                Name = model.Name,
-                RegistrationNumber = model.RegistrationNumber,
-                Location = model.Location,
-                Latitude = model.Latitude,
-                Longitude = model.Longitude,
-                OwnerId = ownerId
-            };
-
-            await context.Apiaries.AddAsync(apiary);
-            await context.SaveChangesAsync();
-        }
-
         public async Task<IEnumerable<ApiaryViewModel>?> AllApiaryAsync(string ownerId)
         {
             bool doesOwnerHasApiariesAdded = await context.Apiaries.AnyAsync(a => a.OwnerId == ownerId);
@@ -53,11 +36,29 @@
                                     Location = o.Location,
                                     RegistrationNumber = o.RegistrationNumber,
                                     NumberOfHives = o.BeeHives.Count(),
-                                    OwnerId = o.OwnerId
+                                    OwnerId = o.OwnerId,
+                                    Latitude = o.Latitude,
+                                    Longitude = o.Longitude
                                 })
                                 .ToArrayAsync();
 
             return apiaries;
+        }
+
+        public async Task AddNewApiaryAsync(ApiaryFormModel model, string ownerId)
+        {
+            var apiary = new Apiary()
+            {
+                Name = model.Name,
+                RegistrationNumber = model.RegistrationNumber,
+                Location = model.Location,
+                Latitude = model.Latitude,
+                Longitude = model.Longitude,
+                OwnerId = ownerId
+            };
+
+            await context.Apiaries.AddAsync(apiary);
+            await context.SaveChangesAsync();
         }
 
         public async Task DeleteApiaryAsync(string ownerId, int id)
@@ -71,31 +72,6 @@
             }
 
             context.Apiaries.Remove(apiary);
-            await context.SaveChangesAsync();
-        }
-
-        public async Task<bool> DoesApiaryExists(string ownerId, int id)
-        {
-            return await context.Apiaries
-                .AnyAsync(a => a.Id == id && a.OwnerId == ownerId);
-        }
-
-        public async Task EditApiaryAsync(ApiaryEditFormModel model, int id, string ownerId)
-        {
-            var apiary = await context.Apiaries
-                                .FirstOrDefaultAsync(a => a.Id == id && a.OwnerId == ownerId);
-
-            if (apiary == null)
-            {
-                throw new InvalidOperationException();
-            }
-
-            apiary.Name = model.Name;
-            apiary.Location = model.Location;
-            apiary.RegistrationNumber = model.RegistrationNumber;
-            apiary.Latitude = model.Latitude;
-            apiary.Longitude = model.Longitude;
-
             await context.SaveChangesAsync();
         }
 
@@ -119,6 +95,31 @@
                 Longitude = apiary.Longitude
 
             };
+        }
+
+        public async Task EditApiaryAsync(ApiaryEditFormModel model, int id, string ownerId)
+        {
+            var apiary = await context.Apiaries
+                                .FirstOrDefaultAsync(a => a.Id == id && a.OwnerId == ownerId);
+
+            if (apiary == null)
+            {
+                throw new InvalidOperationException();
+            }
+
+            apiary.Name = model.Name;
+            apiary.Location = model.Location;
+            apiary.RegistrationNumber = model.RegistrationNumber;
+            apiary.Latitude = model.Latitude;
+            apiary.Longitude = model.Longitude;
+
+            await context.SaveChangesAsync();
+        }
+
+        public async Task<bool> DoesApiaryExists(string ownerId, int id)
+        {
+            return await context.Apiaries
+                .AnyAsync(a => a.Id == id && a.OwnerId == ownerId);
         }
 
         public async Task<bool> IsTheUserOwner(string ownerId)

@@ -6,38 +6,9 @@
     <h2 class="display-4">За пчелите и хората</h2>
     <p>"Ако изчезнат пчелите, човечеството може да просъществува само 4 години, преди да изчезне." </>
     <p>Алберт Айнщайн </>
+        <video width="800" height="600" class="w-100" autoplay loop muted>
+            <source src="/images/IndexVideo3.mp4" type="video/mp4" />
+        </video>
 </div>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-9">
-            <video width="800" height="600" class="w-100" autoplay loop muted>
-                <source src="/images/IndexVideo3.mp4" type="video/mp4" />
-            </video>
-
-        </div>
-        <div class="col-md-3">
-            @if (User.Identity.IsAuthenticated)
-            {
-                <h3>Пчеларски дневник</h3>
-                <div class="btn-group-vertical d-grid gap-4 d-md-block">
-                    <a asp-controller="Event" asp-action="Notes" asp-route-id="" class="btn btn-warning mb-3 w-200 p-6 fw-bold">Задачи</a>
-                    <a asp-controller="Apiary" asp-action="All" asp-route-id="" class="btn btn-warning mb-3 w-200 p-6 fw-bold">Пчелини</a>
-                    <a asp-controller="Balance" asp-action="Index" asp-route-id="" class="btn btn-warning mb-3 w-200 p-6 fw-bold">Баланс</a>
-                    <a asp-controller="Event" asp-action="Index" asp-route-id="" class="btn btn-warning mb-3 w-200 p-6 fw-bold">Cъбития</a>
-                </div>            
-            }
-            else
-            {
-                <div class="btn-group-vertical d-grid gap-4 d-md-block">
-                    <a asp-controller="Apiary" asp-action="Add" asp-route-id="" class="btn btn-warning mb-3 w-200 p-6 fw-bold">Добавете информация за вашите пчелини</a>
-                    <a asp-controller="Event" asp-action="Index" asp-route-id="" class="btn btn-warning mb-3 w-200 p-6 fw-bold">Добавете данни за проведени мероприятия по кошерите</a>
-                    <a asp-controller="Event" asp-action="Balance" asp-route-id="" class="btn btn-warning mb-3 w-200 p-6 fw-bold">Запазете информация за приходите и разходите си</a>
-                    <a asp-controller="Event" asp-action="Notes" asp-route-id="" class="btn btn-warning mb-3 w-200 p-6 fw-bold">Създайте бележки с предстоящи задачи</a>
-                </div>
-            }
-        </div>
-
-    </div>
-</div>
 
