@@ -8,8 +8,7 @@
     using Data.Models;
     using Models.Cost;
     using Interfaces;
-    using System.Globalization;
-
+  
     public class CostService : ICostService
     {
         private readonly BeekeepingDbContext context;
@@ -32,7 +31,6 @@
 
             await context.Costs.AddAsync(cost);
             await context.SaveChangesAsync();
-
         }
 
         public async Task<IEnumerable<CostViewModel>?> AllCostAsync(string userId)
@@ -48,7 +46,6 @@
                                     CostValue = c.CostValue,
                                     TypeOfCost = c.TypeOfCost,
                                     CreatorId = userId
-
                                 })
                                 .ToArrayAsync();
         }
@@ -56,7 +53,8 @@
         public async Task DeleteCostAsync(string userId, int id)
         {
             var cost = await context.Costs
-                           .FirstOrDefaultAsync(f => f.Id == id && f.CreatorId == userId);
+                           .FirstOrDefaultAsync(f => f.Id == id && f.CreatorId == userId)
+                          ;
 
             if (cost == null)
             {
