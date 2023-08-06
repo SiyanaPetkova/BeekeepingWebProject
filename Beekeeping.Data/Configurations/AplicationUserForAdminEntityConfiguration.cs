@@ -17,11 +17,11 @@
         private static ApplicationUser GenerateUserForAdministrator()
         {
 
-            Func<string> GenerateSecurityStamp = delegate ()
+            static string GenerateSecurityStamp()
             {
                 var guid = Guid.NewGuid();
                 return String.Concat(Array.ConvertAll(guid.ToByteArray(), b => b.ToString("X2")));
-            };
+            }
 
             string id = "d23c4f40-0178-4622-b307-b482a79aa316";
 

@@ -10,7 +10,7 @@
     using Beekeeping.Services.Services;
 
     [TestFixture]
-    internal class ApiaryServiseTest
+    internal class ApiaryServiceTest
     {
         private BeekeepingDbContext context;
         private IApiaryService apiaryService;

@@ -4,7 +4,7 @@
 
     public interface IApiaryWeatherService
     {
-        Task<ApiaryWeatherModel> GetWeatherDataAsync(string query);
+        Task<ApiaryWeatherModel?> GetWeatherDataAsync(string query);
 
         Task<IEnumerable<ApiaryCoordinatesModel>> GetApiariesCoordinatesAsync(string userId);
     }

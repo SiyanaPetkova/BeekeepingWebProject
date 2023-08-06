@@ -32,9 +32,9 @@
                                 .ToArrayAsync();
         }
 
-        public async Task<ApiaryWeatherModel> GetWeatherDataAsync(string query)
+        public async Task<ApiaryWeatherModel?> GetWeatherDataAsync(string query)
         {
-            ApiaryWeatherModel weatherData = null;
+            ApiaryWeatherModel? weatherData = null;
 
             try
             {
