@@ -132,6 +132,14 @@
         }
 
         [Test]
+        public async Task AllTreatmentsAsyncShouldReturnNullIfUserHasNoNotes()
+        {
+            var actual = await treatmentService.AllTreatmentsAsync(NotExistingUserdId);
+
+            Assert.That(actual, Is.Null);
+        }
+
+        [Test]
         public async Task DeleteTreatmentAsyncShouldDeleteTreatment()
         {
             await treatmentService.DeleteTreatmentAsync(UserdId, treatmentIdForTests);

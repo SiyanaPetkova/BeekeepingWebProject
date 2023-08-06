@@ -85,12 +85,8 @@
 
         public async Task DeleteBeeColonyAsync(string userId, int id)
         {
-            var beeColony = await context.BeeColonies.FirstOrDefaultAsync(b => b.Id == id && b.OwnerOfTheApiary == userId);
-
-            if (beeColony == null)
-            {
-                throw new InvalidOperationException();
-            }
+            var beeColony = await context.BeeColonies.FirstOrDefaultAsync(b => b.Id == id && b.OwnerOfTheApiary == userId) 
+                                          ?? throw new InvalidOperationException();
 
             context.BeeColonies.Remove(beeColony);
             await context.SaveChangesAsync();
@@ -99,21 +95,17 @@
         public async Task EditBeeColonyAsync(BeeColonyFormModel model, string ownerId, int colonyId)
         {
             var beeColony = await context.BeeColonies
-                               .FirstOrDefaultAsync(a => a.Id == colonyId && a.OwnerOfTheApiary == ownerId);
-
-            if (beeColony == null)
-            {
-                throw new InvalidOperationException();
-            }
+                               .FirstOrDefaultAsync(a => a.Id == colonyId && a.OwnerOfTheApiary == ownerId) 
+                               ?? throw new InvalidOperationException();
 
             var beeQueen = await context.BeeQueens.FindAsync(beeColony.BeeQueenId);
 
-            beeQueen.Breeder = model.BeeQueen.Breeder;
+            beeQueen.Breeder = model.BeeQueen?.Breeder;
             beeQueen.BeeQueenYearOfBirth = model.BeeQueen.BeeQueenYearOfBirth;
             beeQueen.BeeQueenType = model.BeeQueen.BeeQueenType;
 
             beeColony.BeeQueen = beeQueen;
-            beeColony.PlateNumber = model.PlateNumber;
+            beeColony.PlateNumber = model.PlateNumber!;
             beeColony.AdditionalComment = model.AdditionalComment;
             beeColony.TypeOfBroodBox = model.TypeOfBroodBox;
             beeColony.Super = model.Super;
@@ -129,12 +121,8 @@
         public async Task<BeeColonyFormModel> GetBeeColonyForEditAsync(string ownerId, int colonyId)
         {
             var beeColony = await context.BeeColonies
-                                .FirstOrDefaultAsync(a => a.Id == colonyId && a.OwnerOfTheApiary == ownerId);
-
-            if (beeColony == null)
-            {
-                throw new InvalidOperationException();
-            }
+                                .FirstOrDefaultAsync(a => a.Id == colonyId && a.OwnerOfTheApiary == ownerId) 
+                                ?? throw new InvalidOperationException();
 
             var beeQueen = await context.BeeQueens
                                 .Where(b => b.Id == beeColony.BeeQueenId)
@@ -188,12 +176,7 @@
                 })
                .FirstOrDefaultAsync();
 
-            if (beeColony == null)
-            {
-                throw new InvalidOperationException();
-            }
-
-            return beeColony;
+            return beeColony ?? throw new InvalidOperationException();
         }
 
         public async Task<bool> IsTheUserOwner(string ownerId)

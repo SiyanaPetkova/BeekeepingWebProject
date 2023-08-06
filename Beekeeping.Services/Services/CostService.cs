@@ -20,7 +20,6 @@
 
         public async Task AddCostAsync(CostFormModel model, string userId)
         {
-
             var cost = new Cost()
             {
                 DayOfTheCost = model.DayOfTheCost,
@@ -34,8 +33,7 @@
         }
 
         public async Task<IEnumerable<CostViewModel>?> AllCostAsync(string userId)
-        {
-         
+        {         
             return await context.Costs
                                 .Where(c => c.CreatorId == userId)
                                 .OrderByDescending(f => f.DayOfTheCost)
@@ -54,13 +52,8 @@
         {
             var cost = await context.Costs
                            .FirstOrDefaultAsync(f => f.Id == id && f.CreatorId == userId)
-                          ;
-
-            if (cost == null)
-            {
-                throw new InvalidOperationException();
-            }
-
+                           ?? throw new InvalidOperationException();
+                          
             context.Costs.Remove(cost);
             await context.SaveChangesAsync();
         }
@@ -68,14 +61,12 @@
         public async Task<bool> DoesCostExists(string userId, int id)
         {
             return await context.Costs
-              .AnyAsync(f => f.Id == id && f.CreatorId == userId);
+                         .AnyAsync(f => f.Id == id && f.CreatorId == userId);
         }
 
         public async Task<decimal> GetTotalCostAsync(string userId)
         {
-            var totalCost = await context.Costs.Where(i => i.CreatorId == userId).SumAsync(i => i.CostValue);
-
-            return totalCost;
+            return await context.Costs.Where(i => i.CreatorId == userId).SumAsync(i => i.CostValue);
         }
     }
 }

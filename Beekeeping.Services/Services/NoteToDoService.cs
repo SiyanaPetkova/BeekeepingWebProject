@@ -58,12 +58,8 @@
         public async Task DeleteNotesAsync(string userId, int id)
         {
             var note = await context.NoteToDos
-                          .FirstOrDefaultAsync(f => f.Id == id && f.CreatorId == userId);
-
-            if (note == null)
-            {
-                throw new InvalidOperationException();
-            }
+                          .FirstOrDefaultAsync(f => f.Id == id && f.CreatorId == userId)
+                          ?? throw new InvalidOperationException();
 
             context.NoteToDos.Remove(note);
             await context.SaveChangesAsync();
@@ -78,12 +74,8 @@
         public async Task EditNoteAsync(NoteToDoFormModel model, string userId, int id)
         {
             var note = await context.NoteToDos
-                         .FirstOrDefaultAsync(f => f.Id == id && f.CreatorId == userId);
-
-            if (note == null)
-            {
-                throw new InvalidOperationException();
-            }
+                         .FirstOrDefaultAsync(f => f.Id == id && f.CreatorId == userId) 
+                         ?? throw new InvalidOperationException();
 
             note.DateToBeDone = model.DateToBeDone;
             note.Description = model.Description;
@@ -97,12 +89,9 @@
             var note = await context.NoteToDos
                          .FirstOrDefaultAsync(f => f.Id == id && f.CreatorId == userId);
 
-            if (note == null)
-            {
-                throw new InvalidOperationException();
-            }
-
-            return new NoteToDoFormModel()
+            return note == null
+                ? throw new InvalidOperationException()
+                : new NoteToDoFormModel()
             {
                 Id = id,
                 DateToBeDone = note.DateToBeDone,

@@ -51,12 +51,8 @@
         public async Task DeleteIncomeAsync(string userId, int id)
         {
             var income = await context.Incomes
-                           .FirstOrDefaultAsync(f => f.Id == id && f.CreatorId == userId);
-
-            if (income == null)
-            {
-                throw new InvalidOperationException();
-            }
+                           .FirstOrDefaultAsync(f => f.Id == id && f.CreatorId == userId)
+                           ?? throw new InvalidOperationException();
 
             context.Incomes.Remove(income);
             await context.SaveChangesAsync();
@@ -70,9 +66,7 @@
 
         public async Task<decimal> GetTotalIncomeAsync(string userId)
         {
-            var totalIncome = await context.Incomes.Where(i => i.CreatorId == userId).SumAsync(i => i.IncomeValue);
-
-            return totalIncome;
+            return await context.Incomes.Where(i => i.CreatorId == userId).SumAsync(i => i.IncomeValue);
         }
     }
 }

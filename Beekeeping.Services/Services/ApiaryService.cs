@@ -26,7 +26,7 @@
                 return null;
             }
 
-            var apiaries = await context.Apiaries
+            return await context.Apiaries
                                 .Where(o => o.OwnerId == ownerId)
                                 .Include(o => o.BeeHives)
                                 .Select(o => new ApiaryViewModel()
@@ -41,8 +41,6 @@
                                     Longitude = o.Longitude
                                 })
                                 .ToArrayAsync();
-
-            return apiaries;
         }
 
         public async Task AddNewApiaryAsync(ApiaryFormModel model, string ownerId)
@@ -64,12 +62,8 @@
         public async Task DeleteApiaryAsync(string ownerId, int id)
         {
             var apiary = await context.Apiaries
-                               .FirstOrDefaultAsync(a => a.Id == id && a.OwnerId == ownerId);
-
-            if (apiary == null)
-            {
-                throw new InvalidOperationException();
-            }
+                               .FirstOrDefaultAsync(a => a.Id == id && a.OwnerId == ownerId) 
+                               ?? throw new InvalidOperationException();
 
             context.Apiaries.Remove(apiary);
             await context.SaveChangesAsync();
@@ -80,32 +74,24 @@
             var apiary = await context.Apiaries
                                 .FirstOrDefaultAsync(a => a.Id == apiaryId && a.OwnerId == ownerId);
 
-            if (apiary == null)
-            {
-                throw new InvalidOperationException();
-            }
-
-            return new ApiaryEditFormModel
-            {
-                Id = apiaryId,
-                Name = apiary.Name,
-                Location = apiary.Location,
-                RegistrationNumber = apiary.RegistrationNumber,
-                Latitude = apiary.Latitude,
-                Longitude = apiary.Longitude
-
-            };
+            return apiary == null
+                             ? throw new InvalidOperationException()
+                             : new ApiaryEditFormModel
+                             {
+                                 Id = apiaryId,
+                                 Name = apiary.Name,
+                                 Location = apiary.Location,
+                                 RegistrationNumber = apiary.RegistrationNumber,
+                                 Latitude = apiary.Latitude,
+                                 Longitude = apiary.Longitude
+                             };
         }
 
         public async Task EditApiaryAsync(ApiaryEditFormModel model, int id, string ownerId)
         {
             var apiary = await context.Apiaries
-                                .FirstOrDefaultAsync(a => a.Id == id && a.OwnerId == ownerId);
-
-            if (apiary == null)
-            {
-                throw new InvalidOperationException();
-            }
+                                .FirstOrDefaultAsync(a => a.Id == id && a.OwnerId == ownerId) 
+                                ?? throw new InvalidOperationException();
 
             apiary.Name = model.Name;
             apiary.Location = model.Location;

@@ -121,6 +121,14 @@
         }
 
         [Test]
+        public async Task AllFeedoingsAsyncShouldReturnNullIfUserHasNoNotes()
+        {
+            var actual = await feedingService.AllFeedingsAsync(NotExistingUserdId);
+
+            Assert.That(actual, Is.Null);
+        }
+
+        [Test]
         public async Task DeleteFeedingAsyncShouldDeleteFeeding()
         {
             await feedingService.DeleteFeedingAsync(UserdId, feedingIdForTests);
