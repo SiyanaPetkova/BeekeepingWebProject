@@ -38,7 +38,7 @@
 
         public async Task<IEnumerable<InspectionViewModel>?> AllInspectionsPerColonyAsync(string ownerId, int beeColonyId)
         {
-            var allInspectionsAsync = await context.Inspections.Where(i => i.BeeColonyId == beeColonyId)
+           return await context.Inspections.Where(i => i.BeeColonyId == beeColonyId)
                              .OrderByDescending(i => i.DayOfInspection)
                              .Select(i => new InspectionViewModel
                              {
@@ -52,19 +52,13 @@
                                  BeeColonyId = i.BeeColonyId
                              })
                              .ToArrayAsync();
-
-            return allInspectionsAsync;
         }
 
         public async Task EditInspectionAsync(InspectionFormModel model, string ownerId, int id)
         {
             var inspection = await context.Inspections
-                                .FirstOrDefaultAsync(i => i.Id == id && i.BeeColony!.OwnerOfTheApiary == ownerId);
-
-            if (inspection == null)
-            {
-                throw new InvalidOperationException();
-            }
+                                .FirstOrDefaultAsync(i => i.Id == id && i.BeeColony!.OwnerOfTheApiary == ownerId) 
+                                ?? throw new InvalidOperationException();
 
             inspection.DayOfInspection = model.DayOfInspection;
             inspection.NumberOfFrames = model.NumberOfFrames;
@@ -81,27 +75,24 @@
             var inspection = await context.Inspections
                                 .FirstOrDefaultAsync(i => i.Id == id && i.BeeColony!.OwnerOfTheApiary == ownerId);
 
-            if (inspection == null)
-            {
-                throw new InvalidOperationException();
-            }
-
-            return new InspectionFormModel
-            {
-                Id = id,
-                DayOfInspection = inspection.DayOfInspection,
-                NumberOfFrames = inspection.NumberOfFrames,
-                NumberOfBroodFrames = inspection.NumberOfBroodFrames,
-                Strenght = inspection.Strenght,
-                Temperament = inspection.Temperament,
-                Description = inspection.Description,
-                BeeColonyId = inspection.BeeColonyId
-            };
+            return inspection == null
+                   ? throw new InvalidOperationException()
+                   : new InspectionFormModel
+                   {
+                       Id = id,
+                       DayOfInspection = inspection.DayOfInspection,
+                       NumberOfFrames = inspection.NumberOfFrames,
+                       NumberOfBroodFrames = inspection.NumberOfBroodFrames,
+                       Strenght = inspection.Strenght,
+                       Temperament = inspection.Temperament,
+                       Description = inspection.Description,
+                       BeeColonyId = inspection.BeeColonyId
+                   };
         }
 
         public async Task<InspectionViewModel?> GetDetailsForTheInspectionAsync(string ownerId, int id)
         {
-            var inspection = await context.Inspections.Where(i => i.Id == id && i.BeeColony!.OwnerOfTheApiary == ownerId)
+            return await context.Inspections.Where(i => i.Id == id && i.BeeColony!.OwnerOfTheApiary == ownerId)
                 .Select(i => new InspectionViewModel
                 {
                     Id = i.Id,
@@ -113,34 +104,19 @@
                     Description = i.Description
                 })
                 .FirstOrDefaultAsync();
-
-            return inspection;
         }
 
         public async Task<bool> DoesInspectionExist(string userId, int id)
         {
-            var inspection = await context.Inspections
-                                 .FirstOrDefaultAsync(i => i.Id == id && i.BeeColony!.OwnerOfTheApiary == userId);
-
-            if (inspection == null)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+           return await context.Inspections
+                                .AnyAsync(i => i.Id == id && i.BeeColony!.OwnerOfTheApiary == userId);
         }
 
         public async Task DeleteInspectionAsync(string userId, int id)
         {
             var inspection = await context.Inspections
-                              .FirstOrDefaultAsync(i => i.Id == id && i.BeeColony!.OwnerOfTheApiary == userId);
-
-            if (inspection == null)
-            {
-                throw new InvalidOperationException();
-            }
+                              .FirstOrDefaultAsync(i => i.Id == id && i.BeeColony!.OwnerOfTheApiary == userId) 
+                              ?? throw new InvalidOperationException();
 
             context.Inspections.Remove(inspection);
             await context.SaveChangesAsync();
@@ -149,7 +125,8 @@
         public async Task<int> GetCurrentInspectionBeeColonyId(string userId, int id)
         {
             var inspection = await context.Inspections
-                             .FirstOrDefaultAsync(i => i.Id == id && i.BeeColony!.OwnerOfTheApiary == userId);
+                             .FirstOrDefaultAsync(i => i.Id == id && i.BeeColony!.OwnerOfTheApiary == userId)
+                             ?? throw new InvalidOperationException();
 
             return inspection!.BeeColonyId;
         }
