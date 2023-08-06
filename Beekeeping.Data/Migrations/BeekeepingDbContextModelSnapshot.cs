@@ -160,15 +160,15 @@ namespace Beekeeping.Data.Migrations
                         {
                             Id = new Guid("d23c4f40-0178-4622-b307-b482a79aa316"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5f72299d-57b0-4124-b3ce-d1f9f6bc6b78",
+                            ConcurrencyStamp = "7a3e3517-ecd3-412f-b4ad-a34c8a86443a",
                             Email = "testAdmin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "TESTADMIN@GMAIL.COM",
                             NormalizedUserName = "TESTADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAECZ+YZg5fjEngEFZ8iEaa8KjlMu1jU9Ld9UwOTTlqvd/ew4Ek45+Gfcwum9tRDob7w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMKtgJM/21rp6R+qtG4q6vjRV8ffGtI79PNtpcbDCl+igZkNQkZbS+e9wJO30h3D7w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "E950335E89BE4942A5DF15F74835206C",
+                            SecurityStamp = "DA21D14439120340B1FA3D7CCDCEB40E",
                             TwoFactorEnabled = false,
                             UserName = "testAdmin@gmail.com"
                         },
@@ -176,15 +176,15 @@ namespace Beekeeping.Data.Migrations
                         {
                             Id = new Guid("44c36b39-ad0a-4260-b448-45bb03158888"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1af61d00-1630-4f0f-b5bf-01732378eb5a",
+                            ConcurrencyStamp = "65852af5-21ed-4a29-b2e9-5e0b9ec995c9",
                             Email = "demouser@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "DEMOUSER@GMAIL.COM",
                             NormalizedUserName = "DEMOUSER@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPdES3KkZmg/kgkpfuupLREFIjpt3lDcUBMMlkvGVSt1OKlF0wG+mGfK2GcXfD0KyQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOXRcnBd/Q5gM/5T1KEuWRITEVoTA+bylHZpH0fRv9YMiFOOWrkDPeVUBsVBAHhZ1A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "D518A5A26EC29D4D82B60C37A4EEE622",
+                            SecurityStamp = "419322EA15136C4FA4C944C26CA1BDA2",
                             TwoFactorEnabled = false,
                             UserName = "demouser@gmail.com"
                         });
@@ -198,7 +198,7 @@ namespace Beekeeping.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("AdditionalComмent")
+                    b.Property<string>("AdditionalComment")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ApiaryId")
@@ -247,7 +247,7 @@ namespace Beekeeping.Data.Migrations
                         new
                         {
                             Id = 10001,
-                            AdditionalComмent = "Основно семейство",
+                            AdditionalComment = "Основно семейство",
                             ApiaryId = 9150,
                             BeeQueenId = 10001,
                             MatedBeeQueen = true,
@@ -262,7 +262,7 @@ namespace Beekeeping.Data.Migrations
                         new
                         {
                             Id = 10002,
-                            AdditionalComмent = "Основно семейство",
+                            AdditionalComment = "Основно семейство",
                             ApiaryId = 9150,
                             BeeQueenId = 10002,
                             MatedBeeQueen = true,
@@ -277,7 +277,7 @@ namespace Beekeeping.Data.Migrations
                         new
                         {
                             Id = 10003,
-                            AdditionalComмent = "Отводка",
+                            AdditionalComment = "Отводка",
                             ApiaryId = 9150,
                             BeeQueenId = 10003,
                             MatedBeeQueen = true,
@@ -292,7 +292,7 @@ namespace Beekeeping.Data.Migrations
                         new
                         {
                             Id = 10004,
-                            AdditionalComмent = "Основно семейство",
+                            AdditionalComment = "Основно семейство",
                             ApiaryId = 9150,
                             BeeQueenId = 10004,
                             MatedBeeQueen = true,
@@ -307,7 +307,7 @@ namespace Beekeeping.Data.Migrations
                         new
                         {
                             Id = 10005,
-                            AdditionalComмent = "Основно семейство",
+                            AdditionalComment = "Основно семейство",
                             ApiaryId = 9150,
                             BeeQueenId = 10005,
                             MatedBeeQueen = true,
@@ -322,7 +322,7 @@ namespace Beekeeping.Data.Migrations
                         new
                         {
                             Id = 10006,
-                            AdditionalComмent = "Отводка",
+                            AdditionalComment = "Отводка",
                             ApiaryId = 9150,
                             BeeQueenId = 10006,
                             MatedBeeQueen = true,
@@ -337,7 +337,7 @@ namespace Beekeeping.Data.Migrations
                         new
                         {
                             Id = 10007,
-                            AdditionalComмent = "Отводка",
+                            AdditionalComment = "Отводка",
                             ApiaryId = 9156,
                             BeeQueenId = 10007,
                             MatedBeeQueen = true,
@@ -352,7 +352,7 @@ namespace Beekeeping.Data.Migrations
                         new
                         {
                             Id = 10008,
-                            AdditionalComмent = "Отводка",
+                            AdditionalComment = "Отводка",
                             ApiaryId = 9156,
                             BeeQueenId = 10008,
                             MatedBeeQueen = true,
@@ -367,7 +367,7 @@ namespace Beekeeping.Data.Migrations
                         new
                         {
                             Id = 10009,
-                            AdditionalComмent = "Отводка",
+                            AdditionalComment = "Отводка",
                             ApiaryId = 9156,
                             BeeQueenId = 10009,
                             MatedBeeQueen = true,

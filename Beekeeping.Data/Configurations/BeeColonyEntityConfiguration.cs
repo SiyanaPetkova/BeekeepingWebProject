@@ -22,7 +22,7 @@
             {
                 Id = 10001,
                 PlateNumber = "100-4447",
-                AdditionalComмent = "Основно семейство",
+                AdditionalComment = "Основно семейство",
                 TypeOfBroodBox = "Многокорпусен",
                 SecondBroodBox = true,
                 NumberOfAdditionalBoxes = 1,
@@ -40,7 +40,7 @@
             {
                 Id = 10002,
                 PlateNumber = "100-4448",
-                AdditionalComмent = "Основно семейство",
+                AdditionalComment = "Основно семейство",
                 TypeOfBroodBox = "Многокорпусен",
                 SecondBroodBox = false,
                 NumberOfAdditionalBoxes = 0,
@@ -58,7 +58,7 @@
             {
                 Id = 10003,
                 PlateNumber = "100-4449",
-                AdditionalComмent = "Отводка",
+                AdditionalComment = "Отводка",
                 TypeOfBroodBox = "Многокорпусен",
                 SecondBroodBox = false,
                 NumberOfAdditionalBoxes = 0,
@@ -76,7 +76,7 @@
             {
                 Id = 10004,
                 PlateNumber = "100-4450",
-                AdditionalComмent = "Основно семейство",
+                AdditionalComment = "Основно семейство",
                 TypeOfBroodBox = "Многокорпусен",
                 SecondBroodBox = false,
                 NumberOfAdditionalBoxes = 0,
@@ -94,7 +94,7 @@
             {
                 Id = 10005,
                 PlateNumber = "100-4451",
-                AdditionalComмent = "Основно семейство",
+                AdditionalComment = "Основно семейство",
                 TypeOfBroodBox = "Многокорпусен",
                 SecondBroodBox = false,
                 NumberOfAdditionalBoxes = 0,
@@ -112,7 +112,7 @@
             {
                 Id = 10006,
                 PlateNumber = "100-4452",
-                AdditionalComмent = "Отводка",
+                AdditionalComment = "Отводка",
                 TypeOfBroodBox = "Многокорпусен",
                 SecondBroodBox = false,
                 NumberOfAdditionalBoxes = 0,
@@ -131,7 +131,7 @@
             {
                 Id = 10007,
                 PlateNumber = "100-4453",
-                AdditionalComмent = "Отводка",
+                AdditionalComment = "Отводка",
                 TypeOfBroodBox = "Многокорпусен",
                 SecondBroodBox = false,
                 NumberOfAdditionalBoxes = 0,
@@ -150,7 +150,7 @@
             {
                 Id = 10008,
                 PlateNumber = "100-4454",
-                AdditionalComмent = "Отводка",
+                AdditionalComment = "Отводка",
                 TypeOfBroodBox = "Многокорпусен",
                 SecondBroodBox = false,
                 NumberOfAdditionalBoxes = 0,
@@ -169,7 +169,7 @@
             {
                 Id = 10009,
                 PlateNumber = "100-4455",
-                AdditionalComмent = "Отводка",
+                AdditionalComment = "Отводка",
                 TypeOfBroodBox = "Многокорпусен",
                 SecondBroodBox = false,
                 NumberOfAdditionalBoxes = 0,

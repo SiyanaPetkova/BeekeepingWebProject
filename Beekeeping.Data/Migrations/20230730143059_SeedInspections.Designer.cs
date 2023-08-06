@@ -183,7 +183,7 @@ namespace Beekeeping.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("AdditionalComмent")
+                    b.Property<string>("AdditionalComment")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ApiaryId")

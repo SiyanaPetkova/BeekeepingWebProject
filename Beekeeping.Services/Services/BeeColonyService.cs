@@ -22,29 +22,29 @@
         public async Task<IEnumerable<BeeColonyViewModel>?> AllColoniesAsync(string ownerId, int apiaryId)
         {
             var allColoniesAsync = await context.BeeColonies
-                .Where(b => b.OwnerOfTheApiary == ownerId && b.ApiaryId == apiaryId)
-                .Include(b => b.BeeQueen)
-                .Include(b => b.Apiary)
-                .Select(b => new BeeColonyViewModel
-                {
-                    Id = b.Id,
-                    PlateNumber = b.PlateNumber,
-                    AdditionalComмent = b.AdditionalComмent,
-                    TypeOfBroodBox = b.TypeOfBroodBox,
-                    Super = b.Super == true ? "Има" : "Няма",
-                    NumberOfSupers = b.NumberOfSupers,
-                    SecondBroodBox = b.SecondBroodBox == true ? "Има" : "Няма",
-                    NumberOfAdditionalBoxes = b.NumberOfAdditionalBoxes,
-                    MatedBeeQueen = b.MatedBeeQueen == true ? "Има" : "Няма",
-                    Apiary = b.Apiary.Name,
-                    BeeQueen = new BeeQueenSelectViewModel()
-                    {
-                        BeeQueenYearOfBirth = b.BeeQueen.BeeQueenYearOfBirth,
-                        Breeder = b.BeeQueen.Breeder,
-                        BeeQueenType = b.BeeQueen.BeeQueenType
-                    }
-                })
-               .ToArrayAsync();
+                 .Where(b => b.OwnerOfTheApiary == ownerId && b.ApiaryId == apiaryId)
+                 .Include(b => b.BeeQueen)
+                 .Include(b => b.Apiary)
+                 .Select(b => new BeeColonyViewModel
+                 {
+                     Id = b.Id,
+                     PlateNumber = b.PlateNumber,
+                     AdditionalComment = b.AdditionalComment,
+                     TypeOfBroodBox = b.TypeOfBroodBox,
+                     Super = b.Super == true ? "Има" : "Няма",
+                     NumberOfSupers = b.NumberOfSupers,
+                     SecondBroodBox = b.SecondBroodBox == true ? "Има" : "Няма",
+                     NumberOfAdditionalBoxes = b.NumberOfAdditionalBoxes,
+                     MatedBeeQueen = b.MatedBeeQueen == true ? "Има" : "Няма",
+                     Apiary = b.Apiary.Name,
+                     BeeQueen = new BeeQueenSelectViewModel()
+                     {
+                         BeeQueenYearOfBirth = b.BeeQueen.BeeQueenYearOfBirth,
+                         Breeder = b.BeeQueen.Breeder,
+                         BeeQueenType = b.BeeQueen.BeeQueenType
+                     }
+                 })
+                .ToArrayAsync();
 
             if (allColoniesAsync.Length == 0)
             {
@@ -65,8 +65,8 @@
 
             var beeColony = new BeeColony()
             {
-                PlateNumber = model.PlateNumber,
-                AdditionalComмent = model.AdditionalComment,
+                PlateNumber = model.PlateNumber!,
+                AdditionalComment = model.AdditionalComment,
                 TypeOfBroodBox = model.TypeOfBroodBox,
                 Super = model.Super,
                 NumberOfSupers = model.NumberOfSupers,
@@ -96,11 +96,6 @@
             await context.SaveChangesAsync();
         }
 
-        public async Task<bool> DoesBeeColonyExist(string userId, int id)
-        {
-            return await context.BeeColonies.AnyAsync(b => b.OwnerOfTheApiary == userId && b.Id == id);
-        }
-
         public async Task EditBeeColonyAsync(BeeColonyFormModel model, string ownerId, int colonyId)
         {
             var beeColony = await context.BeeColonies
@@ -119,7 +114,8 @@
 
             beeColony.BeeQueen = beeQueen;
             beeColony.PlateNumber = model.PlateNumber;
-            beeColony.AdditionalComмent = model.AdditionalComment;
+            beeColony.AdditionalComment = model.AdditionalComment;
+            beeColony.TypeOfBroodBox = model.TypeOfBroodBox;
             beeColony.Super = model.Super;
             beeColony.NumberOfSupers = model.NumberOfSupers;
             beeColony.SecondBroodBox = model.SecondBroodBox;
@@ -154,7 +150,7 @@
             {
                 Id = colonyId,
                 PlateNumber = beeColony.PlateNumber,
-                AdditionalComment = beeColony.AdditionalComмent,
+                AdditionalComment = beeColony.AdditionalComment,
                 TypeOfBroodBox = beeColony.TypeOfBroodBox,
                 Super = beeColony.Super,
                 NumberOfSupers = beeColony.NumberOfSupers,
@@ -168,32 +164,29 @@
 
         public async Task<BeeColonyViewModel> GetDetailsForTheBeeColonyAsync(string ownerId, int colonyId)
         {
-            var findColony = await context.BeeColonies.FirstOrDefaultAsync(b => b.OwnerOfTheApiary == ownerId && b.Id == colonyId);
-
-
             var beeColony = await context.BeeColonies.Where(b => b.OwnerOfTheApiary == ownerId && b.Id == colonyId)
-               .Include(b => b.BeeQueen)
-               .Include(b => b.Apiary)
-               .Select(b => new BeeColonyViewModel
-               {
-                   Id = b.Id,
-                   PlateNumber = b.PlateNumber,
-                   AdditionalComмent = b.AdditionalComмent,
-                   TypeOfBroodBox = b.TypeOfBroodBox,
-                   Super = b.Super == true ? "Има" : "Няма",
-                   NumberOfSupers = b.NumberOfSupers,
-                   SecondBroodBox = b.SecondBroodBox == true ? "Има" : "Няма",
-                   NumberOfAdditionalBoxes = b.NumberOfAdditionalBoxes,
-                   MatedBeeQueen = b.MatedBeeQueen == true ? "Има" : "Няма",
-                   Apiary = b.Apiary.Name,
-                   BeeQueen = new Models.BeeQueen.BeeQueenSelectViewModel()
-                   {
-                       BeeQueenYearOfBirth = b.BeeQueen.BeeQueenYearOfBirth,
-                       Breeder = b.BeeQueen.Breeder,
-                       BeeQueenType = b.BeeQueen.BeeQueenType
-                   }
-               })
-              .FirstOrDefaultAsync();
+                .Include(b => b.BeeQueen)
+                .Include(b => b.Apiary)
+                .Select(b => new BeeColonyViewModel
+                {
+                    Id = b.Id,
+                    PlateNumber = b.PlateNumber,
+                    AdditionalComment = b.AdditionalComment,
+                    TypeOfBroodBox = b.TypeOfBroodBox,
+                    Super = b.Super == true ? "Има" : "Няма",
+                    NumberOfSupers = b.NumberOfSupers,
+                    SecondBroodBox = b.SecondBroodBox == true ? "Има" : "Няма",
+                    NumberOfAdditionalBoxes = b.NumberOfAdditionalBoxes,
+                    MatedBeeQueen = b.MatedBeeQueen == true ? "Има" : "Няма",
+                    Apiary = b.Apiary.Name,
+                    BeeQueen = new BeeQueenSelectViewModel()
+                    {
+                        BeeQueenYearOfBirth = b.BeeQueen.BeeQueenYearOfBirth,
+                        Breeder = b.BeeQueen.Breeder,
+                        BeeQueenType = b.BeeQueen.BeeQueenType
+                    }
+                })
+               .FirstOrDefaultAsync();
 
             if (beeColony == null)
             {
@@ -205,14 +198,13 @@
 
         public async Task<bool> IsTheUserOwner(string ownerId)
         {
-            var colonies = await context.BeeColonies.Where(a => a.OwnerOfTheApiary == ownerId).ToArrayAsync();
-
-            if (colonies == null)
-            {
-                return false;
-            }
-
-            return true;
+            return await context.BeeColonies.AnyAsync(a => a.OwnerOfTheApiary == ownerId);
         }
+
+        public async Task<bool> DoesBeeColonyExist(string userId, int id)
+        {
+            return await context.BeeColonies.AnyAsync(b => b.OwnerOfTheApiary == userId && b.Id == id);
+        }
+
     }
 }

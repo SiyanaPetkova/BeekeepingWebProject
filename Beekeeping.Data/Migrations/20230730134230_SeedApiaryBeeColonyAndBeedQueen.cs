@@ -43,7 +43,7 @@ namespace Beekeeping.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "BeeColonies",
-                columns: new[] { "Id", "AdditionalComмent", "ApiaryId", "BeeQueenId", "MatedBeeQueen", "NumberOfAdditionalBoxes", "NumberOfSupers", "OwnerOfTheApiary", "PlateNumber", "SecondBroodBox", "Super", "TypeOfBroodBox" },
+                columns: new[] { "Id", "AdditionalComment", "ApiaryId", "BeeQueenId", "MatedBeeQueen", "NumberOfAdditionalBoxes", "NumberOfSupers", "OwnerOfTheApiary", "PlateNumber", "SecondBroodBox", "Super", "TypeOfBroodBox" },
                 values: new object[,]
                 {
                     { 10001, "Основно семейство", 9150, 10001, true, 1, 1, "44C36B39-AD0A-4260-B448-45BB03158888", "100-4447", true, true, "Многокорпусен" },

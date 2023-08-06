@@ -81,7 +81,7 @@
                  {
                      Id = 10001,
                      PlateNumber = "100-4447",
-                     AdditionalComмent = "Основно семейство",
+                     AdditionalComment = "Основно семейство",
                      TypeOfBroodBox = "Многокорпусен",
                      SecondBroodBox = true,
                      NumberOfAdditionalBoxes = 1,
@@ -96,7 +96,7 @@
                  {
                      Id = 10002,
                      PlateNumber = "100-4448",
-                     AdditionalComмent = "Основно семейство",
+                     AdditionalComment = "Основно семейство",
                      TypeOfBroodBox = "Многокорпусен",
                      SecondBroodBox = false,
                      NumberOfAdditionalBoxes = 0,
@@ -111,7 +111,7 @@
                  {
                      Id = 10003,
                      PlateNumber = "100-4449",
-                     AdditionalComмent = "Отводка",
+                     AdditionalComment = "Отводка",
                      TypeOfBroodBox = "Многокорпусен",
                      SecondBroodBox = false,
                      NumberOfAdditionalBoxes = 0,
@@ -156,7 +156,7 @@
                           {
                               Id = b.Id,
                               PlateNumber = b.PlateNumber,
-                              AdditionalComмent = b.AdditionalComмent,
+                              AdditionalComment = b.AdditionalComment,
                               TypeOfBroodBox = b.TypeOfBroodBox,
                               Super = b.Super == true ? "Има" : "Няма",
                               NumberOfSupers = b.NumberOfSupers,
@@ -180,7 +180,7 @@
                 Assert.That(actual!.Count(), Is.EqualTo(expected.Length));
                 Assert.That(actual!.First().Id, Is.EqualTo(expected.First().Id));
                 Assert.That(actual!.First().PlateNumber, Is.EqualTo(expected.First().PlateNumber));
-                Assert.That(actual!.First().AdditionalComмent, Is.EqualTo(expected.First().AdditionalComмent));
+                Assert.That(actual!.First().AdditionalComment, Is.EqualTo(expected.First().AdditionalComment));
                 Assert.That(actual!.First().TypeOfBroodBox, Is.EqualTo(expected.First().TypeOfBroodBox));
                 Assert.That(actual!.First().Super, Is.EqualTo(expected.First().Super));
                 Assert.That(actual!.First().NumberOfSupers, Is.EqualTo(expected.First().NumberOfSupers));
@@ -251,7 +251,7 @@
             Assert.Multiple(() =>
             {
                 Assert.That(actual!.PlateNumber, Is.EqualTo(expected.PlateNumber));
-                Assert.That(actual!.AdditionalComмent, Is.EqualTo(expected.AdditionalComment));
+                Assert.That(actual!.AdditionalComment, Is.EqualTo(expected.AdditionalComment));
                 Assert.That(actual!.TypeOfBroodBox, Is.EqualTo(expected.TypeOfBroodBox));
                 Assert.That(actual!.Super, Is.EqualTo(expected.Super));
                 Assert.That(actual!.NumberOfSupers, Is.EqualTo(expected.NumberOfSupers));
@@ -274,12 +274,11 @@
             Assert.That(expected, Is.Null);
         }
 
-
         [Test]
         public void DeleteBeeColonyAsyncShouldThrowIfOwnerDoesNotExist()
         {
             Assert.ThrowsAsync<InvalidOperationException>(async ()
-                   => await apiaryService.DeleteApiaryAsync(NotExistingUserdId, beeColonyIdForTests));
+                   => await beeColonyService.DeleteBeeColonyAsync(NotExistingUserdId, beeColonyIdForTests));
         }
 
         [Test]
@@ -288,9 +287,255 @@
             int beeColonyIdToBeDeleted = 9999;
 
             Assert.ThrowsAsync<InvalidOperationException>(async ()
-                   => await apiaryService.DeleteApiaryAsync(UserdId, beeColonyIdToBeDeleted));
+                   => await beeColonyService.DeleteBeeColonyAsync(UserdId, beeColonyIdToBeDeleted));
         }
 
+        [Test]
+        public async Task GetBeeColonyForEditAsyncShoulReturnCorectBeeColony()
+        {
+            var beeColony = await context.BeeColonies.FirstOrDefaultAsync(b => b.Id == beeColonyIdForTests);
 
+            var beeQueen = await context.BeeQueens
+                               .Where(b => b.Id == beeColony.BeeQueenId)
+                               .Select(b => new BeeQueenFormModel()
+                               {
+                                   Breeder = b.Breeder,
+                                   BeeQueenType = b.BeeQueenType,
+                                   BeeQueenYearOfBirth = b.BeeQueenYearOfBirth
+                               })
+                               .FirstOrDefaultAsync();
+
+            var expected = new BeeColonyFormModel
+            {
+                Id = beeColony.Id,
+                PlateNumber = beeColony.PlateNumber,
+                AdditionalComment = beeColony.AdditionalComment,
+                TypeOfBroodBox = beeColony.TypeOfBroodBox,
+                Super = beeColony.Super,
+                NumberOfSupers = beeColony.NumberOfSupers,
+                SecondBroodBox = beeColony.SecondBroodBox,
+                NumberOfAdditionalBoxes = beeColony.NumberOfAdditionalBoxes,
+                MatedBeeQueen = beeColony.MatedBeeQueen,
+                BeeQueenId = beeColony.BeeQueenId,
+                BeeQueen = beeQueen
+            };
+
+            var actual = await beeColonyService.GetBeeColonyForEditAsync(UserdId, beeColonyIdForTests);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(actual!.PlateNumber, Is.EqualTo(expected.PlateNumber));
+                Assert.That(actual!.AdditionalComment, Is.EqualTo(expected.AdditionalComment));
+                Assert.That(actual!.TypeOfBroodBox, Is.EqualTo(expected.TypeOfBroodBox));
+                Assert.That(actual!.Super, Is.EqualTo(expected.Super));
+                Assert.That(actual!.NumberOfSupers, Is.EqualTo(expected.NumberOfSupers));
+                Assert.That(actual!.SecondBroodBox, Is.EqualTo(expected.SecondBroodBox));
+                Assert.That(actual!.NumberOfAdditionalBoxes, Is.EqualTo(expected.NumberOfAdditionalBoxes));
+                Assert.That(actual!.MatedBeeQueen, Is.EqualTo(expected.MatedBeeQueen));
+                Assert.That(actual.BeeQueen!.BeeQueenYearOfBirth, Is.EqualTo(expected.BeeQueen.BeeQueenYearOfBirth));
+                Assert.That(actual!.BeeQueen.Breeder, Is.EqualTo(expected.BeeQueen.Breeder));
+                Assert.That(actual!.BeeQueen.BeeQueenType, Is.EqualTo(expected.BeeQueen.BeeQueenType));
+            });
+
+        }
+
+        [Test]
+        public void GetBeeColonyForEditAsyncShouldThrowIfOwnerDoesNotExist()
+        {
+            Assert.ThrowsAsync<InvalidOperationException>(async ()
+                   => await beeColonyService.GetBeeColonyForEditAsync(NotExistingUserdId, beeColonyIdForTests));
+        }
+
+        [Test]
+        public void GetBeeColonyForEditAsyncShouldThrowIfApiaryDoesNotExist()
+        {
+            int beeColonyIdToBeDeleted = 9999;
+
+            Assert.ThrowsAsync<InvalidOperationException>(async ()
+                   => await beeColonyService.GetBeeColonyForEditAsync(UserdId, beeColonyIdToBeDeleted));
+        }
+
+        [Test]
+        public async Task EditBeeColonyAsyncShoulReturnCorectBeeColony()
+        {
+            var beeColonyForEdit = await context.BeeColonies.FirstOrDefaultAsync(b => b.Id == beeColonyIdForTests);
+
+            var beeQueen = await context.BeeQueens
+                               .Where(b => b.Id == beeColonyForEdit.BeeQueenId)
+                               .Select(b => new BeeQueenFormModel()
+                               {
+                                   Breeder = b.Breeder,
+                                   BeeQueenType = b.BeeQueenType,
+                                   BeeQueenYearOfBirth = b.BeeQueenYearOfBirth
+                               })
+                               .FirstOrDefaultAsync();
+
+            var expected = new BeeColonyFormModel
+            {
+                Id = beeColonyForEdit.Id,
+                PlateNumber = beeColonyForEdit.PlateNumber,
+                AdditionalComment = "Много силно семейство",
+                TypeOfBroodBox = "Лангстрот рут",
+                Super = true,
+                NumberOfSupers = 2,
+                SecondBroodBox = true,
+                NumberOfAdditionalBoxes = 2,
+                MatedBeeQueen = beeColonyForEdit.MatedBeeQueen,
+                BeeQueenId = beeColonyForEdit.BeeQueenId,
+                BeeQueen = beeQueen
+            };
+
+            await beeColonyService.EditBeeColonyAsync(expected, UserdId, beeColonyIdForTests);
+
+            var actual = await context.BeeColonies.FirstOrDefaultAsync(b => b.Id == beeColonyIdForTests);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(actual!.PlateNumber, Is.EqualTo(expected.PlateNumber));
+                Assert.That(actual!.AdditionalComment, Is.EqualTo(expected.AdditionalComment));
+                Assert.That(actual!.TypeOfBroodBox, Is.EqualTo(expected.TypeOfBroodBox));
+                Assert.That(actual!.Super, Is.EqualTo(expected.Super));
+                Assert.That(actual!.NumberOfSupers, Is.EqualTo(expected.NumberOfSupers));
+                Assert.That(actual!.SecondBroodBox, Is.EqualTo(expected.SecondBroodBox));
+                Assert.That(actual!.NumberOfAdditionalBoxes, Is.EqualTo(expected.NumberOfAdditionalBoxes));
+                Assert.That(actual!.MatedBeeQueen, Is.EqualTo(expected.MatedBeeQueen));
+                Assert.That(actual.BeeQueen!.BeeQueenYearOfBirth, Is.EqualTo(expected.BeeQueen.BeeQueenYearOfBirth));
+                Assert.That(actual!.BeeQueen.Breeder, Is.EqualTo(expected.BeeQueen.Breeder));
+                Assert.That(actual!.BeeQueen.BeeQueenType, Is.EqualTo(expected.BeeQueen.BeeQueenType));
+            });
+
+        }
+
+        [Test]
+        public async Task EditColonyAsyncShouldThrowIfOwnerDoesNotExist()
+        {
+            var beeColonyForEdit = await context.BeeColonies.FirstOrDefaultAsync(b => b.Id == beeColonyIdForTests);
+
+            var beeQueen = await context.BeeQueens
+                               .Where(b => b.Id == beeColonyForEdit.BeeQueenId)
+                               .Select(b => new BeeQueenFormModel()
+                               {
+                                   Breeder = b.Breeder,
+                                   BeeQueenType = b.BeeQueenType,
+                                   BeeQueenYearOfBirth = b.BeeQueenYearOfBirth
+                               })
+                               .FirstOrDefaultAsync();
+
+            var beeColonyModel = new BeeColonyFormModel
+            {
+                Id = beeColonyForEdit.Id,
+                PlateNumber = beeColonyForEdit.PlateNumber,
+                AdditionalComment = "Много силно семейство",
+                TypeOfBroodBox = "Лангстрот рут",
+                Super = true,
+                NumberOfSupers = 2,
+                SecondBroodBox = true,
+                NumberOfAdditionalBoxes = 2,
+                MatedBeeQueen = beeColonyForEdit.MatedBeeQueen,
+                BeeQueenId = beeColonyForEdit.BeeQueenId,
+                BeeQueen = beeQueen
+            };
+
+            Assert.ThrowsAsync<InvalidOperationException>(async ()
+                   => await beeColonyService.EditBeeColonyAsync(beeColonyModel, NotExistingUserdId, beeColonyIdForTests));
+        }
+
+        [Test]
+        public async Task GetDetailsForTheBeeColonyAsyncShouldReturnCorectInformation()
+        {
+            var beeColony = await context.BeeColonies.FirstOrDefaultAsync(b => b.OwnerOfTheApiary == UserdId && b.Id == beeColonyIdForTests);
+
+            var expected = new BeeColonyViewModel
+            {
+
+                Id = beeColony.Id,
+                PlateNumber = beeColony.PlateNumber,
+                AdditionalComment = beeColony.AdditionalComment,
+                TypeOfBroodBox = beeColony.TypeOfBroodBox,
+                Super = beeColony.Super == true ? "Има" : "Няма",
+                NumberOfSupers = beeColony.NumberOfSupers,
+                SecondBroodBox = beeColony.SecondBroodBox == true ? "Има" : "Няма",
+                NumberOfAdditionalBoxes = beeColony.NumberOfAdditionalBoxes,
+                MatedBeeQueen = beeColony.MatedBeeQueen == true ? "Има" : "Няма",
+                Apiary = beeColony.Apiary.Name,
+                BeeQueen = new BeeQueenSelectViewModel()
+                {
+                    BeeQueenYearOfBirth = beeColony.BeeQueen.BeeQueenYearOfBirth,
+                    Breeder = beeColony.BeeQueen.Breeder,
+                    BeeQueenType = beeColony.BeeQueen.BeeQueenType
+                }
+            };
+
+            var actual = await beeColonyService.GetDetailsForTheBeeColonyAsync(UserdId, beeColonyIdForTests);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(actual!.PlateNumber, Is.EqualTo(expected.PlateNumber));
+                Assert.That(actual!.AdditionalComment, Is.EqualTo(expected.AdditionalComment));
+                Assert.That(actual!.TypeOfBroodBox, Is.EqualTo(expected.TypeOfBroodBox));
+                Assert.That(actual!.Super, Is.EqualTo(expected.Super));
+                Assert.That(actual!.NumberOfSupers, Is.EqualTo(expected.NumberOfSupers));
+                Assert.That(actual!.SecondBroodBox, Is.EqualTo(expected.SecondBroodBox));
+                Assert.That(actual!.NumberOfAdditionalBoxes, Is.EqualTo(expected.NumberOfAdditionalBoxes));
+                Assert.That(actual!.MatedBeeQueen, Is.EqualTo(expected.MatedBeeQueen));
+                Assert.That(actual.BeeQueen!.BeeQueenYearOfBirth, Is.EqualTo(expected.BeeQueen.BeeQueenYearOfBirth));
+                Assert.That(actual!.BeeQueen.Breeder, Is.EqualTo(expected.BeeQueen.Breeder));
+                Assert.That(actual!.BeeQueen.BeeQueenType, Is.EqualTo(expected.BeeQueen.BeeQueenType));
+            });
+        }
+
+        [Test]
+        public void GetDetailsForTheBeeColonyAsyncShouldThrowIfOwnerDoesNotExist()
+        {
+            Assert.ThrowsAsync<InvalidOperationException>(async ()
+                   => await beeColonyService.GetDetailsForTheBeeColonyAsync(NotExistingUserdId, beeColonyIdForTests));
+        }
+
+        [Test]
+        public void GetDetailsForTheBeeColonyAsyncShouldThrowIfBeeColonyDoesNotExist()
+        {
+            Assert.ThrowsAsync<InvalidOperationException>(async ()
+                   => await beeColonyService.GetDetailsForTheBeeColonyAsync(UserdId, 1111));
+        }
+
+        [Test]
+        public async Task IsTheUserOwnerShoulReturnTrueIfUserIsCorrect()
+        {
+            var result = await beeColonyService.IsTheUserOwner(UserdId);
+
+            Assert.That(result, Is.True);
+        }
+
+        [Test]
+        public async Task IsTheUserOwnerShoulReturnFalseIfUserDoesNotExist()
+        {
+            var result = await beeColonyService.IsTheUserOwner(NotExistingUserdId);
+
+            Assert.That(result, Is.False);
+        }
+
+        [Test]
+        public async Task DoesBeeColonyExistShoulReturnTrueIfColonyExist()
+        {
+            var result = await beeColonyService.DoesBeeColonyExist(UserdId, beeColonyIdForTests);
+
+            Assert.That(result, Is.True);
+        }
+
+        [Test]
+        public async Task DoesBeeColonyExistShoulReturnFalseIfColonyDoesNotExist()
+        {
+            var result = await beeColonyService.DoesBeeColonyExist(UserdId, 1111);
+
+            Assert.That(result, Is.False);
+        }
+
+        [Test]
+        public async Task DoesBeeColonyExistShoulReturnFalseIfUserDoesNotExist()
+        {
+            var result = await beeColonyService.DoesBeeColonyExist(NotExistingUserdId, beeColonyIdForTests);
+
+            Assert.That(result, Is.False);
+        }
     }
 }

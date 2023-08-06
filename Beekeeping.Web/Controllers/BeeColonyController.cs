@@ -190,7 +190,7 @@
                 var apiariesForSelect = apiaryService.AllApiariesForSelectAsync(apiaries);
 
                 model.Apiaries = apiariesForSelect;
-              
+
                 return View(model);
             }
 
@@ -267,7 +267,7 @@
             return RedirectToAction("All", "Apiary");
         }
 
-        
+
 
     }
 }

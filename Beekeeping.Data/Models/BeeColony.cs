@@ -13,7 +13,7 @@
         [StringLength(PlateNumberMaxLenght)]
         public string PlateNumber { get; set; } = null!;
 
-        public string? AdditionalComмent { get; set; }
+        public string? AdditionalComment { get; set; }
 
         public string? TypeOfBroodBox { get; set; }
 
