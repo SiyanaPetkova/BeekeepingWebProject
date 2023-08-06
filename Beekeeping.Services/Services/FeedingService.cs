@@ -36,7 +36,6 @@
                                     PriceOfFeeding = f.PriceOfFeeding,
                                     DayOfFeeding = f.DayOfFeeding.ToLongDateString(),
                                     CreatorId = userId
-
                                 })
                                 .ToArrayAsync();
 

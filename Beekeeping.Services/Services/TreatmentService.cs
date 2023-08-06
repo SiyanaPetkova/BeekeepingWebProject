@@ -26,6 +26,7 @@
                 ActiveIngredient = model.ActiveIngredient,
                 PriceOfTheTreatment = model.PriceOfTheTreatment,
                 NumberOfTreatedColonies = model.NumberOfTreatedColonies,
+                ResultAndCommentAboutTheTreatment = model.ResultAndCommentAboutTheTreatment,
                 CreatorId = userId
             };
 
@@ -53,6 +54,7 @@
 
             return await context.HiveTreatments
                                 .Where(t => t.CreatorId == userId)
+                                .OrderByDescending(t => t.TreatmentDate)
                                 .Select(t => new HiveTreatmentViewModel()
                                 {
                                     Id = t.Id,

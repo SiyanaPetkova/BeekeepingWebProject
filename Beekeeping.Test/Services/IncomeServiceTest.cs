@@ -8,10 +8,9 @@
 
     using Data;
     using Data.Models;
+    using Models.Income;
     using Beekeeping.Services.Interfaces;
     using Beekeeping.Services.Services;
-    using Beekeeping.Models.Cost;
-    using Beekeeping.Models.Income;
 
     internal class IncomeServiceTest
     {
