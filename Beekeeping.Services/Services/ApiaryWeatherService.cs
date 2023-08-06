@@ -21,17 +21,15 @@
 
         public async Task<IEnumerable<ApiaryCoordinatesModel>> GetApiariesCoordinatesAsync(string userId)
         {
-            var apiariesCoordinates = await context.Apiaries
-                                                    .Where(a => a.OwnerId == userId)
-                                                    .Select(a => new ApiaryCoordinatesModel 
-                                                    {
-                                                        ApiaryName = a.Name,
-                                                        Latitude = a.Latitude, 
-                                                        Longitude = a.Longitude
-                                                    })
-                                                    .ToArrayAsync();
-
-            return apiariesCoordinates;
+            return await context.Apiaries
+                                .Where(a => a.OwnerId == userId)
+                                .Select(a => new ApiaryCoordinatesModel 
+                                {
+                                    ApiaryName = a.Name,
+                                    Latitude = a.Latitude, 
+                                    Longitude = a.Longitude
+                                })
+                                .ToArrayAsync();
         }
 
         public async Task<ApiaryWeatherModel> GetWeatherDataAsync(string query)
