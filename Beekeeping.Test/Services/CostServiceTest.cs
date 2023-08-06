@@ -90,7 +90,9 @@
         [Test]
         public async Task AllCostsAsyncShouldReturnCorectInformation()
         {
-            var expected = await context.Costs.Where(c => c.CreatorId == UserdId)
+            var expected = await context.Costs
+                .Where(c => c.CreatorId == UserdId)
+                .OrderByDescending(c => c.DayOfTheCost)
                 .Select(c => new CostViewModel()
                 {
                     Id = c.Id,
