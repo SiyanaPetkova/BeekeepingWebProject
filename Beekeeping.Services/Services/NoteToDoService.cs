@@ -71,6 +71,11 @@
                           .AnyAsync(f => f.Id == id && f.CreatorId == userId);
         }
 
+        public async Task<int> DoesUserHasNotFinishedTasks(string userId)
+        {
+            return await context.NoteToDos.Where(n => n.CreatorId == userId && n.Finished == false).CountAsync();
+        }
+
         public async Task EditNoteAsync(NoteToDoFormModel model, string userId, int id)
         {
             var note = await context.NoteToDos

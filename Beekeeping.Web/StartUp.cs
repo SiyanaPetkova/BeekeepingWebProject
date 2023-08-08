@@ -8,9 +8,8 @@ namespace Beekeeping.Web
     using Services.Interfaces;
     using Web.Infrastructure.Extensions;
     using Web.Infrastructure.ModelBinders;
-
+   
     using static Web.Areas.Admin.AdminConstants;
-
 
     public class StartUp
     {
@@ -51,8 +50,7 @@ namespace Beekeeping.Web
                  {
                      options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
                  });
-
-
+                     
             var app = builder.Build();
 
             if (app.Environment.IsDevelopment())
@@ -80,7 +78,7 @@ namespace Beekeeping.Web
             }
 
             app.UseEndpoints(config =>
-            {
+            {              
                 config.MapControllerRoute(
                     name: "areas",
                     pattern: "/{area:exists}/{controller=Home}/{action=Index}/{id?}");
@@ -88,8 +86,8 @@ namespace Beekeeping.Web
                 app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-
-                app.MapRazorPages();
+                              
+                app.MapRazorPages();               
             });
 
             app.Run();

@@ -15,5 +15,7 @@
         Task<NoteToDoFormModel> GetNoteForEditAsync(string ownerId, int id);
 
         Task EditNoteAsync(NoteToDoFormModel model, string ownerId, int id);
+
+        Task<int> DoesUserHasNotFinishedTasks(string userId);
     }
 }
