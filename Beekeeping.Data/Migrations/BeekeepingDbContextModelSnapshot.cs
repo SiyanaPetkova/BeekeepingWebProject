@@ -160,15 +160,15 @@ namespace Beekeeping.Data.Migrations
                         {
                             Id = new Guid("d23c4f40-0178-4622-b307-b482a79aa316"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7a3e3517-ecd3-412f-b4ad-a34c8a86443a",
+                            ConcurrencyStamp = "af67d029-862a-4f27-aaf8-9e580c2017b0",
                             Email = "testAdmin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "TESTADMIN@GMAIL.COM",
                             NormalizedUserName = "TESTADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMKtgJM/21rp6R+qtG4q6vjRV8ffGtI79PNtpcbDCl+igZkNQkZbS+e9wJO30h3D7w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEP1P42uRh5xq+Q9ALCZf8FnEsRwRnxcrig/nJ8bIDQ+JpF49p+dZx/4d+IQE+pqNw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "DA21D14439120340B1FA3D7CCDCEB40E",
+                            SecurityStamp = "E6676B67DC69284A95A1DB7429F51B79",
                             TwoFactorEnabled = false,
                             UserName = "testAdmin@gmail.com"
                         },
@@ -176,15 +176,15 @@ namespace Beekeeping.Data.Migrations
                         {
                             Id = new Guid("44c36b39-ad0a-4260-b448-45bb03158888"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "65852af5-21ed-4a29-b2e9-5e0b9ec995c9",
+                            ConcurrencyStamp = "380df87e-6a98-4d5c-a230-dcd5a1669e40",
                             Email = "demouser@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "DEMOUSER@GMAIL.COM",
                             NormalizedUserName = "DEMOUSER@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOXRcnBd/Q5gM/5T1KEuWRITEVoTA+bylHZpH0fRv9YMiFOOWrkDPeVUBsVBAHhZ1A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJp9GNcM7PLTyL4VkOnrYAA/fKyiLsaIVbdmjQq/QdxdNgR1sElKfDW13I6LoOkIUw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "419322EA15136C4FA4C944C26CA1BDA2",
+                            SecurityStamp = "F3FD287EE012AC4B86A11617B420DE12",
                             TwoFactorEnabled = false,
                             UserName = "demouser@gmail.com"
                         });
