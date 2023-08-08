@@ -45,6 +45,10 @@ namespace Beekeeping.Web
 
             builder.Services.AddApplicationServices(typeof(IApiaryService));
 
+            builder.Services.AddMemoryCache();
+
+            builder.Services.AddResponseCaching();
+
             builder.Services.AddControllersWithViews()
                  .AddMvcOptions(options =>
                  {
@@ -68,6 +72,8 @@ namespace Beekeeping.Web
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseResponseCaching();
 
             app.UseAuthentication();
             app.UseAuthorization();

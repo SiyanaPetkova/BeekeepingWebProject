@@ -1,44 +1,10 @@
 ﻿@model dynamic
 
+<!DOCTYPE html>
+<html>
 <head>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        .row {
-            margin-left: -5px;
-            margin-right: -5px;
-        }
-
-        .column {
-            float: left;
-            width: 50%;
-            padding: 5px;
-        }
-
-        .row::after {
-            content: "";
-            clear: both;
-            display: table;
-        }
-
-        table {
-            border-collapse: collapse;
-            border-spacing: 0;
-            width: 100%;
-            border: 1px solid #ddd;
-        }
-
-        th, td {
-            text-align: left;
-            padding: 16px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-    </style>
+    <title>Balance Page</title>
+    <link href="~/Content/site.css" rel="stylesheet" />
 </head>
 <body>
     <h1 class="text-center">Баланс</h1>
@@ -50,12 +16,12 @@
         Имайте предвид, че въведената информация за третирания и подхранвания се добавя автоматично към таблицата.
     </p>
 
-    <div class="row">
+    <div class="column-container">
         <div class="column">
+            <a asp-controller="Balance" asp-action="AddIncome" class="column-button">Добави нов приход</a>
             <h2 class="text-center">Приходи</h2>
             <h4 class="border border-warning">Общо приходи: @Model.TotalIncome лв.</h4>
-            <a asp-controller="Balance" asp-action="AddIncome" class="btn btn-light mb-2 w-100 p-1 fw-bold">Добави нов приход</a>
-            <table>
+            <table class="table-style">
                 <tr>
                     <th>Дата</th>
                     <th>Приход</th>
@@ -79,10 +45,10 @@
             </table>
         </div>
         <div class="column">
+            <a asp-controller="Balance" asp-action="AddCost" class="column-button">Добави нов разход</a>
             <h2 class="text-center">Разходи</h2>
-            <h4 class ="border border-warning">Общо разходи: @Model.TotalCost лв.</h4>
-            <a asp-controller="Balance" asp-action="AddCost" class="btn btn-light mb-2 w-100 p-1 fw-bold">Добави нов разход</a>
-            <table>
+            <h4 class="border border-warning">Общо разходи: @Model.TotalCost лв.</h4>
+            <table class="table-style">
                 <tr>
                     <th>Дата</th>
                     <th>Разход</th>
@@ -107,5 +73,11 @@
         </div>
     </div>
 </body>
+</html>
+
+
+
+
+
 
 

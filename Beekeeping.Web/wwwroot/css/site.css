@@ -106,7 +106,7 @@ input[type=submit] {
     }
 
 #toast-text > .toast-success {
-   color: aqua !important;
+    color: aqua !important;
 }
 
 #toast-text > .toast-success {
@@ -184,47 +184,81 @@ input[type=submit] {
     .container .btn:hover {
         background-color: transparent;
     }
-
-.hexButton polygon {
-    fill-opacity: 0;
-    stroke: rgba(49, 191, 192,1);
-    stroke-width: 2;
-    position: relative;
+.picture-container {
+    text-align: center;
 }
 
-.hexButton {
-    transform: scaleX(1) scaleY(1);
-    position: relative;
-    transition: all 0.35s ease-out;
+.picture {
+    max-width: 100%;
+    height: auto;
 }
 
-    .hexButton:hover polygon {
-        /* fill-opacity:0.5; */
+.button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: orange;
+    color: black;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .picture {
+        max-width: 80%;
     }
 
+    .button {
+        display: block;
+        margin: 20px auto;
+    }
+}
 
-    .hexButton span {
-        position: absolute;
-        left: 0px;
-        width: 100%;
-        line-height: 60px;
-        font-size: 20px;
-        color: rgba(49, 191, 192,1);
-        text-transform: uppercase;
-        letter-spacing: 0.5rem;
-        font-family: sans-serif;
-        transition: all 0.35s ease-out;
-        text-shadow: 0 0 1px 0px white;
+.column-container {
+    display: flex; /* Use flexbox for horizontal layout */
+    flex-wrap: wrap; /* Wrap columns on small screens */
+    justify-content: space-between; /* Space columns evenly horizontally */
+}
+
+.column {
+    flex: 1;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.column-button {
+    margin-bottom: 10px;
+    width: 70%;
+    padding: 5px 10px;
+    background-color: orange;
+    color: black;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .column {
+        flex: 100%; 
+    }
+}
+
+.table-style {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+    .table-style th, .table-style td {
+        padding: 8px;
+        text-align: left;
     }
 
-    .hexButton:hover {
-        transform: scaleX(1.2) scaleY(1.2);
-        color: #000;
+    /* Alternating row colors */
+    .table-style tr:nth-child(even) {
+        background-color: lightgoldenrodyellow;
     }
-
-        .hexButton:hover span {
-            transform: scaleX(0.9) scaleY(0.9);
-            color: white;
-        }
-
-

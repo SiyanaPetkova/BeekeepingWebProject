@@ -1,5 +1,7 @@
 ﻿<!DOCTYPE html>
+
 <html lang="en">
+
 <head style="background">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,16 +10,15 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="~/favicon.png" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" integrity="sha512-6S2HWzVFxruDlZxI3sXOZZ4/eJ8AcxkQH1+JjSe/ONCEqR9L4Ysq5JdT5ipqtzU7WHalNwzwBv+iE51gNHJNqQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <script src="~/lib/bootstrap/dist/js/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js" integrity="sha512-lbwH47l/tPXJYG9AcFNoJaTMhGvYWhVM9YI43CT+uteTRRaiLCui8snIgyAN8XWgNjNhCqlAUdzZptso6OCoFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
 </head>
-
 
 <body style="background-image: src(/images/back.jpg)">
     <header>
@@ -76,6 +77,9 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
+                                <a asp-area="" asp-controller="Apiary" asp-action="ApiaryWeather" asp-route-id="" class="btn btn-warning mb-3 btn-block fw-bold">Времето</a>
+                            </li>
+                            <li class="nav-item">
                                 <a asp-area="" asp-controller="Event" asp-action="Notes" asp-route-id="" class="btn btn-warning mb-3 btn-block fw-bold">Задачи</a>
                             </li>
                             <li class="nav-item">
@@ -88,26 +92,10 @@
                                 <a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="" class="btn btn-warning mb-3 btn-block fw-bold">Cъбития</a>
                             </li>
                         }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a asp-area="" asp-controller="Apiary" asp-action="Add" asp-route-id="" class="btn btn-warning mb-3 btn-block fw-bold">Добавете информация за вашите пчелини</a>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="" class="btn btn-warning mb-3 btn-block fw-bold">Добавете данни за проведени мероприятия по кошерите</a>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-area="" asp-controller="Event" asp-action="Balance" asp-route-id="" class="btn btn-warning mb-3 btn-block fw-bold">Запазете информация за приходите и разходите си</a>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-area="" asp-controller="Event" asp-action="Notes" asp-route-id="" class="btn btn-warning mb-3 btn-block fw-bold">Създайте бележки с предстоящи задачи</a>
-                            </li>
-                        }
-
                     </ul>
                 </div>
             </nav>
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <main class="col-md-10 ms-sm-auto col-lg-10 px-md-4">
                 @RenderBody()
             </main>
         </div>
@@ -118,11 +106,13 @@
             &copy; @DateTime.Now.Year - BeekeepingWebProject
         </div>
     </footer>
+
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-@*    <script src="~/lib/bootstrap/dist/js/custom.js"></script>*@
     <script src="~/js/site.js" asp-append-version="true"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>
