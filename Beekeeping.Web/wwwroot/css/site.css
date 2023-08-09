@@ -68,9 +68,9 @@ h2 {
     margin: 0 auto 40px;
 }
 
-.photo-gallery .intro p {
-    margin-bottom: 0;
-}
+    .photo-gallery .intro p {
+        margin-bottom: 0;
+    }
 
 .photo-gallery .photos {
     padding-bottom: 20px;
@@ -101,9 +101,9 @@ input[type=submit] {
     cursor: pointer;
 }
 
- input[type=submit]:hover {
-     background-color: orange;
- }
+    input[type=submit]:hover {
+        background-color: orange;
+    }
 
 #toast-text > .toast-success {
     color: aqua !important;
@@ -183,6 +183,7 @@ input[type=submit] {
     .container .btn:hover {
         background-color: transparent;
     }
+
 .picture-container {
     text-align: center;
 }
@@ -215,19 +216,19 @@ input[type=submit] {
 }
 
 .column-container {
-    display: flex; 
+    display: flex;
     flex-wrap: wrap;
-    justify-content: space-between; 
+    justify-content: space-between;
 }
 
 .column {
     flex: 1;
     padding: 10px;
     box-sizing: border-box;
-    text-align: center; 
+    text-align: center;
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
 }
 
 .column-button {
@@ -243,7 +244,7 @@ input[type=submit] {
 
 @media (max-width: 768px) {
     .column {
-        flex: 100%; 
+        flex: 100%;
     }
 }
 
@@ -262,19 +263,15 @@ input[type=submit] {
     }
 
 .card {
-    padding: 35px; 
-    border-radius: 20px; 
-    box-shadow: 1 4px 6px rgba(0, 0, 0, 0.1); 
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 1 4px 6px rgba(0, 0, 0, 0.1);
     background-color: lightgoldenrodyellow;
-    margin-bottom: 5mm; 
+    margin-bottom: 5mm;
 }
 
-    /*.card:last-child {
-        margin-bottom: 0; Remove margin from the last card */
-    /*}*/
-   
     .card:hover {
-        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); 
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
         transform: translateY(-4px);
         transition: box-shadow 0.3s, transform 0.3s;
     }
@@ -284,3 +281,39 @@ input[type=submit] {
         text-align: center;
     }
 }
+
+.custom-events-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto; 
+}
+
+.custom-events-container .custom-btn {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: lightgoldenrodyellow;
+    color: black;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+}
+
+    .custom-events-container .custom-btn:hover {
+        background-color: transparent;
+    }
+
+    .custom-events-container img {
+        display: block;
+        margin: 0 auto; /* Center the image horizontally */
+        max-width: 100%;
+        height: auto;
+        padding: 10px; /* Add padding around the image */
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+    }

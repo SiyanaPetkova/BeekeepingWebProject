@@ -40,22 +40,17 @@
 
             if (beeColoniesCount > 0)
             {
-                var beeColoniesStrenght = await context.BeeColonies
-               .Where(b => b.OwnerOfTheApiary == userId)
-               .Include(b => b.Inspections)
-               .Select(b => new
-               {
-                   ColonyStrenght = b.Inspections
-                                  .OrderByDescending(i => i.DayOfInspection)
-                                  .Select(i => new
-                                  {
-                                      i.Strenght
-                                  })
-                                  .First()
-               })
-               .ToArrayAsync();
+                var doesInspectionsExist = await context.Inspections
+                    .AnyAsync(i => i.BeeColony!.OwnerOfTheApiary == userId);
 
-                beeColoniesAverageStrenght = beeColoniesStrenght.Average(a => a.ColonyStrenght.Strenght);
+                if (doesInspectionsExist)
+                {
+                    var inspectionsStrenght = await context.Inspections
+                        .Where(i => i.BeeColony!.OwnerOfTheApiary == userId)
+                        .AverageAsync(i => i.Strenght);
+
+                    beeColoniesAverageStrenght = inspectionsStrenght;
+                }            
             }                      
 
             return new StatisticsViewModel()
@@ -65,7 +60,7 @@
                 FinancialResult = financialResult,
                 ApiariesCount = apiariesCount,
                 BeeColoniesCount = beeColoniesCount,
-                BeeColoniesAverageStrenght = beeColoniesAverageStrenght > 0 ? beeColoniesAverageStrenght : 0
+                BeeColoniesAverageStrenght = beeColoniesAverageStrenght
             };
         }
     }
