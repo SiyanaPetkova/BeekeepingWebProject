@@ -115,7 +115,7 @@
             {
                 await beeColonyService.AddNewBeeColonyAsync(model, userId);
 
-                TempData["SuccessMessage"] = "Успечно добавихте нов кошер към своя пчелин";
+                TempData["SuccessMessage"] = "Успешно добавихте нов кошер към своя пчелин";
 
                 return RedirectToAction("All", "Apiary");
             }
@@ -257,7 +257,7 @@
             {
                 await beeColonyService.DeleteBeeColonyAsync(userId, id);
 
-                TempData["SuccessMessage"] = "Пчелинът беше изтрит успешно!";
+                TempData["SuccessMessage"] = "Кошерът беше изтрит успешно!";
             }
             catch (Exception)
             {

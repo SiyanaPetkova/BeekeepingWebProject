@@ -40,9 +40,9 @@
                     <td>@i.PriceOfFeeding</td>
                     <td>@i.NumberOfBeeHives</td>
                     <td>
-                        <a asp-controller="Feeding" asp-action="Delete" asp-route-id="@i.Id" class="btn btn-warning"
-                           onclick="return confirm('Сигурни ли сте,че искате да изтриете инфомацията за това хранене? Данните Ви ще бъдат загубени!')">
-                            <span class="glyphicon">&#128465;</span>
+                        <a asp-controller="Feeding" asp-action="Delete" asp-route-id="@i.Id" class="btn btn-danger"
+                           onclick="showDeleteConfirmation(event, '<span class=&quot;glyphicon glyphicon-trash&quot;></span> Да, изтрий!')">
+                            &#128465;
                         </a>
                     </td>
                 </tr>
@@ -51,3 +51,7 @@
     </table>
 </div>
 
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="/js/deleteConfirmation.js"></script>
+    }

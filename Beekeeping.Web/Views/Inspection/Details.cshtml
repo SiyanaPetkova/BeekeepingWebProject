@@ -21,10 +21,18 @@
                         <p class="mb-0"><span class="fw-bold">Темперамент на семейството: </span>@Model.Temperament</p>
                         <p class="mb-0"><span class="fw-bold">Допълнителна информация: </span>@Model.Description</p>
                         <a asp-controller="Inspection" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning mb-2 w-100 p-2 fw-bold">Редакция</a>
-                        <a asp-controller="Inspection" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger" onclick="return confirm('Сигурни ли сте,че искате да изтриете този преглед? Данните Ви ще бъдат загубени!')">Изтриване</a>
+                        <a asp-controller="Inspection" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger"
+                           onclick="showDeleteConfirmation(event, 'Да, изтрий!')">Изтриване</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="/js/deleteConfirmation.js"></script>
+    }
+

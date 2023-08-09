@@ -28,7 +28,8 @@
                         <a asp-controller="Inspection" asp-action="All" asp-route-id="@Model.Id" class="btn btn-warning mb-2 w-100 p-2 fw-bold">Виж всички прегледи</a>
                         <a asp-controller="Inspection" asp-action="Add" asp-route-id="@Model.Id" class="btn btn-warning mb-2 w-100 p-2 fw-bold">Добави преглед</a>
                         <a asp-controller="BeeColony" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning mb-2 w-100 p-2 fw-bold">Редакция</a>
-                        <a asp-controller="BeeColony" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger" onclick="return confirm('Сигурни ли сте,че искате да изтриете този кошер? Данните Ви ще бъдат загубени!')">Изтриване</a>
+                        <a asp-controller="Inspection" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger"
+                           onclick="showDeleteConfirmation(event, 'Да, изтрий!')">Изтриване</a>
                     </div>
                 </div>
 
@@ -40,5 +41,6 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="/js/deleteConfirmation.js"></script>
     }
-

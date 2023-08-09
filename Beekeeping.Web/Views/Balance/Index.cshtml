@@ -28,10 +28,8 @@
                     <td>@i.TypeOfIncome</td>
                     <td>@i.IncomeValue лв.</td>
                     <td>
-                        <a asp-controller="Balance" asp-action="DeleteIncome" asp-route-id="@i.Id" class="btn btn-warning"
-                           onclick="return confirm('Сигурни ли сте,че искате да изтриете инфомацията за получения приход? Данните Ви ще бъдат загубени!')">
-                            <span class="glyphicon">&#128465;</span>
-                        </a>
+                        <a asp-controller="Balance" asp-action="DeleteIncome" asp-route-id="@i.Id" class="btn btn-danger"
+                           onclick="showDeleteConfirmation(event, '<span class=&quot;glyphicon glyphicon-trash&quot;></span> Да, изтрий!')">&#128465;</a>
                     </td>
                 </tr>
             }
@@ -55,10 +53,8 @@
                     <td>@c.TypeOfCost</td>
                     <td>@c.CostValue лв.</td>
                     <td>
-                        <a asp-controller="Balance" asp-action="DeleteCost" asp-route-id="@c.Id" class="btn btn-warning"
-                           onclick="return confirm('Сигурни ли сте,че искате да изтриете инфомацията за направения разход? Данните Ви ще бъдат загубени!')">
-                            <span class="glyphicon">&#128465;</span>
-                        </a>
+                        <a asp-controller="Balance" asp-action="DeleteCost" asp-route-id="@c.Id" class="btn btn-danger"
+                           onclick="showDeleteConfirmation(event, '<span class=&quot;glyphicon glyphicon-trash&quot;></span> Да, изтрий!')">&#128465;</a>
                     </td>
                 </tr>
             }
@@ -67,6 +63,10 @@
 </div>
 
 
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="/js/deleteConfirmation.js"></script>
+    }
 
 
 
