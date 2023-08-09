@@ -17,6 +17,7 @@
         {
             this.context = context;
         }
+
         public async Task<IEnumerable<ApiaryViewModel>?> AllApiaryAsync(string ownerId)
         {
             bool doesOwnerHasApiariesAdded = await context.Apiaries.AnyAsync(a => a.OwnerId == ownerId);

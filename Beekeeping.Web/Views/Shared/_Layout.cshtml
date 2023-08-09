@@ -47,10 +47,10 @@
                                 <li><a class="dropdown-item" asp-area="" asp-controller="Event" asp-action="Index">Събития</a></li>
                                 <li><a class="dropdown-item" asp-area="" asp-controller="Balance" asp-action="Index">Баланс</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Статистики</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Statistics" asp-action="Index">Статистики</a>
+                        </li>
                             </ul>
                         </li>
-
                         @if (User.IsInRole(AdministratorRoleName))
                         {
                             <li class="nav-item">

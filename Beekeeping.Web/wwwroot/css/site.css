@@ -260,3 +260,27 @@ input[type=submit] {
     .table-style tr:nth-child(even) {
         background-color: lightgoldenrodyellow;
     }
+
+.card {
+    padding: 35px; 
+    border-radius: 20px; 
+    box-shadow: 1 4px 6px rgba(0, 0, 0, 0.1); 
+    background-color: lightgoldenrodyellow;
+    margin-bottom: 5mm; 
+}
+
+    /*.card:last-child {
+        margin-bottom: 0; Remove margin from the last card */
+    /*}*/
+   
+    .card:hover {
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); 
+        transform: translateY(-4px);
+        transition: box-shadow 0.3s, transform 0.3s;
+    }
+
+@media (max-width: 767px) {
+    .image-container {
+        text-align: center;
+    }
+}

@@ -1,0 +1,38 @@
+﻿@model StatisticsViewModel;
+
+@{
+    ViewBag.Title = "Статистики";
+    ViewBag.Result = Model.FinancialResult >= 0 ? "Печалба" : "Загуба";
+}
+
+<div class="row">
+    <h1 class="text-center">@ViewBag.Title</h1>
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h3 class="card-title mt-1 text-center">Финансова статистика</h3>
+                <p class="mb-0"><span class="fw-bold">Общо приходи: </span>@Model.TotalIncome лв.</p>
+                <p class="mb-0"><span class="fw-bold">Общо разходи: </span>@Model.TotalCost лв.</p>
+                <p class="mb-0"><span class="fw-bold">@ViewBag.Result: </span>@Model.FinancialResult лв.</p>
+            </div>
+            <a asp-controller="Balance" asp-action="Index" asp-route-id="" class="btn btn-warning mb-2 w-100 p-1">Баланс</a>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h3 class="card-title mt-1 text-center">Данни за пчелините</h3>
+                <p class="mb-0"><span class="fw-bold">Брой пчелини: </span>@Model.ApiariesCount</p>
+                <p class="mb-0"><span class="fw-bold">Брой кошери: </span>@Model.BeeColoniesCount</p>
+                <p class="mb-0"><span class="fw-bold">Средна сила на семействата: </span>@Model.BeeColoniesAverageStrenght</p>
+            </div>
+            <a asp-controller="Apiary" asp-action="All" asp-route-id="" class="btn btn-warning mb-2 w-100 p-1">Пчелини</a>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="image-container text-center py-4">
+            <img class="w-50" src="/images/Statistics.jpg" alt="Card image cap">
+        </div>
+    </div>
+
+</div>

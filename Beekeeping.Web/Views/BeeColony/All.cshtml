@@ -5,12 +5,12 @@
 }
 
 <h2 class="text-center">@ViewBag.Title</h2>
-<hr />
+<hr/>
 
 <div class="text-center row">
     @foreach (var b in Model)
     {
-        <div class="card col-3" style="width: 20rem; ">
+        <div class="card col-3" style="width: 20rem;">
             <div class="card-body">
                 <h5 class="card-title mt-1">@b.PlateNumber</h5>
                 <p class="mb-0"><span class="fw-bold">Тип кошер: </span>@b.TypeOfBroodBox</p>
