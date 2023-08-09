@@ -212,6 +212,15 @@
         {
             var userId = this.User.Id();
 
+            var isTheUserOwner = await apiaryService.IsTheUserOwner(userId);
+
+            if (!isTheUserOwner)
+            {
+                TempData["ErrorMessage"] = "Първо трябва да добавите пчелин с точни координати, за да можете да видите времето в момента там.";
+
+                return this.RedirectToAction("Add");
+            }
+
             var apiaries = await weatherService.GetApiariesCoordinatesAsync(userId);
 
             var weatherResults = new List<ApiaryWeatherModel>();

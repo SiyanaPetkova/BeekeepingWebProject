@@ -36,23 +36,27 @@
                 .Where(b => b.OwnerOfTheApiary == userId)
                 .CountAsync();
 
-            var beeColoniesStrenght = await context.BeeColonies
-                .Where(b => b.OwnerOfTheApiary == userId)
-                .Include(b => b.Inspections)
-                .Select(b => new
-                {
-                    Id = b.Id,
-                    ColonyStrenght = b.Inspections
-                                   .OrderByDescending(i => i.DayOfInspection)
-                                   .Select(i => new
-                                   {
-                                       i.Strenght
-                                   })
-                                   .First()
-                })
-                .ToArrayAsync();
+            double beeColoniesAverageStrenght = 0;
 
-            double beeColoniesAverageStrenght = beeColoniesStrenght.Average(a => a.ColonyStrenght.Strenght);
+            if (beeColoniesCount > 0)
+            {
+                var beeColoniesStrenght = await context.BeeColonies
+               .Where(b => b.OwnerOfTheApiary == userId)
+               .Include(b => b.Inspections)
+               .Select(b => new
+               {
+                   ColonyStrenght = b.Inspections
+                                  .OrderByDescending(i => i.DayOfInspection)
+                                  .Select(i => new
+                                  {
+                                      i.Strenght
+                                  })
+                                  .First()
+               })
+               .ToArrayAsync();
+
+                beeColoniesAverageStrenght = beeColoniesStrenght.Average(a => a.ColonyStrenght.Strenght);
+            }                      
 
             return new StatisticsViewModel()
             {
@@ -61,7 +65,7 @@
                 FinancialResult = financialResult,
                 ApiariesCount = apiariesCount,
                 BeeColoniesCount = beeColoniesCount,
-                BeeColoniesAverageStrenght = beeColoniesAverageStrenght
+                BeeColoniesAverageStrenght = beeColoniesAverageStrenght > 0 ? beeColoniesAverageStrenght : 0
             };
         }
     }
