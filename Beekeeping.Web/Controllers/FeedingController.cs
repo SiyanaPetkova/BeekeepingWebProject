@@ -22,9 +22,10 @@
         [HttpGet]
         public IActionResult Add()
         {
-            var model = new HiveFeedingFormModel();
-
-            model.DayOfFeeding = DateTime.Now;
+            var model = new HiveFeedingFormModel
+            {
+                DayOfFeeding = DateTime.Now
+            };
 
             return View(model);
         }

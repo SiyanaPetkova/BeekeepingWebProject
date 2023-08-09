@@ -22,9 +22,10 @@
         [HttpGet]
         public IActionResult Add()
         {
-            var model = new HiveTreatmentFormModel();
-
-            model.TreatmentDate = DateTime.Now;
+            var model = new HiveTreatmentFormModel
+            {
+                TreatmentDate = DateTime.Now
+            };
 
             return View(model);
         }

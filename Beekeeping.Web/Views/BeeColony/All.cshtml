@@ -12,12 +12,14 @@
     {
         <div class="card col-3" style="width: 20rem;">
             <div class="card-body">
+                <h3 class="card-title mt-1">Koшер</h3>
                 <h5 class="card-title mt-1">@b.PlateNumber</h5>
                 <p class="mb-0"><span class="fw-bold">Тип кошер: </span>@b.TypeOfBroodBox</p>
                 <p class="mb-0"><span class="fw-bold">Оплодена майка: </span>@b.MatedBeeQueen</p>
             </div>
             <a asp-controller="BeeColony" asp-action="Details" asp-route-id="@b.Id" class="btn btn-warning mb-2 w-100 p-1">Детайли</a>
             <a asp-controller="Inspection" asp-action="All" asp-route-id="@b.Id" class="btn btn-warning mb-2 w-100 p-1">Информация за прегледите</a>
+            <a asp-controller="Inspection" asp-action="Add" asp-route-id="@b.Id" class="btn btn-warning mb-2 w-100 p-1">Добави преглед</a>
         </div>
     }
 </div>

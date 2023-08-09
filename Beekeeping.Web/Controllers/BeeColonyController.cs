@@ -42,7 +42,7 @@
 
                 if (model == null)
                 {
-                    TempData["InformationMessage"] = "Все още нямате добавен пчелин. Можете да го направите тук.";
+                    TempData["InformationMessage"] = "Все още нямате добавени кошери. Можете да го направите тук.";
 
                     return RedirectToAction("Add");
                 }

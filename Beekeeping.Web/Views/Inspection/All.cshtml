@@ -11,6 +11,7 @@
 <h2 class="text-center">@ViewBag.Title</h2>
 
 <div class="text-center row">
+
     <table class="table table-striped">
         <thead>
             <tr>
@@ -35,7 +36,8 @@
                     <td>@i.NumberOfFrames</td>
                     <td>@i.NumberOfBroodFrames</td>
                     <td>@i.Strenght</td>
-                    <td> <a asp-controller="Inspection" asp-action="Details" asp-route-id="@i.Id" class="btn btn-warning mb-2 w-100 p-1">Допълнителна информация</a></td>
+                    <td>
+                        <a asp-controller="Inspection" asp-action="Details" asp-route-id="@i.Id" class="btn btn-warning mb-2 w-100 p-1">Допълнителна информация</a></td>
                 </tr>
             </tbody>
         }
