@@ -2,6 +2,7 @@
 {
     using Beekeeping.Services.Interfaces;
     using Beekeeping.Web.Infrastructure.Extensions;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Models.Errors;
     using System.Diagnostics;
@@ -41,10 +42,19 @@
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult Try()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            int statusCode = 404;
+            ViewBag.StatusCode = statusCode;
+            return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error(int statusCode)
+        {
+            ViewBag.StatusCode = statusCode;
+
+            return View();
         }
     }
 }

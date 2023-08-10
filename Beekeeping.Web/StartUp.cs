@@ -49,6 +49,12 @@ namespace Beekeeping.Web
 
             builder.Services.AddResponseCaching();
 
+            builder.Services.ConfigureApplicationCookie(cfg =>
+            {
+                cfg.LoginPath = "/User/Login";
+                cfg.AccessDeniedPath = "/Home/Error/401";
+            });
+
             builder.Services.AddControllersWithViews()
                  .AddMvcOptions(options =>
                  {
@@ -63,7 +69,9 @@ namespace Beekeeping.Web
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Home/Error/500");
+
+                app.UseStatusCodePagesWithRedirects("/Home/Error?statusCode={0}");
 
                 app.UseHsts();
             }

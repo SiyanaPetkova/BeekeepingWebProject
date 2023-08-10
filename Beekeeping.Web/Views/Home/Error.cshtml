@@ -1,0 +1,31 @@
+﻿@{
+    int code = ViewBag.StatusCode;
+}
+<div class="error-page">
+    <div>
+        @switch (code.ToString())
+        {
+            case "400":
+                <h1 data-h1='@code'>@code</h1>
+                <p data-p>Възникна грешка, в следствие на Вашата заявка!</p>
+                break;
+            case "401":
+                <h1 data-h1='@code'>@code</h1>
+                <p data-p>Нямате необходимите права за тази страница!</p>
+                break;
+            case "404":
+                <h1 data-h1='@code'>@code</h1>
+                <p data-p>Страницата, която търсите не може да бъде намерена!</p>
+                break;
+            case "500":
+                <h1 data-h1='@code'>@code</h1>
+                <p data-p>Възникна грешка със сървъра. Моля, опитайте по-късно!</p>
+                break;
+            case "502":
+                <h1 data-h1='@code'>@code</h1>
+                <p data-p>Възникна грешка със сървъра. Моля, опитайте по-късно!</p>
+                break;
+        }
+    </div>
+</div>
+
