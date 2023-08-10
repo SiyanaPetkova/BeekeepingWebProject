@@ -6,6 +6,9 @@
 
     using Data;
     using Models.Inspection;
+    using Beekeeping.Models.BeeColony;
+    using Beekeeping.Models.BeeQueen;
+    using Beekeeping.Services.Services;
 
     [TestFixture]
     internal class InspectionServiseTest
@@ -25,7 +28,7 @@
             var inspections = GenerateInspectionsData();
 
             var beeColonies = GenerateBeeColonyData();
-                       
+
             context = new BeekeepingDbContext(GetContextOptions());
 
             await context.Inspections.AddRangeAsync(inspections);
@@ -57,7 +60,7 @@
                 BeeColonyId = beeColonyIdForTests
             };
 
-            await inspectionService.AddNewInspectionAsync(expected, UserdId);
+            await inspectionService.AddNewInspectionAsync(expected, UserId);
 
             var actual = await context.Inspections.FirstOrDefaultAsync(i => i.Id == expected.Id);
 
@@ -93,7 +96,7 @@
                           })
                           .ToArrayAsync();
 
-            var actual = await inspectionService.AllInspectionsPerColonyAsync(UserdId, beeColonyIdForTests);
+            var actual = await inspectionService.AllInspectionsPerColonyAsync(UserId, beeColonyIdForTests);
 
             Assert.Multiple(() =>
             {
@@ -111,7 +114,7 @@
         [Test]
         public async Task DeleteInspectionAsyncShouldDeleteInspection()
         {
-            await inspectionService.DeleteInspectionAsync(UserdId, inspectionIdForTests);
+            await inspectionService.DeleteInspectionAsync(UserId, inspectionIdForTests);
 
             var expected = await context.Inspections.FirstOrDefaultAsync(a => a.Id == inspectionIdForTests);
 
@@ -129,7 +132,7 @@
         public void DeleteInspectionAsyncShouldThrowIfInspectionDoesNotExist()
         {
             Assert.ThrowsAsync<InvalidOperationException>(async ()
-                   => await inspectionService.DeleteInspectionAsync(UserdId, 9999));
+                   => await inspectionService.DeleteInspectionAsync(UserId, 9999));
         }
 
         [Test]
@@ -149,7 +152,7 @@
                 BeeColonyId = inspection.BeeColonyId
             };
 
-            var actual = await inspectionService.GetInspectionForEditAsync(UserdId, inspectionIdForTests);
+            var actual = await inspectionService.GetInspectionForEditAsync(UserId, inspectionIdForTests);
 
             Assert.Multiple(() =>
             {
@@ -174,7 +177,7 @@
         public void GetInspectionForEditAsyncShouldThrowIfInspectionDoesNotExist()
         {
             Assert.ThrowsAsync<InvalidOperationException>(async ()
-                   => await inspectionService.GetInspectionForEditAsync(UserdId, 9999));
+                   => await inspectionService.GetInspectionForEditAsync(UserId, 9999));
         }
 
         [Test]
@@ -194,7 +197,7 @@
                 BeeColonyId = inspection.BeeColonyId
             };
 
-            await inspectionService.EditInspectionAsync(expected, UserdId, inspectionIdForTests);
+            await inspectionService.EditInspectionAsync(expected, UserId, inspectionIdForTests);
 
             var actual = await context.Inspections.FirstOrDefaultAsync(a => a.Id == inspectionIdForTests);
 
@@ -246,13 +249,13 @@
             };
 
             Assert.ThrowsAsync<InvalidOperationException>(async ()
-                   => await inspectionService.EditInspectionAsync(inspectionModel, UserdId, 10005));
+                   => await inspectionService.EditInspectionAsync(inspectionModel, UserId, 10005));
         }
 
         [Test]
         public async Task DoesInspectionExistsShouldReturnTrue()
         {
-            var result = await inspectionService.DoesInspectionExist(UserdId, inspectionIdForTests);
+            var result = await inspectionService.DoesInspectionExist(UserId, inspectionIdForTests);
 
             Assert.That(result, Is.True);
         }
@@ -268,7 +271,7 @@
         [Test]
         public async Task DoesInspectionExistsShouldReturnFalseIfInspectionDoesNotExist()
         {
-            var result = await inspectionService.DoesInspectionExist(UserdId, 9999);
+            var result = await inspectionService.DoesInspectionExist(UserId, 9999);
 
             Assert.That(result, Is.False);
         }
@@ -278,7 +281,7 @@
         {
             var expected = 10001;
 
-            var actual = await inspectionService.GetCurrentInspectionBeeColonyId(UserdId, inspectionIdForTests);
+            var actual = await inspectionService.GetCurrentInspectionBeeColonyId(UserId, inspectionIdForTests);
 
             Assert.That(actual, Is.EqualTo(expected));
         }
@@ -294,9 +297,8 @@
         public void GetCurrentInspectionBeeColonyIdIfInspectionDoesNotExist()
         {
             Assert.ThrowsAsync<InvalidOperationException>(async ()
-                    => await inspectionService.GetCurrentInspectionBeeColonyId(UserdId, 10005));
+                    => await inspectionService.GetCurrentInspectionBeeColonyId(UserId, 10005));
         }
     }
-
 }
 

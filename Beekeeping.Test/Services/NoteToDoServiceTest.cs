@@ -2,11 +2,9 @@
 {
     using Microsoft.EntityFrameworkCore;
     using System;
-    using System.Collections.Generic;
     using System.Globalization;
     using System.Threading.Tasks;
 
-    using Data.Models;
     using Models.NoteToDo;
 
     internal class NoteTodoServiceTest
@@ -50,7 +48,7 @@
                 Finished = false
             };
 
-            await noteToDoService.AddNoteToDoAsync(expected, UserdId);
+            await noteToDoService.AddNoteToDoAsync(expected, UserId);
 
             var actual = await context.NoteToDos.FirstOrDefaultAsync(c => c.Id == expected.Id);
 
@@ -68,7 +66,7 @@
         public async Task AllNotesAsyncShouldReturnCorectInformation()
         {
             var expected = await context.NoteToDos
-                .Where(n => n.CreatorId == UserdId)
+                .Where(n => n.CreatorId == UserId)
                 .OrderByDescending(n => n.DateToBeDone)
                 .Select(n => new NoteToDoViewModel()
                 {
@@ -76,11 +74,11 @@
                     DateToBeDone = n.DateToBeDone.ToLongDateString(),
                     Description = n.Description,
                     Finished = n.Finished == true ? "Да" : "Не",
-                    CreatorId = UserdId
+                    CreatorId = UserId
                 })
                 .ToArrayAsync();
 
-            var actual = await noteToDoService.AllNotesAsync(UserdId);
+            var actual = await noteToDoService.AllNotesAsync(UserId);
 
             Assert.Multiple(() =>
             {
@@ -103,7 +101,7 @@
         [Test]
         public async Task DeleteNoteAsyncShouldDeleteNote()
         {
-            await noteToDoService.DeleteNotesAsync(UserdId, noteIdForTests);
+            await noteToDoService.DeleteNotesAsync(UserId, noteIdForTests);
 
             var findNote = await context.NoteToDos.FirstOrDefaultAsync(c => c.Id == noteIdForTests);
 
@@ -123,13 +121,13 @@
             int noteIdoBeDeleted = 9999;
 
             Assert.ThrowsAsync<InvalidOperationException>(async ()
-                   => await noteToDoService.DeleteNotesAsync(UserdId, noteIdoBeDeleted));
+                   => await noteToDoService.DeleteNotesAsync(UserId, noteIdoBeDeleted));
         }
 
         [Test]
         public async Task DoesNoteExistsShouldReturnTrue()
         {
-            var result = await noteToDoService.DoesNoteExists(UserdId, noteIdForTests);
+            var result = await noteToDoService.DoesNoteExists(UserId, noteIdForTests);
 
             Assert.That(result, Is.True);
         }
@@ -145,9 +143,120 @@
         [Test]
         public async Task DoesNoteExistsShouldReturnFalseIfNoteDoesNotExist()
         {
-            var result = await noteToDoService.DoesNoteExists(UserdId, 9999);
+            var result = await noteToDoService.DoesNoteExists(UserId, 9999);
 
             Assert.That(result, Is.False);
         }
+
+        [Test]
+        public async Task GetNoteForEditAsyncShouldReturnCorrectApiaty()
+        {
+            var note = await context.NoteToDos.FirstOrDefaultAsync(f => f.Id == noteIdForTests && f.CreatorId == UserId);
+
+            var expected = new NoteToDoFormModel()
+                    {
+                        Id = note.Id,
+                        DateToBeDone = note.DateToBeDone,
+                        Description = note.Description,
+                        Finished = note.Finished,
+                        CreatorId = note.CreatorId
+                    };
+
+            var actual = await noteToDoService.GetNoteForEditAsync(UserId, noteIdForTests);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(actual, Is.Not.Null);
+                Assert.That(actual!.DateToBeDone, Is.EqualTo(expected.DateToBeDone));
+                Assert.That(actual.Description, Is.EqualTo(expected.Description));
+                Assert.That(actual.CreatorId, Is.EqualTo(expected.CreatorId));
+                Assert.That(actual.Finished, Is.EqualTo(expected.Finished));
+            });
+        }
+
+        [Test]
+        public void GetNoteForEditAsyncShouldThrowIfOwnerDoesNotExist()
+        {
+            Assert.ThrowsAsync<InvalidOperationException>(async ()
+                   => await noteToDoService.GetNoteForEditAsync(NotExistingUserdId, noteIdForTests));
+        }
+
+        [Test]
+        public void GetNoteForEditAsyncShouldThrowIfNoteDoesNotExist()
+        {
+            Assert.ThrowsAsync<InvalidOperationException>(async ()
+                   => await noteToDoService.GetNoteForEditAsync(NotExistingUserdId, 9999));
+        }
+
+        [Test]
+        public async Task EditApiaryAsyncShouldEditApiaryCorrectly()
+        {
+            var note = await context.NoteToDos.FirstOrDefaultAsync(f => f.Id == noteIdForTests && f.CreatorId == UserId);
+
+            var actual = new NoteToDoFormModel()
+            {
+                Id = note.Id,
+                DateToBeDone = note.DateToBeDone,
+                Description = "Третиране",
+                Finished = true,
+                CreatorId = note.CreatorId
+            };
+
+            await noteToDoService.EditNoteAsync(actual, UserId, noteIdForTests);
+
+            var expected = await context.NoteToDos.FirstOrDefaultAsync(f => f.Id == noteIdForTests && f.CreatorId == UserId);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(actual, Is.Not.Null);
+                Assert.That(actual!.DateToBeDone, Is.EqualTo(expected.DateToBeDone));
+                Assert.That(actual.Description, Is.EqualTo(expected.Description));
+                Assert.That(actual.CreatorId, Is.EqualTo(expected.CreatorId));
+                Assert.That(actual.Finished, Is.EqualTo(expected.Finished));
+            });
+        }
+
+        [Test]
+        public void EditNoteAsyncShouldThrowIfOwnerDoesNotExist()
+        {
+            var model = new NoteToDoFormModel()
+            {
+                Id = 20001,
+                DateToBeDone = DateTime.Parse("07.22.2023", CultureInfo.InvariantCulture, DateTimeStyles.None),
+                Description = "Третиране против акар",
+                CreatorId = NotExistingUserdId,
+                Finished = false
+            };
+
+            Assert.ThrowsAsync<InvalidOperationException>(async ()
+                   => await noteToDoService.EditNoteAsync(model, NotExistingUserdId, noteIdForTests));
+        }
+
+        [Test]
+        public void EditNoteAsyncShouldThrowIfNoteDoesNotExist()
+        {
+            var model = new NoteToDoFormModel()
+            {
+                Id = 9999,
+                DateToBeDone = DateTime.Parse("07.22.2023", CultureInfo.InvariantCulture, DateTimeStyles.None),
+                Description = "Третиране против акар",
+                CreatorId = NotExistingUserdId,
+                Finished = false
+            };
+
+            Assert.ThrowsAsync<InvalidOperationException>(async ()
+                   => await noteToDoService.EditNoteAsync(model, UserId, 9999));
+        }
+
+        [Test]
+        public async Task DoesUserHasNotFinishedTasksShouldReturnCountOfTasks()
+        {
+            var expected = 1;
+
+            var actual = await noteToDoService.DoesUserHasNotFinishedTasks(UserId);
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
     }
 }

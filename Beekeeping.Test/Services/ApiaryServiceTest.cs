@@ -48,9 +48,9 @@
                 Longitude = 27.764714
             };
 
-            await apiaryService.AddNewApiaryAsync(expectedApiary, UserdId);
+            await apiaryService.AddNewApiaryAsync(expectedApiary, UserId);
 
-            var actualApiary = await context.Apiaries.FirstOrDefaultAsync(a => a.OwnerId == UserdId && a.Latitude == expectedApiary.Latitude && a.Longitude == expectedApiary.Longitude);
+            var actualApiary = await context.Apiaries.FirstOrDefaultAsync(a => a.OwnerId == UserId && a.Latitude == expectedApiary.Latitude && a.Longitude == expectedApiary.Longitude);
 
             Assert.Multiple(() =>
             {
@@ -67,7 +67,7 @@
         public async Task AllApiaryAsyncByGivenUserShouldReturnAllAppiaries()
         {
             var expected = await context.Apiaries
-                          .Where(a => a.OwnerId == UserdId)
+                          .Where(a => a.OwnerId == UserId)
                           .Select(a => new ApiaryViewModel
                           {
                               Id = a.Id,
@@ -81,7 +81,7 @@
                           })
                           .ToArrayAsync();
 
-            var actual = await apiaryService.AllApiaryAsync(UserdId);
+            var actual = await apiaryService.AllApiaryAsync(UserId);
 
             Assert.Multiple(() =>
             {
@@ -107,9 +107,9 @@
         [Test]
         public async Task DeleteApiaryAsyncShouldDeleteApiary()
         {
-            await apiaryService.DeleteApiaryAsync(UserdId, apiaryIdForTests);
+            await apiaryService.DeleteApiaryAsync(UserId, apiaryIdForTests);
 
-            var expected = await context.Apiaries.FirstOrDefaultAsync(a => a.Id == apiaryIdForTests && a.OwnerId == UserdId);
+            var expected = await context.Apiaries.FirstOrDefaultAsync(a => a.Id == apiaryIdForTests && a.OwnerId == UserId);
 
             Assert.That(expected, Is.Null);
         }
@@ -127,14 +127,14 @@
             int apiaryIdToBeDeleted = 9999;
 
             Assert.ThrowsAsync<InvalidOperationException>(async ()
-                   => await apiaryService.DeleteApiaryAsync(UserdId, apiaryIdToBeDeleted));
+                   => await apiaryService.DeleteApiaryAsync(UserId, apiaryIdToBeDeleted));
         }
 
         [Test]
         public async Task GetApiaryForEditAsyncShouldReturnCorrectApiaty()
         {
             var apiary = await context.Apiaries
-                                .FirstOrDefaultAsync(a => a.Id == apiaryIdForTests && a.OwnerId == UserdId);
+                                .FirstOrDefaultAsync(a => a.Id == apiaryIdForTests && a.OwnerId == UserId);
 
             var expectedApiary = new ApiaryEditFormModel
             {
@@ -146,7 +146,7 @@
                 Longitude = apiary.Longitude
             };
 
-            var actualApiary = await apiaryService.GetApiaryForEditAsync(UserdId, apiaryIdForTests);
+            var actualApiary = await apiaryService.GetApiaryForEditAsync(UserId, apiaryIdForTests);
 
             Assert.Multiple(() =>
             {
@@ -171,7 +171,7 @@
             int apiaryIdToBeDeleted = 9999;
 
             Assert.ThrowsAsync<InvalidOperationException>(async ()
-                   => await apiaryService.GetApiaryForEditAsync(UserdId, apiaryIdToBeDeleted));
+                   => await apiaryService.GetApiaryForEditAsync(UserId, apiaryIdToBeDeleted));
         }
 
         [Test]
@@ -189,7 +189,7 @@
                 Longitude = apiaryForEdit.Longitude
             };
 
-            await apiaryService.EditApiaryAsync(actualApiary, apiaryForEdit.Id, UserdId);
+            await apiaryService.EditApiaryAsync(actualApiary, apiaryForEdit.Id, UserId);
 
             var expectedApiary = await context.Apiaries.FirstOrDefaultAsync(a => a.Id == apiaryForEdit.Id);
 
@@ -235,13 +235,13 @@
             };
 
             Assert.ThrowsAsync<InvalidOperationException>(async ()
-                   => await apiaryService.EditApiaryAsync(apiaryModel, apiaryModel.Id, UserdId));
+                   => await apiaryService.EditApiaryAsync(apiaryModel, apiaryModel.Id, UserId));
         }
 
         [Test]
         public async Task DoesApiaryExistsShouldReturnTrue()
         {
-            var result = await apiaryService.DoesApiaryExists(UserdId, apiaryIdForTests);
+            var result = await apiaryService.DoesApiaryExists(UserId, apiaryIdForTests);
 
             Assert.That(result, Is.True);
         }
@@ -257,7 +257,7 @@
         [Test]
         public async Task DoesApiaryExistsShouldReturnFalseIfApiaryDoesNotExist()
         {
-            var result = await apiaryService.DoesApiaryExists(UserdId, 9999);
+            var result = await apiaryService.DoesApiaryExists(UserId, 9999);
 
             Assert.That(result, Is.False);
         }
@@ -265,7 +265,7 @@
         [Test]
         public async Task IsTheUserOwnerShouldReturnTrue()
         {
-            var result = await apiaryService.IsTheUserOwner(UserdId);
+            var result = await apiaryService.IsTheUserOwner(UserId);
 
             Assert.That(result, Is.True);
         }

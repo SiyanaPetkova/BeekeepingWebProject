@@ -47,7 +47,7 @@
                 DayOfTheIncome = DateTime.Parse("04.20.2023", CultureInfo.InvariantCulture, DateTimeStyles.None),
             };
 
-            await incomeService.AddIncomeAsync(expected, UserdId);
+            await incomeService.AddIncomeAsync(expected, UserId);
 
             var actual = await context.Incomes.FirstOrDefaultAsync(i => i.Id == expected.Id);
 
@@ -64,7 +64,7 @@
         public async Task AllIncomesAsyncShouldReturnCorectInformation()
         {
             var expected = await context.Incomes
-                .Where(i => i.CreatorId == UserdId)
+                .Where(i => i.CreatorId == UserId)
                 .OrderByDescending(i => i.DayOfTheIncome)
                 .Select(i => new IncomeViewModel()
                 {
@@ -72,12 +72,12 @@
                     DayOfTheIncome = i.DayOfTheIncome.ToLongDateString(),
                     IncomeValue = i.IncomeValue,
                     TypeOfIncome = i.TypeOfIncome,
-                    CreatorId = UserdId
+                    CreatorId = UserId
                 })
 
                 .ToArrayAsync();
 
-            var actual = await incomeService.AllIncomesAsync(UserdId);
+            var actual = await incomeService.AllIncomesAsync(UserId);
 
             Assert.Multiple(() =>
             {
@@ -93,7 +93,7 @@
         [Test]
         public async Task DeleteIncomeAsyncShouldDeleteIncome()
         {
-            await incomeService.DeleteIncomeAsync(UserdId, incomeIdForTests);
+            await incomeService.DeleteIncomeAsync(UserId, incomeIdForTests);
 
             var findIncome = await context.Incomes.FirstOrDefaultAsync(i => i.Id == incomeIdForTests);
 
@@ -113,13 +113,13 @@
             int costIdToBeDeleted = 5555;
 
             Assert.ThrowsAsync<InvalidOperationException>(async ()
-                   => await incomeService.DeleteIncomeAsync(UserdId, costIdToBeDeleted));
+                   => await incomeService.DeleteIncomeAsync(UserId, costIdToBeDeleted));
         }
 
         [Test]
         public async Task DoesIncomeExistsShouldReturnTrue()
         {
-            var result = await incomeService.DoesIncomeExists(UserdId, incomeIdForTests);
+            var result = await incomeService.DoesIncomeExists(UserId, incomeIdForTests);
 
             Assert.That(result, Is.True);
         }
@@ -135,7 +135,7 @@
         [Test]
         public async Task DoesIncomeExistsShouldReturnFalseIfIncomeDoesNotExist()
         {
-            var result = await incomeService.DoesIncomeExists(UserdId, 9999);
+            var result = await incomeService.DoesIncomeExists(UserId, 9999);
 
             Assert.That(result, Is.False);
         }
@@ -145,7 +145,7 @@
         {
             decimal expectedTotalIncome = 1070;
 
-            var actual = await incomeService.GetTotalIncomeAsync(UserdId);
+            var actual = await incomeService.GetTotalIncomeAsync(UserId);
 
             Assert.That(actual, Is.EqualTo(expectedTotalIncome));
         }

@@ -50,7 +50,7 @@
                 NumberOfTreatedColonies = 10
             };
 
-            await treatmentService.AddTreatmentAsync(expected, UserdId);
+            await treatmentService.AddTreatmentAsync(expected, UserId);
 
             var actual = await context.HiveTreatments.FirstOrDefaultAsync(c => c.Id == expected.Id);
 
@@ -69,7 +69,7 @@
         public async Task AllTreatmentsAsyncShouldReturnCorectInformation()
         {
             var expected = await context.HiveTreatments
-                .Where(t => t.CreatorId == UserdId)
+                .Where(t => t.CreatorId == UserId)
                 .OrderByDescending(t => t.TreatmentDate)
                 .Select(t => new HiveTreatmentViewModel()
                 {
@@ -79,11 +79,11 @@
                     ActiveIngredient = t.ActiveIngredient,
                     PriceOfTheTreatment = t.PriceOfTheTreatment,
                     ResultAndCommentAboutTheTreatment = t.ResultAndCommentAboutTheTreatment,
-                    CreatorId = UserdId
+                    CreatorId = UserId
                 })
                 .ToArrayAsync();
 
-            var actual = await treatmentService.AllTreatmentsAsync(UserdId);
+            var actual = await treatmentService.AllTreatmentsAsync(UserId);
 
             Assert.Multiple(() =>
             {
@@ -109,7 +109,7 @@
         [Test]
         public async Task DeleteTreatmentAsyncShouldDeleteTreatment()
         {
-            await treatmentService.DeleteTreatmentAsync(UserdId, treatmentIdForTests);
+            await treatmentService.DeleteTreatmentAsync(UserId, treatmentIdForTests);
 
             var findTreatment = await context.HiveTreatments.FirstOrDefaultAsync(c => c.Id == treatmentIdForTests);
 
@@ -129,13 +129,13 @@
             int treatmentIdoBeDeleted = 9999;
 
             Assert.ThrowsAsync<InvalidOperationException>(async ()
-                   => await treatmentService.DeleteTreatmentAsync(UserdId, treatmentIdoBeDeleted));
+                   => await treatmentService.DeleteTreatmentAsync(UserId, treatmentIdoBeDeleted));
         }
 
         [Test]
         public async Task DoesTreatmentExistsShouldReturnTrue()
         {
-            var result = await treatmentService.DoesTreatmentExists(UserdId, treatmentIdForTests);
+            var result = await treatmentService.DoesTreatmentExists(UserId, treatmentIdForTests);
 
             Assert.That(result, Is.True);
         }
@@ -151,7 +151,7 @@
         [Test]
         public async Task DoesTreatmentExistsShouldReturnFalseIfTreatmentDoesNotExist()
         {
-            var result = await treatmentService.DoesTreatmentExists(UserdId, 9999);
+            var result = await treatmentService.DoesTreatmentExists(UserId, 9999);
 
             Assert.That(result, Is.False);
         }

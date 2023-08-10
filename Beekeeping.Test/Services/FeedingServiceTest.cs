@@ -50,7 +50,7 @@
                 NumberOfBeeHives = 10
             };
 
-            await feedingService.AddFeedingAsync(expected, UserdId);
+            await feedingService.AddFeedingAsync(expected, UserId);
 
             var actual = await context.HiveFeeding.FirstOrDefaultAsync(c => c.Id == expected.Id);
 
@@ -68,7 +68,7 @@
         public async Task AllFeedingAsyncShouldReturnCorectInformation()
         {
             var expected = await context.HiveFeeding
-                .Where(f => f.CreatorId == UserdId)
+                .Where(f => f.CreatorId == UserId)
                 .OrderByDescending(f => f.DayOfFeeding)
                 .Select(f => new HiveFeedingViewModel()
                 {
@@ -80,7 +80,7 @@
                 })
                 .ToArrayAsync();
 
-            var actual = await feedingService.AllFeedingsAsync(UserdId);
+            var actual = await feedingService.AllFeedingsAsync(UserId);
 
             Assert.Multiple(() =>
             {
@@ -104,7 +104,7 @@
         [Test]
         public async Task DeleteFeedingAsyncShouldDeleteFeeding()
         {
-            await feedingService.DeleteFeedingAsync(UserdId, feedingIdForTests);
+            await feedingService.DeleteFeedingAsync(UserId, feedingIdForTests);
 
             var findFeeding = await context.HiveFeeding.FirstOrDefaultAsync(c => c.Id == feedingIdForTests);
 
@@ -124,13 +124,13 @@
             int feedingIdoBeDeleted = 9999;
 
             Assert.ThrowsAsync<InvalidOperationException>(async ()
-                   => await feedingService.DeleteFeedingAsync(UserdId, feedingIdoBeDeleted));
+                   => await feedingService.DeleteFeedingAsync(UserId, feedingIdoBeDeleted));
         }
 
         [Test]
         public async Task DoesFeedingExistsShouldReturnTrue()
         {
-            var result = await feedingService.DoesFeedingExists(UserdId, feedingIdForTests);
+            var result = await feedingService.DoesFeedingExists(UserId, feedingIdForTests);
 
             Assert.That(result, Is.True);
         }
@@ -146,7 +146,7 @@
         [Test]
         public async Task DoesFeedingExistsShouldReturnFalseIfFeedingDoesNotExist()
         {
-            var result = await feedingService.DoesFeedingExists(UserdId, 9999);
+            var result = await feedingService.DoesFeedingExists(UserId, 9999);
 
             Assert.That(result, Is.False);
         }

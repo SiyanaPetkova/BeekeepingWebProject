@@ -25,7 +25,7 @@
                     Id = 9150,
                     Name = "Климентово",
                     Location = "Село Климентово, Варна",
-                    OwnerId = UserdId,
+                    OwnerId = UserId,
                     RegistrationNumber = "9150-0015",
                     Latitude = 43.346222,
                     Longitude = 27.946315
@@ -36,7 +36,7 @@
                     Id = 9156,
                     Name = "Зорница",
                     Location = "Село Зорница, Варна",
-                    OwnerId = UserdId,
+                    OwnerId = UserId,
                     RegistrationNumber = "9156-0017",
                     Latitude = 43.330429,
                     Longitude = 27.734944
@@ -87,7 +87,7 @@
                      Super = true,
                      NumberOfSupers = 1,
                      MatedBeeQueen = true,
-                     OwnerOfTheApiary = UserdId,
+                     OwnerOfTheApiary = UserId,
                      ApiaryId = 9150,
                      BeeQueenId = 10001
                  },
@@ -102,7 +102,7 @@
                      Super = true,
                      NumberOfSupers = 1,
                      MatedBeeQueen = true,
-                     OwnerOfTheApiary = UserdId,
+                     OwnerOfTheApiary = UserId,
                      ApiaryId = 9150,
                      BeeQueenId = 10002
                  },
@@ -117,7 +117,7 @@
                      Super = false,
                      NumberOfSupers = 0,
                      MatedBeeQueen = true,
-                     OwnerOfTheApiary = UserdId,
+                     OwnerOfTheApiary = UserId,
                      ApiaryId = 9160,
                      BeeQueenId = 10003
             }

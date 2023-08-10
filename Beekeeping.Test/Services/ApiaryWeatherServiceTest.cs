@@ -35,7 +35,7 @@
         public async Task GetApiariesCoordinatesAsyncShouldReturnCorectData()
         {
             var expected = await context.Apiaries
-                          .Where(a => a.OwnerId == UserdId)
+                          .Where(a => a.OwnerId == UserId)
                           .Select(a => new ApiaryCoordinatesModel
                           {
                               ApiaryName = a.Name,
@@ -44,7 +44,7 @@
                           })
                           .ToArrayAsync();
 
-            var actual = await apiaryWeatherService.GetApiariesCoordinatesAsync(UserdId);
+            var actual = await apiaryWeatherService.GetApiariesCoordinatesAsync(UserId);
 
             Assert.Multiple(() =>
             {

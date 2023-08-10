@@ -49,7 +49,7 @@
                 CostValue = 200
             };
 
-            await costService.AddCostAsync(expected, UserdId);
+            await costService.AddCostAsync(expected, UserId);
 
             var actual = await context.Costs.FirstOrDefaultAsync(c => c.Id == expected.Id);
 
@@ -66,7 +66,7 @@
         public async Task AllCostsAsyncShouldReturnCorectInformation()
         {
             var expected = await context.Costs
-                .Where(c => c.CreatorId == UserdId)
+                .Where(c => c.CreatorId == UserId)
                 .OrderByDescending(c => c.DayOfTheCost)
                 .Select(c => new CostViewModel()
                 {
@@ -74,10 +74,10 @@
                     DayOfTheCost = c.DayOfTheCost.ToLongDateString(),
                     CostValue = c.CostValue,
                     TypeOfCost = c.TypeOfCost,
-                    CreatorId = UserdId
+                    CreatorId = UserId
                 }).ToArrayAsync();
 
-            var actual = await costService.AllCostAsync(UserdId);
+            var actual = await costService.AllCostAsync(UserId);
 
             Assert.Multiple(() =>
             {
@@ -93,7 +93,7 @@
         [Test]
         public async Task DeleteCostAsyncShouldDeleteCost()
         {
-            await costService.DeleteCostAsync(UserdId, costIdForTests);
+            await costService.DeleteCostAsync(UserId, costIdForTests);
 
             var findCost = await context.Costs.FirstOrDefaultAsync(c => c.Id == costIdForTests);
 
@@ -113,13 +113,13 @@
             int costIdToBeDeleted = 5555;
 
             Assert.ThrowsAsync<InvalidOperationException>(async ()
-                   => await costService.DeleteCostAsync(UserdId, costIdToBeDeleted));
+                   => await costService.DeleteCostAsync(UserId, costIdToBeDeleted));
         }
 
         [Test]
         public async Task DoesCostExistsShouldReturnTrue()
         {
-            var result = await costService.DoesCostExists(UserdId, costIdForTests);
+            var result = await costService.DoesCostExists(UserId, costIdForTests);
 
             Assert.That(result, Is.True);
         }
@@ -135,7 +135,7 @@
         [Test]
         public async Task DoesCostExistsShouldReturnFalseIfCostDoesNotExist()
         {
-            var result = await costService.DoesCostExists(UserdId, 9999);
+            var result = await costService.DoesCostExists(UserId, 9999);
 
             Assert.That(result, Is.False);
         }
@@ -145,7 +145,7 @@
         {
             decimal expectedTotalCost = 220;
 
-            var actual = await costService.GetTotalCostAsync(UserdId);
+            var actual = await costService.GetTotalCostAsync(UserId);
 
             Assert.That(actual, Is.EqualTo(expectedTotalCost));
         }

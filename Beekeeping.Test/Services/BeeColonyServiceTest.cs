@@ -51,7 +51,7 @@
         public async Task AllColoniesAsyncShoudReturnAllColoniesForApiary()
         {
             var expected = await context.BeeColonies
-                          .Where(b => b.ApiaryId == apiaryIdForTests && b.OwnerOfTheApiary == UserdId)
+                          .Where(b => b.ApiaryId == apiaryIdForTests && b.OwnerOfTheApiary == UserId)
                           .Include(b => b.BeeQueen)
                           .Include(b => b.Apiary)
                           .Select(b => new BeeColonyViewModel
@@ -75,7 +75,7 @@
                           })
                           .ToArrayAsync();
 
-            var actual = await beeColonyService.AllColoniesAsync(UserdId, apiaryIdForTests);
+            var actual = await beeColonyService.AllColoniesAsync(UserId, apiaryIdForTests);
 
             Assert.Multiple(() =>
             {
@@ -107,7 +107,7 @@
         public async Task AddNewBeeColonyAsyncShouldAddNewBeeColony()
         {
             var apiaries = await context.Apiaries
-                                         .Where(a => a.OwnerId == UserdId)
+                                         .Where(a => a.OwnerId == UserId)
                                          .Select(a => new AllApiariesForSelectModel()
                                          {
                                              Id = a.Id,
@@ -132,7 +132,7 @@
                 SecondBroodBox = false,
                 NumberOfAdditionalBoxes = 0,
                 MatedBeeQueen = true,
-                OwnerOfTheApiary = UserdId,
+                OwnerOfTheApiary = UserId,
                 ApiaryId = apiaryIdForTests,
                 Apiaries = apiaries,
                 BeeQueenId = beeQueen.Id,
@@ -144,11 +144,11 @@
                 }
             };
 
-            await beeColonyService.AddNewBeeColonyAsync(expected, UserdId);
+            await beeColonyService.AddNewBeeColonyAsync(expected, UserId);
 
             var colonies = await context.BeeColonies.Select(b => b.Id).ToListAsync();
 
-            var actual = await context.BeeColonies.FirstOrDefaultAsync(b => b.OwnerOfTheApiary == UserdId && b.Id == 10004);
+            var actual = await context.BeeColonies.FirstOrDefaultAsync(b => b.OwnerOfTheApiary == UserId && b.Id == 10004);
 
             Assert.Multiple(() =>
             {
@@ -169,9 +169,9 @@
         [Test]
         public async Task DeleteBeeColonyAsyncShoudDeleteColony()
         {
-            await beeColonyService.DeleteBeeColonyAsync(UserdId, beeColonyIdForTests);
+            await beeColonyService.DeleteBeeColonyAsync(UserId, beeColonyIdForTests);
 
-            var expected = await context.BeeColonies.FirstOrDefaultAsync(b => b.Id == beeColonyIdForTests && b.OwnerOfTheApiary == UserdId);
+            var expected = await context.BeeColonies.FirstOrDefaultAsync(b => b.Id == beeColonyIdForTests && b.OwnerOfTheApiary == UserId);
 
             Assert.That(expected, Is.Null);
         }
@@ -189,7 +189,7 @@
             int beeColonyIdToBeDeleted = 9999;
 
             Assert.ThrowsAsync<InvalidOperationException>(async ()
-                   => await beeColonyService.DeleteBeeColonyAsync(UserdId, beeColonyIdToBeDeleted));
+                   => await beeColonyService.DeleteBeeColonyAsync(UserId, beeColonyIdToBeDeleted));
         }
 
         [Test]
@@ -222,7 +222,7 @@
                 BeeQueen = beeQueen
             };
 
-            var actual = await beeColonyService.GetBeeColonyForEditAsync(UserdId, beeColonyIdForTests);
+            var actual = await beeColonyService.GetBeeColonyForEditAsync(UserId, beeColonyIdForTests);
 
             Assert.Multiple(() =>
             {
@@ -254,7 +254,7 @@
             int beeColonyIdToBeDeleted = 9999;
 
             Assert.ThrowsAsync<InvalidOperationException>(async ()
-                   => await beeColonyService.GetBeeColonyForEditAsync(UserdId, beeColonyIdToBeDeleted));
+                   => await beeColonyService.GetBeeColonyForEditAsync(UserId, beeColonyIdToBeDeleted));
         }
 
         [Test]
@@ -287,7 +287,7 @@
                 BeeQueen = beeQueen
             };
 
-            await beeColonyService.EditBeeColonyAsync(expected, UserdId, beeColonyIdForTests);
+            await beeColonyService.EditBeeColonyAsync(expected, UserId, beeColonyIdForTests);
 
             var actual = await context.BeeColonies.FirstOrDefaultAsync(b => b.Id == beeColonyIdForTests);
 
@@ -345,7 +345,7 @@
         [Test]
         public async Task GetDetailsForTheBeeColonyAsyncShouldReturnCorectInformation()
         {
-            var beeColony = await context.BeeColonies.FirstOrDefaultAsync(b => b.OwnerOfTheApiary == UserdId && b.Id == beeColonyIdForTests);
+            var beeColony = await context.BeeColonies.FirstOrDefaultAsync(b => b.OwnerOfTheApiary == UserId && b.Id == beeColonyIdForTests);
 
             var expected = new BeeColonyViewModel
             {
@@ -368,7 +368,7 @@
                 }
             };
 
-            var actual = await beeColonyService.GetDetailsForTheBeeColonyAsync(UserdId, beeColonyIdForTests);
+            var actual = await beeColonyService.GetDetailsForTheBeeColonyAsync(UserId, beeColonyIdForTests);
 
             Assert.Multiple(() =>
             {
@@ -397,13 +397,13 @@
         public void GetDetailsForTheBeeColonyAsyncShouldThrowIfBeeColonyDoesNotExist()
         {
             Assert.ThrowsAsync<InvalidOperationException>(async ()
-                   => await beeColonyService.GetDetailsForTheBeeColonyAsync(UserdId, 1111));
+                   => await beeColonyService.GetDetailsForTheBeeColonyAsync(UserId, 1111));
         }
 
         [Test]
         public async Task IsTheUserOwnerShoulReturnTrueIfUserIsCorrect()
         {
-            var result = await beeColonyService.IsTheUserOwner(UserdId);
+            var result = await beeColonyService.IsTheUserOwner(UserId);
 
             Assert.That(result, Is.True);
         }
@@ -419,7 +419,7 @@
         [Test]
         public async Task DoesBeeColonyExistShoulReturnTrueIfColonyExist()
         {
-            var result = await beeColonyService.DoesBeeColonyExist(UserdId, beeColonyIdForTests);
+            var result = await beeColonyService.DoesBeeColonyExist(UserId, beeColonyIdForTests);
 
             Assert.That(result, Is.True);
         }
@@ -427,7 +427,7 @@
         [Test]
         public async Task DoesBeeColonyExistShoulReturnFalseIfColonyDoesNotExist()
         {
-            var result = await beeColonyService.DoesBeeColonyExist(UserdId, 1111);
+            var result = await beeColonyService.DoesBeeColonyExist(UserId, 1111);
 
             Assert.That(result, Is.False);
         }
