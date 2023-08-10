@@ -286,38 +286,39 @@ input[type=submit] {
     position: relative;
     width: 100%;
     max-width: 1200px;
-    margin: 0 auto; 
+    margin: 0 auto;
 }
 
-.custom-events-container .custom-btn {
-    position: absolute;
-    top: 90%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    background-color: lightgoldenrodyellow;
-    color: black;
-    font-size: 16px;
-    padding: 12px 24px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    text-align: center;
-}
-
-    .custom-events-container .custom-btn:hover {
-        background-color: transparent;
+    .custom-events-container .custom-btn {
+        position: absolute;
+        top: 90%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        background-color: lightgoldenrodyellow;
+        color: black;
+        font-size: 16px;
+        padding: 12px 24px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        text-align: center;
     }
+
+        .custom-events-container .custom-btn:hover {
+            background-color: transparent;
+        }
 
     .custom-events-container img {
         display: block;
-        margin: 0 auto; 
+        margin: 0 auto;
         max-width: 100%;
         height: auto;
-        padding: 10px; 
-        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1); 
+        padding: 10px;
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
     }
 
+/* --- Hexagon buttons ---*/
 
 .hexagon {
     width: 200px;
@@ -352,15 +353,15 @@ input[type=submit] {
     transform: rotate(-60deg);
     transition: 1.5s ease-out;
     text-align: center;
-    line-height: 4; 
+    line-height: 4;
 }
 
 li:nth-child(1) span {
-    background-position: -15px center;
+    background-position: -105px center;
 }
 
 li:nth-child(2) span {
-    background-position: -115px center;
+    background-position: -155px center;
 }
 
 li:nth-child(3) span {
@@ -390,14 +391,12 @@ ul {
     }
 }
 
-
-/* Hexagons */
+/* --- Hexagons index page --- */
 #hexGrid {
     overflow: hidden;
     width: 90%;
     margin: 0 auto;
     padding: 0.866% 0;
-    font-family: 'Raleway', sans-serif;
     font-size: 15px;
 }
 
@@ -413,14 +412,14 @@ ul {
     float: left;
     overflow: hidden;
     visibility: hidden;
-    outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
+    outline: 1px solid transparent;
     transform: rotate(-60deg) skewY(30deg);
 }
 
     .hex * {
         position: absolute;
         visibility: visible;
-        outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
+        outline: 1px solid transparent;
     }
 
 .hexIn {
@@ -428,13 +427,10 @@ ul {
     width: 100%;
     height: 100%;
     text-align: center;
-    color: #fff;
+    color: lightgoldenrodyellow;
     overflow: hidden;
     transform: skewY(-30deg) rotate(60deg);
 }
-
-
-/*** HEX CONTENT **********************************************************************/
 
 .hex img {
     left: -100%;
@@ -448,10 +444,10 @@ ul {
 .hex p {
     margin: 0;
     width: 102%;
-    left: -1%; /* prevent line on the right where background doesn't cover image */
+    left: -1%;
     padding: 5%;
     box-sizing: border-box;
-    background-color: rgba(0, 128, 128, 0.8);
+    background-color: rgba(255, 165, 0, 0.8);
     font-weight: 300;
     transition: transform .2s ease-out, opacity .3s ease-out;
 }
@@ -480,20 +476,14 @@ ul {
     transform: translateY(100%);
 }
 
-
-/*** HOVER EFFECT  **********************************************************************/
-
 .hexIn:hover h1, .hexIn:focus h1, .hexIn:hover p, .hexIn:focus p {
     transform: translateY(0%);
 }
 
-
-/*** SPACING AND SIZING *****************************************************************/
-
-@media (min-width:1201px) { /* <- 2-3  hexagons per row */
+@media (min-width:1201px) { 
     .hex {
-        width: 32.666%; /* = (100-2) / 3 */
-        padding-bottom: 37.720%; /* =  width / sin(60) */
+        width: 32.666%; 
+        padding-bottom: 37.720%; 
     }
 
         .hex:nth-child(5n+1),
@@ -524,10 +514,10 @@ ul {
         }
 }
 
-@media (max-width: 1200px) { /* <- 1-2  hexagons per row */
+@media (max-width: 1200px) { 
     .hex {
-        width: 49.5%; /* = (100-1) / 2 */
-        padding-bottom: 57.158%; /* =  width / sin(60) */
+        width: 49.5%; 
+        padding-bottom: 57.158%; 
     }
 
         .hex:nth-child(3n+1) {
@@ -560,8 +550,6 @@ ul {
     }
 }
 
-/* End Hexagons */
-/* fork on github button */
 #fork {
     font-family: 'Raleway', sans-serif;
     position: fixed;
@@ -598,3 +586,24 @@ ul {
             transform: translateX(0) skewX(-45deg);
         }
 
+
+/* --- Article for AboutUs --- */
+.article {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: justify;
+}
+
+    .article figure {
+        float: left;
+        margin: 0 10px 10px 0;
+        text-align: center;
+        width: 300px;
+    }
+
+    .article img {
+        max-width: 100%;
+        height: auto;
+        box-shadow: 0 10px 14px rgba(0, 0, 0, 0.1);
+    }
