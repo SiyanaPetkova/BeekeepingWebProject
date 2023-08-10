@@ -12,6 +12,7 @@
 
         [Display(Name = "Вид разход")]
         [Required(ErrorMessage = RequiredFieldErrorMessage)]
+        [RegularExpression(StringRequirmentRegex, ErrorMessage = StringRequirmentFieldsErrorMessage)]
         [StringLength(CostTypeMaxLenght,
                       MinimumLength = CostTypeMinLenght,
                       ErrorMessage = FieldMinAndMaxStringLenghtErrorMessage)]

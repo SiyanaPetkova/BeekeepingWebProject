@@ -8,6 +8,8 @@
 
         public const string RequiredFieldErrorMessage = "Полето е задължително.";
 
+        public const string StringRequirmentFieldsErrorMessage = "Полето може да съдържа само големи и малки букви, цифри или символите -.,;():.";
+
         public const string CommonErrorMessage = "Възникна неочаквана грешка. Моля, свържете се с нас или опитайте по-късно.";
 
         public const string NotAuthorizedErrorMessage = "Нямате достъп до тази страница!";

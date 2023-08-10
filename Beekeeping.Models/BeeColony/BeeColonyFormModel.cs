@@ -15,15 +15,18 @@
 
         [Display(Name = "Регистрационен номер на кошера")]
         [Required(ErrorMessage = "Полето e задължително.")]
+        [RegularExpression(StringRequirmentRegex, ErrorMessage = StringRequirmentFieldsErrorMessage)]
         [StringLength(PlateNumberMaxLenght,
                       MinimumLength = PlateNumberMinLenght,
                       ErrorMessage = FieldMinAndMaxStringLenghtErrorMessage)]
         public string? PlateNumber { get; set; }
 
         [Display(Name = "Допълнителна информация за кошера")]
+        [RegularExpression(StringRequirmentRegex, ErrorMessage = StringRequirmentFieldsErrorMessage)]
         public string? AdditionalComment { get; set; }
 
         [Display(Name = "Система на кошера")]
+        [RegularExpression(StringRequirmentRegex, ErrorMessage = StringRequirmentFieldsErrorMessage)]
         public string? TypeOfBroodBox { get; set; }
 
         [Display(Name = "Има ли поставени магазини")]

@@ -12,6 +12,7 @@
 
         [Display(Name = "Вид приход")]
         [Required(ErrorMessage = RequiredFieldErrorMessage)]
+        [RegularExpression(StringRequirmentRegex, ErrorMessage = StringRequirmentFieldsErrorMessage)]
         [StringLength(IncomeTypeMaxLenght,
                       MinimumLength = IncomeTypeMinLenght,
                       ErrorMessage = FieldMinAndMaxStringLenghtErrorMessage)]

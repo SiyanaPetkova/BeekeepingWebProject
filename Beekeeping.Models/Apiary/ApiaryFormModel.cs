@@ -9,18 +9,21 @@
     {
         [Display(Name = "Наименование")]
         [Required(ErrorMessage = RequiredFieldErrorMessage)]
+        [RegularExpression(StringRequirmentRegex, ErrorMessage = StringRequirmentFieldsErrorMessage)]
         [StringLength(ApiaryNameMaxLenght,
           MinimumLength = ApiaryNameMinLenght,
           ErrorMessage = FieldMinAndMaxStringLenghtErrorMessage)]
         public string Name { get; set; } = null!;
 
         [Display(Name = "Адрес")]
+        [RegularExpression(StringRequirmentRegex, ErrorMessage = StringRequirmentFieldsErrorMessage)]
         [StringLength(LocationMaxLenght,
                       MinimumLength = LocationMinLenght,
                       ErrorMessage = FieldMinAndMaxStringLenghtErrorMessage)]
         public string? Location { get; set; }
 
         [Display(Name = "Регистрационен номер")]
+        [RegularExpression(StringRequirmentRegex, ErrorMessage = StringRequirmentFieldsErrorMessage)]
         [StringLength(RegistrationMaxLenght,
                       MinimumLength = RegistrationMinLenght,
                       ErrorMessage = FieldMinAndMaxStringLenghtErrorMessage)]

@@ -16,6 +16,7 @@
             public const int OwnerIdMinLenght = 30;
             public const int OwnerIdMaxLenght = 34;
 
+            public const string StringRequirmentRegex = @"[А-Яа-я\s\d\w-.,;():]+";
         }
 
         public static class BeeColonyValidations
@@ -29,6 +30,8 @@
             public const int NumberOfBoxesMinValue = 0;
             public const int NumberOfBoxesMaxValue = 10;
 
+            public const string StringRequirmentRegex = @"[А-Яа-я\s\d\w-.,;():]+";
+
         }
 
         public static class BeeQueenValidations
@@ -41,6 +44,8 @@
 
             public const int BeeQueenYearMinValue = 2018;
             public const int BeeQueenYearMaxValue = 2050;
+
+            public const string StringRequirmentRegex = @"[А-Яа-я\s\d\w-.,;():]+";
 
         }
 
@@ -57,6 +62,8 @@
 
             public const int NumberOfTreatedColoniesMinValue = 1;
             public const int NumberOfTreatedColoniesMaxValue = 10000;
+
+            public const string StringRequirmentRegex = @"[А-Яа-я\s\d\w-.,;():]+";
         }
 
         public static class FeedingValidations
@@ -69,6 +76,8 @@
 
             public const int NumberOfFedColoniesMinValue = 1;
             public const int NumberOfFedColoniesMaxValue = 10000;
+
+            public const string StringRequirmentRegex = @"[А-Яа-я\s\d\w-.,;():]+";
         }
 
         public static class InspectionValidations
@@ -87,6 +96,8 @@
 
             public const int TemperamentMinLenght = 1;
             public const int TemperamentMaxLenght = 10;
+
+            public const string StringRequirmentRegex = @"[А-Яа-я\s\d\w-.,;():]+";
         }
 
         public static class IncomeValidations
@@ -96,6 +107,8 @@
 
             public const int IncomeValueMinValue = 0;
             public const int IncomeValueMaxValue = 1000000000;
+
+            public const string StringRequirmentRegex = @"[А-Яа-я\s\d\w-.,;():]+";
         }
 
         public static class CostValidations
@@ -105,12 +118,16 @@
 
             public const int CostValueMinValue = 0;
             public const int CostValueMaxValue = 1000000000;
+
+            public const string StringRequirmentRegex = @"[А-Яа-я\s\d\w-.,;():]+";
         }
 
         public static class NoteToDoValidations
         {
             public const int NoteDescriptionMinLenght = 2;
             public const int NoteDescriptionMaxLenght = 100;
+
+            public const string StringRequirmentRegex = @"[А-Яа-я\s\d\w-.,;():]+";
         }
 
         public static class ApplicationUserValidations

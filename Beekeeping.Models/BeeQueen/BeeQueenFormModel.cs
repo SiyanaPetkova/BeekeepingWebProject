@@ -8,12 +8,14 @@
     public class BeeQueenFormModel
     {
         [Display(Name = "Майкопроизводител")]
+        [RegularExpression(StringRequirmentRegex, ErrorMessage = StringRequirmentFieldsErrorMessage)]
         [StringLength(BreederMaxLenght,
                       MinimumLength = BreederMinLenght,
                       ErrorMessage = FieldMinAndMaxStringLenghtErrorMessage)]
         public string? Breeder { get; set; }
 
         [Display(Name = "Порода на майката")]
+        [RegularExpression(StringRequirmentRegex, ErrorMessage = StringRequirmentFieldsErrorMessage)]
         [StringLength(BreederMaxLenght,
                      MinimumLength = BreederMinLenght,
                      ErrorMessage = FieldMinAndMaxStringLenghtErrorMessage)]

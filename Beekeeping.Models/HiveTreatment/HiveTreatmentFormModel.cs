@@ -11,6 +11,7 @@
 
         [Display(Name = "Име на препарата")]
         [Required(ErrorMessage = RequiredFieldErrorMessage)]
+        [RegularExpression(StringRequirmentRegex, ErrorMessage = StringRequirmentFieldsErrorMessage)]
         [StringLength(MedicationNameMaxLenght,
                       MinimumLength = MedicationNameMinLenght,
                       ErrorMessage = FieldMinAndMaxStringLenghtErrorMessage)]
@@ -18,12 +19,14 @@
 
         [Display(Name = "Активна съставка")]
         [Required(ErrorMessage = RequiredFieldErrorMessage)]
+        [RegularExpression(StringRequirmentRegex, ErrorMessage = StringRequirmentFieldsErrorMessage)]
         [StringLength(ActiveIngredientMaxLenght,
                       MinimumLength = ActiveIngredientMinLenght,
                       ErrorMessage = FieldMinAndMaxStringLenghtErrorMessage)]
         public string ActiveIngredient { get; set; } = null!;
 
         [Display(Name = "Резултати и коментари")]
+        [RegularExpression(StringRequirmentRegex, ErrorMessage = StringRequirmentFieldsErrorMessage)]
         public string? ResultAndCommentAboutTheTreatment { get; set; }
 
         [Display(Name = "Обща стойност на третирането")]

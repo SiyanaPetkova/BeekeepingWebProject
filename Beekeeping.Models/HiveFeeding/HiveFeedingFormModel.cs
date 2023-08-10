@@ -11,6 +11,7 @@
 
         [Display(Name = "Тип хранене")]
         [Required(ErrorMessage = RequiredFieldErrorMessage)]
+        [RegularExpression(StringRequirmentRegex, ErrorMessage = StringRequirmentFieldsErrorMessage)]
         [StringLength(FeedingTypeMaxLenght, 
                       MinimumLength = FeedingTypeMinLenght, 
                       ErrorMessage = FieldMinAndMaxStringLenghtErrorMessage)]

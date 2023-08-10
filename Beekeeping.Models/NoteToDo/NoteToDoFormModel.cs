@@ -16,6 +16,7 @@
           
         [Display(Name = "Описание на задачата")]
         [Required(ErrorMessage = RequiredFieldErrorMessage)]
+        [RegularExpression(StringRequirmentRegex, ErrorMessage = StringRequirmentFieldsErrorMessage)]
         [StringLength(NoteDescriptionMaxLenght,
                       MinimumLength = NoteDescriptionMinLenght,
                       ErrorMessage = FieldMinAndMaxStringLenghtErrorMessage)]

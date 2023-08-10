@@ -16,6 +16,7 @@
         public DateTime DayOfInspection { get; set; }
 
         [Display(Name = "Допълнителна информация за прегледа")]
+        [RegularExpression(StringRequirmentRegex, ErrorMessage = StringRequirmentFieldsErrorMessage)]
         [StringLength(InspectionDescriptionMaxLenght,
                       MinimumLength = InspectionDescriptionMinLenght,
                       ErrorMessage = FieldMinAndMaxStringLenghtErrorMessage)]
