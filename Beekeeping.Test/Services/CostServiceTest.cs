@@ -6,11 +6,8 @@
     using System.Globalization;
     using System.Threading.Tasks;
 
-    using Data;
     using Data.Models;
-    using Beekeeping.Services.Interfaces;
-    using Beekeeping.Services.Services;
-    using Beekeeping.Models.Cost;
+    using Models.Cost;
 
     internal class CostServiceTest
     {
@@ -24,31 +21,9 @@
         {
             costIdForTests = 50001;
 
-            List<Cost> costs = new()
-            {
-                new Cost()
-            {
-                Id = 50001,
-                DayOfTheCost = DateTime.Parse("01.01.2023", CultureInfo.InvariantCulture, DateTimeStyles.None),
-                TypeOfCost = "Третиране",
-                CostValue = 100,
-                CreatorId = "44C36B39-AD0A-4260-B448-45BB03158888"
-            },
-                new Cost()
-            {
-                Id = 50002,
-                DayOfTheCost = DateTime.Parse("01.01.2023", CultureInfo.InvariantCulture, DateTimeStyles.None),
-                TypeOfCost = "Хранене",
-                CostValue = 120,
-                CreatorId = "44C36B39-AD0A-4260-B448-45BB03158888"
-            }
-            };
+            List<Cost> costs = GenerateCostData();
 
-            var options = new DbContextOptionsBuilder<BeekeepingDbContext>()
-                .UseInMemoryDatabase(databaseName: "BeekeepingInMemory")
-                .Options;
-
-            context = new BeekeepingDbContext(options);
+            context = new BeekeepingDbContext(GetContextOptions());
 
             await context.Costs.AddRangeAsync(costs);
 

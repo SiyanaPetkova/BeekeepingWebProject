@@ -1,13 +1,11 @@
 ﻿namespace Beekeeping.Test.Services
 {
-    using Beekeeping.Data;
-    using Beekeeping.Data.Models;
-    using Beekeeping.Models.Apiary;
-    using Beekeeping.Models.BeeColony;
-    using Beekeeping.Models.BeeQueen;
-    using Beekeeping.Services.Interfaces;
-    using Beekeeping.Services.Services;
     using Microsoft.EntityFrameworkCore;
+
+    using Data.Models;
+    using Models.Apiary;
+    using Models.BeeColony;
+    using Models.BeeQueen;
 
     [TestFixture]
     internal class BeeColonyServiceTest
@@ -25,109 +23,13 @@
             beeColonyIdForTests = 10001;
             apiaryIdForTests = 9150;
 
-            List<Apiary> apiaries = new()
-            {
-                 new Apiary()
-                 {
-                    Id = apiaryIdForTests,
-                    Name = "Климентово",
-                    Location = "Село Климентово, Варна",
-                    OwnerId = UserdId,
-                    RegistrationNumber = "9150-0015",
-                    Latitude = 43.346222,
-                    Longitude = 27.946315
-                  },
+            var apiaries = GenerateApiariesData();
 
-             new Apiary()
-                {
-                    Id = 9156,
-                    Name = "Зорница",
-                    Location = "Село Зорница, Варна",
-                    OwnerId = UserdId,
-                    RegistrationNumber = "9156-0017",
-                    Latitude = 43.330429,
-                    Longitude = 27.734944
-                  }
-             };
+            var beeQueens = GenerateBeeQueenData();
 
-            List<BeeQueen> beeQueens = new()
-            {
-                    new BeeQueen
-                 {
-                     Id = 10001,
-                     Breeder = "Собствено производство",
-                     BeeQueenYearOfBirth = 2023,
-                     BeeQueenType = "Карника"
-                 },
-                     new BeeQueen()
-                 {
-                     Id = 10002,
-                     Breeder = "Собствено производство",
-                     BeeQueenYearOfBirth = 2023,
-                     BeeQueenType = "Карника"
-                 },
-                     new BeeQueen()
-                 {
-                     Id = 10003,
-                     Breeder = "Роева",
-                     BeeQueenYearOfBirth = 2023,
-                     BeeQueenType = "Неизвестна"
-                 }
-            };
+            var beeColonies = GenerateBeeColonyData();
 
-            List<BeeColony> beeColonies = new()
-            {
-                     new BeeColony()
-                 {
-                     Id = 10001,
-                     PlateNumber = "100-4447",
-                     AdditionalComment = "Основно семейство",
-                     TypeOfBroodBox = "Многокорпусен",
-                     SecondBroodBox = true,
-                     NumberOfAdditionalBoxes = 1,
-                     Super = true,
-                     NumberOfSupers = 1,
-                     MatedBeeQueen = true,
-                     OwnerOfTheApiary = UserdId,
-                     ApiaryId = apiaryIdForTests,
-                     BeeQueenId = 10001
-                 },
-                     new BeeColony()
-                 {
-                     Id = 10002,
-                     PlateNumber = "100-4448",
-                     AdditionalComment = "Основно семейство",
-                     TypeOfBroodBox = "Многокорпусен",
-                     SecondBroodBox = false,
-                     NumberOfAdditionalBoxes = 0,
-                     Super = true,
-                     NumberOfSupers = 1,
-                     MatedBeeQueen = true,
-                     OwnerOfTheApiary = UserdId,
-                     ApiaryId = apiaryIdForTests,
-                     BeeQueenId = 10002
-                 },
-                     new BeeColony()
-                 {
-                     Id = 10003,
-                     PlateNumber = "100-4449",
-                     AdditionalComment = "Отводка",
-                     TypeOfBroodBox = "Многокорпусен",
-                     SecondBroodBox = false,
-                     NumberOfAdditionalBoxes = 0,
-                     Super = false,
-                     NumberOfSupers = 0,
-                     MatedBeeQueen = true,
-                     OwnerOfTheApiary = UserdId,
-                     ApiaryId = 9160,
-                     BeeQueenId = 10003
-                 }
-            };
-
-            var options = new DbContextOptionsBuilder<BeekeepingDbContext>()
-               .UseInMemoryDatabase(databaseName: "BeekeepingInMemory")
-               .Options;
-            context = new BeekeepingDbContext(options);
+            context = new BeekeepingDbContext(GetContextOptions());
 
             await context.Apiaries.AddRangeAsync(apiaries);
             await context.BeeQueens.AddRangeAsync(beeQueens);

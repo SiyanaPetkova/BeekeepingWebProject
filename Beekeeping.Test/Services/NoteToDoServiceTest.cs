@@ -6,11 +6,8 @@
     using System.Globalization;
     using System.Threading.Tasks;
 
-    using Data;
     using Data.Models;
     using Models.NoteToDo;
-    using Beekeeping.Services.Interfaces;
-    using Beekeeping.Services.Services;
 
     internal class NoteTodoServiceTest
     {
@@ -24,31 +21,9 @@
         {
             noteIdForTests = 20001;
 
-            List<NoteToDo> notes = new()
-            {
-            new NoteToDo()
-            {
-                Id = 20001,
-                DateToBeDone = DateTime.Parse("07.22.2023", CultureInfo.InvariantCulture, DateTimeStyles.None),
-                Description = "Третиране против акар",
-                CreatorId = "44C36B39-AD0A-4260-B448-45BB03158888",
-                Finished = false
-            },
-                new NoteToDo()
-            {
-                Id = 20002,
-                DateToBeDone = DateTime.Parse("03.15.2023", CultureInfo.InvariantCulture, DateTimeStyles.None),
-                Description = "Пролетно подхранване",
-                CreatorId = "44C36B39-AD0A-4260-B448-45BB03158888",
-                Finished = true
-            }
-        };
+            var notes = GenerateNoteToDoData();
 
-            var options = new DbContextOptionsBuilder<BeekeepingDbContext>()
-                .UseInMemoryDatabase(databaseName: "BeekeepingInMemory")
-                .Options;
-
-            context = new BeekeepingDbContext(options);
+            context = new BeekeepingDbContext(GetContextOptions());
 
             await context.NoteToDos.AddRangeAsync(notes);
 
@@ -120,7 +95,7 @@
         [Test]
         public async Task AllNotesAsyncShouldReturnNullIfUserHasNoNotes()
         {
-           var actual = await noteToDoService.AllNotesAsync(NotExistingUserdId);
+            var actual = await noteToDoService.AllNotesAsync(NotExistingUserdId);
 
             Assert.That(actual, Is.Null);
         }

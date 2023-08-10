@@ -11,7 +11,7 @@ namespace Beekeeping.Web
    
     using static Web.Areas.Admin.AdminConstants;
 
-    public class StartUp
+    public class Program
     {
         public static void Main(string[] args)
         {
@@ -51,7 +51,6 @@ namespace Beekeeping.Web
 
             builder.Services.ConfigureApplicationCookie(cfg =>
             {
-                cfg.LoginPath = "/User/Login";
                 cfg.AccessDeniedPath = "/Home/Error/401";
             });
 

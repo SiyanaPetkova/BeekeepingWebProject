@@ -1,16 +1,11 @@
 ﻿namespace Beekeeping.Test.Services
 {
     using Microsoft.EntityFrameworkCore;
-    using System;
-    using System.Collections.Generic;
+    using System;  
     using System.Globalization;
     using System.Threading.Tasks;
 
-    using Data;
-    using Data.Models;
-    using Models.HiveTreatment;
-    using Beekeeping.Services.Interfaces;
-    using Beekeeping.Services.Services;
+     using Models.HiveTreatment;  
 
     internal class TreatmentServiceTest
     {
@@ -24,37 +19,9 @@
         {
             treatmentIdForTests = 40001;
 
-            List<HiveTreatment> treatments = new()
-            {
-           new HiveTreatment()
-                {
-                    Id = 40001,
-                    TreatmentDate = DateTime.Parse("01.01.2023", CultureInfo.InvariantCulture, DateTimeStyles.None),
-                    ResultAndCommentAboutTheTreatment = $"Опаразитеност около 1%",
-                    MedicationName = "Оксалова киселина",
-                    ActiveIngredient = "Оксалова киселина",
-                    PriceOfTheTreatment = 40,
-                    NumberOfTreatedColonies = 10,
-                    CreatorId = "44C36B39-AD0A-4260-B448-45BB03158888"
-                },
-           new HiveTreatment()
-                {
-                    Id = 40002,
-                    TreatmentDate = DateTime.Parse("02.01.2023", CultureInfo.InvariantCulture, DateTimeStyles.None),
-                    ResultAndCommentAboutTheTreatment = $"Опаразитеност около 2%",
-                    MedicationName =  "Апивар",
-                    ActiveIngredient = "Амитраз",
-                    PriceOfTheTreatment = 100,
-                    NumberOfTreatedColonies = 10,
-                    CreatorId = "44C36B39-AD0A-4260-B448-45BB03158888"
-                }
-        };
-
-            var options = new DbContextOptionsBuilder<BeekeepingDbContext>()
-                .UseInMemoryDatabase(databaseName: "BeekeepingInMemory")
-                .Options;
-
-            context = new BeekeepingDbContext(options);
+            var treatments = GeneratetreatmentData();
+                      
+            context = new BeekeepingDbContext(GetContextOptions());
 
             await context.HiveTreatments.AddRangeAsync(treatments);
 

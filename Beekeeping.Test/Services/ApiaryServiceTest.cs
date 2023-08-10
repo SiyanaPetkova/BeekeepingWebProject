@@ -3,11 +3,7 @@
     using Microsoft.CodeAnalysis;
     using Microsoft.EntityFrameworkCore;
 
-    using Data;
-    using Data.Models;
     using Models.Apiary;
-    using Beekeeping.Services.Interfaces;
-    using Beekeeping.Services.Services;
 
     [TestFixture]
     internal class ApiaryServiceTest
@@ -22,35 +18,9 @@
         {
             apiaryIdForTests = 9150;
 
-            List<Apiary> apiaries = new()
-            {
-                 new Apiary()
-                 {
-                    Id = apiaryIdForTests,
-                    Name = "Климентово",
-                    Location = "Село Климентово, Варна",
-                    OwnerId = UserdId,
-                    RegistrationNumber = "9150-0015",
-                    Latitude = 43.346222,
-                    Longitude = 27.946315
-                  },
+            var apiaries = GenerateApiariesData();
 
-             new Apiary()
-                {
-                    Id = 9156,
-                    Name = "Зорница",
-                    Location = "Село Зорница, Варна",
-                    OwnerId = UserdId,
-                    RegistrationNumber = "9156-0017",
-                    Latitude = 43.330429,
-                    Longitude = 27.734944
-                  }
-             };
-
-            var options = new DbContextOptionsBuilder<BeekeepingDbContext>()
-                .UseInMemoryDatabase(databaseName: "BeekeepingInMemory")
-                .Options;
-            context = new BeekeepingDbContext(options);
+            context = new BeekeepingDbContext(GetContextOptions());
 
             await context.Apiaries.AddRangeAsync(apiaries);
 
@@ -58,6 +28,7 @@
 
             apiaryService = new ApiaryService(context);
         }
+
 
         [TearDown]
         public void TearDown()

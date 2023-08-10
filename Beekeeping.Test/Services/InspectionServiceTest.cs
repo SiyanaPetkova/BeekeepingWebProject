@@ -5,11 +5,7 @@
     using System.Globalization;
 
     using Data;
-    using Data.Models;
     using Models.Inspection;
-    using Beekeeping.Services.Interfaces;
-    using Beekeeping.Services.Services;
- 
 
     [TestFixture]
     internal class InspectionServiseTest
@@ -26,56 +22,14 @@
             inspectionIdForTests = 100000;
             beeColonyIdForTests = 10001;
 
-            List<Inspection> inspections = new()
-            {
-                new Inspection()
-                    {
-                        Id = 100000,
-                        DayOfInspection = DateTime.Parse("01.01.2023", CultureInfo.InvariantCulture, DateTimeStyles.None),
-                        Description = "Общ преглед",
-                        NumberOfFrames = 5,
-                        NumberOfBroodFrames = 1,
-                        Strenght = 4,
-                        Temperament = 8,
-                        BeeColonyId = beeColonyIdForTests
-                    },
-                 new Inspection()
-                    {
-                        Id = 100001,
-                        DayOfInspection = DateTime.Parse("01.02.2023", CultureInfo.InvariantCulture, DateTimeStyles.None),
-                        Description = "Общ преглед",
-                        NumberOfFrames = 6,
-                        NumberOfBroodFrames = 2,
-                        Strenght = 5,
-                        Temperament = 8,
-                        BeeColonyId = beeColonyIdForTests
-                    }
-            };
+            var inspections = GenerateInspectionsData();
 
-            var beeColony = new BeeColony()
-            {
-                Id = beeColonyIdForTests,
-                PlateNumber = "100-4447",
-                AdditionalComment = "Основно семейство",
-                TypeOfBroodBox = "Многокорпусен",
-                SecondBroodBox = true,
-                NumberOfAdditionalBoxes = 1,
-                Super = true,
-                NumberOfSupers = 1,
-                MatedBeeQueen = true,
-                OwnerOfTheApiary = UserdId,
-                ApiaryId = 9999,
-                BeeQueenId = 10001
-            };
-
-            var options = new DbContextOptionsBuilder<BeekeepingDbContext>()
-                          .UseInMemoryDatabase(databaseName: "BeekeepingInMemory")
-                          .Options;
-
-            context = new BeekeepingDbContext(options);
+            var beeColonies = GenerateBeeColonyData();
+                       
+            context = new BeekeepingDbContext(GetContextOptions());
 
             await context.Inspections.AddRangeAsync(inspections);
-            await context.BeeColonies.AddAsync(beeColony);
+            await context.BeeColonies.AddRangeAsync(beeColonies);
 
             await context.SaveChangesAsync();
 

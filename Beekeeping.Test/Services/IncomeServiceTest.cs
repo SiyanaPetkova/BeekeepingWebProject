@@ -2,15 +2,10 @@
 {
     using Microsoft.EntityFrameworkCore;
     using System;
-    using System.Collections.Generic;
     using System.Globalization;
     using System.Threading.Tasks;
 
-    using Data;
-    using Data.Models;
     using Models.Income;
-    using Beekeeping.Services.Interfaces;
-    using Beekeeping.Services.Services;
 
     internal class IncomeServiceTest
     {
@@ -24,31 +19,9 @@
         {
             incomeIdForTests = 60001;
 
-            List<Income> incomes = new()
-            {
-                 new Income()
-                {
-                    Id = 60001,
-                    IncomeValue = 950,
-                    TypeOfIncome = "Продаден прашец",
-                    DayOfTheIncome = DateTime.Parse("04.20.2023", CultureInfo.InvariantCulture, DateTimeStyles.None),
-                    CreatorId = "44C36B39-AD0A-4260-B448-45BB03158888"
-                },
-                 new Income()
-                {
-                    Id = 60002,
-                    IncomeValue = 120,
-                    TypeOfIncome = "Продаден мед",
-                    DayOfTheIncome = DateTime.Parse("05.10.2023", CultureInfo.InvariantCulture, DateTimeStyles.None),
-                    CreatorId = "44C36B39-AD0A-4260-B448-45BB03158888"
-                 }
-            };
+            var incomes = GenerateIncomeData();
 
-            var options = new DbContextOptionsBuilder<BeekeepingDbContext>()
-                .UseInMemoryDatabase(databaseName: "BeekeepingInMemory")
-                .Options;
-
-            context = new BeekeepingDbContext(options);
+            context = new BeekeepingDbContext(GetContextOptions());
 
             await context.Incomes.AddRangeAsync(incomes);
 

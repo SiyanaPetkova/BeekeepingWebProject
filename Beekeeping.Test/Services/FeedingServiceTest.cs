@@ -6,11 +6,8 @@
     using System.Globalization;
     using System.Threading.Tasks;
 
-    using Data;
     using Data.Models;
     using Models.HiveFeeding;
-    using Beekeeping.Services.Interfaces;
-    using Beekeeping.Services.Services;
 
     internal class FeedingServiceTest
     {
@@ -24,33 +21,9 @@
         {
             feedingIdForTests = 30001;
 
-            List<HiveFeeding> feedings = new()
-            {
-             new HiveFeeding()
-            {
-                Id = 30001,
-                DayOfFeeding = DateTime.Parse("01.01.2023", CultureInfo.InvariantCulture, DateTimeStyles.None),
-                FeedingType = "Питка",
-                PriceOfFeeding =  120,
-                NumberOfBeeHives = 10,
-                CreatorId = "44C36B39-AD0A-4260-B448-45BB03158888"
-            },
-                 new HiveFeeding()
-            {
-                Id = 30002,
-                DayOfFeeding = DateTime.Parse("02.01.2023", CultureInfo.InvariantCulture, DateTimeStyles.None),
-                FeedingType =  "Сироп",
-                PriceOfFeeding = 80,
-                NumberOfBeeHives = 10,
-                CreatorId = "44C36B39-AD0A-4260-B448-45BB03158888"
-            }
-        };
+            List<HiveFeeding> feedings = GenerateFeedingData();
 
-            var options = new DbContextOptionsBuilder<BeekeepingDbContext>()
-                .UseInMemoryDatabase(databaseName: "BeekeepingInMemory")
-                .Options;
-
-            context = new BeekeepingDbContext(options);
+            context = new BeekeepingDbContext(GetContextOptions());
 
             await context.HiveFeeding.AddRangeAsync(feedings);
 

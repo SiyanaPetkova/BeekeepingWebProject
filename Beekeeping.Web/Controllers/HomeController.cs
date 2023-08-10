@@ -42,12 +42,6 @@
             return View();
         }
 
-        public IActionResult Try()
-        {
-            int statusCode = 404;
-            ViewBag.StatusCode = statusCode;
-            return View();
-        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error(int statusCode)
