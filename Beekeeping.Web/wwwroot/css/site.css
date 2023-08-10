@@ -311,9 +311,82 @@ input[type=submit] {
 
     .custom-events-container img {
         display: block;
-        margin: 0 auto; /* Center the image horizontally */
+        margin: 0 auto; 
         max-width: 100%;
         height: auto;
-        padding: 10px; /* Add padding around the image */
-        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+        padding: 10px; 
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1); 
     }
+
+
+.hexagon {
+    width: 200px;
+    height: 100px;
+    overflow: hidden;
+    visibility: hidden;
+    transform: rotate(120deg);
+    display: inline-block;
+    list-style-type: none;
+}
+
+.hexagon-in1 {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-60deg);
+    text-decoration: none;
+}
+
+.hexagon-in2 {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url(/images/11.jpg);
+    overflow: hidden;
+    visibility: visible;
+    line-height: 200px;
+    font-size: 1.5em;
+    color: #fff;
+    text-shadow: 1px 1px #000;
+    transform: rotate(-60deg);
+    transition: 1.5s ease-out;
+    text-align: center;
+    line-height: 4; 
+}
+
+li:nth-child(1) span {
+    background-position: -15px center;
+}
+
+li:nth-child(2) span {
+    background-position: -115px center;
+}
+
+li:nth-child(3) span {
+    background-position: -215px center;
+}
+
+li:nth-child(4) span {
+    background-position: -315px center;
+}
+
+li:nth-child(5) span {
+    background-position: -415px center;
+}
+
+.hexagon-in2:hover {
+    background-position: -565px center;
+    color: orange;
+}
+
+ul {
+    text-align: center;
+}
+
+@media (max-width: 1200px) {
+    .hexagon {
+        display: none;
+    }
+}
+

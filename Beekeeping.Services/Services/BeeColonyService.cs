@@ -85,8 +85,15 @@
 
         public async Task DeleteBeeColonyAsync(string userId, int id)
         {
-            var beeColony = await context.BeeColonies.FirstOrDefaultAsync(b => b.Id == id && b.OwnerOfTheApiary == userId) 
+            var beeColony = await context.BeeColonies.FirstOrDefaultAsync(b => b.Id == id && b.OwnerOfTheApiary == userId)
                                           ?? throw new InvalidOperationException();
+
+            var inspections = await context.Inspections.Where(i => i.BeeColonyId == beeColony.Id).ToArrayAsync();
+
+            if (inspections.Length > 0)
+            {
+                context.Inspections.RemoveRange(inspections);
+            }
 
             context.BeeColonies.Remove(beeColony);
             await context.SaveChangesAsync();
@@ -95,7 +102,7 @@
         public async Task EditBeeColonyAsync(BeeColonyFormModel model, string ownerId, int colonyId)
         {
             var beeColony = await context.BeeColonies
-                               .FirstOrDefaultAsync(a => a.Id == colonyId && a.OwnerOfTheApiary == ownerId) 
+                               .FirstOrDefaultAsync(a => a.Id == colonyId && a.OwnerOfTheApiary == ownerId)
                                ?? throw new InvalidOperationException();
 
             var beeQueen = await context.BeeQueens.FindAsync(beeColony.BeeQueenId);
@@ -121,7 +128,7 @@
         public async Task<BeeColonyFormModel> GetBeeColonyForEditAsync(string ownerId, int colonyId)
         {
             var beeColony = await context.BeeColonies
-                                .FirstOrDefaultAsync(a => a.Id == colonyId && a.OwnerOfTheApiary == ownerId) 
+                                .FirstOrDefaultAsync(a => a.Id == colonyId && a.OwnerOfTheApiary == ownerId)
                                 ?? throw new InvalidOperationException();
 
             var beeQueen = await context.BeeQueens

@@ -65,35 +65,27 @@
     </header>
     <div class="container-fluid">
         <div class="row">
-            <nav class=" col-md-3 col-lg-2 d-none d-md-block  sidebar">
-                <div class="position-sticky">
-                    <ul class="btn-group-vertical d-grid gap-4 d-md-block">
-                        <li class="nav-item">
-                            <a asp-area="" asp-controller="Home" asp-action="Index" asp-route-id="" class="btn btn-warning mb-3 btn-block fw-bold">За нас</a>
-                        </li>
-                        <li class="nav-item">
-                            <a asp-area="" asp-controller="Gallery" asp-action="All" asp-route-id="" class="btn btn-warning mb-3 btn-block fw-bold">Галерия</a>
-                        </li>
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li class="nav-item">
-                                <a asp-area="" asp-controller="Apiary" asp-action="ApiaryWeather" asp-route-id="" class="btn btn-warning mb-3 btn-block fw-bold">Времето</a>
+            <nav class=" col-md-3 col-lg-2 d-none d-md-block  sidebar">               
+                    <ul class="btn-group-vertical d-grid gap-4">                      
+                            <li class="hexagon">
+                                <a class="hexagon-in1" asp-area="" asp-controller="Home" asp-action="Index" asp-route-id=""><span class="hexagon-in2">За нас</span></a>
                             </li>
-                            <li class="nav-item">
-                                <a asp-area="" asp-controller="Event" asp-action="Notes" asp-route-id="" class="btn btn-warning mb-3 btn-block fw-bold">Задачи</a>
+                            <li class="hexagon">
+                                <a class="hexagon-in1" asp-area="" asp-controller="Gallery" asp-action="All" asp-route-id=""><span class="hexagon-in2">Галерия</span></a>
                             </li>
-                            <li class="nav-item">
-                                <a asp-area="" asp-controller="Apiary" asp-action="All" asp-route-id="" class="btn btn-warning mb-3 btn-block fw-bold">Пчелини</a>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-area="" asp-controller="Balance" asp-action="Index" asp-route-id="" class="btn btn-warning mb-3 btn-block fw-bold">Баланс</a>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="" class="btn btn-warning mb-3 btn-block fw-bold">Cъбития</a>
-                            </li>
-                        }
-                    </ul>
-                </div>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li class="hexagon">
+                                    <a class="hexagon-in1" a asp-area="" asp-controller="Apiary" asp-action="ApiaryWeather" asp-route-id=""><span class="hexagon-in2">Времето</span></a>
+                                </li>
+                                <li class="hexagon">
+                                    <a class="hexagon-in1" asp-area="" asp-controller="Event" asp-action="Notes" asp-route-id=""><span class="hexagon-in2">Задачи</span></a>
+                                </li>
+                                <li class="hexagon">
+                                    <a class="hexagon-in1" asp-area="" asp-controller="Apiary" asp-action="All" asp-route-id=""><span class="hexagon-in2">Пчелини</span></a>
+                                </li>                               
+                            }                      
+                    </ul>               
             </nav>
             <main class="col-md-10 ms-sm-auto col-lg-10 px-md-4">
                 @RenderBody()
@@ -111,7 +103,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
+   
     @await RenderSectionAsync("Scripts", required: false)
 
 </body>

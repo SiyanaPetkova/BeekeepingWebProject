@@ -243,10 +243,9 @@
                 return RedirectToAction("Index", "Home");
             }
 
+            bool beeColonyExists = await beeColonyService.DoesBeeColonyExist(userId, id);
 
-            bool apiaryExists = await beeColonyService.DoesBeeColonyExist(userId, id);
-
-            if (!apiaryExists)
+            if (!beeColonyExists)
             {
                 TempData["ErrorMessage"] = "Не съществуващ koшер!";
 
