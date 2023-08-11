@@ -1,8 +1,10 @@
-# BEEKEEPING WEB PROJECT
+<p align="center">
+ # BEEKEEPING WEB PROJECT
 
 ![Logo](https://github.com/SiyanaPetkova/BeekeepingWebProject/assets/106101481/32f3a003-bb9b-45df-9fdb-bf9406423fa5)
-
+ 
 ## INTRODUCTION
+</p>
 Beekeeping Web project is web application developed for beekeeping in Bulgaria. Its purpose is to show users the importance of the bees and helping beekeepers to manage their apiaries. 
 Like beekeeper I wanted to be able to track my apiary data not on a paper but in a modern way. I decided to give this opportunity to every colleagues that needs this. The application is divided into three main parts:
 - Beekeeping book
@@ -10,7 +12,8 @@ Like beekeeper I wanted to be able to track my apiary data not on a paper but in
 - Statistics
   
 ## FEATURES
-- Adding, updating and deleting apiaries as well with showing via OpenMap Api the weather in the user’s apiaries
+- Adding, updating and deleting apiaries with possibility of choosing exact coordinates for the apiary on OpenStreetMap and saving them in the database
+- Upon the apiary's coordinates showing exact weather via OpenWeather Api
 - Adding, updating and deleting beecolonies as well with keeping track on the inspections during the year
 - Detailed information about all aspects of user's apiary
 - Showing balance to the costs and the incomes of the user
