@@ -34,3 +34,5 @@ There are three types of users in the application:
 - HTML, CSS, JavaScript and Bootstrap
 - NUnit
 - OpenWeather Api
+
+  ### Pictures in the application are from personal collection and we keep all the rights over them! 
