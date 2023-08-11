@@ -196,11 +196,13 @@
 
             try
             {
+                var beeColonyId = await inspectionService.GetCurrentInspectionBeeColonyId(userId, id);
+
                 await inspectionService.EditInspectionAsync(model, userId, id);
 
                 TempData["SuccessMessage"] = "Успешно редактирахте прегледа за избрания кошер";
 
-                return RedirectToAction("All", "Inspection", new { id = model.BeeColonyId });
+                return RedirectToAction("All", "Inspection", new { id = beeColonyId});
             }
             catch (Exception)
             {

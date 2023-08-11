@@ -4,41 +4,7 @@
     ViewBag.Title = "Добави нов преглед за кошера";
 }
 
-<div class="row">
-    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
-        <h2 class="heading-margin text-center">@ViewBag.Title</h2>
-        <form method="post">
-            <div class="form-group">
-                <label asp-for="DayOfInspection"></label>
-                <input asp-for="DayOfInspection" class="form-control">
-                <span asp-validation-for="DayOfInspection" class="small text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description"></label>
-                <input asp-for="Description" class="form-control" placeholder="Допълнителни данни от прегледа">
-                <span asp-validation-for="Description" class="small text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumberOfFrames"></label>
-                <input asp-for="NumberOfFrames" class="form-control">
-                <span asp-validation-for="NumberOfFrames" class="small text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumberOfBroodFrames"></label>
-                <input asp-for="NumberOfBroodFrames" class="form-control">
-                <span asp-validation-for="NumberOfBroodFrames" class="small text-danger"></span>
-            </div>  <div class="form-group">
-                <label asp-for="Strenght"></label>
-                <input asp-for="Strenght" class="form-control">
-                <span asp-validation-for="Strenght" class="small text-danger"></span>
-            </div>  <div class="form-group">
-                <label asp-for="Temperament"></label>
-                <input asp-for="Temperament" class="form-control">
-                <span asp-validation-for="Temperament" class="small text-danger"></span>
-                <input class="btn btn-primary mt-3" type="submit" value="Запази" />
-        </form>
-    </div>
-</div>
+<partial name="_InspectionFormPartial" model="@Model" />
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
