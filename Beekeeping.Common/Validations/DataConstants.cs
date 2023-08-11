@@ -135,7 +135,7 @@
             public const int PasswordMinLength = 8;
             public const int PasswordMaxLength = 50;
 
-            public const string RegularExpressionValidation = @"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
+            public const string RegularExpressionValidation = @"^(?=.*[A-Z])(?=.*\d).+$";
 
         }
     }

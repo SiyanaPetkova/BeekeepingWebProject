@@ -14,7 +14,7 @@
 
         public const string NotAuthorizedErrorMessage = "Нямате достъп до тази страница!";
 
-        public const string PasswordRegexErrorMessage = "Полето трябва да съдържа поне една главна буква, цифра и символ.";
+        public const string PasswordRegexErrorMessage = "Полето трябва да съдържа поне една главна буква и цифра.";
 
         public const string ConfirmPasswordErrorMessage = "Двете пароли трябва да съвпадат.";
 
