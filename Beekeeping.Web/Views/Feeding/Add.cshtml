@@ -2,38 +2,39 @@
 
 <body>
     <div class="container text-center">
-
-        <h2>Добави хранене</h2>
-
-        <form method="post">
-            <div class="row">
-                <div class="col-md-3">
-                    <label asp-for="DayOfFeeding"></label>
-                    <input asp-for="DayOfFeeding" class="form-control">
-                    <span asp-validation-for="DayOfFeeding" class="small text-danger"></span>
-                </div>
-                <div class="col-md-3">
-                    <label asp-for="FeedingType"></label>
-                    <input asp-for="FeedingType" class="form-control">
-                    <span asp-validation-for="FeedingType" class="small text-danger"></span>
-                </div>
-                <div class="col-md-3">
-                    <label asp-for="PriceOfFeeding"></label>
-                    <input asp-for="PriceOfFeeding" class="form-control">
-                    <span asp-validation-for="PriceOfFeeding" class="small text-danger"></span>
-                </div>
-                <div class="col-md-3">
-                    <label asp-for="NumberOfBeeHives"></label>
-                    <input asp-for="NumberOfBeeHives" class="form-control">
-                    <span asp-validation-for="NumberOfBeeHives" class="small text-danger"></span>
-                </div>
-                <input class="btn btn-primary mt-3" type="submit" value="Запази" />
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <h2>Добави хранене</h2>
+                <form method="post">
+                    <div class="form-group">
+                        <label asp-for="DayOfFeeding"></label>
+                        <input asp-for="DayOfFeeding" class="form-control">
+                        <span asp-validation-for="DayOfFeeding" class="small text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FeedingType"></label>
+                        <input asp-for="FeedingType" class="form-control">
+                        <span asp-validation-for="FeedingType" class="small text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PriceOfFeeding"></label>
+                        <input asp-for="PriceOfFeeding" class="form-control">
+                        <span asp-validation-for="PriceOfFeeding" class="small text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NumberOfBeeHives"></label>
+                        <input asp-for="NumberOfBeeHives" class="form-control">
+                        <span asp-validation-for="NumberOfBeeHives" class="small text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input class="btn btn-primary btn-block" type="submit" value="Запази" />
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
 </body>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
-

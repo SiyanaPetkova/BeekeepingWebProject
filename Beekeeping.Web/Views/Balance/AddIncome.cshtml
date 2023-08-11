@@ -1,34 +1,41 @@
 ﻿@model IncomeFormModel
 
-<body>
-    <div class="container text-center">
-
-        <h2>Добави нов приход</h2>
-
-        <form method="post">
-            <div class="row">
-                <div class="col-3">
-                    <label asp-for="DayOfTheIncome"></label>
-                    <input asp-for="DayOfTheIncome" class="form-control">
-                    <span asp-validation-for="DayOfTheIncome" class="small text-danger"></span>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <h2 class="text-center">Добави нов приход</h2>
+            <form method="post">
+                <div class="row">
+                    <div class="col-12">
+                        <label asp-for="DayOfTheIncome"></label>
+                        <input asp-for="DayOfTheIncome" class="form-control">
+                        <span asp-validation-for="DayOfTheIncome" class="small text-danger"></span>
+                    </div>
                 </div>
-                <div class="col-3">
-                    <label asp-for="TypeOfIncome"></label>
-                    <input asp-for="TypeOfIncome" class="form-control">
-                    <span asp-validation-for="TypeOfIncome" class="small text-danger"></span>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <label asp-for="TypeOfIncome"></label>
+                        <input asp-for="TypeOfIncome" class="form-control">
+                        <span asp-validation-for="TypeOfIncome" class="small text-danger"></span>
+                    </div>
                 </div>
-                <div class="col-3">
-                    <label asp-for="IncomeValue"></label>
-                    <input asp-for="IncomeValue" class="form-control">
-                    <span asp-validation-for="IncomeValue" class="small text-danger"></span>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <label asp-for="IncomeValue"></label>
+                        <input asp-for="IncomeValue" class="form-control">
+                        <span asp-validation-for="IncomeValue" class="small text-danger"></span>
+                    </div>
                 </div>
-            </div>
-            <input class="btn btn-primary mt-3" type="submit" value="Запази" />
-        </form>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <input class="btn btn-primary btn-block" type="submit" value="Запази" />
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-</body>
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
-                        }
-
+}

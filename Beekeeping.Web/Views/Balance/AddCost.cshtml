@@ -1,34 +1,41 @@
 ﻿@model CostFormModel
 
-<body>
-    <div class="container text-center">
-
-        <h2>Добави нов разход</h2>
-
-        <form method="post">
-            <div class="row">
-                <div class="col-3">
-                    <label asp-for="DayOfTheCost"></label>
-                    <input asp-for="DayOfTheCost" class="form-control">
-                    <span asp-validation-for="DayOfTheCost" class="small text-danger"></span>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-4">
+            <h2 class="text-center">Добави нов разход</h2>
+            <form method="post">
+                <div class="row">
+                    <div class="col-12">
+                        <label asp-for="DayOfTheCost"></label>
+                        <input asp-for="DayOfTheCost" class="form-control">
+                        <span asp-validation-for="DayOfTheCost" class="small text-danger"></span>
+                    </div>
                 </div>
-                <div class="col-3">
-                    <label asp-for="TypeOfCost"></label>
-                    <input asp-for="TypeOfCost" class="form-control">
-                    <span asp-validation-for="TypeOfCost" class="small text-danger"></span>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <label asp-for="TypeOfCost"></label>
+                        <input asp-for="TypeOfCost" class="form-control">
+                        <span asp-validation-for="TypeOfCost" class="small text-danger"></span>
+                    </div>
                 </div>
-                <div class="col-3">
-                    <label asp-for="CostValue"></label>
-                    <input asp-for="CostValue" class="form-control">
-                    <span asp-validation-for="CostValue" class="small text-danger"></span>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <label asp-for="CostValue"></label>
+                        <input asp-for="CostValue" class="form-control">
+                        <span asp-validation-for="CostValue" class="small text-danger"></span>
+                    </div>
                 </div>
-            </div>
-            <input class="btn btn-primary mt-3" type="submit" value="Запази" />
-        </form>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <input class="btn btn-primary btn-block" type="submit" value="Запази" />
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-</body>
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
-                        }
-
+}

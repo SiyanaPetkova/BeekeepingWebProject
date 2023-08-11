@@ -1,25 +1,38 @@
 ﻿@model NoteToDoFormModel
 
-<form method="post">
-    <div class="form-row">
-        <div class="col-3">
-            <label asp-for="DateToBeDone"></label>
-            <input asp-for="DateToBeDone" class="form-control">
-            <span asp-validation-for="DateToBeDone" class="small text-danger"></span>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-4">
+            <form method="post">
+                <div class="row">
+                    <div class="col-12">
+                        <label asp-for="DateToBeDone"></label>
+                        <input asp-for="DateToBeDone" class="form-control">
+                        <span asp-validation-for="DateToBeDone" class="small text-danger"></span>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <label asp-for="Description"></label>
+                        <input asp-for="Description" class="form-control">
+                        <span asp-validation-for="Description" class="small text-danger"></span>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input type="checkbox" id="Finished" name="Finished" asp-for="Finished" class="form-check-input">
+                            <label class="form-check-label" asp-for="Finished">Завършена</label>
+                            <span asp-validation-for="Finished" class="small text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <input class="btn btn-primary btn-block" type="submit" value="Запази" />
+                    </div>
+                </div>
+            </form>
         </div>
-        <div class="col-3">
-            <label asp-for="Description"></label>
-            <input asp-for="Description" class="form-control">
-            <span asp-validation-for="Description" class="small text-danger"></span>
-        </div>
-
     </div>
-    <div class="form-group">
-        <div class="checkbox">
-            <label asp-for="Finished"></label>
-            <input type="checkbox" id="Finished" name="Finished" asp-for="Finished" />
-            <span asp-validation-for="Finished" class="small text-danger"></span>
-        </div>
-    </div>
-    <input class="btn btn-primary mt-3" type="submit" value="Запази" />
-</form>
+</div>
