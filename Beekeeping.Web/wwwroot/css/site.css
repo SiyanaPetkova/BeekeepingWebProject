@@ -287,18 +287,19 @@ input[type=submit] {
 }
 
 /*--- Event custom conteiner ---*/
-
 .custom-events-container {
     display: flex;
     justify-content: center;
     max-width: 1200px;
     margin: 0 auto;
+    flex-wrap: wrap; 
 }
 
 .custom-event {
     position: relative;
     margin: 20px;
     text-align: center;
+    flex: 1 1 calc(33.33% - 40px); 
 }
 
     .custom-event .custom-btn {
@@ -328,6 +329,11 @@ input[type=submit] {
         box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
     }
 
+@media (max-width: 768px) { 
+    .custom-event {
+        flex-basis: calc(100% - 40px); 
+    }
+}
 /* --- Hexagon buttons ---*/
 
 .hexagon {
@@ -615,13 +621,13 @@ ul {
 
     .article figure {
         float: left;
-        margin: 0 20px 20px 0; /* Increased right margin for spacing */
+        margin: 0 20px 20px 0; 
         text-align: center;
         width: 300px;
     }
 
     .article img {
-        max-width: 100%; /* Set max width to 100% */
+        max-width: 100%; 
         height: auto;
         box-shadow: 0 10px 14px rgba(0, 0, 0, 0.1);
     }
@@ -718,4 +724,32 @@ ul {
             line-height: 10vw;
             max-width: 70vw;
         }
+}
+
+/*--- Weather card ---*/
+
+#weather-cards-container .card {
+    width: 28rem; 
+    background-color: #f8f9fa; 
+    margin: 1rem;
+    border-radius: 20px;
+    box-shadow: 1 14px 16px rgba(0, 0, 0, 0.1);
+}
+
+#weather-cards-container .card-body {
+    padding: 1rem; 
+}
+
+#weather-cards-container .card-title {
+    font-size: 1.25rem; 
+    margin-bottom: 2rem;
+}
+
+#weather-cards-container h3 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+#weather-cards-container p {
+    font-size: 1rem; 
 }

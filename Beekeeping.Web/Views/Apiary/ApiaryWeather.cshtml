@@ -1,7 +1,6 @@
 ﻿@model IEnumerable<ApiaryWeatherModel>
 
-<div class="text-center row">
-
+<div id="weather-cards-container" class="text-center row">
     @foreach (var w in Model)
     {
         <div class="card col-3" style="width: 15rem;">
@@ -11,7 +10,6 @@
                     <span class="glyphicon">&#x1F321;</span>
                     @Math.Round(w.Main.Temperature) °C
                 </h3>
-
                 @switch (w.Weather[0].MainWeather.ToString())
                 {
                     case "Thunderstorm":
@@ -36,6 +34,7 @@
                         <img style="width:100px;height:100px;" src="https://openweathermap.org/img/wn/03d@2x.png">
                         ; break;
                 }
+
                 <p class="mb-0">
                     <span class="glyphicon">&#127778;</span>
                     @w.Main.Humidity %
@@ -48,3 +47,5 @@
         </div>
     }
 </div>
+
+               

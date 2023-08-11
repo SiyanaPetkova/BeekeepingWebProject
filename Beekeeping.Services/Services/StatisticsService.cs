@@ -49,7 +49,7 @@
                         .Where(i => i.BeeColony!.OwnerOfTheApiary == userId)
                         .AverageAsync(i => i.Strenght);
 
-                    beeColoniesAverageStrenght = inspectionsStrenght;
+                    beeColoniesAverageStrenght = Math.Round(inspectionsStrenght, 2);
                 }            
             }                      
 
