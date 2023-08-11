@@ -615,56 +615,6 @@ ul {
         box-shadow: 0 10px 14px rgba(0, 0, 0, 0.1);
     }
 
-
-/* --- Error svg --- */
-/*svg {
-    display: block;
-    margin: 0 auto;
-    width: 600px;
-    background-color: none;
-}
-
-.effect text {
-    text-anchor: middle;
-    font-size: 20px;
-    font-family: sans-serif;
-}
-
-.effect text,
-.effect .left,
-.effect .middle,
-.effect .right {
-    transition-property: transform, opacity;
-    transition-duration: 250ms;
-}
-
-.effect:hover .left {
-    -webkit-transform: translateX(-20px);
-    transform: translateX(-20px);
-}
-
-.effect:hover .middle {
-    -webkit-transform: scaleX(1.5);
-    transform: scaleX(1.5);
-}
-
-.effect:hover .right {
-    -webkit-transform: translateX(20px);
-    transform: translateX(20px);
-}
-
-.effect text {
-    opacity: 0.25;
-    -webkit-transform: scaleX(0.5);
-    transform: scaleX(0.5);
-}
-
-.effect:hover text {
-    opacity: 1;
-    -webkit-transform: scaleX(1);
-    transform: scaleX(1);
-}*/
-
 .error-page {
     display: flex;
     place-items: center;
@@ -673,6 +623,8 @@ ul {
     height: 100%;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     background-color: black;
+    margin: 0 auto; 
+    max-width: 800px; 
 }
 
     .error-page h1 {
