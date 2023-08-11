@@ -1,5 +1,7 @@
 ﻿namespace Beekeeping.Test.Services
 {
+    #nullable disable
+
     using Microsoft.CodeAnalysis;
     using Microsoft.EntityFrameworkCore;
 

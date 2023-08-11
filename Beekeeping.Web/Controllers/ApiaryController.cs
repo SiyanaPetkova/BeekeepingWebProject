@@ -63,7 +63,7 @@
 
             if (!isUserOwner)
             {
-                TempData["InfoMessage"] = "Все още нямате добавен пчелин.";
+                TempData["InformationMessage"] = "Все още нямате добавен пчелин. Можете да го направите тук.";
 
                 return RedirectToAction("Add");
             }
@@ -232,11 +232,14 @@
 
                 string apiCall = $"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={OpenWeatherApiKey}&units=metric";
 
-                ApiaryWeatherModel results = weatherService.GetWeatherDataAsync(apiCall).Result;
+                ApiaryWeatherModel? results = weatherService.GetWeatherDataAsync(apiCall).Result;
 
-                results.Title = apiary.ApiaryName;
+                if (results != null)
+                {
+                    results.Title = apiary.ApiaryName;
 
-                weatherResults.Add(results);
+                    weatherResults.Add(results);
+                }                                           
             }
 
             return View(weatherResults);

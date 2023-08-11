@@ -42,7 +42,7 @@ namespace Beekeeping.Web
             })
                             .AddRoles<IdentityRole<Guid>>()
                             .AddEntityFrameworkStores<BeekeepingDbContext>();
-
+                      
             builder.Services.AddApplicationServices(typeof(IApiaryService));
 
             builder.Services.AddMemoryCache();

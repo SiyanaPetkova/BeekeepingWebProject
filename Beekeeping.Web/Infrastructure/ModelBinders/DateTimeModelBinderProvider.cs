@@ -7,7 +7,7 @@
 
     public class DateTimeModelBinderProvider : IModelBinderProvider
     {
-        public IModelBinder GetBinder(ModelBinderProviderContext context)
+        public IModelBinder? GetBinder(ModelBinderProviderContext context)
         {
             if (DateTimeModelBinder.SUPPORTED_DATETIME_TYPES.Contains(context.Metadata.ModelType))
             {

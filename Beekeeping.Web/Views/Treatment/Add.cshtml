@@ -1,43 +1,51 @@
 ﻿@model HiveTreatmentFormModel
 
-<body>
-    <div class="container text-center">
 
-        <h2>Добави третиране</h2>
+@{
+    ViewBag.Title = "Добави третиране";
+}
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <h2 class="heading-margin text-center">@ViewBag.Title</h2>
         <form method="post">
-            <div class="row">
-                <div class="col-3">
-                    <label asp-for="TreatmentDate"></label>
-                    <input asp-for="TreatmentDate" class="form-control">
-                    <span asp-validation-for="TreatmentDate" class="small text-danger"></span>
-                </div>
-                <div class="col-3">
-                    <label asp-for="MedicationName"></label>
-                    <input asp-for="MedicationName" class="form-control">
-                    <span asp-validation-for="MedicationName" class="small text-danger"></span>
-                </div>
-                <div class="col-3">
-                    <label asp-for="ActiveIngredient"></label>
-                    <input asp-for="ActiveIngredient" class="form-control">
-                    <span asp-validation-for="ActiveIngredient" class="small text-danger"></span>
-                </div>
-                <div class="col-3">
-                    <label asp-for="PriceOfTheTreatment"></label>
-                    <input asp-for="PriceOfTheTreatment" class="form-control">
-                    <span asp-validation-for="PriceOfTheTreatment" class="small text-danger"></span>
-                </div>
-                <div class="col-3">
-                    <label asp-for="NumberOfTreatedColonies"></label>
-                    <input asp-for="NumberOfTreatedColonies" class="form-control">
-                    <span asp-validation-for="NumberOfTreatedColonies" class="small text-danger"></span>
-                </div>
+            <div class="form-group">
+                <label asp-for="TreatmentDate"></label>
+                <input asp-for="TreatmentDate" class="form-control">
+                <span asp-validation-for="TreatmentDate" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MedicationName"></label>
+                <input asp-for="MedicationName" class="form-control">
+                <span asp-validation-for="MedicationName" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ActiveIngredient"></label>
+                <input asp-for="ActiveIngredient" class="form-control">
+                <span asp-validation-for="ActiveIngredient" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PriceOfTheTreatment"></label>
+                <input asp-for="PriceOfTheTreatment" class="form-control">
+                <span asp-validation-for="PriceOfTheTreatment" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfTreatedColonies"></label>
+                <input asp-for="NumberOfTreatedColonies" class="form-control">
+                <span asp-validation-for="NumberOfTreatedColonies" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ResultAndCommentAboutTheTreatment"></label>
+                <textarea asp-for="ResultAndCommentAboutTheTreatment" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="ResultAndCommentAboutTheTreatment" class="small text-danger"></span>
             </div>
             <input class="btn btn-primary mt-3" type="submit" value="Запази" />
         </form>
     </div>
-</body>
+</div>
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
-}
+    }
 

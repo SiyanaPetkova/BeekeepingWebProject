@@ -10,7 +10,7 @@
         public string TypeOfIncome { get; set; } = null!;
 
         [Display(Name = "Дата на прихода")]
-        public string DayOfTheIncome { get; set; }
+        public string DayOfTheIncome { get; set; } = null!;
 
         [Display(Name = "Стойност на прихода")]
         public decimal IncomeValue { get; set; }

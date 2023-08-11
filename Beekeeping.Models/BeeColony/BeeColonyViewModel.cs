@@ -25,10 +25,10 @@
 
         public int ApiaryId { get; set; }
 
-        public string Apiary { get; set; }
+        public string Apiary { get; set; } = null!;
 
-        public int BeeQueenId { get; set; }
+        public int? BeeQueenId { get; set; }
 
-        public BeeQueenSelectViewModel BeeQueen { get; set; }
+        public BeeQueenSelectViewModel? BeeQueen { get; set; }
     }
 }

@@ -1,17 +1,17 @@
 ﻿namespace Beekeeping.Web.Areas.Identity.Pages.Account
 {
-    using System.ComponentModel.DataAnnotations;
-    using System.Text;
-    using System.Text.Encodings.Web;
-    using System.Threading.Tasks;
-    using Beekeeping.Data.Models;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
-    using Microsoft.AspNetCore.WebUtilities;
+    using System.ComponentModel.DataAnnotations;
+    using System.Threading.Tasks;
+
+    using Data.Models;
 
     using static Beekeeping.Common.Validations.DataConstants.ApplicationUserValidations;
+    using static Common.NotificationMessages.ErrorMessages;
+
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
@@ -27,26 +27,28 @@
         }
 
         [BindProperty]
-        public InputModel Input { get; set; }
+        public InputModel Input { get; set; } = null!;
 
-        public string ReturnUrl { get; set; }
+        public string ReturnUrl { get; set; } = null!;
 
         public class InputModel
         {
-            [Required(ErrorMessage = "Полето {0} e задължително.")]
-            [EmailAddress(ErrorMessage = "Невалиден email.")]
-            public string Email { get; set; }
+            [Required(ErrorMessage = RequiredFieldErrorMessage)]
+            [EmailAddress(ErrorMessage = EmailIsNotValidErrorMessage)]
+            public string Email { get; set; } = null!;
 
-            [Required(ErrorMessage = "Полето {0} e задължително.")]
-            [StringLength(PasswordMaxLength, MinimumLength = PasswordMinLength, ErrorMessage = "Паролата трябва да бъде между {2} и {1} символа")]
+            [Required(ErrorMessage = RequiredFieldErrorMessage)]
+            [StringLength(PasswordMaxLength, MinimumLength = PasswordMinLength, ErrorMessage = StringRequirmentFieldsErrorMessage)]
             [DataType(DataType.Password)]
+            [RegularExpression(RegularExpressionValidation, ErrorMessage = PasswordRegexErrorMessage)]
             [Display(Name = "Парола")]
             public string Password { get; set; } = null!;
 
-            [Required(ErrorMessage = "Полето {0} e задължително.")]
+            [Required(ErrorMessage = RequiredFieldErrorMessage)]
             [DataType(DataType.Password)]
             [Display(Name = "Повторете паролата")]
-            [Compare("Password", ErrorMessage = "Двете пароли трябва да съвпадат!")]
+            [RegularExpression(RegularExpressionValidation, ErrorMessage = PasswordRegexErrorMessage)]
+            [Compare("Password", ErrorMessage = ConfirmPasswordErrorMessage)]
             public string ConfirmPassword { get; set; } = null!;
         }
 

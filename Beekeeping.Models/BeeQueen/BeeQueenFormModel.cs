@@ -22,9 +22,6 @@
         public string? BeeQueenType { get; set; }
 
         [Display(Name = "Година на излюпване")]
-        [Range(BeeQueenYearMinValue, 
-               BeeQueenYearMaxValue, 
-               ErrorMessage = FieldMinAndMaxRangeValueErrorMessage)]
         public int BeeQueenYearOfBirth { get; set; }
 
         public int BeeColonyId { get; set; }

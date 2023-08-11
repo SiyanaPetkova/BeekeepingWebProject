@@ -88,9 +88,16 @@
             {
                 var userToRemove = await userManager.Users.FirstOrDefaultAsync(u => u.Id.ToString() == id);
 
-                var result = await userManager.RemoveFromRoleAsync(userToRemove, AdministratorRoleName);
+                if (userToRemove != null)
+                {
+                    var result = await userManager.RemoveFromRoleAsync(userToRemove, AdministratorRoleName);
 
-                TempData["SuccessMessage"] = "Успешно премахнахте потребителя от ролята на администратор.";
+                    TempData["SuccessMessage"] = "Успешно премахнахте потребителя от ролята на администратор.";
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = CommonErrorMessage;
+                }
 
                 return RedirectToAction("AllAdmins");
 

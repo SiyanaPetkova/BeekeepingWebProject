@@ -1,5 +1,7 @@
 ﻿namespace Beekeeping.Test.Services
 {
+    #nullable disable
+
     using Microsoft.CodeAnalysis;
     using Microsoft.EntityFrameworkCore;
 
@@ -181,7 +183,7 @@
 
             var actualApiary = new ApiaryEditFormModel()
             {
-                Id = apiaryForEdit.Id,
+                Id = apiaryForEdit!.Id,
                 Name = apiaryForEdit!.Name,
                 Location = "Село Климентово, община Аксаково, област Варна",
                 RegistrationNumber = "9150-0025",

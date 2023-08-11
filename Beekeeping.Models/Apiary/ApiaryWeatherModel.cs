@@ -1,5 +1,7 @@
 ﻿namespace Beekeeping.Models.Apiary
 {
+    #nullable disable
+
     using Newtonsoft.Json;
 
     public class ApiaryWeatherModel

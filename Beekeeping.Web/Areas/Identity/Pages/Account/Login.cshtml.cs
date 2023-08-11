@@ -1,13 +1,16 @@
 ﻿namespace Beekeeping.Web.Areas.Identity.Pages.Account
 {
-    using System.ComponentModel.DataAnnotations;
-    using System.Threading.Tasks;
-    using Beekeeping.Data.Models;
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
+    using System.ComponentModel.DataAnnotations;
+    using System.Threading.Tasks;
+
+    using Data.Models;
+
+    using static Common.NotificationMessages.ErrorMessages;
 
     [AllowAnonymous]
     public class LoginModel : PageModel
@@ -18,20 +21,20 @@
             => this.signInManager = signInManager;
 
         [BindProperty]
-        public InputModel Input { get; set; }
+        public InputModel? Input { get; set; }
 
-        public string ReturnUrl { get; set; }
+        public string? ReturnUrl { get; set; }
 
         [TempData]
-        public string ErrorMessage { get; set; }
+        public string? ErrorMessage { get; set; }
 
         public class InputModel
         {
-            [Required(ErrorMessage = "Полето {0} e задължително.")]
-            [EmailAddress(ErrorMessage = "Невалиден email.")]
+            [Required(ErrorMessage = RequiredFieldErrorMessage)]
+            [EmailAddress(ErrorMessage = EmailIsNotValidErrorMessage)]
             public string Email { get; set; } = null!;
 
-            [Required(ErrorMessage = "Полето {0} e задължително.")]
+            [Required(ErrorMessage = RequiredFieldErrorMessage)]
             [DataType(DataType.Password)]
             [Display(Name = "Парола")]
             public string Password { get; set; } = null!;

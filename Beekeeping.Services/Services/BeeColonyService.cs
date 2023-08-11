@@ -39,7 +39,7 @@
                      Apiary = b.Apiary.Name,
                      BeeQueen = new BeeQueenSelectViewModel()
                      {
-                         BeeQueenYearOfBirth = b.BeeQueen.BeeQueenYearOfBirth,
+                         BeeQueenYearOfBirth = b.BeeQueen!.BeeQueenYearOfBirth,
                          Breeder = b.BeeQueen.Breeder,
                          BeeQueenType = b.BeeQueen.BeeQueenType
                      }
@@ -58,9 +58,9 @@
         {
             var beeQueen = new BeeQueen()
             {
-                Breeder = model.BeeQueen.Breeder,
-                BeeQueenType = model.BeeQueen.BeeQueenType,
-                BeeQueenYearOfBirth = model.BeeQueen.BeeQueenYearOfBirth
+                Breeder = model.BeeQueen?.Breeder,
+                BeeQueenType = model.BeeQueen?.BeeQueenType,
+                BeeQueenYearOfBirth = model.BeeQueen!.BeeQueenYearOfBirth
             };
 
             var beeColony = new BeeColony()
@@ -105,11 +105,14 @@
                                .FirstOrDefaultAsync(a => a.Id == colonyId && a.OwnerOfTheApiary == ownerId)
                                ?? throw new InvalidOperationException();
 
-            var beeQueen = await context.BeeQueens.FindAsync(beeColony.BeeQueenId);
+            var beeQueen = await context.BeeQueens.FirstOrDefaultAsync(b => b.Id== beeColony.BeeQueenId);
 
-            beeQueen.Breeder = model.BeeQueen?.Breeder;
-            beeQueen.BeeQueenYearOfBirth = model.BeeQueen.BeeQueenYearOfBirth;
-            beeQueen.BeeQueenType = model.BeeQueen.BeeQueenType;
+            if (beeQueen != null)
+            {
+                beeQueen.Breeder = model.BeeQueen?.Breeder;
+                beeQueen.BeeQueenYearOfBirth = model.BeeQueen!.BeeQueenYearOfBirth;
+                beeQueen.BeeQueenType = model.BeeQueen.BeeQueenType;
+            }          
 
             beeColony.BeeQueen = beeQueen;
             beeColony.PlateNumber = model.PlateNumber!;
@@ -176,7 +179,7 @@
                     Apiary = b.Apiary.Name,
                     BeeQueen = new BeeQueenSelectViewModel()
                     {
-                        BeeQueenYearOfBirth = b.BeeQueen.BeeQueenYearOfBirth,
+                        BeeQueenYearOfBirth = b.BeeQueen!.BeeQueenYearOfBirth,
                         Breeder = b.BeeQueen.Breeder,
                         BeeQueenType = b.BeeQueen.BeeQueenType
                     }

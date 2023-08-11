@@ -1,5 +1,7 @@
 ﻿namespace Beekeeping.Test.Services
 {
+    #nullable disable
+
     using Microsoft.EntityFrameworkCore;
 
     using Data.Models;
@@ -12,7 +14,6 @@
     {
         private BeekeepingDbContext context;
         private IBeeColonyService beeColonyService;
-        private IApiaryService apiaryService;
 
         private int beeColonyIdForTests;
         private int apiaryIdForTests;
@@ -38,7 +39,6 @@
             await context.SaveChangesAsync();
 
             beeColonyService = new BeeColonyService(context);
-            apiaryService = new ApiaryService(context);
         }
 
         [TearDown]

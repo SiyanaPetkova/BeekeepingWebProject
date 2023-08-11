@@ -57,7 +57,7 @@
 
         public IEnumerable<AllApiariesForSelectModel> Apiaries { get; set; } = new HashSet<AllApiariesForSelectModel>();
 
-        public int BeeQueenId { get; set; }
+        public int? BeeQueenId { get; set; }
 
         public BeeQueenFormModel? BeeQueen { get; set; }
 
