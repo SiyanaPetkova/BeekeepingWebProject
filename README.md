@@ -13,7 +13,7 @@ Beekeeping Web project is a web application developed for beekeeping in Bulgaria
 - Statistics
 - Entertainment part
 
-  <div align="center">
+ <div align="center">
   <img src="https://github.com/SiyanaPetkova/BeekeepingWebProject/assets/106101481/bd631ce7-5ed3-4abc-adbf-495be13f355b" alt="HomePage">
 </div>
 
@@ -29,10 +29,10 @@ Beekeeping Web project is a web application developed for beekeeping in Bulgaria
 - Responsive and user-friendly interface for an optimal user experience supporting both desctop and mobile
 
 <div align="center">
- ![DesctopView](https://github.com/SiyanaPetkova/BeekeepingWebProject/assets/106101481/69d2a246-32ff-4bb8-98de-b8e9659277b5)
+   <img src="https://github.com/SiyanaPetkova/BeekeepingWebProject/assets/106101481/69d2a246-32ff-4bb8-98de-b8e9659277b5" alt="DesctopView">
 </div>
 <div align="center">
- ![MobileView](https://github.com/SiyanaPetkova/BeekeepingWebProject/assets/106101481/03f324ef-f72f-4c93-b8e0-f727b8ff7890)
+    <img src="https://github.com/SiyanaPetkova/BeekeepingWebProject/assets/106101481/03f324ef-f72f-4c93-b8e0-f727b8ff7890" alt="MobileView">
 </div>
 
 <h2 align="center">USERS</h2>
@@ -53,7 +53,7 @@ The application has three types of users:
 - OpenWeather API
   
 <div align="center">
- ![Gallery](https://github.com/SiyanaPetkova/BeekeepingWebProject/assets/106101481/eb3c4e07-f7d0-476f-a12a-6d36524c41bc)
+    <img src="https://github.com/SiyanaPetkova/BeekeepingWebProject/assets/106101481/eb3c4e07-f7d0-476f-a12a-6d36524c41bc" alt="Gallery">
 </div>
 
 ###Pictures in the application are from a personal collection, and all rights are reserved.
