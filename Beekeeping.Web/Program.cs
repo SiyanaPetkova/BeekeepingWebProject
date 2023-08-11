@@ -40,7 +40,7 @@ namespace Beekeeping.Web
                                    builder.Configuration.GetValue<int>("Identity:Password:RequiredLength");
                 
             })
-                             .AddRoles<IdentityRole<Guid>>()
+                            .AddRoles<IdentityRole<Guid>>()
                             .AddEntityFrameworkStores<BeekeepingDbContext>();
 
             builder.Services.AddApplicationServices(typeof(IApiaryService));

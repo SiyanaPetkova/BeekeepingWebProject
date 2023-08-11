@@ -4,16 +4,13 @@ $primary1: #ffbe33;
 $primary2: #222831;
 $textCol: #1f1f1f;
 
-// import fonts -  font-family: 'Open Sans', sans-serif and  font-family: 'Dancing Script', cursive;
-
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap');
 
 @mixin main-font {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Courier New", sans-serif;
 }
 
 @mixin second-font {
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Courier New', cursive;
 }
 
 @mixin hero_btn($col1, $col2, $pad1, $pad2, $bRadius) {
