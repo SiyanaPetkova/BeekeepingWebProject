@@ -13,12 +13,12 @@
     {
         <div class="container-fluid">
             <h1>@apiary.Name</h1>
-            <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#myModal-@(apiary.Id)">Повече информация</button>
+            <button type="button" class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#myModal-@(apiary.Id)">Повече информация</button>
             <div class="modal fade" id="myModal-@(apiary.Id)" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title-center">@apiary.Name</h4>
+                            <h4 class="modal-title">@apiary.Name</h4>
                         </div>
                         <div class="modal-body">
                             <p>Адрес: @apiary.Location</p>
@@ -26,7 +26,7 @@
                             <p>Брой кошери: @apiary.NumberOfHives</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-light" data-dismiss="modal">Затвори</button>
+                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Затвори</button>
                             <a href="/Apiary/Edit/@apiary.Id" class="btn btn-light">Редакция</a>
                             <a asp-controller="Apiary" asp-action="Delete" asp-route-id="@apiary.Id" class="btn btn-danger"
                                onclick="showDeleteConfirmation(event, 'Да, изтрий!')">Изтриване</a>
@@ -39,6 +39,7 @@
         </div>
     }
 </div>
+
 
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>

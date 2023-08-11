@@ -10,21 +10,19 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="~/favicon.png" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/style.css" />
     <link rel="stylesheet" href="~/css/font-style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" integrity="sha512-6S2HWzVFxruDlZxI3sXOZZ4/eJ8AcxkQH1+JjSe/ONCEqR9L4Ysq5JdT5ipqtzU7WHalNwzwBv+iE51gNHJNqQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <script src="~/lib/bootstrap/dist/js/jquery-3.4.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js" integrity="sha512-lbwH47l/tPXJYG9AcFNoJaTMhGvYWhVM9YI43CT+uteTRRaiLCui8snIgyAN8XWgNjNhCqlAUdzZptso6OCoFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.js" integrity="sha512-lbwH47l/tPXJYG9AcFNoJaTMhGvYWhVM9YI43CT+uteTRRaiLCui8snIgyAN8XWgNjNhCqlAUdzZptso6OCoFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.css" integrity="sha512-6S2HWzVFxruDlZxI3sXOZZ4/eJ8AcxkQH1+JjSe/ONCEqR9L4Ysq5JdT5ipqtzU7WHalNwzwBv+iE51gNHJNqQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-
-<body style="background-image: src(/images/back.jpg)">
+<body style="background-image: url('/images/back.jpg')">
     <header>
         <partial name="_NotificationPartial" />
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">За пчелите и хората</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -40,7 +38,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Gallery" asp-action="All">Галерия</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Пчеларски дневник
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -48,8 +46,7 @@
                                 <li><a class="dropdown-item" asp-area="" asp-controller="Event" asp-action="Index">Събития</a></li>
                                 <li><a class="dropdown-item" asp-area="" asp-controller="Balance" asp-action="Index">Баланс</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Statistics" asp-action="Index">Статистики</a>
-                        </li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Statistics" asp-action="Index">Статистики</a></li>
                             </ul>
                         </li>
                         @if (User.IsInRole(AdministratorRoleName))
@@ -66,27 +63,27 @@
     </header>
     <div class="container-fluid">
         <div class="row">
-            <nav class=" col-md-2 col-lg-2 d-none d-md-block  sidebar">               
-                    <ul class="btn-group-vertical d-grid gap-4">                      
-                            <li class="hexagon">
+            <nav class="col-md-2 col-lg-2 d-none d-md-block  sidebar">
+                <ul class="btn-group-vertical d-grid gap-4">
+                    <li class="hexagon">
                         <a class="hexagon-in1" asp-area="" asp-controller="Home" asp-action="AboutUs" asp-route-id=""><span class="hexagon-in2">За нас</span></a>
-                            </li>
-                            <li class="hexagon">
-                                <a class="hexagon-in1" asp-area="" asp-controller="Gallery" asp-action="All" asp-route-id=""><span class="hexagon-in2">Галерия</span></a>
-                            </li>
-                            @if (User.Identity.IsAuthenticated)
-                            {
-                                <li class="hexagon">
-                                    <a class="hexagon-in1" a asp-area="" asp-controller="Apiary" asp-action="ApiaryWeather" asp-route-id=""><span class="hexagon-in2">Времето</span></a>
-                                </li>
-                                <li class="hexagon">
-                                    <a class="hexagon-in1" asp-area="" asp-controller="Event" asp-action="Notes" asp-route-id=""><span class="hexagon-in2">Задачи</span></a>
-                                </li>
-                                <li class="hexagon">
-                                    <a class="hexagon-in1" asp-area="" asp-controller="Apiary" asp-action="All" asp-route-id=""><span class="hexagon-in2">Пчелини</span></a>
-                                </li>                               
-                            }                      
-                    </ul>               
+                    </li>
+                    <li class="hexagon">
+                        <a class="hexagon-in1" asp-area="" asp-controller="Gallery" asp-action="All" asp-route-id=""><span class="hexagon-in2">Галерия</span></a>
+                    </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="hexagon">
+                            <a class="hexagon-in1" asp-area="" asp-controller="Apiary" asp-action="ApiaryWeather" asp-route-id=""><span class="hexagon-in2">Времето</span></a>
+                        </li>
+                        <li class="hexagon">
+                            <a class="hexagon-in1" asp-area="" asp-controller="Event" asp-action="Notes" asp-route-id=""><span class="hexagon-in2">Задачи</span></a>
+                        </li>
+                        <li class="hexagon">
+                            <a class="hexagon-in1" asp-area="" asp-controller="Apiary" asp-action="All" asp-route-id=""><span class="hexagon-in2">Пчелини</span></a>
+                        </li>
+                    }
+                </ul>
             </nav>
             <main class="col-md-10 ms-sm-auto col-lg-10 px-md-4">
                 @RenderBody()
@@ -100,11 +97,11 @@
         </div>
     </footer>
 
+
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-   
+
     @await RenderSectionAsync("Scripts", required: false)
 
 </body>

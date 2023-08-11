@@ -1,19 +1,18 @@
-﻿<h2 class="text-center">Събития</h2>
+﻿
+<h2 class="text-center">Събития</h2>
 <p class="text-center">Тук можете да добавите информация за проведени мероприятия по хранене и третиране на вашите кошери, както и да добавите бележки за напомняне на задачи.</p>
 
 <div class="custom-events-container">
-    <div class="row">
-        <div class="col-sm">
-            <img src="/images/Feeding.jpg" alt="Feeding">
-            <a asp-controller="Event" asp-action="Feeding" class="custom-btn">Хранене</a>
-        </div>
-        <div class="col-sm">
-            <img src="/images/Treatment.jpg" alt="Treatment">
-            <a asp-controller="Event" asp-action="Treatment" class="custom-btn">Третиране</a>
-        </div>
-        <div class="col-sm">
-            <img src="/images/ToDo.jpg" alt="ToDo">
-            <a asp-controller="Event" asp-action="Notes" class="custom-btn">Задачи</a>
-        </div>
+    <div class="custom-event">
+        <img src="/images/Feeding.jpg" alt="Feeding">
+        <a asp-controller="Event" asp-action="Feeding" class="custom-btn">Хранене</a>
+    </div>
+    <div class="custom-event">
+        <img src="/images/Treatment.jpg" alt="Treatment">
+        <a asp-controller="Event" asp-action="Treatment" class="custom-btn">Третиране</a>
+    </div>
+    <div class="custom-event">
+        <img src="/images/ToDo.jpg" alt="ToDo">
+        <a asp-controller="Event" asp-action="Notes" class="custom-btn">Задачи</a>
     </div>
 </div>
