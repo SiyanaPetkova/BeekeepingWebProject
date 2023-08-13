@@ -10,6 +10,7 @@ namespace Beekeeping.Web
     using Web.Infrastructure.ModelBinders;
    
     using static Web.Areas.Admin.AdminConstants;
+    using Microsoft.AspNetCore.Mvc;
 
     public class Program
     {
@@ -58,6 +59,7 @@ namespace Beekeeping.Web
                  .AddMvcOptions(options =>
                  {
                      options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
+                     options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
                  });
                      
             var app = builder.Build();

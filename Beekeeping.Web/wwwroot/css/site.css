@@ -269,7 +269,7 @@ input[type=submit] {
 .card {
     padding: 35px;
     border-radius: 20px;
-    box-shadow: 1 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     background-color: lightgoldenrodyellow;
     margin-bottom: 5mm;
 }
@@ -714,16 +714,18 @@ ul {
     }
 }
 
-@media (max-width: 767px) {
-    .error-page h1 {
-        font-size: 32vw;
+@media (max-width: 600px) {
+    .error-page {
+        flex-direction: column;
     }
 
-        .error-page h1 + p {
-            font-size: 8vw;
-            line-height: 10vw;
-            max-width: 70vw;
+        .error-page h1 {
+            font-size: 15vh;
         }
+
+            .error-page h1 + p {
+                font-size: 3vh;
+            }
 }
 
 /*--- Weather card ---*/
@@ -733,7 +735,7 @@ ul {
     background-color: #f8f9fa; 
     margin: 1rem;
     border-radius: 20px;
-    box-shadow: 1 14px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 14px 16px rgba(0, 0, 0, 0.1);
 }
 
 #weather-cards-container .card-body {

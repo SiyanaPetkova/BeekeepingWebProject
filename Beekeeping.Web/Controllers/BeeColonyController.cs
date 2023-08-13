@@ -27,13 +27,23 @@
         {
             var userId = User.Id();
 
-            var isUserOwner = await apiaryService.IsTheUserOwner(userId);
+            var doesOwnerHasApiary = await apiaryService.DoesOwnerHasApiary(userId);
+
+            if (!doesOwnerHasApiary)
+            {
+                TempData["InformationMessage"] = "Все още нямате добавен пчелин. Можете да го направите тук.";
+
+                return RedirectToAction("Add");
+            }
+
+
+            var isUserOwner = await apiaryService.IsTheUserOwner(userId, id);
 
             if (!isUserOwner)
             {
-                TempData["ErrorMessage"] = "Все още нямате добавен пчелин.";
+                TempData["ErrorMessage"] = NotAuthorizedErrorMessage;
 
-                return RedirectToAction("Add");
+                return RedirectToAction("Index", "Home");
             }
 
             try
@@ -214,6 +224,15 @@
         public async Task<IActionResult> Details(int id)
         {
             string userId = User.Id();
+
+            var doesApiaryExist = await beeColonyService.DoesBeeColonyExist(userId, id);
+
+            if (!doesApiaryExist)
+            {
+                TempData["ErrorMessage"] = "Не съществуващ koшер!";
+
+                return RedirectToAction("All", "Apiary");
+            }
 
             try
             {

@@ -15,9 +15,11 @@
 
         Task EditApiaryAsync(ApiaryEditFormModel model, int id, string ownerId);
 
-        Task<bool> IsTheUserOwner(string ownerId);
+        Task<bool> IsTheUserOwner(string ownerId, int id);
 
-        Task<bool> DoesApiaryExists(string ownerId, int id);
+        Task<bool> DoesOwnerHasApiary(string ownerId);
+
+        Task<bool> DoesApiaryExists(string ownerId, int id);     
 
         Task DeleteApiaryAsync(string ownerId, int apiaryId);
 

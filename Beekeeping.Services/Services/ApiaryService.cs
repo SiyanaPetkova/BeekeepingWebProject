@@ -108,9 +108,14 @@
             return await context.Apiaries.AnyAsync(a => a.Id == id && a.OwnerId == ownerId);
         }
 
-        public async Task<bool> IsTheUserOwner(string ownerId)
+        public async Task<bool> DoesOwnerHasApiary(string ownerId)
         {
             return await context.Apiaries.AnyAsync(a => a.OwnerId == ownerId);
+        }
+
+        public async Task<bool> IsTheUserOwner(string ownerId, int id)
+        {
+            return await context.Apiaries.AnyAsync(a => a.OwnerId == ownerId && a.Id == id);
         }
 
         public List<AllApiariesForSelectModel> AllApiariesForSelectAsync(IEnumerable<ApiaryViewModel>? apiaries)

@@ -27,7 +27,7 @@
         {
             var userId = User.Id();
 
-            var isUserOwner = await apiaryService.IsTheUserOwner(userId);
+            var isUserOwner = await apiaryService.DoesOwnerHasApiary(userId);
 
             if (!isUserOwner)
             {
@@ -132,6 +132,15 @@
         public async Task<IActionResult> Details(int id)
         {
             string userId = User.Id();
+
+            //var inspection = await inspectionService.DoesInspectionExist(userId, id);
+
+            //if (!inspection)
+            //{
+            //    TempData["ErrorMessage"] = "Несъществуващ преглед";
+
+            //    return RedirectToAction("All", "Apiary");
+            //}
 
             try
             {

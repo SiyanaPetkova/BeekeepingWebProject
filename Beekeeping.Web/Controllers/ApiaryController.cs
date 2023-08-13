@@ -59,11 +59,11 @@
         {
             var userId = this.User.Id();
 
-            var isUserOwner = await apiaryService.IsTheUserOwner(userId);
+            var isUserOwner = await apiaryService.DoesOwnerHasApiary(userId);
 
             if (!isUserOwner)
             {
-                TempData["InformationMessage"] = "Все още нямате добавен пчелин. Можете да го направите тук.";
+                TempData["InformationMessage"] = "Все още нямате добавен пчелин. Можете да го направите от тук.";
 
                 return RedirectToAction("Add");
             }
@@ -74,7 +74,7 @@
 
                 if (model == null)
                 {
-                    TempData["InformationMessage"] = "Все още нямате добавен пчелин. Можете да го направите тук.";
+                    TempData["ErrorMessage"] = NotAuthorizedErrorMessage;
 
                     return RedirectToAction("Add");
                 }
@@ -95,7 +95,7 @@
         {
             var userId = this.User.Id();
 
-            var isUserOwner = await apiaryService.IsTheUserOwner(userId);
+            var isUserOwner = await apiaryService.IsTheUserOwner(userId, id);
 
             if (!isUserOwner)
             {
@@ -137,7 +137,7 @@
 
             var userId = this.User.Id();
 
-            var isUserOwner = await apiaryService.IsTheUserOwner(userId);
+            var isUserOwner = await apiaryService.IsTheUserOwner(userId, id);
 
             if (!isUserOwner)
             {
@@ -175,7 +175,7 @@
         {
             var userId = this.User.Id();
 
-            var isUserOwner = await apiaryService.IsTheUserOwner(userId);
+            var isUserOwner = await apiaryService.IsTheUserOwner(userId, id);
 
             if (!isUserOwner)
             {
@@ -212,9 +212,9 @@
         {
             var userId = this.User.Id();
 
-            var isTheUserOwner = await apiaryService.IsTheUserOwner(userId);
+            var doesOwnerHasApiary = await apiaryService.DoesOwnerHasApiary(userId);
 
-            if (!isTheUserOwner)
+            if (!doesOwnerHasApiary)
             {
                 TempData["ErrorMessage"] = "Първо трябва да добавите пчелин с точни координати, за да можете да видите времето в момента там.";
 
@@ -239,7 +239,7 @@
                     results.Title = apiary.ApiaryName;
 
                     weatherResults.Add(results);
-                }                                           
+                }
             }
 
             return View(weatherResults);
